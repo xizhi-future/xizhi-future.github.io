@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ctf-show-misc入门 | 忆 执 昔 来 的 旅 途</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="CTF" />
+  
+  
+  
+  
+  <meta name="description" content="CTF Show Misc 入门篇。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF-Show-Misc入门">
+<meta property="og:url" content="https://xizhi-future.github.io/2021/10/01/CTF-Show-Misc%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="忆 执 昔 来 的 旅 途">
+<meta property="og:description" content="CTF Show Misc 入门篇。">
+<meta property="og:locale">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/Rx8sIlWr5dCVMBU.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/zi3RJMZBUgDIFV1.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/bMwnHSazE6ZumGk.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/08/uJiB5lEZkXsd1WG.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/ify8sS4qJTQcnHN.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/TdIf1OWxCinvLR6.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/z9YCQkL7JaZKE8t.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/PsSiYcQVTj5Bt1g.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/FXqw91zIl7HtOfx.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/SOIugvK2PU5Jql6.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/C3Xg98KxbPEwpD1.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/i9uzv5cNeaIYZK6.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2021040323291259.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3JmcmRlcg==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/9fUygEpk5xD64CY.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/eiTxaH3R5QyXsCM.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/VAtQ7vGkhoydjCg.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/TRVfhLlAZtEbz8G.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/XYpNZg5y4Mrz8ad.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/HQLKmqTDYX29ect.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/MhJSlyqzXk9vTRb.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/DqM6Oeojm84sPCQ.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/M8uZkhLQ3lBrvCq.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/ZjgFo1C7Q6vrXa4.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/nlOwMb7TYjHvmVa.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/18/LKIYqbx6zagBPij.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/18/3Q4ufwqRHpg7sDA.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/xNsXTekIu8rQicp.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/4x7pI5l6Ji2LXD9.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/vmXoFLcraHVux81.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/fZSn92xQVupkjm8.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/UhKEkJ1cCenrjBW.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/06/GAKM9qvI2wHXZdy.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/18/s3uYmaIvdQoCntb.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/18/lh2CPzr7Icn6ETL.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/18/f2B4y1Vlg7C9TkU.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/18/pmdsDHbnO78GAKE.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/18/yxjk3vDiorTaS7F.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/18/iQu4oTsBpj5VSbK.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/18/NGuDSj1aL6Ii9vo.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/18/X9QjZ8bHJ2oUc7x.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/18/Yn7Ss6BOiae3mZ2.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/18/XGi2Mk35UJRTBcq.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/18/U2a1CMOwjg7eoFQ.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/18/nFv9oAalI6by3CG.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/18/YDhUVyJfuWLqTHG.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/18/lJOhAfSi9oUprB4.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/18/ORvZCma3I9obkwW.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/18/28FwOXBWE71SrjL.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/18/78twlxqsrMUOHTj.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/18/puJBmM9NFYwl1bd.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/18/GK4Qjsxu1ombFEe.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/18/lUidvS8bGcwmC6z.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/18/OmIx2Yf9HSnqTzk.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/18/PIZ4l9SsAREOBUF.png">
+<meta property="article:published_time" content="2021-10-01T11:17:47.000Z">
+<meta property="article:modified_time" content="2021-10-01T11:18:54.358Z">
+<meta property="article:author" content="xizhi-future">
+<meta property="article:tag" content="CTF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/08/06/Rx8sIlWr5dCVMBU.png">
+  
+    <link rel="alternate" href="/atom.xml" title="忆 执 昔 来 的 旅 途" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="/js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/essayists">随笔</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/friendly-links">友情链接</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-CTF-Show-Misc入门" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      CTF-Show-Misc入门
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/10/01/CTF-Show-Misc%E5%85%A5%E9%97%A8/" class="article-date">
+	  <time datetime="2021-10-01T11:17:47.000Z" itemprop="datePublished">2021-10-01</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/CTF-Show/">CTF Show</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>CTF Show Misc 入门篇。</p>
+<span id="more"></span>
+
+<h1 id="Misc-入门"><a href="#Misc-入门" class="headerlink" title="Misc 入门"></a>Misc 入门</h1><h2 id="1-1-misc-1-—-QQ截图-直接识别图片内容"><a href="#1-1-misc-1-—-QQ截图-直接识别图片内容" class="headerlink" title="1.1 misc 1 — QQ截图 直接识别图片内容"></a>1.1 misc 1 — QQ截图 直接识别图片内容</h2><p><img src="https://i.loli.net/2021/08/06/Rx8sIlWr5dCVMBU.png" alt="image-20210806130402835"></p>
+<p>图片直接是这个，我们可以 QQ 截图，使用当中的 屏幕识别 即可识别出文字</p>
+<h2 id="1-2-misc-2-—-png-图片识别"><a href="#1-2-misc-2-—-png-图片识别" class="headerlink" title="1.2 misc 2 — png 图片识别"></a>1.2 misc 2 — png 图片识别</h2><p><img src="https://i.loli.net/2021/08/06/zi3RJMZBUgDIFV1.png" alt="image-20210806130536818"></p>
+<p>记事本打开是这样，那肯定不是 .txt 文本文件</p>
+<p>使用 Editor010 打开</p>
+<p><img src="https://i.loli.net/2021/08/06/bMwnHSazE6ZumGk.png" alt="image-20210806131136158"></p>
+<p>说明这是 png 文件，修改后缀，然后 QQ 屏幕识图即可</p>
+<p><strong>补充知识：Python3 进行图片识别 <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000014091417">https://segmentfault.com/a/1190000014091417</a></strong></p>
+<p><img src="https://i.loli.net/2021/08/08/uJiB5lEZkXsd1WG.png" alt="image-20210808212059742"></p>
+<h2 id="1-3-misc-3-—-查看-bpg-图片"><a href="#1-3-misc-3-—-查看-bpg-图片" class="headerlink" title="1.3 misc 3 — 查看 bpg 图片"></a>1.3 misc 3 — 查看 bpg 图片</h2><p>是 bpg 图片，需要专门的查看工具 <a target="_blank" rel="noopener" href="https://bellard.org/bpg/">https://bellard.org/bpg/</a></p>
+<p><img src="https://i.loli.net/2021/08/06/ify8sS4qJTQcnHN.png" alt="image-20210806131927979"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用</span></span><br><span class="line">\bpj\bpgview.exe misc3.bpg</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-4-misc-4-—-图片格式-文件头"><a href="#1-4-misc-4-—-图片格式-文件头" class="headerlink" title="1.4 misc 4 — 图片格式 + 文件头"></a>1.4 misc 4 — 图片格式 + 文件头</h2><p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%9B%BE%E7%89%87%E6%A0%BC%E5%BC%8F/381122?fr=aladdin">图片格式</a></p>
+<p><strong>JPEG</strong><br>文件头：FF D8 FF　　　　　<br>文件尾：FF D9</p>
+<p><strong>TGA</strong><br>未压缩的前4字节 00 00 02 00<br>RLE压缩的前5字节 00 00 10 00 00</p>
+<p><strong>PNG</strong></p>
+<p>文件头：89 50 4E 47 0D 0A 1A 0A　　　　<br>文件尾：AE 42 60 82</p>
+<p><strong>GIF</strong></p>
+<p>文件头：47 49 46 38 39(37) 61　　　　<br>文件尾：00 3B</p>
+<p><strong>BMP</strong></p>
+<p>文件头：42 4D</p>
+<p>文件头标识(2 bytes) 42(B) 4D(M)</p>
+<p><strong>TIFF (tif)</strong></p>
+<p>文件头：49 49 2A 00</p>
+<p><strong>ico</strong></p>
+<p>文件头：00 00 01 00</p>
+<p><strong>Adobe Photoshop (psd)</strong></p>
+<p>文件头：38 42 50 53</p>
+<p><strong>一个一个查看，修改后缀</strong></p>
+<p>1.txt png</p>
+<p>2.txt jpg</p>
+<p>3.txt bmp</p>
+<p>4.txt gif</p>
+<p>5.txt tif</p>
+<p>6.txt webp</p>
+<h2 id="1-5-misc-5-—-png-文件尾-添内容"><a href="#1-5-misc-5-—-png-文件尾-添内容" class="headerlink" title="1.5 misc 5 — png 文件尾 添内容"></a>1.5 misc 5 — png 文件尾 添内容</h2><p><img src="https://i.loli.net/2021/08/06/TdIf1OWxCinvLR6.png" alt="image-20210806133135512"></p>
+<p>010打开</p>
+<p><img src="https://i.loli.net/2021/08/06/z9YCQkL7JaZKE8t.png" alt="image-20210806133333684"></p>
+<p>发现在 png 的文件尾后面多出了</p>
+<h2 id="1-6-misc-6-—-jpg-文件-添内容"><a href="#1-6-misc-6-—-jpg-文件-添内容" class="headerlink" title="1.6 misc 6 — jpg 文件 添内容"></a>1.6 misc 6 — jpg 文件 添内容</h2><p><img src="https://i.loli.net/2021/08/06/PsSiYcQVTj5Bt1g.png" alt="image-20210806142710191"></p>
+<h2 id="1-7-misc-7-—-flag在图片文件信息中"><a href="#1-7-misc-7-—-flag在图片文件信息中" class="headerlink" title="1.7 misc 7 — flag在图片文件信息中"></a>1.7 misc 7 — flag在图片文件信息中</h2><p><strong>flag在图片文件信息中。</strong></p>
+<p><img src="https://i.loli.net/2021/08/06/FXqw91zIl7HtOfx.png" alt="image-20210806143036016"></p>
+<p><strong>常用到的手段还有</strong></p>
+<ul>
+<li>右键–属性</li>
+<li>工具 <a target="_blank" rel="noopener" href="https://exif.tuchong.com/">图虫查看器</a> 能够查看图片的详细信息</li>
+</ul>
+<h2 id="1-8-misc-8-—-flag在图片文件中图片文件中-—-binwalk-foremost"><a href="#1-8-misc-8-—-flag在图片文件中图片文件中-—-binwalk-foremost" class="headerlink" title="1.8 misc 8 — flag在图片文件中图片文件中 — binwalk  foremost"></a>1.8 misc 8 — flag在图片文件中图片文件中 — binwalk  foremost</h2><p><strong>flag在图片文件中图片文件中。</strong></p>
+<p>010 打开</p>
+<p><img src="https://i.loli.net/2021/08/06/SOIugvK2PU5Jql6.png" alt="image-20210806144045544"></p>
+<p>可以发现，该 png 图片当中 还包含着一张 png 图片</p>
+<p><strong>图片隐藏文件 binwalk  foremost</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Sc0fie1d/article/details/101602492">https://blog.csdn.net/Sc0fie1d/article/details/101602492</a></p>
+<p><img src="https://i.loli.net/2021/08/06/C3Xg98KxbPEwpD1.png" alt="image-20210806144305711"></p>
+<h2 id="1-9-misc-9-—-flag在图片块里"><a href="#1-9-misc-9-—-flag在图片块里" class="headerlink" title="1.9 misc 9 — flag在图片块里"></a>1.9 misc 9 — flag在图片块里</h2><p><img src="https://i.loli.net/2021/08/06/i9uzv5cNeaIYZK6.png" alt="image-20210806144814605"></p>
+<h2 id="1-10-misc-10-—-flag在图片数据里"><a href="#1-10-misc-10-—-flag在图片数据里" class="headerlink" title="1.10 misc 10 — flag在图片数据里"></a>1.10 misc 10 — flag在图片数据里</h2><p><img src="https://img-blog.csdnimg.cn/2021040323291259.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3JmcmRlcg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://i.loli.net/2021/08/06/9fUygEpk5xD64CY.png" alt="image-20210806150628472"></p>
+<p>两个 IDAT 块</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wxh0000mm/article/details/85683661">binwalk 工具</a></p>
+<p><img src="https://i.loli.net/2021/08/06/eiTxaH3R5QyXsCM.png" alt="image-20210806145504944"></p>
+<p><img src="https://i.loli.net/2021/08/06/VAtQ7vGkhoydjCg.png" alt="image-20210806145800458"></p>
+<p>解释：zlib 是 PNG IDAT 块数据可选的压缩格式</p>
+<p>题者自己生成了一段 zlib 压缩数据，然后加上长度位、标识位、与 CRC 校验位，将其伪装成了一个 IDAT 块，插在图片当中</p>
+<p>而 binwalk 会自动找到 zlib 块并提取出来解压，所以最终得到的提取结果中就含有 flag 了</p>
+<h2 id="1-11-misc-11-—-flag在另一张图里"><a href="#1-11-misc-11-—-flag在另一张图里" class="headerlink" title="1.11 misc 11 — flag在另一张图里"></a>1.11 misc 11 — flag在另一张图里</h2><p><img src="https://i.loli.net/2021/08/06/TRVfhLlAZtEbz8G.png" alt="image-20210806150503285"></p>
+<p>两个 IDAT 块 </p>
+<p>再次使用上一关的解法，不可行</p>
+<p>搜集资料之后，必须首先将多余的那个 IDAT 块删除才可</p>
+<p>工具 <a target="_blank" rel="noopener" href="http://entropymine.com/jason/tweakpng/">tweakpng</a></p>
+<p><img src="https://i.loli.net/2021/08/06/XYpNZg5y4Mrz8ad.png" alt="image-20210806152327628"></p>
+<p>将第一个 IDAT 块右键删除即可</p>
+<p>ctfshow{44620176948fa759d3eeafeac99f1ce9}</p>
+<h2 id="1-12-misc-12-—-flag在另一张图里"><a href="#1-12-misc-12-—-flag在另一张图里" class="headerlink" title="1.12 misc 12 — flag在另一张图里"></a>1.12 misc 12 — flag在另一张图里</h2><p><strong>flag在另一张图里。</strong></p>
+<p>与上一关的做法相同，只不过，不确定删除几个 IDAT 块，每次删完一个保存尝试查看即可</p>
+<h2 id="1-13-misc-13-—-flag位置在图片末尾"><a href="#1-13-misc-13-—-flag位置在图片末尾" class="headerlink" title="1.13 misc 13 — flag位置在图片末尾"></a>1.13 misc 13 — flag位置在图片末尾</h2><p><strong>flag位置在图片末尾。</strong></p>
+<p><img src="https://i.loli.net/2021/08/06/HQLKmqTDYX29ect.png" alt="image-20210806152900284"></p>
+<p>可以看到一部分类似 flag 的字符串</p>
+<p>我们将乱七八糟的删除即可，每隔一个删除一个</p>
+<h2 id="1-14-misc-14-—-flag在那张图里"><a href="#1-14-misc-14-—-flag在那张图里" class="headerlink" title="1.14 misc 14 — flag在那张图里"></a>1.14 misc 14 — flag在那张图里</h2><p><strong>flag在那张图里。</strong></p>
+<p><img src="https://i.loli.net/2021/08/06/MhJSlyqzXk9vTRb.png" alt="image-20210806160143737"></p>
+<p><img src="https://i.loli.net/2021/08/06/DqM6Oeojm84sPCQ.png" alt="image-20210806161032310"></p>
+<p>记得从 FF D8 开始</p>
+<p>新建一个新的文件 jpg 打开</p>
+<p><img src="https://i.loli.net/2021/08/06/M8uZkhLQ3lBrvCq.png" alt="image-20210806161419857"></p>
+<p>注意：QQ识图 有时不准确，比如 0 和 8</p>
+<h2 id="1-15-misc-15-—-flag被跳过去了"><a href="#1-15-misc-15-—-flag被跳过去了" class="headerlink" title="1.15 misc 15 — flag被跳过去了"></a>1.15 misc 15 — flag被跳过去了</h2><p><img src="https://i.loli.net/2021/08/06/ZjgFo1C7Q6vrXa4.png" alt="image-20210806162024516"></p>
+<h2 id="1-16-misc-16-—-flag在图片数据里"><a href="#1-16-misc-16-—-flag在图片数据里" class="headerlink" title="1.16 misc 16 — flag在图片数据里"></a>1.16 misc 16 — flag在图片数据里</h2><p><strong>flag在图片数据里。</strong></p>
+<p>binwalk 提取文件</p>
+<p><img src="https://i.loli.net/2021/08/06/nlOwMb7TYjHvmVa.png" alt="image-20210806162229301"></p>
+<h2 id="1-17-misc-17-—-flag在图片数据里-—-zsteg"><a href="#1-17-misc-17-—-flag在图片数据里-—-zsteg" class="headerlink" title="1.17 misc 17 — flag在图片数据里 — zsteg"></a>1.17 misc 17 — flag在图片数据里 — zsteg</h2><p><strong>flag在图片数据里。</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Amherstieae/article/details/107512398?ops_request_misc=&request_id=&biz_id=102&utm_term=zsteg&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-1-.nonecase&spm=1018.2226.3001.4187">zsteg 安装 及 使用</a></p>
+<blockquote>
+<p><strong>zsteg可以检测PNG和BMP图片里的隐写数据。</strong></p>
+<p><strong>目前，zsteg支持检测：</strong></p>
+<p>LSB steganography in PNG &amp; BMP<br>zlib-compressed data<br>OpenStego<br>Camouflage 1.2.1<br>LSB with The Eratosthenes set</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zsteg misc17.png</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/18/LKIYqbx6zagBPij.png" alt="image-20210818084217889"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zsteg -E <span class="string">&quot;extradata:0&quot;</span> misc17.png &gt; 1.txt</span><br><span class="line">binwalk -e 1.txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/18/3Q4ufwqRHpg7sDA.png" alt="image-20210818084305522"></p>
+<h2 id="1-18-misc-18-—-flag在标题、作者、照相机和镜头型号里"><a href="#1-18-misc-18-—-flag在标题、作者、照相机和镜头型号里" class="headerlink" title="1.18 misc 18 — flag在标题、作者、照相机和镜头型号里"></a>1.18 misc 18 — flag在标题、作者、照相机和镜头型号里</h2><p><strong>flag在标题、作者、照相机和镜头型号里。</strong></p>
+<p><img src="https://i.loli.net/2021/08/06/xNsXTekIu8rQicp.png" alt="image-20210806164253394"></p>
+<p>右键属性查看</p>
+<h2 id="1-19-misc-19-—-flag在主机上的文档名里"><a href="#1-19-misc-19-—-flag在主机上的文档名里" class="headerlink" title="1.19 misc 19 — flag在主机上的文档名里"></a>1.19 misc 19 — flag在主机上的文档名里</h2><p><img src="https://i.loli.net/2021/08/06/4x7pI5l6Ji2LXD9.png" alt="image-20210806164624752"></p>
+<h2 id="1-20-misc-20-—-flag在评论里"><a href="#1-20-misc-20-—-flag在评论里" class="headerlink" title="1.20 misc 20 — flag在评论里"></a>1.20 misc 20 — flag在评论里</h2><p><strong>图虫查看器</strong> </p>
+<p><a target="_blank" rel="noopener" href="https://exif.tuchong.com/">https://exif.tuchong.com/</a></p>
+<p><img src="https://i.loli.net/2021/08/06/vmXoFLcraHVux81.png" alt="image-20210806164933737"></p>
+<p>ctfshow{c97964b1aecf06e1d79c21ddad593e42}</p>
+<h2 id="1-21-misc-21-—-flag在序号里"><a href="#1-21-misc-21-—-flag在序号里" class="headerlink" title="1.21 misc 21 — flag在序号里"></a>1.21 misc 21 — flag在序号里</h2><p><strong>flag在序号里。</strong></p>
+<p><img src="https://i.loli.net/2021/08/06/fZSn92xQVupkjm8.png" alt="image-20210806165515702"></p>
+<p><img src="https://i.loli.net/2021/08/06/UhKEkJ1cCenrjBW.png" alt="image-20210806165604429"></p>
+<p><img src="https://i.loli.net/2021/08/06/GAKM9qvI2wHXZdy.png" alt="image-20210806165842984"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(hex(3902939465)+hex(2371618619)+hex(1082452817)+hex(2980145261))</span><br><span class="line">0xe8a221490x8d5c073b0x4084eb510xb1a1686d</span><br></pre></td></tr></table></figure>
+
+<p>删掉 0x 即可</p>
+<h2 id="1-22-misc22-—-flag-在图片里-—-缩略图-—-exiftool"><a href="#1-22-misc22-—-flag-在图片里-—-缩略图-—-exiftool" class="headerlink" title="1.22 misc22 — flag 在图片里 — 缩略图 — exiftool"></a>1.22 misc22 — flag 在图片里 — 缩略图 — exiftool</h2><p><img src="https://i.loli.net/2021/08/18/s3uYmaIvdQoCntb.png" alt="image-20210818085210755"></p>
+<p>设置为平铺之后，可以依稀看出来该图片下方有着黄色的一行，但是点击查看之后又看不出来</p>
+<p><strong>这是一种缩略图隐写的方式，叫做thumbnail隐写</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41453285/article/details/101765775?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522162924833616780274173567%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=162924833616780274173567&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-3-101765775.first_rank_v2_pc_rank_v29&utm_term=exiftool&spm=1018.2226.3001.4187">exiftool</a></p>
+<p><img src="https://i.loli.net/2021/08/18/lh2CPzr7Icn6ETL.png" alt="image-20210818090550904"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exiftool.exe -ThumbnaiImage -b misc22.jpg &gt; 111.jpg</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/18/f2B4y1Vlg7C9TkU.png" alt="image-20210818091200925"></p>
+<p>ctfshow{dbf7d3f84b0125e833dfd3c80820a129}</p>
+<h2 id="1-23-misc23-—-flag在时间里-—"><a href="#1-23-misc23-—-flag在时间里-—" class="headerlink" title="1.23 misc23 — flag在时间里 —"></a>1.23 misc23 — flag在时间里 —</h2><p>exiftool 查看实践</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exiftool.exe misc23.psd</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/18/pmdsDHbnO78GAKE.png" alt="image-20210818091639071"></p>
+<p> ctfshow{}, UnixTimestamp, DECtoHEX, getflag</p>
+<p>Unix 时间戳，十进制到十六进制，获取 flag</p>
+<p>1997:09:22 02:17:02+08:00</p>
+<p>2055:07:15 12:14:48+08:00</p>
+<p>2038:05:05 16:50:45+08:00</p>
+<p>1984:08:03 18:41:46+08:00</p>
+<p><a href="">在线时间戳转换</a></p>
+<p><img src="https://i.loli.net/2021/08/18/yxjk3vDiorTaS7F.png" alt="image-20210818092609921"></p>
+<p>874865822</p>
+<p>2699237688</p>
+<p>2156662245</p>
+<p>460377706</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(hex(874865822)+hex(2699237688)+hex(2156662245)+hex(460377706))</span><br><span class="line">0x3425649e0xa0e319380x808c0de50x1b70ce6a</span><br></pre></td></tr></table></figure>
+
+<p>ctfshow{3425649ea0e31938808c0de51b70ce6a}</p>
+<h2 id="1-24-misc41"><a href="#1-24-misc41" class="headerlink" title="1.24 misc41"></a>1.24 misc41</h2><p><strong>（本题为Misc入门图片篇和愚人节比赛特别联动题）</strong><br><strong>H4ppy Apr1l F001’s D4y！<br>愚人节到了，一群笨蛋往南飞，一会儿排成S字，一会儿排成B字。</strong></p>
+<p>H4ppy Apr1l F001’s D4y！</p>
+<p>这是个提示：F001，010 搜索 F001，发现存在大量，组成了刺目的形状，读取出来即可</p>
+<p><img src="https://i.loli.net/2021/08/18/iQu4oTsBpj5VSbK.png" alt="image-20210818093403414"></p>
+<p>ctfshow{fcbd427caf4a52f1147ab44346cd1cdd}</p>
+<h2 id="1-25-misc24-—-flag在图片上面-—-bmp-图片改高度"><a href="#1-25-misc24-—-flag在图片上面-—-bmp-图片改高度" class="headerlink" title="1.25 misc24 — flag在图片上面 — bmp 图片改高度"></a>1.25 misc24 — flag在图片上面 — bmp 图片改高度</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/aidem_brown/article/details/80500637">bmp 位图文件解析</a></p>
+<p>900*150=135000个像素大小</p>
+<p>该图片总共 675056 个字节，文件尾的位置在675053字节处(后面两个字节是windows的”<strong>补0</strong>”)</p>
+<p>文件头共 53 字节</p>
+<p><strong>每个像素点由3个字节（十六进制码6位）表示，每个字节负责控制一种颜色，分别为蓝（Blue）、绿（Green）、红（Red）</strong></p>
+<p>(675053-53)/3=225000</p>
+<p>得到真实的像素大小</p>
+<p>该题只有高不对，则正确的宽依旧是 900</p>
+<p>得到 225000/900=高 250</p>
+<p>修改高为 hex(250)=FA</p>
+<p><img src="https://i.loli.net/2021/08/18/NGuDSj1aL6Ii9vo.png" alt="image-20210818122344260"></p>
+<p>还是 0096 的位置修改</p>
+<p><img src="https://i.loli.net/2021/08/18/X9QjZ8bHJ2oUc7x.png" alt="image-20210818122451730"></p>
+<p>保存得到flag</p>
+<h2 id="1-26-misc25-—-flag在图片下面-—-png-图片改高度"><a href="#1-26-misc25-—-flag在图片下面-—-png-图片改高度" class="headerlink" title="1.26 misc25 — flag在图片下面 — png 图片改高度"></a>1.26 misc25 — flag在图片下面 — png 图片改高度</h2><p><img src="https://i.loli.net/2021/08/18/Yn7Ss6BOiae3mZ2.png" alt="image-20210818094843932"></p>
+<p>0096 改成 0196 0296 都可</p>
+<p><img src="https://i.loli.net/2021/08/18/XGi2Mk35UJRTBcq.png" alt="image-20210818094920712"></p>
+<h2 id="1-27-misc26-—-flag还是在图片下面，但到底有多下面？"><a href="#1-27-misc26-—-flag还是在图片下面，但到底有多下面？" class="headerlink" title="1.27 misc26 — flag还是在图片下面，但到底有多下面？"></a>1.27 misc26 — flag还是在图片下面，但到底有多下面？</h2><p><img src="https://i.loli.net/2021/08/18/U2a1CMOwjg7eoFQ.png" alt="image-20210818095156426"></p>
+<p>ctfshow{94aef1</p>
+<p>+True height(hex) of this picture+</p>
+<p>087a7ccf2e28e742efd704c}</p>
+<p><img src="https://i.loli.net/2021/08/18/nFv9oAalI6by3CG.png" alt="image-20210818095534774"></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44145452/article/details/109612189">https://blog.csdn.net/weixin_44145452/article/details/109612189</a></p>
+<p>会提示校验码错误</p>
+<p><strong>CRC32是有哪些字节构成的</strong>？</p>
+<p>PNG文件中总是以固定的八个字节开头</p>
+<blockquote>
+<p> 89 50 4E 47  0D 0A 1A 0A</p>
+</blockquote>
+<p>数据块长度3</p>
+<blockquote>
+<p>00 00 00 0D</p>
+</blockquote>
+<p>文件头数据块标示IDCH</p>
+<blockquote>
+<p>49 48 44 52</p>
+</blockquote>
+<p>13位数据块（IHDR）<br>下面为宽和高</p>
+<blockquote>
+<p>00 00 07 7E  00 00 03 60</p>
+</blockquote>
+<p>这5个字节依次为Bit depth，ColorType，Compression method，Filter method，Interlace method</p>
+<blockquote>
+<p>08 06 00 00 00</p>
+</blockquote>
+<p>接下来的四字节为该png图片的CRC校验码</p>
+<blockquote>
+<p>7D C7 3F 7F</p>
+</blockquote>
+<p>CRC校验码，由IDCH和IHDR共十七位字节进行crc计算得到</p>
+<p><strong>解决方法：</strong><br>1.简单点的隐写题，可以直接修改宽高，然后显示flag<br>2.那么如果修改宽高，并不会直接看到flag，需要放入stegsolve里或者做其它的进一步处理时。<br>这里会产生一个问题，那就是修改过宽高的图片stegsolve无法打开，提示IO错误。<br>这是因为png图像的IHDR段中的高宽被修改，导致计算出来的CRC不正确，所以无法正确读取。<br>通过python2脚本来获取图片高度</p>
+<p><strong>获取图片高度</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line">import binascii</span><br><span class="line">import struct</span><br><span class="line">crc32key = 0x7DC73F7F</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(0, 65535):</span><br><span class="line">  height = struct.pack(<span class="string">&#x27;&gt;i&#x27;</span>, i)</span><br><span class="line">  <span class="comment">#CRC: 7DC73F7F</span></span><br><span class="line">  data = <span class="string">&#x27;\x49\x48\x44\x52\x00\x00\x07\x7E&#x27;</span> + height + <span class="string">&#x27;\x08\x06\x00\x00\x00&#x27;</span></span><br><span class="line">  crc32result = binascii.crc32(data) &amp; 0xffffffff</span><br><span class="line">  <span class="keyword">if</span> crc32result == crc32key:</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&#x27;&#x27;</span>.join(map(lambda c: <span class="string">&quot;%02X&quot;</span> % ord(c), height))</span><br></pre></td></tr></table></figure>
+
+<p><strong>爆破图片正常宽高</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import structimport zlibdef hexStr2bytes(s):    b = b<span class="string">&quot;&quot;</span>    <span class="keyword">for</span> i <span class="keyword">in</span> range(0,len(s),2):        temp = s[i:i+2]        b +=struct.pack(<span class="string">&quot;B&quot;</span>,int(temp,16))    <span class="built_in">return</span> bstr1=<span class="string">&quot;49484452&quot;</span>         <span class="comment">#文件头数据块标示IDCHstr2=&quot;0806000000&quot;       #五字节：Bit depth，ColorType，Compression method，Filter method，Interlace methodbytes1=hexStr2bytes(str1)bytes2=hexStr2bytes(str2)wid,hei = 900,150       #宽高 像素crc32 = &quot;0xec9ccbc6&quot;    #校验码for w in range(wid,wid+2000):    for h in range(hei,hei+2000):        width = hex(w)[2:].rjust(8,&#x27;0&#x27;)        height = hex(h)[2:].rjust(8,&#x27;0&#x27;)        bytes_temp=hexStr2bytes(width+height)        if eval(hex(zlib.crc32(bytes1+bytes_temp+bytes2))) == eval(crc32):            print(hex(w),hex(h))</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/18/YDhUVyJfuWLqTHG.png" alt="image-20210818100740105"></p>
+<p>ctfshow{94aef1</p>
+<p>+True height(hex) of this picture+</p>
+<p>087a7ccf2e28e742efd704c}</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctfshow&#123;94aef125e087a7ccf2e28e742efd704c&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-28-misc27-—-flag在图片下面"><a href="#1-28-misc27-—-flag在图片下面" class="headerlink" title="1.28 misc27 — flag在图片下面"></a>1.28 misc27 — flag在图片下面</h2><p><img src="https://i.loli.net/2021/08/18/lJOhAfSi9oUprB4.png" alt="image-20210818102436038"></p>
+<p>寻找 0096</p>
+<h2 id="1-29-misc28-—-flag在图片下面-—-gif"><a href="#1-29-misc28-—-flag在图片下面-—-gif" class="headerlink" title="1.29 misc28 — flag在图片下面 — gif"></a>1.29 misc28 — flag在图片下面 — gif</h2><p>9600 更改为 FF00，两处</p>
+<p><img src="https://i.loli.net/2021/08/18/ORvZCma3I9obkwW.png" alt="image-20210818103453893"></p>
+<p>gif.bt  ???????</p>
+<h2 id="1-30-misc29-—-flag在图片下面"><a href="#1-30-misc29-—-flag在图片下面" class="headerlink" title="1.30 misc29 — flag在图片下面"></a>1.30 misc29 — flag在图片下面</h2><p>9600 更改为 FF00，十处，然后 stegsolve 逐帧查看</p>
+<p><img src="https://i.loli.net/2021/08/18/28FwOXBWE71SrjL.png" alt="image-20210818104202161"></p>
+<h2 id="1-31-misc30-—-正确的宽度是950"><a href="#1-31-misc30-—-正确的宽度是950" class="headerlink" title="1.31 misc30 — 正确的宽度是950"></a>1.31 misc30 — 正确的宽度是950</h2><p>修改 bmp 宽度为 hex(950)</p>
+<p><img src="https://i.loli.net/2021/08/18/78twlxqsrMUOHTj.png" alt="image-20210818122816045"></p>
+<h2 id="1-32-misc31-—-高度是正确的，但正确的宽度是多少呢"><a href="#1-32-misc31-—-高度是正确的，但正确的宽度是多少呢" class="headerlink" title="1.32 misc31 — 高度是正确的，但正确的宽度是多少呢"></a>1.32 misc31 — 高度是正确的，但正确的宽度是多少呢</h2><p>同 misc24</p>
+<p>图片总共 487256 字节，去掉文件尾，得到 487253</p>
+<p>900*150=135000</p>
+<p>文件头 53 字节</p>
+<p>(487253-53)/3=162400</p>
+<p>高正确，150</p>
+<p>宽：162400/150=1082.67</p>
+<p>改宽为 1082</p>
+<h2 id="1-33-misc32-—-高度是正确的，但正确的宽度是多少呢"><a href="#1-33-misc32-—-高度是正确的，但正确的宽度是多少呢" class="headerlink" title="1.33 misc32 — 高度是正确的，但正确的宽度是多少呢"></a>1.33 misc32 — 高度是正确的，但正确的宽度是多少呢</h2><p>png 计算宽高</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import structimport zlibdef hexStr2bytes(s):    b = b<span class="string">&quot;&quot;</span>    <span class="keyword">for</span> i <span class="keyword">in</span> range(0,len(s),2):        temp = s[i:i+2]        b +=struct.pack(<span class="string">&quot;B&quot;</span>,int(temp,16))    <span class="built_in">return</span> bstr1=<span class="string">&quot;49484452&quot;</span>         <span class="comment">#文件头数据块标示IDCHstr2=&quot;0802000000&quot;       #五字节：Bit depth，ColorType，Compression method，Filter method，Interlace methodbytes1=hexStr2bytes(str1)bytes2=hexStr2bytes(str2)wid,hei = 900,150       #宽高 像素crc32 = &quot;0xe14a4c0b&quot;    #校验码for w in range(wid,wid+2000):    for h in range(hei,hei+2000):        width = hex(w)[2:].rjust(8,&#x27;0&#x27;)        height = hex(h)[2:].rjust(8,&#x27;0&#x27;)        bytes_temp=hexStr2bytes(width+height)        if eval(hex(zlib.crc32(bytes1+bytes_temp+bytes2))) == eval(crc32):            print(hex(w),hex(h))</span></span><br></pre></td></tr></table></figure>
+
+<p>0x414 0x96</p>
+<p><img src="https://i.loli.net/2021/08/18/puJBmM9NFYwl1bd.png" alt="image-20210818124125740"></p>
+<h2 id="1-34-misc33-—-出题人丧心病狂，把高度也改了"><a href="#1-34-misc33-—-出题人丧心病狂，把高度也改了" class="headerlink" title="1.34 misc33 — 出题人丧心病狂，把高度也改了"></a>1.34 misc33 — 出题人丧心病狂，把高度也改了</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import zlibimport struct<span class="comment"># 同时爆破宽度和高度filename = &quot;misc33.png&quot;with open(filename, &#x27;rb&#x27;) as f:    all_b = f.read()    data = bytearray(all_b[12:29])    n = 4095    for w in range(n):        width = bytearray(struct.pack(&#x27;&gt;i&#x27;, w))        for h in range(n):            height = bytearray(struct.pack(&#x27;&gt;i&#x27;, h))            for x in range(4):                data[x+4] = width[x]                data[x+8] = height[x]            crc32result = zlib.crc32(data)            #替换成图片的crc            if crc32result == 0x5255a798:                print(&quot;宽为：&quot;, end = &#x27;&#x27;)                print(width, end = &#x27; &#x27;)                print(int.from_bytes(width, byteorder=&#x27;big&#x27;))                print(&quot;高为：&quot;, end = &#x27;&#x27;)                print(height, end = &#x27; &#x27;)                print(int.from_bytes(height, byteorder=&#x27;big&#x27;))</span></span><br></pre></td></tr></table></figure>
+
+<p>宽为：bytearray(b’\x00\x00\x03\xd2’) 978<br>高为：bytearray(b’\x00\x00\x00\x8e’) 142</p>
+<h2 id="1-35-misc34-—-出题人狗急跳墙，把IHDR块的CRC也改了，但我们知道正确宽度肯定大于900"><a href="#1-35-misc34-—-出题人狗急跳墙，把IHDR块的CRC也改了，但我们知道正确宽度肯定大于900" class="headerlink" title="1.35 misc34 — 出题人狗急跳墙，把IHDR块的CRC也改了，但我们知道正确宽度肯定大于900"></a>1.35 misc34 — 出题人狗急跳墙，把IHDR块的CRC也改了，但我们知道正确宽度肯定大于900</h2><h2 id="1-36-misc35"><a href="#1-36-misc35" class="headerlink" title="1.36 misc35"></a>1.36 misc35</h2><h2 id="1-37-misc36"><a href="#1-37-misc36" class="headerlink" title="1.37 misc36"></a>1.37 misc36</h2><h2 id="1-38-misc37-—-flag在图片里"><a href="#1-38-misc37-—-flag在图片里" class="headerlink" title="1.38 misc37 — flag在图片里"></a>1.38 misc37 — flag在图片里</h2><p>StegSolve 帧图分析</p>
+<p>ctfshow{2056782cd57b13261dcbbe3d6eecda17}</p>
+<p><img src="https://i.loli.net/2021/08/18/GK4Qjsxu1ombFEe.png" alt="image-20210818133303136"></p>
+<h2 id="1-39-misc38-—-flag在图片里"><a href="#1-39-misc38-—-flag在图片里" class="headerlink" title="1.39 misc38 — flag在图片里"></a>1.39 misc38 — flag在图片里</h2><p><img src="https://i.loli.net/2021/08/18/lUidvS8bGcwmC6z.png" alt="image-20210818133639020"></p>
+<p>使用浏览器打开，即可发现会动</p>
+<p><img src="https://i.loli.net/2021/08/18/OmIx2Yf9HSnqTzk.png" alt="image-20210818133736905"></p>
+<p><a target="_blank" rel="noopener" href="http://www.downcc.com/soft/40902.html">APNG 图片分解器</a></p>
+<p>ctfshow{48b722b570c603ef58cc0b83bbf7680d}</p>
+<h2 id="1-40-misc39-—-flag就像水，忽快忽慢地流"><a href="#1-40-misc39-—-flag就像水，忽快忽慢地流" class="headerlink" title="1.40 misc39 — flag就像水，忽快忽慢地流"></a>1.40 misc39 — flag就像水，忽快忽慢地流</h2><p>这题也是一个gif，不过这里是利用<code>不同帧之间的间隔时间</code>来隐写的。</p>
+<h2 id="1-41-misc40-—-flag就像歌，有长有短仿佛岁月悠悠"><a href="#1-41-misc40-—-flag就像歌，有长有短仿佛岁月悠悠" class="headerlink" title="1.41 misc40 — flag就像歌，有长有短仿佛岁月悠悠"></a>1.41 misc40 — flag就像歌，有长有短仿佛岁月悠悠</h2><p>apng</p>
+<p>帧分离，换成了apng的帧时间间隔隐写</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag=<span class="string">&quot;&quot;</span><span class="keyword">for</span> i <span class="keyword">in</span> range(28,69): <span class="comment">#flag内容从28位开始    f = open(&#x27;apngframe&#x27;+str(i)+&#x27;.txt&#x27;)    s = f.read()    flag += chr(int(s.split(&quot;/&quot;)[0][6:]))print(flag)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/18/PIZ4l9SsAREOBUF.png" alt="image-20210818135910351"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+
+<script src="/js/vdonate.js"></script>
+
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://i.loli.net/2021/07/09/UNXc5a6nbWxgzru.png',
+  alipayImage: 'https://i.loli.net/2021/07/09/Sf9nJd8hkOypTar.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong>xizhi-future</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2021/10/01/CTF-Show-Misc入门/" target="_blank" title="CTF-Show-Misc入门">https://xizhi-future.github.io/2021/10/01/CTF-Show-Misc入门/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/01/CTF-Show-%E5%90%83%E7%93%9C%E6%9D%AF/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CTF-Show-吃瓜杯
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/01/CTF-Show-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CTF-Show-文件上传</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Misc-%E5%85%A5%E9%97%A8"><span class="nav-number">1.</span> <span class="nav-text">Misc 入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-misc-1-%E2%80%94-QQ%E6%88%AA%E5%9B%BE-%E7%9B%B4%E6%8E%A5%E8%AF%86%E5%88%AB%E5%9B%BE%E7%89%87%E5%86%85%E5%AE%B9"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 misc 1 — QQ截图 直接识别图片内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-misc-2-%E2%80%94-png-%E5%9B%BE%E7%89%87%E8%AF%86%E5%88%AB"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 misc 2 — png 图片识别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-misc-3-%E2%80%94-%E6%9F%A5%E7%9C%8B-bpg-%E5%9B%BE%E7%89%87"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 misc 3 — 查看 bpg 图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-misc-4-%E2%80%94-%E5%9B%BE%E7%89%87%E6%A0%BC%E5%BC%8F-%E6%96%87%E4%BB%B6%E5%A4%B4"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 misc 4 — 图片格式 + 文件头</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-misc-5-%E2%80%94-png-%E6%96%87%E4%BB%B6%E5%B0%BE-%E6%B7%BB%E5%86%85%E5%AE%B9"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 misc 5 — png 文件尾 添内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-misc-6-%E2%80%94-jpg-%E6%96%87%E4%BB%B6-%E6%B7%BB%E5%86%85%E5%AE%B9"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 misc 6 — jpg 文件 添内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-misc-7-%E2%80%94-flag%E5%9C%A8%E5%9B%BE%E7%89%87%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF%E4%B8%AD"><span class="nav-number">1.7.</span> <span class="nav-text">1.7 misc 7 — flag在图片文件信息中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-8-misc-8-%E2%80%94-flag%E5%9C%A8%E5%9B%BE%E7%89%87%E6%96%87%E4%BB%B6%E4%B8%AD%E5%9B%BE%E7%89%87%E6%96%87%E4%BB%B6%E4%B8%AD-%E2%80%94-binwalk-foremost"><span class="nav-number">1.8.</span> <span class="nav-text">1.8 misc 8 — flag在图片文件中图片文件中 — binwalk  foremost</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-9-misc-9-%E2%80%94-flag%E5%9C%A8%E5%9B%BE%E7%89%87%E5%9D%97%E9%87%8C"><span class="nav-number">1.9.</span> <span class="nav-text">1.9 misc 9 — flag在图片块里</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-10-misc-10-%E2%80%94-flag%E5%9C%A8%E5%9B%BE%E7%89%87%E6%95%B0%E6%8D%AE%E9%87%8C"><span class="nav-number">1.10.</span> <span class="nav-text">1.10 misc 10 — flag在图片数据里</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-11-misc-11-%E2%80%94-flag%E5%9C%A8%E5%8F%A6%E4%B8%80%E5%BC%A0%E5%9B%BE%E9%87%8C"><span class="nav-number">1.11.</span> <span class="nav-text">1.11 misc 11 — flag在另一张图里</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-12-misc-12-%E2%80%94-flag%E5%9C%A8%E5%8F%A6%E4%B8%80%E5%BC%A0%E5%9B%BE%E9%87%8C"><span class="nav-number">1.12.</span> <span class="nav-text">1.12 misc 12 — flag在另一张图里</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-13-misc-13-%E2%80%94-flag%E4%BD%8D%E7%BD%AE%E5%9C%A8%E5%9B%BE%E7%89%87%E6%9C%AB%E5%B0%BE"><span class="nav-number">1.13.</span> <span class="nav-text">1.13 misc 13 — flag位置在图片末尾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-14-misc-14-%E2%80%94-flag%E5%9C%A8%E9%82%A3%E5%BC%A0%E5%9B%BE%E9%87%8C"><span class="nav-number">1.14.</span> <span class="nav-text">1.14 misc 14 — flag在那张图里</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-15-misc-15-%E2%80%94-flag%E8%A2%AB%E8%B7%B3%E8%BF%87%E5%8E%BB%E4%BA%86"><span class="nav-number">1.15.</span> <span class="nav-text">1.15 misc 15 — flag被跳过去了</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-16-misc-16-%E2%80%94-flag%E5%9C%A8%E5%9B%BE%E7%89%87%E6%95%B0%E6%8D%AE%E9%87%8C"><span class="nav-number">1.16.</span> <span class="nav-text">1.16 misc 16 — flag在图片数据里</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-17-misc-17-%E2%80%94-flag%E5%9C%A8%E5%9B%BE%E7%89%87%E6%95%B0%E6%8D%AE%E9%87%8C-%E2%80%94-zsteg"><span class="nav-number">1.17.</span> <span class="nav-text">1.17 misc 17 — flag在图片数据里 — zsteg</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-18-misc-18-%E2%80%94-flag%E5%9C%A8%E6%A0%87%E9%A2%98%E3%80%81%E4%BD%9C%E8%80%85%E3%80%81%E7%85%A7%E7%9B%B8%E6%9C%BA%E5%92%8C%E9%95%9C%E5%A4%B4%E5%9E%8B%E5%8F%B7%E9%87%8C"><span class="nav-number">1.18.</span> <span class="nav-text">1.18 misc 18 — flag在标题、作者、照相机和镜头型号里</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-19-misc-19-%E2%80%94-flag%E5%9C%A8%E4%B8%BB%E6%9C%BA%E4%B8%8A%E7%9A%84%E6%96%87%E6%A1%A3%E5%90%8D%E9%87%8C"><span class="nav-number">1.19.</span> <span class="nav-text">1.19 misc 19 — flag在主机上的文档名里</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-20-misc-20-%E2%80%94-flag%E5%9C%A8%E8%AF%84%E8%AE%BA%E9%87%8C"><span class="nav-number">1.20.</span> <span class="nav-text">1.20 misc 20 — flag在评论里</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-21-misc-21-%E2%80%94-flag%E5%9C%A8%E5%BA%8F%E5%8F%B7%E9%87%8C"><span class="nav-number">1.21.</span> <span class="nav-text">1.21 misc 21 — flag在序号里</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-22-misc22-%E2%80%94-flag-%E5%9C%A8%E5%9B%BE%E7%89%87%E9%87%8C-%E2%80%94-%E7%BC%A9%E7%95%A5%E5%9B%BE-%E2%80%94-exiftool"><span class="nav-number">1.22.</span> <span class="nav-text">1.22 misc22 — flag 在图片里 — 缩略图 — exiftool</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-23-misc23-%E2%80%94-flag%E5%9C%A8%E6%97%B6%E9%97%B4%E9%87%8C-%E2%80%94"><span class="nav-number">1.23.</span> <span class="nav-text">1.23 misc23 — flag在时间里 —</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-24-misc41"><span class="nav-number">1.24.</span> <span class="nav-text">1.24 misc41</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-25-misc24-%E2%80%94-flag%E5%9C%A8%E5%9B%BE%E7%89%87%E4%B8%8A%E9%9D%A2-%E2%80%94-bmp-%E5%9B%BE%E7%89%87%E6%94%B9%E9%AB%98%E5%BA%A6"><span class="nav-number">1.25.</span> <span class="nav-text">1.25 misc24 — flag在图片上面 — bmp 图片改高度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-26-misc25-%E2%80%94-flag%E5%9C%A8%E5%9B%BE%E7%89%87%E4%B8%8B%E9%9D%A2-%E2%80%94-png-%E5%9B%BE%E7%89%87%E6%94%B9%E9%AB%98%E5%BA%A6"><span class="nav-number">1.26.</span> <span class="nav-text">1.26 misc25 — flag在图片下面 — png 图片改高度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-27-misc26-%E2%80%94-flag%E8%BF%98%E6%98%AF%E5%9C%A8%E5%9B%BE%E7%89%87%E4%B8%8B%E9%9D%A2%EF%BC%8C%E4%BD%86%E5%88%B0%E5%BA%95%E6%9C%89%E5%A4%9A%E4%B8%8B%E9%9D%A2%EF%BC%9F"><span class="nav-number">1.27.</span> <span class="nav-text">1.27 misc26 — flag还是在图片下面，但到底有多下面？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-28-misc27-%E2%80%94-flag%E5%9C%A8%E5%9B%BE%E7%89%87%E4%B8%8B%E9%9D%A2"><span class="nav-number">1.28.</span> <span class="nav-text">1.28 misc27 — flag在图片下面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-29-misc28-%E2%80%94-flag%E5%9C%A8%E5%9B%BE%E7%89%87%E4%B8%8B%E9%9D%A2-%E2%80%94-gif"><span class="nav-number">1.29.</span> <span class="nav-text">1.29 misc28 — flag在图片下面 — gif</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-30-misc29-%E2%80%94-flag%E5%9C%A8%E5%9B%BE%E7%89%87%E4%B8%8B%E9%9D%A2"><span class="nav-number">1.30.</span> <span class="nav-text">1.30 misc29 — flag在图片下面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-31-misc30-%E2%80%94-%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%BD%E5%BA%A6%E6%98%AF950"><span class="nav-number">1.31.</span> <span class="nav-text">1.31 misc30 — 正确的宽度是950</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-32-misc31-%E2%80%94-%E9%AB%98%E5%BA%A6%E6%98%AF%E6%AD%A3%E7%A1%AE%E7%9A%84%EF%BC%8C%E4%BD%86%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%BD%E5%BA%A6%E6%98%AF%E5%A4%9A%E5%B0%91%E5%91%A2"><span class="nav-number">1.32.</span> <span class="nav-text">1.32 misc31 — 高度是正确的，但正确的宽度是多少呢</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-33-misc32-%E2%80%94-%E9%AB%98%E5%BA%A6%E6%98%AF%E6%AD%A3%E7%A1%AE%E7%9A%84%EF%BC%8C%E4%BD%86%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%AE%BD%E5%BA%A6%E6%98%AF%E5%A4%9A%E5%B0%91%E5%91%A2"><span class="nav-number">1.33.</span> <span class="nav-text">1.33 misc32 — 高度是正确的，但正确的宽度是多少呢</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-34-misc33-%E2%80%94-%E5%87%BA%E9%A2%98%E4%BA%BA%E4%B8%A7%E5%BF%83%E7%97%85%E7%8B%82%EF%BC%8C%E6%8A%8A%E9%AB%98%E5%BA%A6%E4%B9%9F%E6%94%B9%E4%BA%86"><span class="nav-number">1.34.</span> <span class="nav-text">1.34 misc33 — 出题人丧心病狂，把高度也改了</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-35-misc34-%E2%80%94-%E5%87%BA%E9%A2%98%E4%BA%BA%E7%8B%97%E6%80%A5%E8%B7%B3%E5%A2%99%EF%BC%8C%E6%8A%8AIHDR%E5%9D%97%E7%9A%84CRC%E4%B9%9F%E6%94%B9%E4%BA%86%EF%BC%8C%E4%BD%86%E6%88%91%E4%BB%AC%E7%9F%A5%E9%81%93%E6%AD%A3%E7%A1%AE%E5%AE%BD%E5%BA%A6%E8%82%AF%E5%AE%9A%E5%A4%A7%E4%BA%8E900"><span class="nav-number">1.35.</span> <span class="nav-text">1.35 misc34 — 出题人狗急跳墙，把IHDR块的CRC也改了，但我们知道正确宽度肯定大于900</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-36-misc35"><span class="nav-number">1.36.</span> <span class="nav-text">1.36 misc35</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-37-misc36"><span class="nav-number">1.37.</span> <span class="nav-text">1.37 misc36</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-38-misc37-%E2%80%94-flag%E5%9C%A8%E5%9B%BE%E7%89%87%E9%87%8C"><span class="nav-number">1.38.</span> <span class="nav-text">1.38 misc37 — flag在图片里</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-39-misc38-%E2%80%94-flag%E5%9C%A8%E5%9B%BE%E7%89%87%E9%87%8C"><span class="nav-number">1.39.</span> <span class="nav-text">1.39 misc38 — flag在图片里</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-40-misc39-%E2%80%94-flag%E5%B0%B1%E5%83%8F%E6%B0%B4%EF%BC%8C%E5%BF%BD%E5%BF%AB%E5%BF%BD%E6%85%A2%E5%9C%B0%E6%B5%81"><span class="nav-number">1.40.</span> <span class="nav-text">1.40 misc39 — flag就像水，忽快忽慢地流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-41-misc40-%E2%80%94-flag%E5%B0%B1%E5%83%8F%E6%AD%8C%EF%BC%8C%E6%9C%89%E9%95%BF%E6%9C%89%E7%9F%AD%E4%BB%BF%E4%BD%9B%E5%B2%81%E6%9C%88%E6%82%A0%E6%82%A0"><span class="nav-number">1.41.</span> <span class="nav-text">1.41 misc40 — flag就像歌，有长有短仿佛岁月悠悠</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2021 忆 执 昔 来 的 旅 途 All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/essayists" class="mobile-nav-link">Essayists</a>
+  
+    <a href="/friendly-links" class="mobile-nav-link">Friendly-links</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            忆 执 昔 来 的 旅 途
+          </div>
+          <div class="panel-body">
+            Copyright © 2021 xizhi-future All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
