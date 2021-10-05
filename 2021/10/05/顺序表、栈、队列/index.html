@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>顺序表、栈、队列 | 忆 执 昔 来 的 旅 途</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="顺序表线性存储" />
+  
+  
+  
+  
+  <meta name="description" content="[TOC] 顺序表插入 删除 任意位置，特点：顺序存储 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172#include&lt;stdio.h&gt;#define MAXSIZ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="顺序表、栈、队列">
+<meta property="og:url" content="https://xizhi-future.github.io/2021/10/05/%E9%A1%BA%E5%BA%8F%E8%A1%A8%E3%80%81%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97/index.html">
+<meta property="og:site_name" content="忆 执 昔 来 的 旅 途">
+<meta property="og:description" content="[TOC] 顺序表插入 删除 任意位置，特点：顺序存储 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172#include&lt;stdio.h&gt;#define MAXSIZ">
+<meta property="og:locale">
+<meta property="og:image" content="https://i.loli.net/2021/09/24/Gc5HIKai7MNz8lu.png">
+<meta property="og:image" content="https://i.loli.net/2021/09/24/mPSWeVpM6cAxBv1.png">
+<meta property="og:image" content="https://i.loli.net/2021/09/24/26pOHtGlRmsoZFx.png">
+<meta property="og:image" content="https://i.loli.net/2021/09/24/iwbsYCzS2U6nmaH.png">
+<meta property="og:image" content="https://i.loli.net/2021/09/24/sLF8rGWwAIhxQpH.png">
+<meta property="og:image" content="https://i.loli.net/2021/09/15/ltsbQV9L75CmhO6.png">
+<meta property="og:image" content="https://i.loli.net/2021/09/15/nMp3fvKexAsPEZS.png">
+<meta property="og:image" content="https://i.loli.net/2021/09/15/DHxBpZmaULCcFMS.png">
+<meta property="article:published_time" content="2021-10-05T11:16:19.000Z">
+<meta property="article:modified_time" content="2021-10-05T11:19:01.869Z">
+<meta property="article:author" content="xizhi-future">
+<meta property="article:tag" content="顺序表">
+<meta property="article:tag" content="线性存储">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/09/24/Gc5HIKai7MNz8lu.png">
+  
+    <link rel="alternate" href="/atom.xml" title="忆 执 昔 来 的 旅 途" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="/js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/essayists">随笔</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-顺序表、栈、队列" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      顺序表、栈、队列
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/10/05/%E9%A1%BA%E5%BA%8F%E8%A1%A8%E3%80%81%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97/" class="article-date">
+	  <time datetime="2021-10-05T11:16:19.000Z" itemprop="datePublished">2021-10-05</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h3 id="顺序表"><a href="#顺序表" class="headerlink" title="顺序表"></a>顺序表</h3><p>插入 删除 任意位置，特点：顺序存储</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXSIZE 100</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> datatype;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    datatype a[MAXSIZE];</span><br><span class="line">    <span class="keyword">int</span> size;</span><br><span class="line">&#125;sequence_list;</span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(sequence_list *slt)</span></span>&#123;</span><br><span class="line">    slt-&gt;size = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//在顺序表后部进行插入操作</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert_behind</span><span class="params">(sequence_list *slt,datatype x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(slt-&gt;size == MAXSIZE)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;顺序表是满的！&quot;</span>);<span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">        slt-&gt;a[slt-&gt;size]=x;</span><br><span class="line">        slt-&gt;size = slt-&gt;size+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//打印</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(sequence_list slt)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">if</span>(!slt.size) <span class="built_in">printf</span>(<span class="string">&quot;顺序表是空的！&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;slt.size;i++)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%5d&quot;</span>,slt.a[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断空 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">empty</span><span class="params">(sequence_list slt)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span>(slt.size==<span class="number">0</span>?<span class="number">0</span>:<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//查找 值为 x 的 结点位置</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find_x</span><span class="params">(sequence_list slt,datatype x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(slt.a[i]!=x &amp;&amp; i&lt;slt.size) i++;    </span><br><span class="line">    <span class="keyword">return</span>(i&lt;slt.size?i:<span class="number">-1</span>);   </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//取得 第 i 位置的 值</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_i</span><span class="params">(sequence_list slt,<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(i&lt;<span class="number">0</span> || i&gt;slt.size)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;指定位置不存在！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span>(slt.a[i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//任意位置插入</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert_medium</span><span class="params">(sequence_list *slt,<span class="keyword">int</span> position,datatype x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">if</span>(slt-&gt;size == MAXSIZE) </span><br><span class="line">    &#123;<span class="built_in">printf</span>(<span class="string">&quot;顺序表是满的！&quot;</span>);<span class="built_in">exit</span>(<span class="number">1</span>);&#125;</span><br><span class="line">    <span class="keyword">if</span>(position &lt; <span class="number">0</span> || position &gt; slt-&gt;size)</span><br><span class="line">    &#123;<span class="built_in">printf</span>(<span class="string">&quot;指定插入位置不存在！&quot;</span>);<span class="built_in">exit</span>(<span class="number">1</span>);&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(i=slt-&gt;size;i&gt;position;i--)</span><br><span class="line">        slt-&gt;a[i] = slt-&gt;a[i<span class="number">-1</span>];</span><br><span class="line">        </span><br><span class="line">    slt-&gt;a[position] = x;</span><br><span class="line">    slt-&gt;size++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//删除 某位置 结点值</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delete</span><span class="params">(sequence_list *slt,<span class="keyword">int</span> position)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">if</span>(slt-&gt;size == <span class="number">0</span>)</span><br><span class="line">    &#123;<span class="built_in">printf</span>(<span class="string">&quot;顺序表是空的！&quot;</span>);<span class="built_in">exit</span>(<span class="number">1</span>);&#125;</span><br><span class="line">    <span class="keyword">if</span>(position&lt;<span class="number">0</span> || position &gt; slt.size)</span><br><span class="line">    &#123;<span class="built_in">printf</span>(<span class="string">&quot;指定删除位置不存在！&quot;</span>);<span class="built_in">exit</span>(<span class="number">1</span>);&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(i=position;i&lt;slt-&gt;size;i++)</span><br><span class="line">        slt-&gt;a[i] = slt-&gt;a[i+<span class="number">1</span>];</span><br><span class="line">    slt-&gt;size--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>先进后出</p>
+<p>插入 删除 同一端进行，为 栈顶，另一端封住，为栈底</p>
+<p>插入 删除 操作 称为 进栈 出栈</p>
+<p>栈实现：顺序存储、链式存储</p>
+<p>以顺序存储为例：栈底：a[0]    栈顶  top</p>
+<p>设定 top 所指的位置 是 下一个将要插入结点的位置</p>
+<p>栈为空 ：top=0    </p>
+<p><img src="https://i.loli.net/2021/09/24/Gc5HIKai7MNz8lu.png" alt="image-20210924104929877"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXSIZE 100</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> datatype;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    datatype a[MAXSIZE];</span><br><span class="line">    <span class="keyword">int</span> top;</span><br><span class="line">&#125;sequence_stack;</span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(sequence_stack *st)</span></span>&#123;</span><br><span class="line">    st-&gt;top = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//判断 是否 空</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">empty</span><span class="params">(sequence_stack st)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span>(st.top==<span class="number">0</span>?<span class="number">0</span>:<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//取得 栈顶结点值</span></span><br><span class="line"><span class="function">datatype <span class="title">get_top</span><span class="params">(sequence_stack st)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(empty(st))</span><br><span class="line">    &#123;<span class="built_in">printf</span>(<span class="string">&quot;栈是空的！&quot;</span>);<span class="built_in">exit</span>(<span class="number">1</span>);&#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> st.a[st.top<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//插入 </span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(sequence_stack *st,datatype x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(st-&gt;top == MAXSIZE)</span><br><span class="line">    &#123;<span class="built_in">printf</span>(<span class="string">&quot;栈是满的！&quot;</span>);<span class="built_in">exit</span>(<span class="number">1</span>);&#125;</span><br><span class="line">    st-&gt;a[top] = x;</span><br><span class="line">    st-&gt;top++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//删除</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delete</span><span class="params">(sequence_stack *st)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(st-&gt;top == <span class="number">0</span>)</span><br><span class="line">    &#123;<span class="built_in">printf</span>(<span class="string">&quot;栈是空的！&quot;</span>);<span class="built_in">exit</span>(<span class="number">1</span>);&#125;</span><br><span class="line">    st-&gt;top--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/09/24/mPSWeVpM6cAxBv1.png" alt="image-20210924110444661"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//括号匹配</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><p>先进先出</p>
+<p>特点：插入 删除 操作  分别在表的两端进行，</p>
+<p>插入 即 队尾  ，  删除即 队首</p>
+<p>front  队首结点在数组元素中的下标，  rear  队尾结点在数组中元素下标的 下一个位置，即 即将插入的结点 在数组中的下标</p>
+<p>称之为  进队 和  出队</p>
+<p><img src="https://i.loli.net/2021/09/24/26pOHtGlRmsoZFx.png" alt="image-20210924110810951"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXSIZE 100</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> datatype;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    datatype a[MAXSIZE];</span><br><span class="line">    <span class="keyword">int</span> front;</span><br><span class="line">    <span class="keyword">int</span> rear;</span><br><span class="line">&#125;sequence_queue;</span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(sequence_queue *sq)</span></span>&#123;</span><br><span class="line">    sq-&gt;front = sq-&gt;rear = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//判断是否是 空</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">empty</span><span class="params">(sequence_queue sq)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span>(sq.front==sq.rear?<span class="number">0</span>:<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//打印</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(sequence_queue sq)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">if</span>(empty(sq))&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;顺序队列是空的！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">for</span>(i=sq.front;i&lt;sq.rearli++)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%5d&quot;</span>,sq.a[i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//插入</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(sequence_queue *sq,datatype x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">if</span>(sq-&gt;rear == MAXSIZE)</span><br><span class="line">    &#123;<span class="built_in">printf</span>(<span class="string">&quot;顺序队列是满的！&quot;</span>);<span class="built_in">exit</span>(<span class="number">1</span>);&#125;</span><br><span class="line">    sq-&gt;a[sq-&gt;rear] = x;</span><br><span class="line">    sq-&gt;rear = sq-&gt;rear+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//删除</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delete</span><span class="params">(sequence_queue *sq)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(sq-&gt;front == sq-&gt;rear)</span><br><span class="line">    &#123;<span class="built_in">printf</span>(<span class="string">&quot;顺序队列是空的！&quot;</span>);<span class="built_in">exit</span>(<span class="number">1</span>);&#125;</span><br><span class="line">    sq-&gt;front++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/09/24/iwbsYCzS2U6nmaH.png" alt="image-20210924111918226"></p>
+<p><img src="https://i.loli.net/2021/09/24/sLF8rGWwAIhxQpH.png" alt="image-20210924112001725"></p>
+<p>循环队列中  满与空  的条件均是  front==rear   出现问题</p>
+<p>问题解决：满 的条件 (rear+1)%MAXSIZE=front</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//循环队列 插入 操作</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert_c</span><span class="params">(sequence_queue *sq,datatype x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">if</span>((sq-&gt;rear+<span class="number">1</span>)%MAXSIZE == sq-&gt;front)</span><br><span class="line">    &#123;<span class="built_in">printf</span>(<span class="string">&quot;循环队列是满的！&quot;</span>);<span class="built_in">exit</span>(<span class="number">1</span>);&#125;</span><br><span class="line">    sq-&gt;a[sq-&gt;rear] = x;</span><br><span class="line">    sq-&gt;rear = (sq-&gt;rear+<span class="number">1</span>)%MAXSIZE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//循环队列 删除 操作</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delete_c</span><span class="params">(sequence_queue *sq)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(sq-&gt;front == sq-&gt;rear)</span><br><span class="line">    &#123;<span class="built_in">printf</span>(<span class="string">&quot;循环队列是空的！&quot;</span>);<span class="built_in">exit</span>(<span class="number">1</span>);&#125;</span><br><span class="line">    sq-&gt;front = (sq-&gt;front+<span class="number">1</span>)%MAXSIZE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第二章-—-题目"><a href="#第二章-—-题目" class="headerlink" title="第二章 — 题目"></a>第二章 — 题目</h2><h4 id="1-设计一个算法，求顺序表中值为x的结点的个数。"><a href="#1-设计一个算法，求顺序表中值为x的结点的个数。" class="headerlink" title="1.设计一个算法，求顺序表中值为x的结点的个数。"></a>1.设计一个算法，求顺序表中值为x的结点的个数。</h4><p><strong>算法：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 100</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> datatype;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> data[N];</span><br><span class="line">    <span class="keyword">int</span> length;</span><br><span class="line">&#125;sqlist;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">count</span><span class="params">(sqlist L,<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,sum =  <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;L.length;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(L.data[i] == x)&#123;</span><br><span class="line">            sum++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>(sum);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 100</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> datatype;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> data[N];</span><br><span class="line">    <span class="keyword">int</span> length;</span><br><span class="line">&#125;sqlist;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">count</span><span class="params">(sqlist L,<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,sum =  <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;L.length;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(L.data[i] == x)&#123;</span><br><span class="line">            sum++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>(sum);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    sqlist <span class="built_in">list</span> = &#123;&#123;<span class="number">1</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">5</span>,<span class="number">9</span>,<span class="number">0</span>&#125;,<span class="number">10</span>&#125;;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;count = %d\n&quot;</span>,count(<span class="built_in">list</span>,<span class="number">5</span>)); <span class="comment">//查找值为5的元素个数</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/09/15/ltsbQV9L75CmhO6.png" alt="image-20210915203225682"></p>
+<h4 id="2-设计一个算法，将一个顺序表倒置。即，如果顺序表各个结点值存储在一维数组a中，倒置的结果是使得数组a中的a-0-等于原来的最后一个元素，a-1-等于原来的倒数第2个元素，…，a的最后一个元素等于原来的第一个元素。"><a href="#2-设计一个算法，将一个顺序表倒置。即，如果顺序表各个结点值存储在一维数组a中，倒置的结果是使得数组a中的a-0-等于原来的最后一个元素，a-1-等于原来的倒数第2个元素，…，a的最后一个元素等于原来的第一个元素。" class="headerlink" title="2.设计一个算法，将一个顺序表倒置。即，如果顺序表各个结点值存储在一维数组a中，倒置的结果是使得数组a中的a[0]等于原来的最后一个元素，a[1] 等于原来的倒数第2个元素，…，a的最后一个元素等于原来的第一个元素。"></a>2.设计一个算法，将一个顺序表倒置。即，如果顺序表各个结点值存储在一维数组a中，倒置的结果是使得数组a中的a[0]等于原来的最后一个元素，a[1] 等于原来的倒数第2个元素，…，a的最后一个元素等于原来的第一个元素。</h4><p><strong>算法：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 100</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> datatype;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> data[N];</span><br><span class="line">    <span class="keyword">int</span> length;</span><br><span class="line">&#125;sqlist;</span><br><span class="line">	</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reverse</span><span class="params">(sqlist *L)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,t;</span><br><span class="line">    i = <span class="number">0</span>;			<span class="comment">// 第一个元素位置</span></span><br><span class="line">    j = L-&gt;length - <span class="number">1</span>; <span class="comment">// 最后一个元素位置</span></span><br><span class="line">    <span class="keyword">while</span>(i&lt;j)&#123;</span><br><span class="line">        t = L-&gt;data[i]; <span class="comment">// 将第一个元素存入 临时的 t 中 </span></span><br><span class="line">        L-&gt;data[i++] = L-&gt;data[j]; <span class="comment">// 把最后一个元素值赋给第一个元素的位置</span></span><br><span class="line">        L-&gt;data[j--] = t; <span class="comment">// 再把 存入 t 的第一个元素的值赋给</span></span><br><span class="line">        				<span class="comment">// 注意：j-- 的意思：首先进行赋值然后再进行自减</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 100</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> datatype;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> data[N];</span><br><span class="line">    <span class="keyword">int</span> length;</span><br><span class="line">&#125;sqlist;</span><br><span class="line">	</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reverse</span><span class="params">(sqlist *L)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,t;</span><br><span class="line">    i = <span class="number">0</span>;			<span class="comment">// 第一个元素位置</span></span><br><span class="line">    j = L-&gt;length - <span class="number">1</span>; <span class="comment">// 最后一个元素位置</span></span><br><span class="line">    <span class="keyword">while</span>(i&lt;j)&#123;</span><br><span class="line">        t = L-&gt;data[i]; <span class="comment">// 将第一个元素存入 临时的 t 中 </span></span><br><span class="line">        L-&gt;data[i++] = L-&gt;data[j]; <span class="comment">// 把最后一个元素值赋给第一个元素的位置</span></span><br><span class="line">        L-&gt;data[j--] = t; <span class="comment">// 再把 存入 t 的第一个元素的值赋给</span></span><br><span class="line">						<span class="comment">// 注意：j-- 的意思：首先进行赋值然后再进行自减</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    sqlist <span class="built_in">list</span> = &#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">0</span>&#125;,<span class="number">10</span>&#125;;</span><br><span class="line">    reverse(&amp;<span class="built_in">list</span>);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="built_in">list</span>.length;i++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="built_in">list</span>.data[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/09/15/nMp3fvKexAsPEZS.png" alt="image-20210915205210790"></p>
+<h4 id="3-已知一个顺序表中的各结点值是从小到大有序的，设计一个算法，插入一个值为x的结点，使顺序表中的结点仍然是从小到大有序。"><a href="#3-已知一个顺序表中的各结点值是从小到大有序的，设计一个算法，插入一个值为x的结点，使顺序表中的结点仍然是从小到大有序。" class="headerlink" title="3.已知一个顺序表中的各结点值是从小到大有序的，设计一个算法，插入一个值为x的结点，使顺序表中的结点仍然是从小到大有序。"></a>3.已知一个顺序表中的各结点值是从小到大有序的，设计一个算法，插入一个值为x的结点，使顺序表中的结点仍然是从小到大有序。</h4><p><strong>算法：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 100</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> datatype;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> data[N];</span><br><span class="line">    <span class="keyword">int</span> length;</span><br><span class="line">&#125;sqlist;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(sqlist *L,datatype x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">if</span>(L-&gt;length &lt; N)&#123;   <span class="comment">//确保顺序表不满，能够进行插入数据</span></span><br><span class="line">        i = L-&gt;length - <span class="number">1</span>; <span class="comment">// i 是最后一个元素位置</span></span><br><span class="line">		<span class="keyword">while</span>(i &gt;= <span class="number">0</span> &amp;&amp; L-&gt;data[i] &gt; x)&#123; <span class="comment">// 确保 x 小于已给位置，便于将 x 插入到其前面</span></span><br><span class="line">            L-&gt;data[i+<span class="number">1</span>] = L-&gt;data[i];</span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line">        L-&gt;data[i+<span class="number">1</span>] = x;	<span class="comment">// 插入 x </span></span><br><span class="line">        L-&gt;length++;		<span class="comment">// 顺序表长度加 1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 100</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> datatype;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> data[N];</span><br><span class="line">    <span class="keyword">int</span> length;</span><br><span class="line">&#125;sqlist;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(sqlist *L,datatype x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">if</span>(L-&gt;length &lt; N)&#123;   <span class="comment">//确保顺序表不满，能够进行插入数据</span></span><br><span class="line">        i = L-&gt;length - <span class="number">1</span>; <span class="comment">// i 是最后一个元素位置</span></span><br><span class="line">		<span class="keyword">while</span>(i &gt;= <span class="number">0</span> &amp;&amp; L-&gt;data[i] &gt; x)&#123; <span class="comment">// 确保 x 小于已给位置，便于将 x 插入到其前面</span></span><br><span class="line">            L-&gt;data[i+<span class="number">1</span>] = L-&gt;data[i];</span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line">        L-&gt;data[i+<span class="number">1</span>] = x;	<span class="comment">// 插入 x </span></span><br><span class="line">        L-&gt;length++;		<span class="comment">// 顺序表长度加 1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    sqlist <span class="built_in">list</span> = &#123;&#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">22</span>,<span class="number">44</span>,<span class="number">89</span>,<span class="number">122</span>,<span class="number">243</span>,<span class="number">534</span>&#125;,<span class="number">10</span>&#125;;</span><br><span class="line">    insert(&amp;<span class="built_in">list</span>,<span class="number">350</span>);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="built_in">list</span>.length;i++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="built_in">list</span>.data[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/09/15/DHxBpZmaULCcFMS.png" alt="image-20210915211017268"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+
+<script src="/js/vdonate.js"></script>
+
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://i.loli.net/2021/07/09/UNXc5a6nbWxgzru.png',
+  alipayImage: 'https://i.loli.net/2021/07/09/Sf9nJd8hkOypTar.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong>xizhi-future</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2021/10/05/顺序表、栈、队列/" target="_blank" title="顺序表、栈、队列">https://xizhi-future.github.io/2021/10/05/顺序表、栈、队列/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BA%BF%E6%80%A7%E5%AD%98%E5%82%A8/" rel="tag">线性存储</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A1%BA%E5%BA%8F%E8%A1%A8/" rel="tag">顺序表</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/05/%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          线性表的链式存储
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/01/%E4%B8%96%E9%97%B4%E7%BE%8E%E5%A5%BD%E4%B8%8E%E4%BD%A0%E7%8E%AF%E7%8E%AF%E7%9B%B8%E6%89%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">世间美好与你环环相扣</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8"><span class="nav-number">1.</span> <span class="nav-text">顺序表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%88"><span class="nav-number">2.</span> <span class="nav-text">栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%9F%E5%88%97"><span class="nav-number">3.</span> <span class="nav-text">队列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E2%80%94-%E9%A2%98%E7%9B%AE"><span class="nav-number"></span> <span class="nav-text">第二章 — 题目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E7%AE%97%E6%B3%95%EF%BC%8C%E6%B1%82%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%AD%E5%80%BC%E4%B8%BAx%E7%9A%84%E7%BB%93%E7%82%B9%E7%9A%84%E4%B8%AA%E6%95%B0%E3%80%82"><span class="nav-number">0.1.</span> <span class="nav-text">1.设计一个算法，求顺序表中值为x的结点的个数。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E7%AE%97%E6%B3%95%EF%BC%8C%E5%B0%86%E4%B8%80%E4%B8%AA%E9%A1%BA%E5%BA%8F%E8%A1%A8%E5%80%92%E7%BD%AE%E3%80%82%E5%8D%B3%EF%BC%8C%E5%A6%82%E6%9E%9C%E9%A1%BA%E5%BA%8F%E8%A1%A8%E5%90%84%E4%B8%AA%E7%BB%93%E7%82%B9%E5%80%BC%E5%AD%98%E5%82%A8%E5%9C%A8%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84a%E4%B8%AD%EF%BC%8C%E5%80%92%E7%BD%AE%E7%9A%84%E7%BB%93%E6%9E%9C%E6%98%AF%E4%BD%BF%E5%BE%97%E6%95%B0%E7%BB%84a%E4%B8%AD%E7%9A%84a-0-%E7%AD%89%E4%BA%8E%E5%8E%9F%E6%9D%A5%E7%9A%84%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%EF%BC%8Ca-1-%E7%AD%89%E4%BA%8E%E5%8E%9F%E6%9D%A5%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%AC2%E4%B8%AA%E5%85%83%E7%B4%A0%EF%BC%8C%E2%80%A6%EF%BC%8Ca%E7%9A%84%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E7%AD%89%E4%BA%8E%E5%8E%9F%E6%9D%A5%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E3%80%82"><span class="nav-number">0.2.</span> <span class="nav-text">2.设计一个算法，将一个顺序表倒置。即，如果顺序表各个结点值存储在一维数组a中，倒置的结果是使得数组a中的a[0]等于原来的最后一个元素，a[1] 等于原来的倒数第2个元素，…，a的最后一个元素等于原来的第一个元素。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%B7%B2%E7%9F%A5%E4%B8%80%E4%B8%AA%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%AD%E7%9A%84%E5%90%84%E7%BB%93%E7%82%B9%E5%80%BC%E6%98%AF%E4%BB%8E%E5%B0%8F%E5%88%B0%E5%A4%A7%E6%9C%89%E5%BA%8F%E7%9A%84%EF%BC%8C%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E7%AE%97%E6%B3%95%EF%BC%8C%E6%8F%92%E5%85%A5%E4%B8%80%E4%B8%AA%E5%80%BC%E4%B8%BAx%E7%9A%84%E7%BB%93%E7%82%B9%EF%BC%8C%E4%BD%BF%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B8%AD%E7%9A%84%E7%BB%93%E7%82%B9%E4%BB%8D%E7%84%B6%E6%98%AF%E4%BB%8E%E5%B0%8F%E5%88%B0%E5%A4%A7%E6%9C%89%E5%BA%8F%E3%80%82"><span class="nav-number">0.3.</span> <span class="nav-text">3.已知一个顺序表中的各结点值是从小到大有序的，设计一个算法，插入一个值为x的结点，使顺序表中的结点仍然是从小到大有序。</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2021 忆 执 昔 来 的 旅 途 All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/essayists" class="mobile-nav-link">Essayists</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            忆 执 昔 来 的 旅 途
+          </div>
+          <div class="panel-body">
+            Copyright © 2021 xizhi-future All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>

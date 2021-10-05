@@ -200,6 +200,183 @@
         
           <section id="main" style="float:none;">
   
+    <article id="post-CTF-Show-文件上传"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2021/10/01/CTF-Show-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">CTF-Show-文件上传</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/10/01/CTF-Show-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" class="article-date">
+	  <time datetime="2021-10-01T11:16:29.000Z" itemprop="datePublished">2021-10-01</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/CTF-Show/">CTF Show</a>
+
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          CTF Show 文件上传篇。
+
+
+CTF Show — 文件上传1.1 Web 151 — 前端验证
+手动删除前端验证，好像没什么作用，尝试之后发现，只能成功上传 .png 图片，其实查看源代码后有
+
+所以只能上传 .png ，我们上传 1.png 然后抓包手动修改
+
+蚁剑连接即可
+1.2 Web 1521后端不能单一校验
+
+同上
+1.3 Web 153 — .user.ini由于服务器是 nginx ，则可尝试上传 .user.ini
+
+再上传 111.png
+
+访问与 111.png...
+        </p>
+        <p class="article-more-link">
+          <a href="/2021/10/01/CTF-Show-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/#more">Read More</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-CTF-Show-PHP特性"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2021/10/01/CTF-Show-PHP%E7%89%B9%E6%80%A7/">CTF-Show-PHP特性</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/10/01/CTF-Show-PHP%E7%89%B9%E6%80%A7/" class="article-date">
+	  <time datetime="2021-10-01T11:15:08.000Z" itemprop="datePublished">2021-10-01</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/CTF-Show/">CTF Show</a>
+
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          CTF Show PHP 特性篇。
+
+
+一、CTF Show PHP特性1.1 Web 89 — intval 数组 [ ] 绕过12345678910111213&lt;?phpinclude(&quot;flag.php&quot;);highlight_file(__FILE__);if(isset($_GET[&#x27;num&#x27;]))&#123;    $num = $_GET[&#x27;num&#x27;];    if(preg_match(&quot;/[0-9...
+        </p>
+        <p class="article-more-link">
+          <a href="/2021/10/01/CTF-Show-PHP%E7%89%B9%E6%80%A7/#more">Read More</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-CTF-Show-命令执行"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2021/10/01/CTF-Show-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">CTF-Show-命令执行</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/10/01/CTF-Show-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" class="article-date">
+	  <time datetime="2021-10-01T11:14:09.000Z" itemprop="datePublished">2021-10-01</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/CTF-Show/">CTF Show</a>
+
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          一、CTF Show — 命令执行1.1 Web 29 — 只过滤 flag — 通配符使用1命令执行，需要严格的过滤
+
+12345678910&lt;?php    error_reporting(0);	if(isset($_GET[&#x27;c&#x27;]))&#123;    $c = $_GET[&#x27;c&#x27;];    if(!preg_match(&quot;/flag/i&quot;, $c))&#123;        eval($c);    &#125...
+        </p>
+        <p class="article-more-link">
+          <a href="/2021/10/01/CTF-Show-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/#more">Read More</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
     <article id="post-CTF-Show-文件包含"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
@@ -588,202 +765,6 @@ NUCTF1 EasyUnser12345678910111213141516171819&lt;?php   include_once &#x27;flag.
         </p>
         <p class="article-more-link">
           <a href="/2021/06/06/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-文件包含、读取、下载漏洞"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2021/06/06/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E3%80%81%E8%AF%BB%E5%8F%96%E3%80%81%E4%B8%8B%E8%BD%BD%E6%BC%8F%E6%B4%9E/">文件包含、读取、下载漏洞</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2021/06/06/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E3%80%81%E8%AF%BB%E5%8F%96%E3%80%81%E4%B8%8B%E8%BD%BD%E6%BC%8F%E6%B4%9E/" class="article-date">
-	  <time datetime="2021-06-06T14:42:17.000Z" itemprop="datePublished">2021-06-06</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Web/">Web</a><a class="article-category-link" href="/categories/Web/%E6%BC%8F%E6%B4%9E/">漏洞</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          概述：有关文件的常见漏洞：包括文件包含漏洞、文件读取漏洞、文件下载漏洞。
-
-
-一、文件包含漏洞–文件被解析就是将所包含的文件当作脚本去执行
-PHP当中包含函数
-
-
-
-函数
-描述
-
-
-
-include()
-文件包含失败时，会产生 警告，但脚本 将继续执行
-
-
-include_once()
-作用与include()相同，但文件只会被包含一次
-
-
-require()
-文件包含失败时，会产生 错误， 直接结束脚本执行
-
-
-require_once()
-作用与require()相同，但文件只会被包含...
-        </p>
-        <p class="article-more-link">
-          <a href="/2021/06/06/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E3%80%81%E8%AF%BB%E5%8F%96%E3%80%81%E4%B8%8B%E8%BD%BD%E6%BC%8F%E6%B4%9E/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-CTF之PHP"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2021/06/06/CTF%E4%B9%8BPHP/">CTF之PHP</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2021/06/06/CTF%E4%B9%8BPHP/" class="article-date">
-	  <time datetime="2021-06-06T14:42:17.000Z" itemprop="datePublished">2021-06-06</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/PHP/">PHP</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          
-
-
-一、PHP CTF1.1 PHP 弱类型123== 和 != 比较若类型不同，先偿试转换类型，再作值比较，最后返回值比较结果 。而=== 和 !== 只有在相同类型下,才会比较其值。
-
-
-**== 与 ===**：== 不包括 类型，=== 包括 类型
-
-**==**：遇到字符串与数值进行比较时，先将字符串类型转换成数值型，再进行比较
-123转换方法：如果该字符串没有包含&#x27;.&#x27;,&#x27;e&#x27;,&#x27;E&#x27;并且 其数值在整型的范围之内该字...
-        </p>
-        <p class="article-more-link">
-          <a href="/2021/06/06/CTF%E4%B9%8BPHP/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-BUUCTF-WEB（三）"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2021/06/04/BUUCTF-WEB%EF%BC%88%E4%B8%89%EF%BC%89/">BUUCTF-WEB(三)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2021/06/04/BUUCTF-WEB%EF%BC%88%E4%B8%89%EF%BC%89/" class="article-date">
-	  <time datetime="2021-06-04T10:25:29.000Z" itemprop="datePublished">2021-06-04</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/CTF/">CTF</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          概述：本篇是 BUUCTF-WEB方向的第三篇，其中涵盖的范围较广，包括 SQL注入、序列化与反序列化、文件上传、数据库的特性、PHP弱类型、MD5碰撞以及相关漏洞、文件包含、PHP伪协议、SSRF。
-
-
-一、[极客大挑战 2019]BuyFlag1考点：PHP 弱类型、strcmp() 函数漏洞
-查看源码发现
-1234567891011&lt;!--	~~~post money and password~~~if (isset($_POST[&#x27;password&#x27;]))...
-        </p>
-        <p class="article-more-link">
-          <a href="/2021/06/04/BUUCTF-WEB%EF%BC%88%E4%B8%89%EF%BC%89/#more">Read More</a>
         </p>
       
     </div>

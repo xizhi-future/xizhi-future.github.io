@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>单链表、双链表练题 | 忆 执 昔 来 的 旅 途</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="链式存储" />
+  
+  
+  
+  
+  <meta name="description" content="[TOC] 第三章  链式存储1. 设计一个算法，求一个单链表中的结点个数。算法： 12345678910&#x2F;&#x2F;计数int count(node *head)&amp;#123;    int s &#x3D; 0;    node *p &#x3D; head;    while(p)&amp;#123;        p &#x3D; p-&gt;next;        s++;    &amp;#125;    return s;&amp;#125;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单链表、双链表练题">
+<meta property="og:url" content="https://xizhi-future.github.io/2021/10/05/%E5%8D%95%E9%93%BE%E8%A1%A8%E3%80%81%E5%8F%8C%E9%93%BE%E8%A1%A8%E7%BB%83%E9%A2%98/index.html">
+<meta property="og:site_name" content="忆 执 昔 来 的 旅 途">
+<meta property="og:description" content="[TOC] 第三章  链式存储1. 设计一个算法，求一个单链表中的结点个数。算法： 12345678910&#x2F;&#x2F;计数int count(node *head)&amp;#123;    int s &#x3D; 0;    node *p &#x3D; head;    while(p)&amp;#123;        p &#x3D; p-&gt;next;        s++;    &amp;#125;    return s;&amp;#125;">
+<meta property="og:locale">
+<meta property="og:image" content="https://i.loli.net/2021/10/03/g4NDwT3JfyEx7qI.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/03/aZmS3FnQAdGk2y5.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/03/fr4LIcPyRCUT9a6.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/05/7FEl8ghiqaZ2rS5.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/05/Cf2WKS5phxjXoIi.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/05/iMBrSeKhj7Z819k.png">
+<meta property="article:published_time" content="2021-10-05T11:51:44.000Z">
+<meta property="article:modified_time" content="2021-10-05T11:52:52.560Z">
+<meta property="article:author" content="xizhi-future">
+<meta property="article:tag" content="链式存储">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/10/03/g4NDwT3JfyEx7qI.png">
+  
+    <link rel="alternate" href="/atom.xml" title="忆 执 昔 来 的 旅 途" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="/js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/essayists">随笔</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-单链表、双链表练题" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      单链表、双链表练题
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/10/05/%E5%8D%95%E9%93%BE%E8%A1%A8%E3%80%81%E5%8F%8C%E9%93%BE%E8%A1%A8%E7%BB%83%E9%A2%98/" class="article-date">
+	  <time datetime="2021-10-05T11:51:44.000Z" itemprop="datePublished">2021-10-05</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h2 id="第三章-链式存储"><a href="#第三章-链式存储" class="headerlink" title="第三章  链式存储"></a>第三章  链式存储</h2><h3 id="1-设计一个算法，求一个单链表中的结点个数。"><a href="#1-设计一个算法，求一个单链表中的结点个数。" class="headerlink" title="1. 设计一个算法，求一个单链表中的结点个数。"></a>1. 设计一个算法，求一个单链表中的结点个数。</h3><p><strong>算法：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//计数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">count</span><span class="params">(node *head)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> s = <span class="number">0</span>;</span><br><span class="line">    node *p = head;</span><br><span class="line">    <span class="keyword">while</span>(p)&#123;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">        s++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FLAG 0</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> datatype;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">link_node</span>&#123;</span></span><br><span class="line">    datatype info;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">link_node</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;node;</span><br><span class="line"></span><br><span class="line"><span class="comment">//前插法 创建单链表</span></span><br><span class="line"><span class="function">node *<span class="title">creat</span><span class="params">()</span></span>&#123;</span><br><span class="line">    node *head = <span class="literal">NULL</span>;</span><br><span class="line">    node *s;</span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;请输入结点值：\n&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x);</span><br><span class="line">    <span class="keyword">while</span>( x!= FLAG)&#123;</span><br><span class="line">        s = (node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(node));</span><br><span class="line">        s-&gt;info = x;</span><br><span class="line">        s-&gt;next = head;</span><br><span class="line">        head = s;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x);</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(node *head)</span></span>&#123;</span><br><span class="line">    node *p = head;</span><br><span class="line">    <span class="keyword">if</span>(!p) &#123;<span class="built_in">printf</span>(<span class="string">&quot;链表是 空的！\n&quot;</span>);&#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;单链表各个结点的值是：\n&quot;</span>);</span><br><span class="line">        <span class="keyword">while</span>(p)&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%5d&quot;</span>,p-&gt;info);</span><br><span class="line">            p = p-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//计数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">count</span><span class="params">(node *head)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> s = <span class="number">0</span>;</span><br><span class="line">    node *p = head;</span><br><span class="line">    <span class="keyword">while</span>(p)&#123;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">        s++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    node *pt;</span><br><span class="line">    <span class="keyword">int</span> sum;</span><br><span class="line">    pt=creat();</span><br><span class="line">    print(pt);</span><br><span class="line">    sum = count(pt);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n\n该单链表中结点个数是：%d\n&quot;</span>,sum);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/10/03/g4NDwT3JfyEx7qI.png" alt="image-20211003114619188"></p>
+<h3 id="2-设计一个算法，在一个单链表中值为y的结点前面插入一个值为x的结点。即使值为x的新结点成为值为y的结点的前驱结点。"><a href="#2-设计一个算法，在一个单链表中值为y的结点前面插入一个值为x的结点。即使值为x的新结点成为值为y的结点的前驱结点。" class="headerlink" title="2. 设计一个算法，在一个单链表中值为y的结点前面插入一个值为x的结点。即使值为x的新结点成为值为y的结点的前驱结点。"></a>2. 设计一个算法，在一个单链表中值为y的结点前面插入一个值为x的结点。即使值为x的新结点成为值为y的结点的前驱结点。</h3><p><strong>算法：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在值为 y 的结点前插入 值为 x 的结点</span></span><br><span class="line"><span class="function">node *<span class="title">insert</span><span class="params">(node *head,datatype y,datatype x)</span></span>&#123;</span><br><span class="line">    node *p = head;</span><br><span class="line">	node *q,*pre;</span><br><span class="line">    <span class="keyword">while</span>(p &amp;&amp; p-&gt;info != y)&#123;</span><br><span class="line">        pre = p;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!p) &#123;<span class="built_in">printf</span>(<span class="string">&quot;找不到值是%d的结点\n&quot;</span>,y);&#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        q = (node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(node));</span><br><span class="line">    	q-&gt;info = x;</span><br><span class="line">        q-&gt;next = p;</span><br><span class="line">        pre-&gt;next = q;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FLAG 0</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> datatype;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">link_node</span>&#123;</span></span><br><span class="line">    datatype info;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">link_node</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;node;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建单链表 前插法</span></span><br><span class="line"><span class="function">node *<span class="title">creat</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    node *head = <span class="literal">NULL</span>;</span><br><span class="line">    node *s;</span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入结点值：\n&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x);</span><br><span class="line">    <span class="keyword">while</span>(x != FLAG)&#123;</span><br><span class="line">        s = (node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(node));</span><br><span class="line">        s-&gt;info = x;</span><br><span class="line">        s-&gt;next = head;</span><br><span class="line">        head = s;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(node *head)</span></span>&#123;		<span class="comment">//由于是 前插：所以输出的内容是与之前输入的顺序相反</span></span><br><span class="line">    node *p = head;</span><br><span class="line">    <span class="keyword">if</span>(!p) &#123;<span class="built_in">printf</span>(<span class="string">&quot;单链表是空的！\n&quot;</span>);&#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;单链表各个结点的值是：\n&quot;</span>);</span><br><span class="line">        <span class="keyword">while</span>(p)&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%5d&quot;</span>,p-&gt;info);</span><br><span class="line">            p = p-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//在值为 y 的结点前插入 值为 x 的结点</span></span><br><span class="line"><span class="function">node *<span class="title">insert</span><span class="params">(node *head,datatype y,datatype x)</span></span>&#123;</span><br><span class="line">    node *p = head;</span><br><span class="line">	node *q,*pre;</span><br><span class="line">    <span class="keyword">while</span>(p &amp;&amp; p-&gt;info != y)&#123;</span><br><span class="line">        pre = p;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!p) &#123;<span class="built_in">printf</span>(<span class="string">&quot;找不到值是%d的结点\n&quot;</span>,y);&#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        q = (node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(node));</span><br><span class="line">    	q-&gt;info = x;</span><br><span class="line">        q-&gt;next = p;</span><br><span class="line">        pre-&gt;next = q;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    node *pt;</span><br><span class="line">    pt = creat();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;进行插入之前：\n&quot;</span>);</span><br><span class="line">    print(pt);</span><br><span class="line">    pt = insert(pt,<span class="number">11</span>,<span class="number">88</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n进行插入之后：\n&quot;</span>);</span><br><span class="line">    print(pt);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/10/03/aZmS3FnQAdGk2y5.png" alt="image-20211003122007950"></p>
+<h3 id="3-设计一个算法，判断一个单链表中各个结点值是否有序。"><a href="#3-设计一个算法，判断一个单链表中各个结点值是否有序。" class="headerlink" title="3. 设计一个算法，判断一个单链表中各个结点值是否有序。"></a>3. 设计一个算法，判断一个单链表中各个结点值是否有序。</h3><p><strong>算法：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//判断 单链表中 各结点值是否有序</span></span><br><span class="line"><span class="comment">//参数是 a ，为升序，参数为 b ，为降序</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">judge_order</span><span class="params">(node *head,<span class="keyword">char</span> c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> flag = <span class="number">1</span>;</span><br><span class="line">    <span class="comment">//node *p = head-&gt;next;</span></span><br><span class="line">	node *p = head;</span><br><span class="line">    <span class="keyword">switch</span>(c)&#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;a&#x27;</span>:</span><br><span class="line">            <span class="keyword">while</span>(p &amp;&amp; p-&gt;next &amp;&amp; flag)&#123;</span><br><span class="line">                <span class="keyword">if</span>(p-&gt;info &lt;= p-&gt;next-&gt;info)</span><br><span class="line">                    p = p-&gt;next;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    flag = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;b&#x27;</span>:</span><br><span class="line">            <span class="keyword">while</span>(p &amp;&amp; p-&gt;next &amp;&amp; flag)&#123;</span><br><span class="line">                <span class="keyword">if</span>(p-&gt;info &gt;= p-&gt;next-&gt;info)</span><br><span class="line">                    p = p-&gt;next;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    flag = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> flag;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FLAG 0</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> datatype;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">link_node</span>&#123;</span></span><br><span class="line">    datatype  info;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">link_node</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;node;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">//创建单链表 前插法</span></span><br><span class="line"><span class="comment">node *creat_first(void)&#123;</span></span><br><span class="line"><span class="comment">    node *head = NULL;</span></span><br><span class="line"><span class="comment">    node *s;</span></span><br><span class="line"><span class="comment">    int x;</span></span><br><span class="line"><span class="comment">    printf(&quot;请输入各个结点的值：\n&quot;);</span></span><br><span class="line"><span class="comment">    scanf(&quot;%d&quot;,&amp;x);</span></span><br><span class="line"><span class="comment">    while(x != FLAG)&#123;</span></span><br><span class="line"><span class="comment">        s = (node*)malloc(sizeof(node));</span></span><br><span class="line"><span class="comment">        s-&gt;info = x;</span></span><br><span class="line"><span class="comment">        s-&gt;next = head;</span></span><br><span class="line"><span class="comment">        head = s;</span></span><br><span class="line"><span class="comment">        scanf(&quot;%d&quot;,&amp;x);</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    return head;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//后插法 创建单链表</span></span><br><span class="line"><span class="function">node *<span class="title">creat_behind</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    node *head = <span class="literal">NULL</span>;</span><br><span class="line">    node *r = <span class="literal">NULL</span>;</span><br><span class="line">    node *s;</span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;请输出各个结点的值：\n&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x);</span><br><span class="line">    <span class="keyword">while</span>(x != FLAG)&#123;</span><br><span class="line">        s = (node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(node));</span><br><span class="line">        s-&gt;info = x;</span><br><span class="line">        <span class="keyword">if</span>(!head)</span><br><span class="line">            head = s;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            r-&gt;next = s;</span><br><span class="line">        r = s;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(r != <span class="literal">NULL</span>)&#123;</span><br><span class="line">        r-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(node *head)</span></span>&#123;</span><br><span class="line">    node *p = head;</span><br><span class="line">    <span class="keyword">if</span>(!p) &#123;<span class="built_in">printf</span>(<span class="string">&quot;单链表是空的!\n&quot;</span>);&#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;单链表各个结点的值是：\n&quot;</span>);</span><br><span class="line">        <span class="keyword">while</span>(p)&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%5d&quot;</span>,p-&gt;info);</span><br><span class="line">            p = p-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//判断 单链表中 各结点值是否有序</span></span><br><span class="line"><span class="comment">//参数是 a ，为升序，参数为 b ，为降序</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">judge_order</span><span class="params">(node *head,<span class="keyword">char</span> c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> flag = <span class="number">1</span>;</span><br><span class="line">    <span class="comment">//node *p = head-&gt;next;</span></span><br><span class="line">	node *p = head;</span><br><span class="line">    <span class="keyword">switch</span>(c)&#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;a&#x27;</span>:</span><br><span class="line">            <span class="keyword">while</span>(p &amp;&amp; p-&gt;next &amp;&amp; flag)&#123;</span><br><span class="line">                <span class="keyword">if</span>(p-&gt;info &lt;= p-&gt;next-&gt;info)</span><br><span class="line">                    p = p-&gt;next;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    flag = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;b&#x27;</span>:</span><br><span class="line">            <span class="keyword">while</span>(p &amp;&amp; p-&gt;next &amp;&amp; flag)&#123;</span><br><span class="line">                <span class="keyword">if</span>(p-&gt;info &gt;= p-&gt;next-&gt;info)</span><br><span class="line">                    p = p-&gt;next;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    flag = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> flag;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">		node *pt;</span><br><span class="line">		<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">		<span class="comment">//pt = creat_first();</span></span><br><span class="line">		<span class="keyword">while</span>(i &lt;=<span class="number">3</span>)&#123;</span><br><span class="line">		pt = creat_behind();</span><br><span class="line">		print(pt);</span><br><span class="line">	</span><br><span class="line">		<span class="keyword">if</span>(judge_order(pt,<span class="string">&#x27;a&#x27;</span>))&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;\n单链表是 升序 排列的！\n&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(judge_order(pt,<span class="string">&#x27;b&#x27;</span>))&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;\n单链表是 降序 排列的！\n&quot;</span>);</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;\n单链表是 无序 排列的！\n\n\n&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		i++;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/10/03/fr4LIcPyRCUT9a6.png" alt="image-20211003213242240"></p>
+<h3 id="4-设计一个算法，利用单链表原来的结点空间将一个单链表就地转置。"><a href="#4-设计一个算法，利用单链表原来的结点空间将一个单链表就地转置。" class="headerlink" title="4. 设计一个算法，利用单链表原来的结点空间将一个单链表就地转置。"></a>4. 设计一个算法，利用单链表原来的结点空间将一个单链表就地转置。</h3><p><strong>算法：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//转置</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reverse</span><span class="params">(node *head)</span></span>&#123;</span><br><span class="line">    node *p,*q;</span><br><span class="line">    p = head-&gt;next;</span><br><span class="line">    head-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">while</span>(p)&#123;</span><br><span class="line">        q = p;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">        q-&gt;next = head-&gt;next;</span><br><span class="line">        head-&gt;next = q;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FLAG 0</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> datatype;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">link_node</span>&#123;</span></span><br><span class="line">    datatype info;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">link_node</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;node;</span><br><span class="line"></span><br><span class="line"><span class="comment">//后插法 创建 带头结点的 单链表</span></span><br><span class="line"><span class="function">node *<span class="title">creat_behind</span><span class="params">()</span></span>&#123;</span><br><span class="line">    node *head,*s,*r;</span><br><span class="line">	datatype x;</span><br><span class="line">    head = r = (node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(node));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入单链表内容：（以 0 结尾）\n&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x);</span><br><span class="line">    <span class="keyword">while</span>(x)&#123;</span><br><span class="line">        s = (node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(node));</span><br><span class="line">        s-&gt;info = x;</span><br><span class="line">        r-&gt;next = s;</span><br><span class="line">        r = s;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x);</span><br><span class="line">    &#125;</span><br><span class="line">    r-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//打印输出 带头结点的单链表</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(node *head)</span></span>&#123;</span><br><span class="line">    node *p;</span><br><span class="line">    p = head-&gt;next;</span><br><span class="line">    <span class="keyword">if</span>(!p)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;单链表是空的！\n&quot;</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;单链表中各个结点的值是：\n&quot;</span>);</span><br><span class="line">        <span class="keyword">while</span>(p)&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%5d&quot;</span>,p-&gt;info);</span><br><span class="line">            p = p-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//转置</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reverse</span><span class="params">(node *head)</span></span>&#123;</span><br><span class="line">    node *p,*q;</span><br><span class="line">    p = head-&gt;next;</span><br><span class="line">    head-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">while</span>(p)&#123;</span><br><span class="line">        q = p;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">        q-&gt;next = head-&gt;next;</span><br><span class="line">        head-&gt;next = q;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    node *pt;</span><br><span class="line">    pt = creat_behind();</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;原单链表：\n&quot;</span>);</span><br><span class="line">    print(pt); </span><br><span class="line">    reverse(pt); <span class="comment">//转置</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;转置之后的单链表：\n&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    print(pt);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/10/05/7FEl8ghiqaZ2rS5.png" alt="image-20211005190811303"></p>
+<h3 id="5-设计一个算法，在双链表中值为y的结点前面插入一个值为x的新结点。即使值为x的新结点成为值为y的结点的前驱结点。"><a href="#5-设计一个算法，在双链表中值为y的结点前面插入一个值为x的新结点。即使值为x的新结点成为值为y的结点的前驱结点。" class="headerlink" title="5. 设计一个算法，在双链表中值为y的结点前面插入一个值为x的新结点。即使值为x的新结点成为值为y的结点的前驱结点。"></a>5. 设计一个算法，在双链表中值为y的结点前面插入一个值为x的新结点。即使值为x的新结点成为值为y的结点的前驱结点。</h3><p><strong>算法：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在值为 y 的结点之前插入 值为 x 的新的结点</span></span><br><span class="line"><span class="function">dnode *<span class="title">insert</span><span class="params">(dnode *head,datatype y,datatype x)</span></span>&#123;</span><br><span class="line">    dnode *p = head-&gt;rlink;</span><br><span class="line">    dnode *s;</span><br><span class="line">    <span class="keyword">while</span>(p &amp;&amp; p-&gt;info != y)&#123;</span><br><span class="line">        p = p-&gt;rlink;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!p)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n双链表中不存在值为 y 的结点，无法插入！\n&quot;</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123; <span class="comment">// 进行插入 ：在值为 y 的结点之前插入 值为 x 的新的结点</span></span><br><span class="line">        s = (dnode*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(dnode));</span><br><span class="line">        s-&gt;info = x;</span><br><span class="line">        s-&gt;rlink = p;</span><br><span class="line">        p-&gt;llink-&gt;rlink = s;</span><br><span class="line">        s-&gt;llink = p-&gt;llink;</span><br><span class="line">        p-&gt;llink = s;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>测试：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> datatype;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">dlink_node</span>&#123;</span></span><br><span class="line">    datatype info;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">dlink_node</span> *<span class="title">rlink</span>,*<span class="title">llink</span>;</span></span><br><span class="line">&#125;dnode;</span><br><span class="line"></span><br><span class="line"><span class="comment">//尾插法 创建带头结点的双链表</span></span><br><span class="line"><span class="function">dnode *<span class="title">creat_behind</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    dnode *head,*r,*s; <span class="comment">//注意：同时定义多个指针</span></span><br><span class="line">    datatype x;</span><br><span class="line">    head = r = (dnode*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(dnode));<span class="comment">//建立双链表的头结点</span></span><br><span class="line">    head-&gt;llink = head-&gt;rlink = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输出双链表的内容：(以 0 结束)\n&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x);</span><br><span class="line">    <span class="keyword">while</span>(x)&#123;</span><br><span class="line">        s = (dnode*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(dnode));</span><br><span class="line">        s-&gt;info = x;</span><br><span class="line">        s-&gt;rlink = r-&gt;rlink; <span class="comment">//将新的结点 s 插入到双链表的末尾</span></span><br><span class="line">        s-&gt;llink = r;</span><br><span class="line">        r-&gt;rlink = s;</span><br><span class="line">        r = s;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//打印输出</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(dnode *head)</span></span>&#123;</span><br><span class="line">    dnode *p;</span><br><span class="line">	p = head-&gt;rlink;  <span class="comment">//由于是带头结点的 所以 指向 head 的 下一个位置</span></span><br><span class="line">    <span class="keyword">if</span>(!p)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;双链表是空的！\n&quot;</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;单链表中各个结点的值是：\n&quot;</span>);</span><br><span class="line">        <span class="keyword">while</span>(p)&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%5d&quot;</span>,p-&gt;info);</span><br><span class="line">            p = p-&gt;rlink;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//在值为 y 的结点之前插入 值为 x 的新的结点</span></span><br><span class="line"><span class="function">dnode *<span class="title">insert</span><span class="params">(dnode *head,datatype y,datatype x)</span></span>&#123;</span><br><span class="line">    dnode *p = head-&gt;rlink;</span><br><span class="line">    dnode *s;</span><br><span class="line">    <span class="keyword">while</span>(p &amp;&amp; p-&gt;info != y)&#123;</span><br><span class="line">        p = p-&gt;rlink;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!p)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n双链表中不存在值为 y 的结点，无法插入！\n&quot;</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123; <span class="comment">// 进行插入 ：在值为 y 的结点之前插入 值为 x 的新的结点</span></span><br><span class="line">        s = (dnode*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(dnode));</span><br><span class="line">        s-&gt;info = x;</span><br><span class="line">        s-&gt;rlink = p;</span><br><span class="line">        p-&gt;llink-&gt;rlink = s;</span><br><span class="line">        s-&gt;llink = p-&gt;llink;</span><br><span class="line">        p-&gt;llink = s;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    dnode *pt,*pt1;</span><br><span class="line">    pt = creat_behind();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n进行操作之前：\n&quot;</span>);</span><br><span class="line">    print(pt);</span><br><span class="line">    pt1 = insert(pt,<span class="number">10</span>,<span class="number">99</span>); <span class="comment">//在 10 前面插入 99</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n进行操作之后：\n&quot;</span>);</span><br><span class="line">    print(pt1);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/10/05/Cf2WKS5phxjXoIi.png" alt="image-20211005184052812"></p>
+<h3 id="6-设计一个算法，从右向左打印一个双链表中各个结点的值。"><a href="#6-设计一个算法，从右向左打印一个双链表中各个结点的值。" class="headerlink" title="6. 设计一个算法，从右向左打印一个双链表中各个结点的值。"></a>6. 设计一个算法，从右向左打印一个双链表中各个结点的值。</h3><p><strong>算法：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//从右向左打印一个双链表中各个结点的值</span></span><br><span class="line"><span class="comment">//递归法</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_reverse</span><span class="params">(dnode *head)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head-&gt;rlink)&#123;</span><br><span class="line">        print_reverse(head-&gt;rlink);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%5d&quot;</span>,head-&gt;rlink-&gt;info);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> datatype;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">dlink_node</span>&#123;</span></span><br><span class="line">    datatype info;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">dlink_node</span> *<span class="title">rlink</span>,*<span class="title">llink</span>;</span></span><br><span class="line">&#125;dnode;</span><br><span class="line"></span><br><span class="line"><span class="comment">//尾插法  创建 带头结点的 双链表</span></span><br><span class="line"><span class="function">dnode *<span class="title">creat_behind</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    dnode *head,*r,*s;</span><br><span class="line">	datatype x;</span><br><span class="line">    head = r = (dnode*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(dnode));</span><br><span class="line">    head-&gt;llink = head-&gt;rlink = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入双链表的内容：（以 0 结束）\n&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x);</span><br><span class="line">    <span class="keyword">while</span>(x)&#123;</span><br><span class="line">        s = (dnode*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(dnode));</span><br><span class="line">        s-&gt;info = x;</span><br><span class="line">        s-&gt;rlink = r-&gt;rlink;</span><br><span class="line">        s-&gt;llink = r;</span><br><span class="line">        r-&gt;rlink = s;</span><br><span class="line">        r = s;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//打印输出</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(dnode *head)</span></span>&#123;</span><br><span class="line">    dnode *p;</span><br><span class="line">    p = head-&gt;rlink;</span><br><span class="line">	<span class="keyword">if</span>(!p)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;双链表是空的！\n&quot;</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;双链表的各个值是：\n&quot;</span>);</span><br><span class="line">        <span class="keyword">while</span>(p)&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%5d&quot;</span>,p-&gt;info);</span><br><span class="line">            p = p-&gt;rlink;</span><br><span class="line">    	&#125;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//从右向左打印一个双链表中各个结点的值</span></span><br><span class="line"><span class="comment">//递归法</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_reverse</span><span class="params">(dnode *head)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head-&gt;rlink)&#123;</span><br><span class="line">        print_reverse(head-&gt;rlink);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%5d&quot;</span>,head-&gt;rlink-&gt;info);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    dnode *pt;</span><br><span class="line">    pt = creat_behind();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;进行操作之前：\n&quot;</span>);</span><br><span class="line">    print(pt);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;进行操作之后：\n&quot;</span>);</span><br><span class="line">	print_reverse(pt);	</span><br><span class="line">    <span class="comment">//print(pt);</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/10/05/iMBrSeKhj7Z819k.png" alt="image-20211005185759360"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+
+<script src="/js/vdonate.js"></script>
+
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://i.loli.net/2021/07/09/UNXc5a6nbWxgzru.png',
+  alipayImage: 'https://i.loli.net/2021/07/09/Sf9nJd8hkOypTar.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong>xizhi-future</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2021/10/05/单链表、双链表练题/" target="_blank" title="单链表、双链表练题">https://xizhi-future.github.io/2021/10/05/单链表、双链表练题/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8/" rel="tag">链式存储</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/10/05/%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">线性表的链式存储</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8"><span class="nav-number">1.</span> <span class="nav-text">第三章  链式存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E7%AE%97%E6%B3%95%EF%BC%8C%E6%B1%82%E4%B8%80%E4%B8%AA%E5%8D%95%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E7%BB%93%E7%82%B9%E4%B8%AA%E6%95%B0%E3%80%82"><span class="nav-number">1.1.</span> <span class="nav-text">1. 设计一个算法，求一个单链表中的结点个数。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E7%AE%97%E6%B3%95%EF%BC%8C%E5%9C%A8%E4%B8%80%E4%B8%AA%E5%8D%95%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%BC%E4%B8%BAy%E7%9A%84%E7%BB%93%E7%82%B9%E5%89%8D%E9%9D%A2%E6%8F%92%E5%85%A5%E4%B8%80%E4%B8%AA%E5%80%BC%E4%B8%BAx%E7%9A%84%E7%BB%93%E7%82%B9%E3%80%82%E5%8D%B3%E4%BD%BF%E5%80%BC%E4%B8%BAx%E7%9A%84%E6%96%B0%E7%BB%93%E7%82%B9%E6%88%90%E4%B8%BA%E5%80%BC%E4%B8%BAy%E7%9A%84%E7%BB%93%E7%82%B9%E7%9A%84%E5%89%8D%E9%A9%B1%E7%BB%93%E7%82%B9%E3%80%82"><span class="nav-number">1.2.</span> <span class="nav-text">2. 设计一个算法，在一个单链表中值为y的结点前面插入一个值为x的结点。即使值为x的新结点成为值为y的结点的前驱结点。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E7%AE%97%E6%B3%95%EF%BC%8C%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E5%8D%95%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%90%84%E4%B8%AA%E7%BB%93%E7%82%B9%E5%80%BC%E6%98%AF%E5%90%A6%E6%9C%89%E5%BA%8F%E3%80%82"><span class="nav-number">1.3.</span> <span class="nav-text">3. 设计一个算法，判断一个单链表中各个结点值是否有序。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E7%AE%97%E6%B3%95%EF%BC%8C%E5%88%A9%E7%94%A8%E5%8D%95%E9%93%BE%E8%A1%A8%E5%8E%9F%E6%9D%A5%E7%9A%84%E7%BB%93%E7%82%B9%E7%A9%BA%E9%97%B4%E5%B0%86%E4%B8%80%E4%B8%AA%E5%8D%95%E9%93%BE%E8%A1%A8%E5%B0%B1%E5%9C%B0%E8%BD%AC%E7%BD%AE%E3%80%82"><span class="nav-number">1.4.</span> <span class="nav-text">4. 设计一个算法，利用单链表原来的结点空间将一个单链表就地转置。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E7%AE%97%E6%B3%95%EF%BC%8C%E5%9C%A8%E5%8F%8C%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%BC%E4%B8%BAy%E7%9A%84%E7%BB%93%E7%82%B9%E5%89%8D%E9%9D%A2%E6%8F%92%E5%85%A5%E4%B8%80%E4%B8%AA%E5%80%BC%E4%B8%BAx%E7%9A%84%E6%96%B0%E7%BB%93%E7%82%B9%E3%80%82%E5%8D%B3%E4%BD%BF%E5%80%BC%E4%B8%BAx%E7%9A%84%E6%96%B0%E7%BB%93%E7%82%B9%E6%88%90%E4%B8%BA%E5%80%BC%E4%B8%BAy%E7%9A%84%E7%BB%93%E7%82%B9%E7%9A%84%E5%89%8D%E9%A9%B1%E7%BB%93%E7%82%B9%E3%80%82"><span class="nav-number">1.5.</span> <span class="nav-text">5. 设计一个算法，在双链表中值为y的结点前面插入一个值为x的新结点。即使值为x的新结点成为值为y的结点的前驱结点。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E7%AE%97%E6%B3%95%EF%BC%8C%E4%BB%8E%E5%8F%B3%E5%90%91%E5%B7%A6%E6%89%93%E5%8D%B0%E4%B8%80%E4%B8%AA%E5%8F%8C%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%90%84%E4%B8%AA%E7%BB%93%E7%82%B9%E7%9A%84%E5%80%BC%E3%80%82"><span class="nav-number">1.6.</span> <span class="nav-text">6. 设计一个算法，从右向左打印一个双链表中各个结点的值。</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2021 忆 执 昔 来 的 旅 途 All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/essayists" class="mobile-nav-link">Essayists</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            忆 执 昔 来 的 旅 途
+          </div>
+          <div class="panel-body">
+            Copyright © 2021 xizhi-future All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
