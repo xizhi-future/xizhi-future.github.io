@@ -200,6 +200,117 @@
         
           <section id="main" style="float:none;">
   
+    <article id="post-CTF-Show-命令执行"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2021/10/01/CTF-Show-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">CTF-Show-命令执行</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/10/01/CTF-Show-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" class="article-date">
+	  <time datetime="2021-10-01T11:14:09.000Z" itemprop="datePublished">2021-10-01</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/CTF-Show/">CTF Show</a>
+
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          一、CTF Show — 命令执行1.1 Web 29 — 只过滤 flag — 通配符使用1命令执行，需要严格的过滤
+
+12345678910&lt;?php    error_reporting(0);	if(isset($_GET[&#x27;c&#x27;]))&#123;    $c = $_GET[&#x27;c&#x27;];    if(!preg_match(&quot;/flag/i&quot;, $c))&#123;        eval($c);    &#125...
+        </p>
+        <p class="article-more-link">
+          <a href="/2021/10/01/CTF-Show-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/#more">Read More</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-CTF-Show-文件包含"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2021/10/01/CTF-Show-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/">CTF-Show-文件包含</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/10/01/CTF-Show-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" class="article-date">
+	  <time datetime="2021-10-01T11:12:49.000Z" itemprop="datePublished">2021-10-01</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/CTF-Show/">CTF Show</a>
+
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          CTF Show 文件包含篇。
+
+
+一、CTF Show — 文件包含1.1 Web 78 — 最简单的文件包含 — 各种伪协议 绕过1234567&lt;?php   if(isset($_GET[&#x27;file&#x27;]))&#123;    $file = $_GET[&#x27;file&#x27;];    include($file);&#125;else&#123;    highlight_file(__FILE__);&#125;
+
+1234?file=php:...
+        </p>
+        <p class="article-more-link">
+          <a href="/2021/10/01/CTF-Show-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/#more">Read More</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
     <article id="post-CTF-Show-爆破"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
@@ -491,6 +602,64 @@ NUCTF1 EasyUnser12345678910111213141516171819&lt;?php   include_once &#x27;flag.
 
 
   
+    <article id="post-文件上传漏洞"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2021/06/06/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/">文件上传漏洞</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/06/06/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" class="article-date">
+	  <time datetime="2021-06-06T14:42:17.000Z" itemprop="datePublished">2021-06-06</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Web%E6%BC%8F%E6%B4%9E%E5%9F%BA%E7%A1%80%E7%AF%87/">Web漏洞基础篇</a>
+
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          一、文件上传漏洞
+1234成因：服务器配置不当导致任意文件上传Web应用对上传的文件没有进行足够的限制程序开发部署时，由于未考虑系统特性或验证而导致限制被绕过
+
+
+1.1 条件1231.Web服务器开启了文件上传功能，且上传api（接口）对外开放（Web用户可以访问）2.Web用户对目标目录具有可写权限，甚至具有执行权限3.上传的文件可执行，即Web容器可以解析我们上传的脚本
+1.2 WebShell
+计算机科学中，Shell俗称为“壳”，指的是“为使用者提供操作界面”的软件，即命令解释器...
+        </p>
+        <p class="article-more-link">
+          <a href="/2021/06/06/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/#more">Read More</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
     <article id="post-文件包含、读取、下载漏洞"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
@@ -569,64 +738,6 @@ require_once()
 
 
   
-    <article id="post-文件上传漏洞"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2021/06/06/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/">文件上传漏洞</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2021/06/06/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" class="article-date">
-	  <time datetime="2021-06-06T14:42:17.000Z" itemprop="datePublished">2021-06-06</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/Web%E6%BC%8F%E6%B4%9E%E5%9F%BA%E7%A1%80%E7%AF%87/">Web漏洞基础篇</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          一、文件上传漏洞
-1234成因：服务器配置不当导致任意文件上传Web应用对上传的文件没有进行足够的限制程序开发部署时，由于未考虑系统特性或验证而导致限制被绕过
-
-
-1.1 条件1231.Web服务器开启了文件上传功能，且上传api（接口）对外开放（Web用户可以访问）2.Web用户对目标目录具有可写权限，甚至具有执行权限3.上传的文件可执行，即Web容器可以解析我们上传的脚本
-1.2 WebShell
-计算机科学中，Shell俗称为“壳”，指的是“为使用者提供操作界面”的软件，即命令解释器...
-        </p>
-        <p class="article-more-link">
-          <a href="/2021/06/06/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
     <article id="post-CTF之PHP"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
@@ -670,123 +781,6 @@ require_once()
         </p>
         <p class="article-more-link">
           <a href="/2021/06/06/CTF%E4%B9%8BPHP/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-BUUCTF-WEB（三）"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2021/06/04/BUUCTF-WEB%EF%BC%88%E4%B8%89%EF%BC%89/">BUUCTF-WEB(三)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2021/06/04/BUUCTF-WEB%EF%BC%88%E4%B8%89%EF%BC%89/" class="article-date">
-	  <time datetime="2021-06-04T10:25:29.000Z" itemprop="datePublished">2021-06-04</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/BUUCTF/">BUUCTF</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          概述：本篇是 BUUCTF-WEB方向的第三篇，其中涵盖的范围较广，包括 SQL注入、序列化与反序列化、文件上传、数据库的特性、PHP弱类型、MD5碰撞以及相关漏洞、文件包含、PHP伪协议、SSRF。
-
-
-一、[极客大挑战 2019]BuyFlag1考点：PHP 弱类型、strcmp() 函数漏洞
-查看源码发现
-1234567891011&lt;!--	~~~post money and password~~~if (isset($_POST[&#x27;password&#x27;]))...
-        </p>
-        <p class="article-more-link">
-          <a href="/2021/06/04/BUUCTF-WEB%EF%BC%88%E4%B8%89%EF%BC%89/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-BUUCTF-WEB（二）"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2021/06/04/BUUCTF-WEB%EF%BC%88%E4%BA%8C%EF%BC%89/">BUUCTF-WEB(二)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2021/06/04/BUUCTF-WEB%EF%BC%88%E4%BA%8C%EF%BC%89/" class="article-date">
-	  <time datetime="2021-06-04T10:22:55.000Z" itemprop="datePublished">2021-06-04</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/BUUCTF/">BUUCTF</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          概述：BUUCTF-WEB 十~二十道题目，难度较前十道略有提升，内容有：文件上传、HTTP 头部、SSTI、PHP字符串特性、序列化与反序列化、SQL注入、网站的备份文件。
-
-
-一、[极客大挑战 2019]Knife1考点：连 shell 工具：菜刀、蚁剑
-
-根据界面的提示，直接上菜刀或者是蚁剑，根目录下得到 flag
-
-二、[极客大挑战 2019]Http1考点：HTTP header：Referer、User-Agent、X-Forwarded-For
-抓包查看 发现 Secret....
-        </p>
-        <p class="article-more-link">
-          <a href="/2021/06/04/BUUCTF-WEB%EF%BC%88%E4%BA%8C%EF%BC%89/#more">Read More</a>
         </p>
       
     </div>
