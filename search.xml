@@ -395,110 +395,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CTF-Show-爆破</title>
-    <url>/2021/10/01/CTF-Show-%E7%88%86%E7%A0%B4/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>CTF show 爆破篇。</p>
-<span id="more"></span>
-
-<h1 id="一、CTF-show-—-爆破"><a href="#一、CTF-show-—-爆破" class="headerlink" title="一、CTF show — 爆破"></a>一、CTF show — 爆破</h1><h2 id="1-1-Web-21-—-Burp-爆破-—-base64-encode"><a href="#1-1-Web-21-—-Burp-爆破-—-base64-encode" class="headerlink" title="1.1 Web 21 — Burp 爆破 — base64-encode"></a>1.1 Web 21 — Burp 爆破 — base64-encode</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">爆破什么的，都是基操</span><br></pre></td></tr></table></figure>
-
-<p><strong>抓包查看</strong>：输入的账号密码都被base64加密了，并且中间还有一个 <code>:</code> 分割</p>
-<p>Burp 抓包，下载题目给的字典，进行爆破：手动更改 <code>admin:</code> base64 加密之后的内容，只将密码部分设为变量，加载题目字典，设置 base64-encode 加密，<strong>去掉勾选 URL编码</strong>，开始攻击。</p>
-<p><img src="https://i.loli.net/2021/07/14/MTD1Bp7G5F2tAiU.png" alt="image-20210714212830673"></p>
-<p><img src="https://i.loli.net/2021/07/14/bxHg23aGJ7BWPe6.png" alt="image-20210714212813152"></p>
-<h2 id="1-2-Web-22-—-子域名爆破-—-subDomainBrute-工具"><a href="#1-2-Web-22-—-子域名爆破-—-subDomainBrute-工具" class="headerlink" title="1.2 Web 22 — 子域名爆破 — subDomainBrute 工具"></a>1.2 Web 22 — 子域名爆破 — subDomainBrute 工具</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">域名也可以爆破的，试试爆破这个ctf.show的子域名</span><br></pre></td></tr></table></figure>
-
-<p><strong>subDomainBrute 工具子域名爆破</strong></p>
-<p><img src="https://i.loli.net/2021/07/15/24RTe3VNyP5ujhU.png" alt="image-20210715113857094"></p>
-<p>访问 <code>http://flag.ctfer.com/index.php</code></p>
-<h2 id="1-3-Web-23-—-根据代码要求写脚本"><a href="#1-3-Web-23-—-根据代码要求写脚本" class="headerlink" title="1.3 Web 23 — 根据代码要求写脚本"></a>1.3 Web 23 — 根据代码要求写脚本</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">还爆破？这么多代码，告辞！</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    error_reporting(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">include</span>(<span class="string">&#x27;flag.php&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;token&#x27;</span>]))&#123;</span><br><span class="line">        <span class="variable">$token</span> = md5(<span class="variable">$_GET</span>[<span class="string">&#x27;token&#x27;</span>]);</span><br><span class="line">        <span class="keyword">if</span>(substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>)===substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>) &amp;&amp; substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>) ===substr(<span class="variable">$token</span>, <span class="number">17</span>,<span class="number">1</span>))&#123;</span><br><span class="line">            <span class="keyword">if</span>((intval(substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>))+intval(substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>))+substr(<span class="variable">$token</span>, <span class="number">17</span>,<span class="number">1</span>))/substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>)===intval(substr(<span class="variable">$token</span>, <span class="number">31</span>,<span class="number">1</span>)))&#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>分析：</strong></p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">intval(<span class="keyword">mixed</span> <span class="variable">$var</span> [, <span class="keyword">int</span> <span class="variable">$base</span> = <span class="number">10</span> ]) 函数通过使用指定的进制 base 转换（默认是十进制），返回变量 <span class="keyword">var</span> 的 <span class="keyword">integer</span> 数值</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><strong>脚本：如果是 二位数</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">error_reporting(0); </span><br><span class="line"><span class="variable">$a</span>=<span class="string">&quot;asdfghjklqwertyuiopzxcvbnm1234567890&quot;</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="variable">$i</span>=0;<span class="variable">$i</span>&lt;36;<span class="variable">$i</span>++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="variable">$j</span>=0;<span class="variable">$j</span>&lt;36;<span class="variable">$j</span>++)&#123;</span><br><span class="line">        <span class="variable">$token</span>=<span class="variable">$a</span>[<span class="variable">$i</span>].<span class="variable">$a</span>[<span class="variable">$j</span>];    </span><br><span class="line">        <span class="variable">$token</span> = md5(<span class="variable">$token</span>); </span><br><span class="line">        <span class="keyword">if</span>(substr(<span class="variable">$token</span>, 1,1)===substr(<span class="variable">$token</span>, 14,1) &amp;&amp; substr(<span class="variable">$token</span>, 14,1) ===substr(<span class="variable">$token</span>, 17,1))&#123; </span><br><span class="line">            <span class="keyword">if</span>((intval(substr(<span class="variable">$token</span>, 1,1))+intval(substr(<span class="variable">$token</span>, 14,1))+substr(<span class="variable">$token</span>, 17,1))/substr(<span class="variable">$token</span>, 1,1)===intval(substr(<span class="variable">$token</span>, 31,1)))&#123; </span><br><span class="line">                <span class="built_in">echo</span> <span class="variable">$a</span>[<span class="variable">$i</span>].<span class="variable">$a</span>[<span class="variable">$j</span>];</span><br><span class="line">                <span class="built_in">exit</span>(0);</span><br><span class="line">            &#125; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line">?&gt; </span><br><span class="line"><span class="comment"># 得到 3j</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>脚本：如果是 三位数</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line"><span class="variable">$string</span> = <span class="string">&#x27;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&#x27;</span>;</span><br><span class="line"><span class="built_in">print</span> (strlen(<span class="variable">$string</span>).<span class="string">&quot;\n&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="variable">$a</span> = 0; <span class="variable">$a</span> &lt; 62; <span class="variable">$a</span>++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="variable">$b</span> = 0; <span class="variable">$b</span> &lt; 62; <span class="variable">$b</span>++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="variable">$c</span> = 0; <span class="variable">$c</span> &lt; 62; <span class="variable">$c</span>++) &#123;</span><br><span class="line">            <span class="variable">$flag</span> = <span class="variable">$string</span>[<span class="variable">$a</span>] . <span class="variable">$string</span>[<span class="variable">$b</span>] . <span class="variable">$string</span>[<span class="variable">$c</span>];</span><br><span class="line">            <span class="variable">$token</span> = md5(<span class="variable">$flag</span>);</span><br><span class="line">            <span class="keyword">if</span>(substr(<span class="variable">$token</span>, 1,1)===substr(<span class="variable">$token</span>, 14,1) &amp;&amp; substr(<span class="variable">$token</span>, 14,1) ===substr(<span class="variable">$token</span>, 17,1))&#123; </span><br><span class="line">            	<span class="keyword">if</span>((intval(substr(<span class="variable">$token</span>, 1,1))+intval(substr(<span class="variable">$token</span>, 14,1))+substr(<span class="variable">$token</span>, 17,1))/substr(<span class="variable">$token</span>, 1,1)===intval(substr(<span class="variable">$token</span>, 31,1)))&#123; </span><br><span class="line">                    <span class="built_in">echo</span> <span class="variable">$flag</span> . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 得到 62 aDp a6e b7l ejt hc2 jGd ktD o07 pjd ubv vMJ v8O wuB wyG xjF AKh DCj D36 GT7 H3D Jik JKh KtR K2e LfJ Lqj Nzc Oie OiU R7V ScB SSM SVi UYg WwF 1zg 4cQ 422 6xU 6Vh 7vE</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="1-4-Web-24-—-php-伪随机数-—-mt-srand"><a href="#1-4-Web-24-—-php-伪随机数-—-mt-srand" class="headerlink" title="1.4 Web 24 — php 伪随机数 — mt_srand()"></a>1.4 Web 24 — php 伪随机数 — mt_srand()</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">include(<span class="string">&quot;flag.php&quot;</span>);</span><br><span class="line"><span class="keyword">if</span>(isset(<span class="variable">$_GET</span>[<span class="string">&#x27;r&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$r</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;r&#x27;</span>];</span><br><span class="line">    mt_srand(372619038);</span><br><span class="line">    <span class="keyword">if</span>(intval(<span class="variable">$r</span>)===intval(mt_rand()))&#123;</span><br><span class="line">        <span class="built_in">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    highlight_file(__FILE__);</span><br><span class="line">    <span class="built_in">echo</span> system(<span class="string">&#x27;cat /proc/version&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-
-<p>测试：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;?phpmt_srand(372619038);<span class="built_in">echo</span>(mt_rand());?&gt;<span class="comment"># 得到 1155388967</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>伪随机数漏洞：当种子不变时，实际上生成的随机数是固定的。</strong></p>
-</blockquote>
-<p><img src="https://i.loli.net/2021/08/03/41LYMjzASdVfFUW.png" alt="image-20210803191659621"></p>
-<p><img src="https://i.loli.net/2021/08/03/Jh12MBwLlyzgCNH.png" alt="image-20210803191723585"></p>
-<h2 id="1-5-Web-25-—-php-伪随机数-逆推种子-—-php-mt-seed-工具使用"><a href="#1-5-Web-25-—-php-伪随机数-逆推种子-—-php-mt-seed-工具使用" class="headerlink" title="1.5 Web 25 — php 伪随机数 逆推种子 — php_mt_seed 工具使用"></a>1.5 Web 25 — php 伪随机数 逆推种子 — php_mt_seed 工具使用</h2><p><a href="https://www.cnblogs.com/zaqzzz/p/9997855.html">https://www.cnblogs.com/zaqzzz/p/9997855.html</a></p>
-<p>知道种子，可以确定你输出伪随机数的序列</p>
-<p>知道随机数序列，倒过来也可以确定你的种子，如何确定？</p>
-<p>工具 php_mt_seed</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;?phperror_reporting(0);include(<span class="string">&quot;flag.php&quot;</span>);<span class="keyword">if</span>(isset(<span class="variable">$_GET</span>[<span class="string">&#x27;r&#x27;</span>]))&#123;    <span class="variable">$r</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;r&#x27;</span>];    mt_srand(hexdec(substr(md5(<span class="variable">$flag</span>), 0,8)));    <span class="variable">$rand</span> = intval(<span class="variable">$r</span>)-intval(mt_rand());    <span class="keyword">if</span>((!<span class="variable">$rand</span>))&#123;        <span class="keyword">if</span>(<span class="variable">$_COOKIE</span>[<span class="string">&#x27;token&#x27;</span>]==(mt_rand()+mt_rand()))&#123;            <span class="built_in">echo</span> <span class="variable">$flag</span>;        &#125;    &#125;<span class="keyword">else</span>&#123;        <span class="built_in">echo</span> <span class="variable">$rand</span>;    &#125;&#125;<span class="keyword">else</span>&#123;    highlight_file(__FILE__);    <span class="built_in">echo</span> system(<span class="string">&#x27;cat /proc/version&#x27;</span>);&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>分析：</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexdec() 函数把十六进制转换为十进制。mt_srand(hexdec(substr(md5(<span class="variable">$flag</span>), 0,8)));	<span class="comment">#确定 种子$rand = intval($r)-intval(mt_rand());		#得到随机数，与传入的 ?r 有关如果该随机数不存在，则输出 $rand如果该随机数存在，并且 $_COOKIE[&#x27;token&#x27;]==(mt_rand()+mt_rand()) 则输出 $flag**代码分析**</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>那么生成的随机数，也就是与传入的 r 有关，而 r 我们可控</li>
-<li>通过生成的随机数进行逆推可以得到种子，<a href="https://www.openwall.com/php_mt_seed/">工具 php_mt_seed</a></li>
-</ul>
-<p>还要注意的是：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">得到 <span class="variable">$flag</span> 的条件：1. !<span class="variable">$rand</span> 即 <span class="variable">$rand</span> 不存在2. <span class="variable">$_COOKIE</span>[<span class="string">&#x27;token&#x27;</span>]==(mt_rand()+mt_rand()) 也就是说，我们得计算出 token 的值，然后发包的时候要进行修改</span><br></pre></td></tr></table></figure>
-
-<p>如何确保 <code>$rand 不存在</code> ？</p>
-<p>测试</p>
-<p><img src="https://i.loli.net/2021/08/04/AwBydsMHNcEvTaf.png" alt="image-20210804104524845"></p>
-<p>当我们设置了种子之后 <code>mt_srand</code> ，我们只要传 同样的 r ，那么最终得到的 $rand 都是一样的，那么反过来，如果 我们传入 <code>?r=522258682</code> ，那最终就可以得到 $rand = 0</p>
-<p><img src="https://i.loli.net/2021/08/04/cxFHsZhzS9WkE7i.png" alt="image-20210804104657248"></p>
-<p>那现在我们就得要计算 <code>(mt_rand()+mt_rand())</code> 了</p>
-<p>要计算生成的随机数之和，首先得先确定种子才行啊</p>
-<p>使用工具 php_mt_seed</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/otukijoe/php_mt_seed.git</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://i.loli.net/2021/08/04/s7z4fFxmrRypnAv.png" alt="image-20210804105157149"></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">maketime ./php_mt_seed 1446899118</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://i.loli.net/2021/08/04/oGrb6JHqlOXT7VW.png" alt="image-20210804105726200"></p>
-<p>通过抓包可以知道 该 php 版本是 PHP/7.3.11</p>
-<p>计算 token 值：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>highlight_file(<span class="keyword">__FILE__</span>);mt_srand(<span class="number">1048340704</span>);<span class="keyword">echo</span> mt_rand().<span class="string">&quot;\n&quot;</span>;<span class="keyword">echo</span> mt_rand()+mt_rand().<span class="string">&quot;\n&quot;</span>;<span class="comment">//1446899118 219330488<span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<p>抓包改值</p>
-<p><img src="https://i.loli.net/2021/08/04/W1RHU2xBnvaPcCy.png" alt="image-20210804110911859"></p>
-<h2 id="1-6-Web-26"><a href="#1-6-Web-26" class="headerlink" title="1.6 Web 26"></a>1.6 Web 26</h2><p><img src="https://i.loli.net/2021/08/04/EMhK6QNp3OcSnyA.png" alt="image-20210804111036383"></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p> 查看源码</p>
-<p><img src="https://i.loli.net/2021/08/04/jWUtw3qxuB1pd2s.png" alt="image-20210804111200056"></p>
-<p><img src="https://i.loli.net/2021/08/04/x18GrqLFoT5PRV7.png" alt="image-20210804111426026"></p>
-<h2 id="1-7-Web-27-—-身份证爆破"><a href="#1-7-Web-27-—-身份证爆破" class="headerlink" title="1.7 Web 27 — 身份证爆破"></a>1.7 Web 27 — 身份证爆破</h2><p><img src="https://i.loli.net/2021/08/04/o42RDNuHFIJBS8Y.png" alt="image-20210804112204280"></p>
-<p> <img src="https://i.loli.net/2021/08/04/piUhumyn5bV4aEq.png" alt="image-20210804111755165"></p>
-<p><img src="https://i.loli.net/2021/08/04/TVUe3r1Y2vjW5ER.png" alt="image-20210804111806858"></p>
-<p>我们需要爆破出 学生的出生日期</p>
-<p>Burp</p>
-<p>上面可以看到该平台是 1999-2017 年的，那么作为大学生此时应该十八九岁，所以他们应该是1980 年之后的基本上</p>
-<p>那么我们就从 1980 年开始设置 date 字典</p>
-<p><img src="https://i.loli.net/2021/08/04/c15B8xbASmQryaW.png" alt="image-20210804113135627"></p>
-<p>然后成功查询，得到  <strong>恭喜您，您已被我校录取，你的学号为02015237 初始密码为身份证号码</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">621022199002015237  02015237</span><br></pre></td></tr></table></figure>
-
-<p>最后成功登录即可</p>
-<h2 id="1-8-Web-28"><a href="#1-8-Web-28" class="headerlink" title="1.8 Web 28"></a>1.8 Web 28</h2><p><img src="https://i.loli.net/2021/08/04/lCz96ZbM1hA7tKR.png" alt="image-20210804114109990"></p>
-<p>Url 当中的 <code>/0/1/</code> 尝试爆破，即可得到</p>
-]]></content>
-      <categories>
-        <category>CTF Show</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CTF-Show-文件包含</title>
     <url>/2021/10/01/CTF-Show-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>CTF Show 文件包含篇。</p>
@@ -608,6 +504,110 @@
 
 <p>参考</p>
 <p><a href="https://blog.csdn.net/weixin_45882317/article/details/114576726">https://blog.csdn.net/weixin_45882317/article/details/114576726</a></p>
+]]></content>
+      <categories>
+        <category>CTF Show</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CTF-Show-爆破</title>
+    <url>/2021/10/01/CTF-Show-%E7%88%86%E7%A0%B4/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>CTF show 爆破篇。</p>
+<span id="more"></span>
+
+<h1 id="一、CTF-show-—-爆破"><a href="#一、CTF-show-—-爆破" class="headerlink" title="一、CTF show — 爆破"></a>一、CTF show — 爆破</h1><h2 id="1-1-Web-21-—-Burp-爆破-—-base64-encode"><a href="#1-1-Web-21-—-Burp-爆破-—-base64-encode" class="headerlink" title="1.1 Web 21 — Burp 爆破 — base64-encode"></a>1.1 Web 21 — Burp 爆破 — base64-encode</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">爆破什么的，都是基操</span><br></pre></td></tr></table></figure>
+
+<p><strong>抓包查看</strong>：输入的账号密码都被base64加密了，并且中间还有一个 <code>:</code> 分割</p>
+<p>Burp 抓包，下载题目给的字典，进行爆破：手动更改 <code>admin:</code> base64 加密之后的内容，只将密码部分设为变量，加载题目字典，设置 base64-encode 加密，<strong>去掉勾选 URL编码</strong>，开始攻击。</p>
+<p><img src="https://i.loli.net/2021/07/14/MTD1Bp7G5F2tAiU.png" alt="image-20210714212830673"></p>
+<p><img src="https://i.loli.net/2021/07/14/bxHg23aGJ7BWPe6.png" alt="image-20210714212813152"></p>
+<h2 id="1-2-Web-22-—-子域名爆破-—-subDomainBrute-工具"><a href="#1-2-Web-22-—-子域名爆破-—-subDomainBrute-工具" class="headerlink" title="1.2 Web 22 — 子域名爆破 — subDomainBrute 工具"></a>1.2 Web 22 — 子域名爆破 — subDomainBrute 工具</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">域名也可以爆破的，试试爆破这个ctf.show的子域名</span><br></pre></td></tr></table></figure>
+
+<p><strong>subDomainBrute 工具子域名爆破</strong></p>
+<p><img src="https://i.loli.net/2021/07/15/24RTe3VNyP5ujhU.png" alt="image-20210715113857094"></p>
+<p>访问 <code>http://flag.ctfer.com/index.php</code></p>
+<h2 id="1-3-Web-23-—-根据代码要求写脚本"><a href="#1-3-Web-23-—-根据代码要求写脚本" class="headerlink" title="1.3 Web 23 — 根据代码要求写脚本"></a>1.3 Web 23 — 根据代码要求写脚本</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">还爆破？这么多代码，告辞！</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    error_reporting(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">include</span>(<span class="string">&#x27;flag.php&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;token&#x27;</span>]))&#123;</span><br><span class="line">        <span class="variable">$token</span> = md5(<span class="variable">$_GET</span>[<span class="string">&#x27;token&#x27;</span>]);</span><br><span class="line">        <span class="keyword">if</span>(substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>)===substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>) &amp;&amp; substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>) ===substr(<span class="variable">$token</span>, <span class="number">17</span>,<span class="number">1</span>))&#123;</span><br><span class="line">            <span class="keyword">if</span>((intval(substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>))+intval(substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>))+substr(<span class="variable">$token</span>, <span class="number">17</span>,<span class="number">1</span>))/substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>)===intval(substr(<span class="variable">$token</span>, <span class="number">31</span>,<span class="number">1</span>)))&#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>分析：</strong></p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">intval(<span class="keyword">mixed</span> <span class="variable">$var</span> [, <span class="keyword">int</span> <span class="variable">$base</span> = <span class="number">10</span> ]) 函数通过使用指定的进制 base 转换（默认是十进制），返回变量 <span class="keyword">var</span> 的 <span class="keyword">integer</span> 数值</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>脚本：如果是 二位数</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">error_reporting(0); </span><br><span class="line"><span class="variable">$a</span>=<span class="string">&quot;asdfghjklqwertyuiopzxcvbnm1234567890&quot;</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="variable">$i</span>=0;<span class="variable">$i</span>&lt;36;<span class="variable">$i</span>++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="variable">$j</span>=0;<span class="variable">$j</span>&lt;36;<span class="variable">$j</span>++)&#123;</span><br><span class="line">        <span class="variable">$token</span>=<span class="variable">$a</span>[<span class="variable">$i</span>].<span class="variable">$a</span>[<span class="variable">$j</span>];    </span><br><span class="line">        <span class="variable">$token</span> = md5(<span class="variable">$token</span>); </span><br><span class="line">        <span class="keyword">if</span>(substr(<span class="variable">$token</span>, 1,1)===substr(<span class="variable">$token</span>, 14,1) &amp;&amp; substr(<span class="variable">$token</span>, 14,1) ===substr(<span class="variable">$token</span>, 17,1))&#123; </span><br><span class="line">            <span class="keyword">if</span>((intval(substr(<span class="variable">$token</span>, 1,1))+intval(substr(<span class="variable">$token</span>, 14,1))+substr(<span class="variable">$token</span>, 17,1))/substr(<span class="variable">$token</span>, 1,1)===intval(substr(<span class="variable">$token</span>, 31,1)))&#123; </span><br><span class="line">                <span class="built_in">echo</span> <span class="variable">$a</span>[<span class="variable">$i</span>].<span class="variable">$a</span>[<span class="variable">$j</span>];</span><br><span class="line">                <span class="built_in">exit</span>(0);</span><br><span class="line">            &#125; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line">?&gt; </span><br><span class="line"><span class="comment"># 得到 3j</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>脚本：如果是 三位数</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line"><span class="variable">$string</span> = <span class="string">&#x27;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&#x27;</span>;</span><br><span class="line"><span class="built_in">print</span> (strlen(<span class="variable">$string</span>).<span class="string">&quot;\n&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="variable">$a</span> = 0; <span class="variable">$a</span> &lt; 62; <span class="variable">$a</span>++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="variable">$b</span> = 0; <span class="variable">$b</span> &lt; 62; <span class="variable">$b</span>++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="variable">$c</span> = 0; <span class="variable">$c</span> &lt; 62; <span class="variable">$c</span>++) &#123;</span><br><span class="line">            <span class="variable">$flag</span> = <span class="variable">$string</span>[<span class="variable">$a</span>] . <span class="variable">$string</span>[<span class="variable">$b</span>] . <span class="variable">$string</span>[<span class="variable">$c</span>];</span><br><span class="line">            <span class="variable">$token</span> = md5(<span class="variable">$flag</span>);</span><br><span class="line">            <span class="keyword">if</span>(substr(<span class="variable">$token</span>, 1,1)===substr(<span class="variable">$token</span>, 14,1) &amp;&amp; substr(<span class="variable">$token</span>, 14,1) ===substr(<span class="variable">$token</span>, 17,1))&#123; </span><br><span class="line">            	<span class="keyword">if</span>((intval(substr(<span class="variable">$token</span>, 1,1))+intval(substr(<span class="variable">$token</span>, 14,1))+substr(<span class="variable">$token</span>, 17,1))/substr(<span class="variable">$token</span>, 1,1)===intval(substr(<span class="variable">$token</span>, 31,1)))&#123; </span><br><span class="line">                    <span class="built_in">echo</span> <span class="variable">$flag</span> . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 得到 62 aDp a6e b7l ejt hc2 jGd ktD o07 pjd ubv vMJ v8O wuB wyG xjF AKh DCj D36 GT7 H3D Jik JKh KtR K2e LfJ Lqj Nzc Oie OiU R7V ScB SSM SVi UYg WwF 1zg 4cQ 422 6xU 6Vh 7vE</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-4-Web-24-—-php-伪随机数-—-mt-srand"><a href="#1-4-Web-24-—-php-伪随机数-—-mt-srand" class="headerlink" title="1.4 Web 24 — php 伪随机数 — mt_srand()"></a>1.4 Web 24 — php 伪随机数 — mt_srand()</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">include(<span class="string">&quot;flag.php&quot;</span>);</span><br><span class="line"><span class="keyword">if</span>(isset(<span class="variable">$_GET</span>[<span class="string">&#x27;r&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$r</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;r&#x27;</span>];</span><br><span class="line">    mt_srand(372619038);</span><br><span class="line">    <span class="keyword">if</span>(intval(<span class="variable">$r</span>)===intval(mt_rand()))&#123;</span><br><span class="line">        <span class="built_in">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    highlight_file(__FILE__);</span><br><span class="line">    <span class="built_in">echo</span> system(<span class="string">&#x27;cat /proc/version&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;?phpmt_srand(372619038);<span class="built_in">echo</span>(mt_rand());?&gt;<span class="comment"># 得到 1155388967</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>伪随机数漏洞：当种子不变时，实际上生成的随机数是固定的。</strong></p>
+</blockquote>
+<p><img src="https://i.loli.net/2021/08/03/41LYMjzASdVfFUW.png" alt="image-20210803191659621"></p>
+<p><img src="https://i.loli.net/2021/08/03/Jh12MBwLlyzgCNH.png" alt="image-20210803191723585"></p>
+<h2 id="1-5-Web-25-—-php-伪随机数-逆推种子-—-php-mt-seed-工具使用"><a href="#1-5-Web-25-—-php-伪随机数-逆推种子-—-php-mt-seed-工具使用" class="headerlink" title="1.5 Web 25 — php 伪随机数 逆推种子 — php_mt_seed 工具使用"></a>1.5 Web 25 — php 伪随机数 逆推种子 — php_mt_seed 工具使用</h2><p><a href="https://www.cnblogs.com/zaqzzz/p/9997855.html">https://www.cnblogs.com/zaqzzz/p/9997855.html</a></p>
+<p>知道种子，可以确定你输出伪随机数的序列</p>
+<p>知道随机数序列，倒过来也可以确定你的种子，如何确定？</p>
+<p>工具 php_mt_seed</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;?phperror_reporting(0);include(<span class="string">&quot;flag.php&quot;</span>);<span class="keyword">if</span>(isset(<span class="variable">$_GET</span>[<span class="string">&#x27;r&#x27;</span>]))&#123;    <span class="variable">$r</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;r&#x27;</span>];    mt_srand(hexdec(substr(md5(<span class="variable">$flag</span>), 0,8)));    <span class="variable">$rand</span> = intval(<span class="variable">$r</span>)-intval(mt_rand());    <span class="keyword">if</span>((!<span class="variable">$rand</span>))&#123;        <span class="keyword">if</span>(<span class="variable">$_COOKIE</span>[<span class="string">&#x27;token&#x27;</span>]==(mt_rand()+mt_rand()))&#123;            <span class="built_in">echo</span> <span class="variable">$flag</span>;        &#125;    &#125;<span class="keyword">else</span>&#123;        <span class="built_in">echo</span> <span class="variable">$rand</span>;    &#125;&#125;<span class="keyword">else</span>&#123;    highlight_file(__FILE__);    <span class="built_in">echo</span> system(<span class="string">&#x27;cat /proc/version&#x27;</span>);&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>分析：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexdec() 函数把十六进制转换为十进制。mt_srand(hexdec(substr(md5(<span class="variable">$flag</span>), 0,8)));	<span class="comment">#确定 种子$rand = intval($r)-intval(mt_rand());		#得到随机数，与传入的 ?r 有关如果该随机数不存在，则输出 $rand如果该随机数存在，并且 $_COOKIE[&#x27;token&#x27;]==(mt_rand()+mt_rand()) 则输出 $flag**代码分析**</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>那么生成的随机数，也就是与传入的 r 有关，而 r 我们可控</li>
+<li>通过生成的随机数进行逆推可以得到种子，<a href="https://www.openwall.com/php_mt_seed/">工具 php_mt_seed</a></li>
+</ul>
+<p>还要注意的是：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">得到 <span class="variable">$flag</span> 的条件：1. !<span class="variable">$rand</span> 即 <span class="variable">$rand</span> 不存在2. <span class="variable">$_COOKIE</span>[<span class="string">&#x27;token&#x27;</span>]==(mt_rand()+mt_rand()) 也就是说，我们得计算出 token 的值，然后发包的时候要进行修改</span><br></pre></td></tr></table></figure>
+
+<p>如何确保 <code>$rand 不存在</code> ？</p>
+<p>测试</p>
+<p><img src="https://i.loli.net/2021/08/04/AwBydsMHNcEvTaf.png" alt="image-20210804104524845"></p>
+<p>当我们设置了种子之后 <code>mt_srand</code> ，我们只要传 同样的 r ，那么最终得到的 $rand 都是一样的，那么反过来，如果 我们传入 <code>?r=522258682</code> ，那最终就可以得到 $rand = 0</p>
+<p><img src="https://i.loli.net/2021/08/04/cxFHsZhzS9WkE7i.png" alt="image-20210804104657248"></p>
+<p>那现在我们就得要计算 <code>(mt_rand()+mt_rand())</code> 了</p>
+<p>要计算生成的随机数之和，首先得先确定种子才行啊</p>
+<p>使用工具 php_mt_seed</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/otukijoe/php_mt_seed.git</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/04/s7z4fFxmrRypnAv.png" alt="image-20210804105157149"></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">maketime ./php_mt_seed 1446899118</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/04/oGrb6JHqlOXT7VW.png" alt="image-20210804105726200"></p>
+<p>通过抓包可以知道 该 php 版本是 PHP/7.3.11</p>
+<p>计算 token 值：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>highlight_file(<span class="keyword">__FILE__</span>);mt_srand(<span class="number">1048340704</span>);<span class="keyword">echo</span> mt_rand().<span class="string">&quot;\n&quot;</span>;<span class="keyword">echo</span> mt_rand()+mt_rand().<span class="string">&quot;\n&quot;</span>;<span class="comment">//1446899118 219330488<span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>抓包改值</p>
+<p><img src="https://i.loli.net/2021/08/04/W1RHU2xBnvaPcCy.png" alt="image-20210804110911859"></p>
+<h2 id="1-6-Web-26"><a href="#1-6-Web-26" class="headerlink" title="1.6 Web 26"></a>1.6 Web 26</h2><p><img src="https://i.loli.net/2021/08/04/EMhK6QNp3OcSnyA.png" alt="image-20210804111036383"></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p> 查看源码</p>
+<p><img src="https://i.loli.net/2021/08/04/jWUtw3qxuB1pd2s.png" alt="image-20210804111200056"></p>
+<p><img src="https://i.loli.net/2021/08/04/x18GrqLFoT5PRV7.png" alt="image-20210804111426026"></p>
+<h2 id="1-7-Web-27-—-身份证爆破"><a href="#1-7-Web-27-—-身份证爆破" class="headerlink" title="1.7 Web 27 — 身份证爆破"></a>1.7 Web 27 — 身份证爆破</h2><p><img src="https://i.loli.net/2021/08/04/o42RDNuHFIJBS8Y.png" alt="image-20210804112204280"></p>
+<p> <img src="https://i.loli.net/2021/08/04/piUhumyn5bV4aEq.png" alt="image-20210804111755165"></p>
+<p><img src="https://i.loli.net/2021/08/04/TVUe3r1Y2vjW5ER.png" alt="image-20210804111806858"></p>
+<p>我们需要爆破出 学生的出生日期</p>
+<p>Burp</p>
+<p>上面可以看到该平台是 1999-2017 年的，那么作为大学生此时应该十八九岁，所以他们应该是1980 年之后的基本上</p>
+<p>那么我们就从 1980 年开始设置 date 字典</p>
+<p><img src="https://i.loli.net/2021/08/04/c15B8xbASmQryaW.png" alt="image-20210804113135627"></p>
+<p>然后成功查询，得到  <strong>恭喜您，您已被我校录取，你的学号为02015237 初始密码为身份证号码</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">621022199002015237  02015237</span><br></pre></td></tr></table></figure>
+
+<p>最后成功登录即可</p>
+<h2 id="1-8-Web-28"><a href="#1-8-Web-28" class="headerlink" title="1.8 Web 28"></a>1.8 Web 28</h2><p><img src="https://i.loli.net/2021/08/04/lCz96ZbM1hA7tKR.png" alt="image-20210804114109990"></p>
+<p>Url 当中的 <code>/0/1/</code> 尝试爆破，即可得到</p>
 ]]></content>
       <categories>
         <category>CTF Show</category>
@@ -1256,45 +1256,6 @@
       </tags>
   </entry>
   <entry>
-    <title>唯愿我们</title>
-    <url>/2021/10/01/%E5%94%AF%E6%84%BF%E6%88%91%E4%BB%AC/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="唯愿我们"><a href="#唯愿我们" class="headerlink" title="唯愿我们"></a>唯愿我们</h3><p>从鲜衣怒马到鬓染白发 </p>
-<p>不过弹指一刹那； </p>
-<p>从小桥人家到沧海无涯</p>
-<p>匆匆一眼尽繁华。 </p>
-<p>流年似水， 往事不可追； </p>
-<p>光阴似箭， 物是人已非。 </p>
-<p>让烦恼缠绕心尖， 生活一片颓然； </p>
-<p>让痛苦徘徊耳边， 人生全是不满。</p>
-<p>感情的遗憾， 不如放手随他。 </p>
-<p>想送你回家的人， </p>
-<p>东西南北都顺路； </p>
-<p>想陪你吃饭的人， </p>
-<p>酸甜苦辣都可口；</p>
-<p>想见你一面的人，</p>
-<p>隔山隔海都能来。</p>
-<p>生活的刁难， 不如看淡放宽。</p>
-<p>生命这一程， 交织着风霜雨雪；</p>
-<p>人生这一段， 夹杂着泥泞坎坷。 </p>
-<p>没有跨不过的河， </p>
-<p>没有迈不过的坎。</p>
-<p>内心的执迷， 不如随风飘散。</p>
-<p>有一往无前， 就有知难而退。 </p>
-<p>看透了， 便是过眼云烟； </p>
-<p>想通了， 不过昙花一现。 </p>
-<p>不念过去， 不畏将来， </p>
-<p>你若不放心上， 岁月便会无恙。</p>
-<p>边走边看， 是一种优雅；</p>
-<p>边走边忘， 是一份豁达。 </p>
-<p>敬往事一杯酒， 愿岁月不回头。 </p>
-<p><strong>唯愿我们：</strong></p>
-<p>  <strong>过去的， 别再遗憾；</strong><br>  <strong>未来的， 无须忧虑；</strong><br>  <strong>现在的， 加倍珍惜。</strong></p>
-]]></content>
-      <categories>
-        <category>生活杂谈</category>
-      </categories>
-  </entry>
-  <entry>
     <title>呓语</title>
     <url>/2021/10/10/%E5%91%93%E8%AF%AD/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>作词 : 毛不易</p>
@@ -1350,6 +1311,45 @@
 ]]></content>
       <categories>
         <category>音乐分享</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>唯愿我们</title>
+    <url>/2021/10/01/%E5%94%AF%E6%84%BF%E6%88%91%E4%BB%AC/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="唯愿我们"><a href="#唯愿我们" class="headerlink" title="唯愿我们"></a>唯愿我们</h3><p>从鲜衣怒马到鬓染白发 </p>
+<p>不过弹指一刹那； </p>
+<p>从小桥人家到沧海无涯</p>
+<p>匆匆一眼尽繁华。 </p>
+<p>流年似水， 往事不可追； </p>
+<p>光阴似箭， 物是人已非。 </p>
+<p>让烦恼缠绕心尖， 生活一片颓然； </p>
+<p>让痛苦徘徊耳边， 人生全是不满。</p>
+<p>感情的遗憾， 不如放手随他。 </p>
+<p>想送你回家的人， </p>
+<p>东西南北都顺路； </p>
+<p>想陪你吃饭的人， </p>
+<p>酸甜苦辣都可口；</p>
+<p>想见你一面的人，</p>
+<p>隔山隔海都能来。</p>
+<p>生活的刁难， 不如看淡放宽。</p>
+<p>生命这一程， 交织着风霜雨雪；</p>
+<p>人生这一段， 夹杂着泥泞坎坷。 </p>
+<p>没有跨不过的河， </p>
+<p>没有迈不过的坎。</p>
+<p>内心的执迷， 不如随风飘散。</p>
+<p>有一往无前， 就有知难而退。 </p>
+<p>看透了， 便是过眼云烟； </p>
+<p>想通了， 不过昙花一现。 </p>
+<p>不念过去， 不畏将来， </p>
+<p>你若不放心上， 岁月便会无恙。</p>
+<p>边走边看， 是一种优雅；</p>
+<p>边走边忘， 是一份豁达。 </p>
+<p>敬往事一杯酒， 愿岁月不回头。 </p>
+<p><strong>唯愿我们：</strong></p>
+<p>  <strong>过去的， 别再遗憾；</strong><br>  <strong>未来的， 无须忧虑；</strong><br>  <strong>现在的， 加倍珍惜。</strong></p>
+]]></content>
+      <categories>
+        <category>生活杂谈</category>
       </categories>
   </entry>
   <entry>
@@ -1459,25 +1459,6 @@
       <tags>
         <tag>虚拟机</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>雨天心事</title>
-    <url>/2021/10/09/%E9%9B%A8%E5%A4%A9%E5%BF%83%E4%BA%8B/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="94ca14958087636ac0d05246e2f08cdc77fbac705e80a44b4b290d7e348a4393">e91be0fd6c8a9227b7bcbe4e5e48d315c06aa4dc378147e1803de676640ec653b48c636617909faef5c22569585e67f2624f943dbd04bc3a4bc1e889c96c1c44fe86cf8189cc7f38066de20ed3e09ee470446ca383e292a288f38c1ff5a6edeaf4522c2592050d45424806119cfb091fff3cbf4949ac22db198b289b6718d25fd5258f1ac1fe9c84ef42543328f72721346d1f720eaba9fc244eba04c8158a640746cb6d2adf765058859136d535a857c9fd4a6bf6c4586394fda58cb6da01920d51f442b2b14d924759f4e4cd4079a0e838844ff4e3d58efd94fa90ce4278c3c924518f7802a60c16990c8977390c1238303a31f9328b73dc4ccae66a1c01a8bad2339e90bc4e00a3078f567cceac7ccea98820aece5f9ec96983a258624a5f5be0ac312748d1794e5d0849439130e5dd3c59665522e84a71bfd23c75bf056e21e2569a055563db1688fcca74f84234a845c119485dfd1d8d1edc96a39ed01c7a62cf262c6478bcb26f7e1cb279673b2bc978c68f035cdb801c095dc71bb0a1b7b800d648f8744394e428bff9c5042c611a83a5e2c0032258d4a8364ca987a0ed987df761031bb902a20d1b177273b561745ad3a171c4c2b5b6d9d47f2e258e653adc2ea9c73aeb1d907931a2e908289f80eb9202dac06035ba030297970f3235467707bf4485da5dd63ead56b4ed76b62d8c566ce726df1e1d1b32f12ec2313193c89bf97252f85e62fcd5cd447772503afcdf0ec62b9edf620d6c1de3bbd9ed66924c2856866cd7bb8ca4b1ca2da9db20f55c652b0aa28f4abd3c10316c9fbd60d0492370b873dda7f4213b05b015802af576956b13c13dc0f3c2bc420ef4656ad6e5003f24c6c562a54d3edd9e21cb49b6bce46f8c39200f2e268fae8aabaec974beeb47eb2b60b57966f327ba54bc492617000f7b2601fa422534022c39437d7495f39ce645ff2e7408359b9cca0777508adf4984c92f0ac6c68722abf6df8ae58d3358efc20c71d42a1a49d1458f6e2791ffae2dd1fdad1099fa60c2659e235224b9a5328a88e1d028171398d07a81e3dd51a63bc9bc25d488a6cedf0c10465354928eb1444d3eb0e5738a4602e5c624649f04e94bae613052604916bd2a3cb04ec418314ee55962cf5e27fbe27d526cb96324e2e40a18967c596e83cda0bdc562ed9259aaec04379fd1218cc92ca702205b7516de1b094f71e3b9f6254b664a83a8936829d1034a3896f69683138c3a09816cb41b259686f18042f7f2deb0ee9db058697a2765b3f0175c01499c715972db584137319bbeda1579d123f6ae7944cae638a103677458833b7c559fc608bc6d282e66f16c54f98fe79f6c9de7b0ab33aaa0d680b1904e6b1fc801e12b471aab330a1686c4c0c312bd6c68699c9ee6172ffc34a2646aea9b508791b1ba10c2113f30d074908e87382f5d78f1690fdd1eeb2179724542adffd134d6fc3c2cb77a13caa5172b68e56aef84ed004ea57ea42273513b40844462eb67b6a5024b19bac140bdf467d8f736cb1b2bc5694972b57c8e84daf515ffaf0504d739a482c29fa5d302ed9669d09d10d23dc9a28b63abf17ae2a55438f43e53b7d532819cbaa1af4541ce6bd47c07e1d59a17f5f4ac1379a64801ae38353722aedceafcad0c189886be14130c40cee0a9c4bee04386a7e23d97fe3c08b7c44c08fa8afb06c00a102338dfb22439fac82a95ea2eba137676f11f7ce604f2e6eec63f6de01a5c209935a835c72ac76294448261b37111997e4ed1e6d4047ca3801608d9ee222af4a3dd68c3bd21ca3d6f47738f78b99f407b008901d91ea716b360502d1661055fceb90f8012f11ed98fd97fbfc748b1e190c58233a9d36d2a0f50bc44151899d39cea909f815c2c9d45ffcb17481822672828839bd91b52f3884def95db15ec53b69bb64985278c7471ab8565c928679cd72fbe08b2634836ff2f612f1ac891d04a43986232d844df4898945b30e7d1522f52ddef4c7c54fe45571fb8968bc6aabdc60787a50c4fff2ac0d165a2748d195a2c4fb60fd60c7dd1975079f11d6f8ffa5d5e00e5ab31fb513fd98f2c1e85631757a5416883c65883347ebb6bce8fdcaac9c9382bec2c36f954043b2a988255ba090bd93d75aeba437785d527b14463abb060f7661f7551aaf13ad821a8dcb34afa4c6aa792aedfe7c6068c5a4da15237cd829ea449811c6b006bb727017abda017fac99a3509098fb0303bac8557834afc970bbf665d8f0d847719616e9f778eb369eaf37552c8f2b32a86df799a77bc90647fc0a6ba3b2d92cc8a3780c43ebecd9c448a25d50856c6f954a26cf53adda4b8ffcd85b83510e485d80e7483a4ead53cebe5a05d4f054c3749272dd609a3d4c2f9ba9417eb40006daca8df6514569e1957aeb4f8b5e98963caf65d27cb7e8ce7f6329d0a6650e199500665142861c371a75e026927715382a4820920058aee5f866061caf1a37fc58198d97de602d7dbf10d27541f51c6da0290c25a5569cc200eb0c01035ef4fad9912ad8f74bc8a64d732d7977f5c1e700a2bc3598ba53f2f0795ab00e46a7ae849c820a9a400d77e42276d5b98427c358485821cf30bb614e398f7bf4619f06faad328fe747050707425d555b15d42bcf96c96cfdf87f14868c47e258c4c07789868b993a6f66a4f8f7d9b7e9daf797f1758691e6bea0904419f646db5924a8d3aac4adaea6b3b1aedaabde1eb3628f8e600bcf61db58ebe7234e673f310abd47c43bf1929cb7a318dee824322576dd7f143632fb1e43a697ad839227fbc93fcbb9af60dc4c3fb55d316716ae876dd818e33e1a50c625b7f41088bb86ceb4c959b9706a45b37d5fc20d89b8018dd2c33a144abf571e0b85181ef941cb0fd74609909479247e2e27dac1675a7cf16e7215773088afdf3fb92e43fe0af7d6c42df710ee12bc21890450069c91f20ca44e84b88ca022c12be5e8aba6d4628586a351525584fc7350b6e621db0770e3f0dafa41c086ad31e425b244278bcac27786979121de9786ec584aed4d14c069bb4a7ae7b28976a242bd77536fb1d4a6f58f9cc18bd7e3af91ebc220e7b750a857f5789f01fa1958c0c2d16b8bf2009f503a436c4b8bf99833f759dbb4d5616c3afc888290fc24ae5277f2f66721124c4af5fd3dd4082896ea3022b3728be487013dbf392e4a639e37d2d4ed644ce2ad68e1a78100c9113e4ca0c3090cc5038bc586ad24199e865fb96fbbc463a2436cfb63c9fcd45b65b35de0e041f8ea6765707b527d8019dbb1a5d17798cb92d6f09b117fa950322fd118bc4d10c9762fbe4ca663fa6e61bafa67aa7e9d4cb708ef708eff7df31c8ab0a455394ca7d37037803f28f864e628dd565f36c6bafeb59add329dbd87425552fcd1e342a3e79f057afdb0c4b411431e3df2481fb0f98fe2dbf69b0d26eedfc85cb9fac0f227b3c43060475df00777a3807d5cea69beba98c0d3eff659cab74c68ededc31ae6769c099c857f5207c75166ceea59e7d170c9b760087e6db779ceed663dc577426e44559d4e31bc1edcebd52a913fe1d633c1bcec9305cdea673eb1cf43b628a4516875c53a33ca93b3f095ea140428826ca473d3cb339507a709063abfd3352c9e39decf38022e3b0bb6281e289f5f4ea2f0ca6873cef1c20a73613d1d450d4fbe4f80b9bcb0a1dff03ce4b594ae7c25b8c68ab0105db039b38d594ebaa043357a9a617b7df0fefddfdc9b8cf66a9c325438ed2d54318bc01241b7ff022376c243823bc69af8455c685a182cbb3d5cff6ca9c79842d1d8c06f8114ff3596f15848c31b664ec900d31e1cb7e9a791d63457da97d546bac2cb81c0b598d0b6a6b33155c57ce2cd84a7c3003256ff0bdd4c917232c4e2dd1399fb6f9ca4d47da22e15bc7601f4f068f776565696627c3ec3aea2cde94f0800d7a58ddc26af1fca482935f4b16a8874bfacba7f099688b8f0cb8796c52f33c1ee34b73431cd1f68f76ee680e186ec206009f28ad6c77a7c495f112aeb97ff99ee367e1f195d2c229323525263ed6dcf0bb15a8a881395c854939a5741445f6c99aeecf295ad810e77e9dff139dd2a698e914fadf6f0a2732768fa35a73df3809a1bffae7df8dbe80a2eec699721530ba5ebb68669415f46be5ff2f08d7f3d8eb0b54b3b293dacc5e797ef9b5c2e145a72baf5e4a9fa4a737b42618695e8be18dd62546b56d9aae3d7d292f2374cf111f036116184600774736805ddf3c3f1d160976e1c63899c11f761df1b3b68d6fc11d67394c3d296473f15af8240573254e04dc150843ef053b7a27b3016422973cb3b0df94b49ace7df6bf8f0ea25ec7e9403f21d27e95bd8e3b83ef789a06cd6146004101587b89aae82dbe29d39d2710960e0f65388ebaaa62df2d805072076382d1fe54221f44a88c9087e79c3a8d179c86ce2c3c26ee2a34a20d15fb84d8c5cbf8ac2ba71d8c2a87b7df2463e7ee444ab73aded693c5d657006237acd35168cb75bc47e4906b4c19272269123fc661173da644fbd39609896ec0f2cead77e76dc1ee49c4e81dd8f63a9be3ca52537268add9314636c27481227478d80d7e1f0168ea5d964eaae9b4ece4002aa6be7f14d75f71d2fc71864a7238784e2da5a5faed06a2a8f6c707cfcf05709bb5dd82d7d932c46ccb01c9762a151b6fd82be52b4204bd401ad5208a10710b2832cfd5f6e1ae2148cb7c82bc90e7e3b439bbb28c9a139a96f2dbef06370307a8adad885b48faa3a1ad1cd9e898fd0a75ca6b03e1883da7e4e23400dd057d1ac9ab17fe7b586d9e90b89489f6b61dd8c4e7d6ac1336da199bfd2e47c192edd7067a2c758ce4974344ab46a05b0d865169c5e0ab965ee51700eecd54e703a70bca9b05685022e01199cefbff96e227c56a8b11b93abcdd441948a4cd5822bf43f6d86f29c67fb52ce8eaa5d4e107649d970895c287afdd4685ee59d452a9a0c149e0b0fb34e580f4786b0e97cbb769bd0ddaeceabaf5233a809ea07a6c15205441c0b1ec7341f0b25b2f6f952eeeb4b4600f2b57da884d0c4cc1a9216220b0f6a4041577031c6299b4d1ee28eb8eb663e613a0679aed2a0b29c5a249e5d0d1386e94d83b4b0c87021be917f69eb91f4717b74f2d6c13381858c7fe303fb9bf1cfb249498eb93ad567a168dcc1946b9cf7ee6e7d430e190695077e2013d0b46a47e6c11fd53ac1cb074c05e5eba8c8363c5e59d6045d9a46b055a14e3269ea758d7d0a66cbd788b055fc88cf30d90c68059a91456688987840e1a919714311dccf193ef6f0a7f500ad356b757864afc1cda5e4b618058a32bd774ffe71ce9e82093538027ac138c1514c1f00d83dcfa97ca51a6f140e20e0a4560e8b54eff6744a976bb5c7baa11924beb4e94ad9f49ca9d9077f7614df7c889b3334914f363627fae85c0651385442550039d76d48ab36b690328bfcf81d4b030cf2a62afb6a66bd105f7e9badb54c41fe8646ef7ddd05977e033d37533e38c1a3dc40046662982b2539adc3e77df4352f5fe6767ccf09929940a254c9ecd4a742f74fb4eeb2bdfd6716368ab038bb0a9981d0e5acb78a6cd36e6830977111a468571bb1e811126022dc7d0bdcef72cb1cb836a688036015fb8d1502614d93bf367ca82c6b96c9ed534dc172a1220b1033c40d5fa81f9d01026ab395db9b351dfc2e2d4f97db3e3821b74957f23bcf3b523edc5b2b687143c6d036d637c354e3126d52a6cbc1f5c30a98c93fef36c190dc8d21df086caf7d22cbf2b352adfec119a2760cabb31a200abfe502da0059c88f96568c826d67f32df5199731ce8ee841c45137ccfd2341c682335a00e04ed6e7c31f137e032d41eca174e4643d4f749e4c9716f8ad6539ef0010667927430a02bb16285e1c7a2ca530498c6a355520206a27f53cb9607050d8c4f64f448ea7eecdf7751db97505ca3fd09396d5b5f4abb0ff208559b8579ed41a737a161011ade604b7e4a5755aa2f1ccaf7992dd3f59d6771ebfda35c36791e31d3d8442103e2f69c8eb57deb609a206e3a599859113e561998ea474facaea6a50364a9ce4cccee1429a4e1b7dc3bcda37e7f36473c2958a087368331979040687772aca9d07d06275591aa83</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">只给知心的人分享，请在输入密码方可阅读！</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>生活杂谈</category>
-      </categories>
   </entry>
   <entry>
     <title>计算机网络概念、发展、性能</title>
@@ -1606,6 +1587,25 @@
 <p>就当是在给自己壮胆吧，世界的黑暗也总得有人知道，它在帮助我们变得更加勇敢。</p>
 <p>2021.8.27    6：12</p>
 ]]></content>
+      <categories>
+        <category>生活杂谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>雨天心事</title>
+    <url>/2021/10/09/%E9%9B%A8%E5%A4%A9%E5%BF%83%E4%BA%8B/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="94ca14958087636ac0d05246e2f08cdc77fbac705e80a44b4b290d7e348a4393">e91be0fd6c8a9227b7bcbe4e5e48d315c06aa4dc378147e1803de676640ec653b48c636617909faef5c22569585e67f2624f943dbd04bc3a4bc1e889c96c1c44fe86cf8189cc7f38066de20ed3e09ee470446ca383e292a288f38c1ff5a6edeaf4522c2592050d45424806119cfb091fff3cbf4949ac22db198b289b6718d25fd5258f1ac1fe9c84ef42543328f72721346d1f720eaba9fc244eba04c8158a640746cb6d2adf765058859136d535a857c9fd4a6bf6c4586394fda58cb6da01920d51f442b2b14d924759f4e4cd4079a0e838844ff4e3d58efd94fa90ce4278c3c924518f7802a60c16990c8977390c1238303a31f9328b73dc4ccae66a1c01a8bad2339e90bc4e00a3078f567cceac7ccea98820aece5f9ec96983a258624a5f5be0ac312748d1794e5d0849439130e5dd3c59665522e84a71bfd23c75bf056e21e2569a055563db1688fcca74f84234a845c119485dfd1d8d1edc96a39ed01c7a62cf262c6478bcb26f7e1cb279673b2bc978c68f035cdb801c095dc71bb0a1b7b800d648f8744394e428bff9c5042c611a83a5e2c0032258d4a8364ca987a0ed987df761031bb902a20d1b177273b561745ad3a171c4c2b5b6d9d47f2e258e653adc2ea9c73aeb1d907931a2e908289f80eb9202dac06035ba030297970f3235467707bf4485da5dd63ead56b4ed76b62d8c566ce726df1e1d1b32f12ec2313193c89bf97252f85e62fcd5cd447772503afcdf0ec62b9edf620d6c1de3bbd9ed66924c2856866cd7bb8ca4b1ca2da9db20f55c652b0aa28f4abd3c10316c9fbd60d0492370b873dda7f4213b05b015802af576956b13c13dc0f3c2bc420ef4656ad6e5003f24c6c562a54d3edd9e21cb49b6bce46f8c39200f2e268fae8aabaec974beeb47eb2b60b57966f327ba54bc492617000f7b2601fa422534022c39437d7495f39ce645ff2e7408359b9cca0777508adf4984c92f0ac6c68722abf6df8ae58d3358efc20c71d42a1a49d1458f6e2791ffae2dd1fdad1099fa60c2659e235224b9a5328a88e1d028171398d07a81e3dd51a63bc9bc25d488a6cedf0c10465354928eb1444d3eb0e5738a4602e5c624649f04e94bae613052604916bd2a3cb04ec418314ee55962cf5e27fbe27d526cb96324e2e40a18967c596e83cda0bdc562ed9259aaec04379fd1218cc92ca702205b7516de1b094f71e3b9f6254b664a83a8936829d1034a3896f69683138c3a09816cb41b259686f18042f7f2deb0ee9db058697a2765b3f0175c01499c715972db584137319bbeda1579d123f6ae7944cae638a103677458833b7c559fc608bc6d282e66f16c54f98fe79f6c9de7b0ab33aaa0d680b1904e6b1fc801e12b471aab330a1686c4c0c312bd6c68699c9ee6172ffc34a2646aea9b508791b1ba10c2113f30d074908e87382f5d78f1690fdd1eeb2179724542adffd134d6fc3c2cb77a13caa5172b68e56aef84ed004ea57ea42273513b40844462eb67b6a5024b19bac140bdf467d8f736cb1b2bc5694972b57c8e84daf515ffaf0504d739a482c29fa5d302ed9669d09d10d23dc9a28b63abf17ae2a55438f43e53b7d532819cbaa1af4541ce6bd47c07e1d59a17f5f4ac1379a64801ae38353722aedceafcad0c189886be14130c40cee0a9c4bee04386a7e23d97fe3c08b7c44c08fa8afb06c00a102338dfb22439fac82a95ea2eba137676f11f7ce604f2e6eec63f6de01a5c209935a835c72ac76294448261b37111997e4ed1e6d4047ca3801608d9ee222af4a3dd68c3bd21ca3d6f47738f78b99f407b008901d91ea716b360502d1661055fceb90f8012f11ed98fd97fbfc748b1e190c58233a9d36d2a0f50bc44151899d39cea909f815c2c9d45ffcb17481822672828839bd91b52f3884def95db15ec53b69bb64985278c7471ab8565c928679cd72fbe08b2634836ff2f612f1ac891d04a43986232d844df4898945b30e7d1522f52ddef4c7c54fe45571fb8968bc6aabdc60787a50c4fff2ac0d165a2748d195a2c4fb60fd60c7dd1975079f11d6f8ffa5d5e00e5ab31fb513fd98f2c1e85631757a5416883c65883347ebb6bce8fdcaac9c9382bec2c36f954043b2a988255ba090bd93d75aeba437785d527b14463abb060f7661f7551aaf13ad821a8dcb34afa4c6aa792aedfe7c6068c5a4da15237cd829ea449811c6b006bb727017abda017fac99a3509098fb0303bac8557834afc970bbf665d8f0d847719616e9f778eb369eaf37552c8f2b32a86df799a77bc90647fc0a6ba3b2d92cc8a3780c43ebecd9c448a25d50856c6f954a26cf53adda4b8ffcd85b83510e485d80e7483a4ead53cebe5a05d4f054c3749272dd609a3d4c2f9ba9417eb40006daca8df6514569e1957aeb4f8b5e98963caf65d27cb7e8ce7f6329d0a6650e199500665142861c371a75e026927715382a4820920058aee5f866061caf1a37fc58198d97de602d7dbf10d27541f51c6da0290c25a5569cc200eb0c01035ef4fad9912ad8f74bc8a64d732d7977f5c1e700a2bc3598ba53f2f0795ab00e46a7ae849c820a9a400d77e42276d5b98427c358485821cf30bb614e398f7bf4619f06faad328fe747050707425d555b15d42bcf96c96cfdf87f14868c47e258c4c07789868b993a6f66a4f8f7d9b7e9daf797f1758691e6bea0904419f646db5924a8d3aac4adaea6b3b1aedaabde1eb3628f8e600bcf61db58ebe7234e673f310abd47c43bf1929cb7a318dee824322576dd7f143632fb1e43a697ad839227fbc93fcbb9af60dc4c3fb55d316716ae876dd818e33e1a50c625b7f41088bb86ceb4c959b9706a45b37d5fc20d89b8018dd2c33a144abf571e0b85181ef941cb0fd74609909479247e2e27dac1675a7cf16e7215773088afdf3fb92e43fe0af7d6c42df710ee12bc21890450069c91f20ca44e84b88ca022c12be5e8aba6d4628586a351525584fc7350b6e621db0770e3f0dafa41c086ad31e425b244278bcac27786979121de9786ec584aed4d14c069bb4a7ae7b28976a242bd77536fb1d4a6f58f9cc18bd7e3af91ebc220e7b750a857f5789f01fa1958c0c2d16b8bf2009f503a436c4b8bf99833f759dbb4d5616c3afc888290fc24ae5277f2f66721124c4af5fd3dd4082896ea3022b3728be487013dbf392e4a639e37d2d4ed644ce2ad68e1a78100c9113e4ca0c3090cc5038bc586ad24199e865fb96fbbc463a2436cfb63c9fcd45b65b35de0e041f8ea6765707b527d8019dbb1a5d17798cb92d6f09b117fa950322fd118bc4d10c9762fbe4ca663fa6e61bafa67aa7e9d4cb708ef708eff7df31c8ab0a455394ca7d37037803f28f864e628dd565f36c6bafeb59add329dbd87425552fcd1e342a3e79f057afdb0c4b411431e3df2481fb0f98fe2dbf69b0d26eedfc85cb9fac0f227b3c43060475df00777a3807d5cea69beba98c0d3eff659cab74c68ededc31ae6769c099c857f5207c75166ceea59e7d170c9b760087e6db779ceed663dc577426e44559d4e31bc1edcebd52a913fe1d633c1bcec9305cdea673eb1cf43b628a4516875c53a33ca93b3f095ea140428826ca473d3cb339507a709063abfd3352c9e39decf38022e3b0bb6281e289f5f4ea2f0ca6873cef1c20a73613d1d450d4fbe4f80b9bcb0a1dff03ce4b594ae7c25b8c68ab0105db039b38d594ebaa043357a9a617b7df0fefddfdc9b8cf66a9c325438ed2d54318bc01241b7ff022376c243823bc69af8455c685a182cbb3d5cff6ca9c79842d1d8c06f8114ff3596f15848c31b664ec900d31e1cb7e9a791d63457da97d546bac2cb81c0b598d0b6a6b33155c57ce2cd84a7c3003256ff0bdd4c917232c4e2dd1399fb6f9ca4d47da22e15bc7601f4f068f776565696627c3ec3aea2cde94f0800d7a58ddc26af1fca482935f4b16a8874bfacba7f099688b8f0cb8796c52f33c1ee34b73431cd1f68f76ee680e186ec206009f28ad6c77a7c495f112aeb97ff99ee367e1f195d2c229323525263ed6dcf0bb15a8a881395c854939a5741445f6c99aeecf295ad810e77e9dff139dd2a698e914fadf6f0a2732768fa35a73df3809a1bffae7df8dbe80a2eec699721530ba5ebb68669415f46be5ff2f08d7f3d8eb0b54b3b293dacc5e797ef9b5c2e145a72baf5e4a9fa4a737b42618695e8be18dd62546b56d9aae3d7d292f2374cf111f036116184600774736805ddf3c3f1d160976e1c63899c11f761df1b3b68d6fc11d67394c3d296473f15af8240573254e04dc150843ef053b7a27b3016422973cb3b0df94b49ace7df6bf8f0ea25ec7e9403f21d27e95bd8e3b83ef789a06cd6146004101587b89aae82dbe29d39d2710960e0f65388ebaaa62df2d805072076382d1fe54221f44a88c9087e79c3a8d179c86ce2c3c26ee2a34a20d15fb84d8c5cbf8ac2ba71d8c2a87b7df2463e7ee444ab73aded693c5d657006237acd35168cb75bc47e4906b4c19272269123fc661173da644fbd39609896ec0f2cead77e76dc1ee49c4e81dd8f63a9be3ca52537268add9314636c27481227478d80d7e1f0168ea5d964eaae9b4ece4002aa6be7f14d75f71d2fc71864a7238784e2da5a5faed06a2a8f6c707cfcf05709bb5dd82d7d932c46ccb01c9762a151b6fd82be52b4204bd401ad5208a10710b2832cfd5f6e1ae2148cb7c82bc90e7e3b439bbb28c9a139a96f2dbef06370307a8adad885b48faa3a1ad1cd9e898fd0a75ca6b03e1883da7e4e23400dd057d1ac9ab17fe7b586d9e90b89489f6b61dd8c4e7d6ac1336da199bfd2e47c192edd7067a2c758ce4974344ab46a05b0d865169c5e0ab965ee51700eecd54e703a70bca9b05685022e01199cefbff96e227c56a8b11b93abcdd441948a4cd5822bf43f6d86f29c67fb52ce8eaa5d4e107649d970895c287afdd4685ee59d452a9a0c149e0b0fb34e580f4786b0e97cbb769bd0ddaeceabaf5233a809ea07a6c15205441c0b1ec7341f0b25b2f6f952eeeb4b4600f2b57da884d0c4cc1a9216220b0f6a4041577031c6299b4d1ee28eb8eb663e613a0679aed2a0b29c5a249e5d0d1386e94d83b4b0c87021be917f69eb91f4717b74f2d6c13381858c7fe303fb9bf1cfb249498eb93ad567a168dcc1946b9cf7ee6e7d430e190695077e2013d0b46a47e6c11fd53ac1cb074c05e5eba8c8363c5e59d6045d9a46b055a14e3269ea758d7d0a66cbd788b055fc88cf30d90c68059a91456688987840e1a919714311dccf193ef6f0a7f500ad356b757864afc1cda5e4b618058a32bd774ffe71ce9e82093538027ac138c1514c1f00d83dcfa97ca51a6f140e20e0a4560e8b54eff6744a976bb5c7baa11924beb4e94ad9f49ca9d9077f7614df7c889b3334914f363627fae85c0651385442550039d76d48ab36b690328bfcf81d4b030cf2a62afb6a66bd105f7e9badb54c41fe8646ef7ddd05977e033d37533e38c1a3dc40046662982b2539adc3e77df4352f5fe6767ccf09929940a254c9ecd4a742f74fb4eeb2bdfd6716368ab038bb0a9981d0e5acb78a6cd36e6830977111a468571bb1e811126022dc7d0bdcef72cb1cb836a688036015fb8d1502614d93bf367ca82c6b96c9ed534dc172a1220b1033c40d5fa81f9d01026ab395db9b351dfc2e2d4f97db3e3821b74957f23bcf3b523edc5b2b687143c6d036d637c354e3126d52a6cbc1f5c30a98c93fef36c190dc8d21df086caf7d22cbf2b352adfec119a2760cabb31a200abfe502da0059c88f96568c826d67f32df5199731ce8ee841c45137ccfd2341c682335a00e04ed6e7c31f137e032d41eca174e4643d4f749e4c9716f8ad6539ef0010667927430a02bb16285e1c7a2ca530498c6a355520206a27f53cb9607050d8c4f64f448ea7eecdf7751db97505ca3fd09396d5b5f4abb0ff208559b8579ed41a737a161011ade604b7e4a5755aa2f1ccaf7992dd3f59d6771ebfda35c36791e31d3d8442103e2f69c8eb57deb609a206e3a599859113e561998ea474facaea6a50364a9ce4cccee1429a4e1b7dc3bcda37e7f36473c2958a087368331979040687772aca9d07d06275591aa83</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">只给知心的人分享，请在输入密码方可阅读！</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
         <category>生活杂谈</category>
       </categories>
