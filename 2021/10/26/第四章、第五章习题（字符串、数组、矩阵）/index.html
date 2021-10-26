@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>第四章、第五章习题（字符串、数组、矩阵） | 忆 执 昔 来 的 旅 途</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="[TOC] 1. 试编写一个函数，实现在 链式存储方式 下字符串的 strcompare(S1,S2)算法： 12345678910111213141516&#x2F;&#x2F;进行比较int strcompare(linkstrnode *S1,linkstrnode *S2)&amp;#123;    while(S1 &amp;&amp; S2)    &amp;#123;        if(S1-&gt;data &amp;gt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第四章、第五章习题（字符串、数组、矩阵）">
+<meta property="og:url" content="https://xizhi-future.github.io/2021/10/26/%E7%AC%AC%E5%9B%9B%E7%AB%A0%E3%80%81%E7%AC%AC%E4%BA%94%E7%AB%A0%E4%B9%A0%E9%A2%98%EF%BC%88%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E6%95%B0%E7%BB%84%E3%80%81%E7%9F%A9%E9%98%B5%EF%BC%89/index.html">
+<meta property="og:site_name" content="忆 执 昔 来 的 旅 途">
+<meta property="og:description" content="[TOC] 1. 试编写一个函数，实现在 链式存储方式 下字符串的 strcompare(S1,S2)算法： 12345678910111213141516&#x2F;&#x2F;进行比较int strcompare(linkstrnode *S1,linkstrnode *S2)&amp;#123;    while(S1 &amp;&amp; S2)    &amp;#123;        if(S1-&gt;data &amp;gt">
+<meta property="og:locale">
+<meta property="og:image" content="https://i.loli.net/2021/10/22/OAhsKJBz8ECf54n.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/22/HVelDLsqSZ78iAB.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/22/6KrmNXFv4JglMCu.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/22/xDUM8zHKQPw4Vd7.png">
+<meta property="og:image" content="https://i.loli.net/2021/10/22/9rquXIPgvZ8wTYm.png">
+<meta property="article:published_time" content="2021-10-26T12:51:29.000Z">
+<meta property="article:modified_time" content="2021-10-26T12:52:59.347Z">
+<meta property="article:author" content="xizhi-future">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/10/22/OAhsKJBz8ECf54n.png">
+  
+    <link rel="alternate" href="/atom.xml" title="忆 执 昔 来 的 旅 途" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="/js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/essayists">随笔</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/playist">音乐</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-第四章、第五章习题（字符串、数组、矩阵）" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      第四章、第五章习题（字符串、数组、矩阵）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/10/26/%E7%AC%AC%E5%9B%9B%E7%AB%A0%E3%80%81%E7%AC%AC%E4%BA%94%E7%AB%A0%E4%B9%A0%E9%A2%98%EF%BC%88%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E6%95%B0%E7%BB%84%E3%80%81%E7%9F%A9%E9%98%B5%EF%BC%89/" class="article-date">
+	  <time datetime="2021-10-26T12:51:29.000Z" itemprop="datePublished">2021-10-26</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h2 id="1-试编写一个函数，实现在-链式存储方式-下字符串的-strcompare-S1-S2"><a href="#1-试编写一个函数，实现在-链式存储方式-下字符串的-strcompare-S1-S2" class="headerlink" title="1. 试编写一个函数，实现在 链式存储方式 下字符串的 strcompare(S1,S2)"></a>1. 试编写一个函数，实现在 <code>链式存储方式</code> 下字符串的 <code>strcompare(S1,S2)</code></h2><p><strong>算法：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//进行比较</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">strcompare</span><span class="params">(linkstrnode *S1,linkstrnode *S2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(S1 &amp;&amp; S2)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(S1-&gt;data &gt; S2-&gt;data)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(S1-&gt;data &lt; S2-&gt;data)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        S1 = S1-&gt;next;</span><br><span class="line">        S2 = S2-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(S1)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(S2)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">    <span class="keyword">char</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;linkstrnode;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> linkstrnode *linkstring;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建单链表  尾插法</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">strcreate</span><span class="params">(linkstring *S)</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> ch;</span><br><span class="line">    linkstrnode *p,*r;</span><br><span class="line">    *S = <span class="literal">NULL</span>;</span><br><span class="line">    r = <span class="literal">NULL</span>; <span class="comment">//r始终指向当前链式串最后一个字符对应的结点</span></span><br><span class="line">    <span class="keyword">while</span>((ch = getchar()) != <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        p = (linkstrnode *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(linkstrnode));</span><br><span class="line">        p-&gt;data = ch;</span><br><span class="line">        <span class="keyword">if</span>(*S == <span class="literal">NULL</span>) <span class="comment">//本为空表</span></span><br><span class="line">            *S = p;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            r-&gt;next = p; <span class="comment">//不为空表</span></span><br><span class="line">        r = p;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(r != <span class="literal">NULL</span>)</span><br><span class="line">        r-&gt;next = <span class="literal">NULL</span>; <span class="comment">//处理尾结点指针域</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//打印输出</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(linkstring head)</span></span>&#123;</span><br><span class="line">    linkstrnode *p;</span><br><span class="line">    p = head;</span><br><span class="line">    <span class="keyword">while</span>(p)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c-&gt;&quot;</span>,p-&gt;data);</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//进行比较</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">strcompare</span><span class="params">(linkstrnode *S1,linkstrnode *S2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(S1 &amp;&amp; S2)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(S1-&gt;data &gt; S2-&gt;data)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(S1-&gt;data &lt; S2-&gt;data)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        S1 = S1-&gt;next;</span><br><span class="line">        S2 = S2-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(S1)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(S2)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//主函数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    linkstring s1,s2;</span><br><span class="line">    <span class="keyword">int</span> k;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n请输入第一个字符串 s1：&quot;</span>);</span><br><span class="line">    strcreate(&amp;s1);</span><br><span class="line">    print(s1);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n请输入第二个字符串 s2：&quot;</span>);</span><br><span class="line">    strcreate(&amp;s2);</span><br><span class="line">    print(s2);</span><br><span class="line">    k = strcompare(s1,s2);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n比较的结果为：\n&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span>(k == <span class="number">1</span>)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;s1 &gt; s2&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(k == <span class="number">-1</span>)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;s1 &lt; s2&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;s1 == s2&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/10/22/OAhsKJBz8ECf54n.png" alt="image-20211022180148858"></p>
+<h2 id="2-试编写一个函数，实现在-顺序存储方式-下字符串的-replace-S-T1-T2-运算"><a href="#2-试编写一个函数，实现在-顺序存储方式-下字符串的-replace-S-T1-T2-运算" class="headerlink" title="2. 试编写一个函数，实现在 顺序存储方式 下字符串的 replace(S,T1,T2) 运算"></a>2. 试编写一个函数，实现在 <code>顺序存储方式</code> 下字符串的 <code>replace(S,T1,T2)</code> 运算</h2><p><strong>算法：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//replace 运算</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">replace</span><span class="params">(seqstring *s,seqstring t1,seqstring t2,<span class="keyword">int</span> next[])</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,k,c,m;</span><br><span class="line">    i = <span class="number">0</span>;</span><br><span class="line">    j = <span class="number">0</span>;</span><br><span class="line">    k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; s-&gt;length)</span><br><span class="line">    &#123;</span><br><span class="line">        j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; s-&gt;length &amp;&amp; j &lt; t1.length)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(j == <span class="number">-1</span> || s-&gt;str[i] == t1.str[j])</span><br><span class="line">            &#123;</span><br><span class="line">                i++;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;<span class="keyword">else</span></span><br><span class="line">                j = next[j];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(j == t1.length)</span><br><span class="line">        &#123;</span><br><span class="line">            c = i-t1.length;</span><br><span class="line">            <span class="keyword">if</span>(t1.length == t2.length)</span><br><span class="line">                <span class="keyword">for</span>(k=<span class="number">0</span>;k&lt;t2.length;k++)</span><br><span class="line">                    s-&gt;str[c+k] = t2.str[k];</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(t1.length &lt; t2.length)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span>(m = s-&gt;length<span class="number">-1</span>;m &gt; i<span class="number">-1</span>;m--)</span><br><span class="line">                    s-&gt;str[t2.length-t1.length+m] = s-&gt;str[m];</span><br><span class="line">                <span class="keyword">for</span>(k=<span class="number">0</span>;k &lt; t2.length;k++)</span><br><span class="line">                    s-&gt;str[c+k] = t2.str[k];</span><br><span class="line">                s-&gt;length = s-&gt;length-t1.length + t2.length;</span><br><span class="line">                s-&gt;str[s-&gt;length] = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">for</span>(m = i<span class="number">-1</span>;m &lt; s-&gt;length;m++)</span><br><span class="line">                    s-&gt;str[m-t1.length + t2.length] = s-&gt;str[m];</span><br><span class="line">                <span class="keyword">for</span>(k=<span class="number">0</span>;k&lt;t2.length;k++)</span><br><span class="line">                    s-&gt;str[c+k] = t2.str[k];</span><br><span class="line">                s-&gt;length = s-&gt;length - t1.length + t2.length;</span><br><span class="line">                s-&gt;str[s-&gt;length] = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            i = i+t2.length - t1.length;</span><br><span class="line">        &#125;</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXSIZE 100</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    <span class="keyword">char</span> str[MAXSIZE];</span><br><span class="line">    <span class="keyword">int</span> length;</span><br><span class="line">&#125;seqstring;</span><br><span class="line"></span><br><span class="line"><span class="comment">//求模式 next 函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getnext</span><span class="params">(seqstring p,<span class="keyword">int</span> next[])</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    next[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">    i = <span class="number">0</span>;</span><br><span class="line">    j = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; p.length)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(j == <span class="number">-1</span> || p.str[i] == p.str[j])&#123;</span><br><span class="line">            ++i;</span><br><span class="line">            ++j;</span><br><span class="line">            next[i] = j;</span><br><span class="line">        &#125;<span class="keyword">else</span></span><br><span class="line">            j = next[j];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//replace 运算</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">replace</span><span class="params">(seqstring *s,seqstring t1,seqstring t2,<span class="keyword">int</span> next[])</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,k,c,m;</span><br><span class="line">    i = <span class="number">0</span>;</span><br><span class="line">    j = <span class="number">0</span>;</span><br><span class="line">    k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; s-&gt;length)</span><br><span class="line">    &#123;</span><br><span class="line">        j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; s-&gt;length &amp;&amp; j &lt; t1.length)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(j == <span class="number">-1</span> || s-&gt;str[i] == t1.str[j])</span><br><span class="line">            &#123;</span><br><span class="line">                i++;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;<span class="keyword">else</span></span><br><span class="line">                j = next[j];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(j == t1.length)</span><br><span class="line">        &#123;</span><br><span class="line">            c = i-t1.length;</span><br><span class="line">            <span class="keyword">if</span>(t1.length == t2.length)</span><br><span class="line">                <span class="keyword">for</span>(k=<span class="number">0</span>;k&lt;t2.length;k++)</span><br><span class="line">                    s-&gt;str[c+k] = t2.str[k];</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(t1.length &lt; t2.length)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span>(m = s-&gt;length<span class="number">-1</span>;m &gt; i<span class="number">-1</span>;m--)</span><br><span class="line">                    s-&gt;str[t2.length-t1.length+m] = s-&gt;str[m];</span><br><span class="line">                <span class="keyword">for</span>(k=<span class="number">0</span>;k &lt; t2.length;k++)</span><br><span class="line">                    s-&gt;str[c+k] = t2.str[k];</span><br><span class="line">                s-&gt;length = s-&gt;length-t1.length + t2.length;</span><br><span class="line">                s-&gt;str[s-&gt;length] = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">for</span>(m = i<span class="number">-1</span>;m &lt; s-&gt;length;m++)</span><br><span class="line">                    s-&gt;str[m-t1.length + t2.length] = s-&gt;str[m];</span><br><span class="line">                <span class="keyword">for</span>(k=<span class="number">0</span>;k&lt;t2.length;k++)</span><br><span class="line">                    s-&gt;str[c+k] = t2.str[k];</span><br><span class="line">                s-&gt;length = s-&gt;length - t1.length + t2.length;</span><br><span class="line">                s-&gt;str[s-&gt;length] = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            i = i+t2.length - t1.length;</span><br><span class="line">        &#125;</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//主函数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> next[MAXSIZE];</span><br><span class="line">    seqstring s,t1,t2;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入 s：&quot;</span>);</span><br><span class="line">    gets(s.str);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入 t1：&quot;</span>);</span><br><span class="line">    gets(t1.str);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入 t2：&quot;</span>);</span><br><span class="line">    gets(t2.str);</span><br><span class="line">    s.length = <span class="built_in">strlen</span>(s.str);</span><br><span class="line">    t1.length = <span class="built_in">strlen</span>(t1.str);</span><br><span class="line">    t2.length = <span class="built_in">strlen</span>(t2.str);</span><br><span class="line">    getnext(t1,next);</span><br><span class="line">    replace(&amp;s,t1,t2,next);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;替换后的结果是：&quot;</span>);</span><br><span class="line">    <span class="built_in">puts</span>(s.str);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/10/22/HVelDLsqSZ78iAB.png" alt="image-20211022190113984"></p>
+<h2 id="3-编写一个函数，实现在链式存储方式下字符串的-replace-S-T1-T2"><a href="#3-编写一个函数，实现在链式存储方式下字符串的-replace-S-T1-T2" class="headerlink" title="3. 编写一个函数，实现在链式存储方式下字符串的 replace(S,T1,T2)"></a>3. 编写一个函数，实现在链式存储方式下字符串的 <code>replace(S,T1,T2)</code></h2><p><strong>算法：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//replace 函数</span></span><br><span class="line"><span class="function">linkstring <span class="title">replace</span><span class="params">(linkstring S,linkstring T1,linkstring T2)</span></span>&#123;</span><br><span class="line">    linkstring p,q,r,s,pre,temp,pos;</span><br><span class="line">    <span class="keyword">int</span> flag = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (S == <span class="literal">NULL</span>|| T1 == <span class="literal">NULL</span> )  <span class="comment">//若 S 为空或 T1 为空,则原串不变</span></span><br><span class="line">        <span class="keyword">return</span> S; </span><br><span class="line">    pre = <span class="literal">NULL</span>;</span><br><span class="line">    pos = S; <span class="comment">/*pos 表示可能的 T1 串在 S 中的起始位置*/</span></span><br><span class="line">    <span class="keyword">while</span> (pos &amp;&amp; flag)</span><br><span class="line">    &#123;</span><br><span class="line">        p = pos;</span><br><span class="line">        q = T1;</span><br><span class="line">        <span class="keyword">while</span>(p &amp;&amp; q)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(p-&gt;data == q-&gt;data)&#123;</span><br><span class="line">                p = p-&gt;next;</span><br><span class="line">                q = q-&gt;next;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                pre = pos;</span><br><span class="line">                pos = pos-&gt;next;</span><br><span class="line">                p = pos;</span><br><span class="line">                q = T1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(q != <span class="literal">NULL</span>)</span><br><span class="line">            flag = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            flag = <span class="number">1</span>;</span><br><span class="line">            r = pos;</span><br><span class="line">            <span class="keyword">while</span>(r != p)</span><br><span class="line">            &#123;</span><br><span class="line">                s = r;</span><br><span class="line">                r = r-&gt;next;</span><br><span class="line">                <span class="built_in">free</span>(s);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(T2 != <span class="literal">NULL</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                temp = r = copy(T2);</span><br><span class="line">                <span class="keyword">while</span>(r-&gt;next != <span class="literal">NULL</span>)</span><br><span class="line">                    r = r-&gt;next;</span><br><span class="line">                r-&gt;next = p;</span><br><span class="line">                <span class="keyword">if</span>(pre == <span class="literal">NULL</span>)</span><br><span class="line">                    S = temp;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    pre-&gt;next = temp;</span><br><span class="line">                pre = r;</span><br><span class="line">                pos = p;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> </span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(pre == <span class="literal">NULL</span>)</span><br><span class="line">                    S = p;</span><br><span class="line">                <span class="keyword">else</span> </span><br><span class="line">                    pre-&gt;next = p;</span><br><span class="line">                pos = p;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> S;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">    <span class="keyword">char</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;linkstrnode;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> linkstrnode *linkstring;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建单链表  尾插法</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">strcreate</span><span class="params">(linkstring *S)</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> ch;</span><br><span class="line">    linkstrnode *p,*r;</span><br><span class="line">    *S = <span class="literal">NULL</span>;</span><br><span class="line">    r = <span class="literal">NULL</span>; <span class="comment">//r始终指向当前链式串最后一个字符对应的结点</span></span><br><span class="line">    <span class="keyword">while</span>((ch = getchar()) != <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        p = (linkstrnode *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(linkstrnode));</span><br><span class="line">        p-&gt;data = ch;</span><br><span class="line">        <span class="keyword">if</span>(*S == <span class="literal">NULL</span>) <span class="comment">//本为空表</span></span><br><span class="line">            *S = p;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            r-&gt;next = p; <span class="comment">//不为空表</span></span><br><span class="line">        r = p;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(r != <span class="literal">NULL</span>)</span><br><span class="line">        r-&gt;next = <span class="literal">NULL</span>; <span class="comment">//处理尾结点指针域</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//打印输出</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(linkstring head)</span></span>&#123;</span><br><span class="line">    linkstrnode *p;</span><br><span class="line">    p = head;</span><br><span class="line">    <span class="keyword">while</span>(p)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c-&gt;&quot;</span>,p-&gt;data);</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//单链表拷贝函数</span></span><br><span class="line"><span class="function">linkstring <span class="title">copy</span><span class="params">(linkstring head)</span></span>&#123;</span><br><span class="line">    linkstring L = <span class="literal">NULL</span>,r = <span class="literal">NULL</span>,s,p;</span><br><span class="line">    p = head;</span><br><span class="line">    <span class="keyword">while</span>(p)</span><br><span class="line">    &#123;</span><br><span class="line">        s = (linkstring)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(linkstrnode));</span><br><span class="line">        s-&gt;data = p-&gt;data;</span><br><span class="line">        <span class="keyword">if</span>(L == <span class="literal">NULL</span>)</span><br><span class="line">            L = r = s;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            r-&gt;next = s;</span><br><span class="line">            r = s;</span><br><span class="line">        &#125;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(r!= <span class="literal">NULL</span>)</span><br><span class="line">        r-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> L;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//replace 函数</span></span><br><span class="line"><span class="function">linkstring <span class="title">replace</span><span class="params">(linkstring S,linkstring T1,linkstring T2)</span></span>&#123;</span><br><span class="line">    linkstring p,q,r,s,pre,temp,pos;</span><br><span class="line">    <span class="keyword">int</span> flag = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (S == <span class="literal">NULL</span>|| T1 == <span class="literal">NULL</span> )  <span class="comment">//若 S 为空或 T1 为空,则原串不变</span></span><br><span class="line">        <span class="keyword">return</span> S; </span><br><span class="line">    pre = <span class="literal">NULL</span>;</span><br><span class="line">    pos = S; <span class="comment">/*pos 表示可能的 T1 串在 S 中的起始位置*/</span></span><br><span class="line">    <span class="keyword">while</span> (pos &amp;&amp; flag)</span><br><span class="line">    &#123;</span><br><span class="line">        p = pos;</span><br><span class="line">        q = T1;</span><br><span class="line">        <span class="keyword">while</span>(p &amp;&amp; q)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(p-&gt;data == q-&gt;data)&#123;</span><br><span class="line">                p = p-&gt;next;</span><br><span class="line">                q = q-&gt;next;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                pre = pos;</span><br><span class="line">                pos = pos-&gt;next;</span><br><span class="line">                p = pos;</span><br><span class="line">                q = T1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(q != <span class="literal">NULL</span>)</span><br><span class="line">            flag = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            flag = <span class="number">1</span>;</span><br><span class="line">            r = pos;</span><br><span class="line">            <span class="keyword">while</span>(r != p)</span><br><span class="line">            &#123;</span><br><span class="line">                s = r;</span><br><span class="line">                r = r-&gt;next;</span><br><span class="line">                <span class="built_in">free</span>(s);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(T2 != <span class="literal">NULL</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                temp = r = copy(T2);</span><br><span class="line">                <span class="keyword">while</span>(r-&gt;next != <span class="literal">NULL</span>)</span><br><span class="line">                    r = r-&gt;next;</span><br><span class="line">                r-&gt;next = p;</span><br><span class="line">                <span class="keyword">if</span>(pre == <span class="literal">NULL</span>)</span><br><span class="line">                    S = temp;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    pre-&gt;next = temp;</span><br><span class="line">                pre = r;</span><br><span class="line">                pos = p;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> </span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(pre == <span class="literal">NULL</span>)</span><br><span class="line">                    S = p;</span><br><span class="line">                <span class="keyword">else</span> </span><br><span class="line">                    pre-&gt;next = p;</span><br><span class="line">                pos = p;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> S;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//主函数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    linkstring S,T1,T2;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入 S：&quot;</span>);</span><br><span class="line">    strcreate(&amp;S); </span><br><span class="line">    print(S);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n请输入 T1：&quot;</span>);</span><br><span class="line">    strcreate(&amp;T1);</span><br><span class="line">    print(T1);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n请输入 T2：&quot;</span>);</span><br><span class="line">    strcreate(&amp;T2); </span><br><span class="line">    print(T2);</span><br><span class="line">    S=replace(S,T1,T2);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n替换后的结果为：\n&quot;</span>);</span><br><span class="line">    print(S); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/10/22/6KrmNXFv4JglMCu.png" alt="image-20211022192220114"></p>
+<h2 id="4-编写一个函数，实现在-顺序存储方式-下字符串的-strcompare-S1-S2"><a href="#4-编写一个函数，实现在-顺序存储方式-下字符串的-strcompare-S1-S2" class="headerlink" title="4. 编写一个函数，实现在 顺序存储方式 下字符串的 strcompare(S1,S2)"></a>4. 编写一个函数，实现在 <code>顺序存储方式</code> 下字符串的 <code>strcompare(S1,S2)</code></h2><p><strong>算法：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//strcompare 函数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">strcompare</span><span class="params">(seqstring s1,seqstring s2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,m = <span class="number">0</span>,len;</span><br><span class="line">    len = s1.length&lt;s2.length?s1.length:s2.length;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=len;i++)</span><br><span class="line">        <span class="keyword">if</span>(s1.str[i] &gt; s2.str[i])</span><br><span class="line">        &#123;</span><br><span class="line">            m = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    	<span class="keyword">else</span> <span class="keyword">if</span>(s1.str[i] &lt; s2.str[i])</span><br><span class="line">        &#123;</span><br><span class="line">            m = <span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> m;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXSIZE 100</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    <span class="keyword">char</span> str[MAXSIZE];</span><br><span class="line">    <span class="keyword">int</span> length;</span><br><span class="line">&#125;seqstring;</span><br><span class="line"></span><br><span class="line"><span class="comment">//strcompare 函数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">strcompare</span><span class="params">(seqstring s1,seqstring s2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,m = <span class="number">0</span>,len;</span><br><span class="line">    len = s1.length&lt;s2.length?s1.length:s2.length;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=len;i++)</span><br><span class="line">        <span class="keyword">if</span>(s1.str[i] &gt; s2.str[i])</span><br><span class="line">        &#123;</span><br><span class="line">            m = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    	<span class="keyword">else</span> <span class="keyword">if</span>(s1.str[i] &lt; s2.str[i])</span><br><span class="line">        &#123;</span><br><span class="line">            m = <span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> m;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//主函数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    seqstring s1,s2;</span><br><span class="line">    <span class="keyword">int</span> i,m;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入 s1：\n&quot;</span>);</span><br><span class="line">    gets(s1.str);</span><br><span class="line">    s1.length=<span class="built_in">strlen</span>(s1.str);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入 s2：\n&quot;</span>);</span><br><span class="line">    gets(s2.str);</span><br><span class="line">    s2.length = <span class="built_in">strlen</span>(s2.str);</span><br><span class="line">    m = strcompare(s1,s2);</span><br><span class="line">    <span class="keyword">if</span>(m == <span class="number">1</span>) </span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;s1 &gt; s2\n&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(m == <span class="number">-1</span>) </span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;s2 &gt; s1\n&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(m == <span class="number">0</span>) </span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;s1 == s2\n&quot;</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/10/22/xDUM8zHKQPw4Vd7.png" alt="image-20211022193108256"></p>
+<h2 id="5-已知三维数组-A-3-2-4-，数组首地址为100，每个元素占用1个存储单元，分别计算数组元素-A-0-1-2-在-按行优先-和-按列优先-存储方式下的地址"><a href="#5-已知三维数组-A-3-2-4-，数组首地址为100，每个元素占用1个存储单元，分别计算数组元素-A-0-1-2-在-按行优先-和-按列优先-存储方式下的地址" class="headerlink" title="5. 已知三维数组 A[3][2][4]，数组首地址为100，每个元素占用1个存储单元，分别计算数组元素 A[0][1][2]在 按行优先 和 按列优先 存储方式下的地址"></a>5. 已知三维数组 <code>A[3][2][4]</code>，数组首地址为100，每个元素占用1个存储单元，分别计算数组元素 <code>A[0][1][2]</code>在 <code>按行优先</code> 和 <code>按列优先</code> 存储方式下的地址</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A[<span class="number">0</span>][<span class="number">1</span>][<span class="number">2</span>]按行优先方式在内存的存储地址为：<span class="number">100</span>+<span class="number">0</span>*<span class="number">8</span>+<span class="number">1</span>*<span class="number">4</span>+<span class="number">2</span>=<span class="number">106</span></span><br><span class="line">A[<span class="number">0</span>][<span class="number">1</span>][<span class="number">2</span>]按列优先方式在内存的储储地址为：<span class="number">100</span>+<span class="number">2</span>*<span class="number">6</span>+<span class="number">1</span>*<span class="number">3</span>+<span class="number">0</span>*<span class="number">8</span>=<span class="number">115</span> </span><br></pre></td></tr></table></figure>
+
+<h2 id="6-已知两个-稀疏矩阵-A和B，其行数和列数均对应相等，编写一个函数，计算A和B之和，假设稀疏矩阵采用-三元组-表示。"><a href="#6-已知两个-稀疏矩阵-A和B，其行数和列数均对应相等，编写一个函数，计算A和B之和，假设稀疏矩阵采用-三元组-表示。" class="headerlink" title="6. 已知两个 稀疏矩阵 A和B，其行数和列数均对应相等，编写一个函数，计算A和B之和，假设稀疏矩阵采用 三元组 表示。"></a>6. 已知两个 <code>稀疏矩阵</code> A和B，其行数和列数均对应相等，编写一个函数，计算A和B之和，假设稀疏矩阵采用 <code>三元组</code> 表示。</h2><p><strong>算法：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//三元组：矩阵相加</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(spmatrix a,spmatrix b,spmatrix c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,k,t,r;</span><br><span class="line">    i = j = k = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;=a[<span class="number">0</span>][<span class="number">2</span>]&amp;&amp;j&lt;=b[<span class="number">0</span>][<span class="number">2</span>])&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i][<span class="number">0</span>] &lt; b[j][<span class="number">0</span>] || (a[i][<span class="number">0</span>] == b[j][<span class="number">0</span>] &amp;&amp; a[i][<span class="number">1</span>]&lt;b[j][<span class="number">1</span>]))&#123;</span><br><span class="line">             c[k][<span class="number">0</span>]=a[i][<span class="number">0</span>];</span><br><span class="line">             c[k][<span class="number">1</span>]=a[i][<span class="number">1</span>];</span><br><span class="line">             c[k][<span class="number">2</span>]=a[i][<span class="number">2</span>];</span><br><span class="line">             i++;k++;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(a[i][<span class="number">0</span>] &gt; b[j][<span class="number">0</span>] || (a[i][<span class="number">0</span>] == b[j][<span class="number">0</span>] &amp;&amp; a[i][<span class="number">1</span>] &gt; b[j][<span class="number">1</span>]))&#123;</span><br><span class="line">                c[k][<span class="number">0</span>]=b[j][<span class="number">0</span>];</span><br><span class="line">                c[k][<span class="number">1</span>]=b[j][<span class="number">1</span>];</span><br><span class="line">                c[k][<span class="number">2</span>]=b[j][<span class="number">2</span>];</span><br><span class="line">                j++;k++;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a[i][<span class="number">0</span>] == b[j][<span class="number">0</span>] &amp;&amp; (a[i][<span class="number">1</span>] == b[j][<span class="number">1</span>]))&#123;</span><br><span class="line">            c[k][<span class="number">0</span>]=a[i][<span class="number">0</span>]; </span><br><span class="line">            c[k][<span class="number">1</span>]=a[i][<span class="number">1</span>];</span><br><span class="line">            c[k][<span class="number">2</span>]=a[i][<span class="number">2</span>]+b[j][<span class="number">2</span>];</span><br><span class="line">            i++;j++;</span><br><span class="line">            <span class="keyword">if</span>(c[k][<span class="number">2</span>] != <span class="number">0</span>) k++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(j &lt;= b[<span class="number">0</span>][<span class="number">2</span>])</span><br><span class="line">    &#123;</span><br><span class="line">        c[k][<span class="number">0</span>]=b[j][<span class="number">0</span>];</span><br><span class="line">        c[k][<span class="number">1</span>]=b[j][<span class="number">1</span>];</span><br><span class="line">        c[k][<span class="number">2</span>]=b[j][<span class="number">2</span>];</span><br><span class="line">        j++;k++; </span><br><span class="line">    &#125;</span><br><span class="line"> 	<span class="keyword">while</span>(i &lt;= a[<span class="number">0</span>][<span class="number">2</span>])</span><br><span class="line">    &#123;</span><br><span class="line">        c[k][<span class="number">0</span>]=a[i][<span class="number">0</span>];</span><br><span class="line">        c[k][<span class="number">1</span>]=a[i][<span class="number">1</span>];</span><br><span class="line">        c[k][<span class="number">2</span>]=a[i][<span class="number">2</span>];</span><br><span class="line">        i++;k++; </span><br><span class="line">    &#125;</span><br><span class="line">    c[<span class="number">0</span>][<span class="number">0</span>]=a[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">    c[<span class="number">0</span>][<span class="number">1</span>]=a[<span class="number">0</span>][<span class="number">1</span>];</span><br><span class="line">    c[<span class="number">0</span>][<span class="number">2</span>]=k<span class="number">-1</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> data[<span class="number">100</span>][<span class="number">100</span>];</span><br><span class="line">    <span class="keyword">int</span> m,n; <span class="comment">//稀疏矩阵 行数、列数、非零元素的个数</span></span><br><span class="line">&#125;matrix;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> spmatrix[<span class="number">100</span>][<span class="number">3</span>];</span><br><span class="line">spmatrix c;</span><br><span class="line"></span><br><span class="line"><span class="comment">//三元组：矩阵相加</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(spmatrix a,spmatrix b,spmatrix c)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,k,t,r;</span><br><span class="line">    i = j = k = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;=a[<span class="number">0</span>][<span class="number">2</span>]&amp;&amp;j&lt;=b[<span class="number">0</span>][<span class="number">2</span>])&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i][<span class="number">0</span>] &lt; b[j][<span class="number">0</span>] || (a[i][<span class="number">0</span>] == b[j][<span class="number">0</span>] &amp;&amp; a[i][<span class="number">1</span>]&lt;b[j][<span class="number">1</span>]))&#123;</span><br><span class="line">             c[k][<span class="number">0</span>]=a[i][<span class="number">0</span>];</span><br><span class="line">             c[k][<span class="number">1</span>]=a[i][<span class="number">1</span>];</span><br><span class="line">             c[k][<span class="number">2</span>]=a[i][<span class="number">2</span>];</span><br><span class="line">             i++;k++;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(a[i][<span class="number">0</span>] &gt; b[j][<span class="number">0</span>] || (a[i][<span class="number">0</span>] == b[j][<span class="number">0</span>] &amp;&amp; a[i][<span class="number">1</span>] &gt; b[j][<span class="number">1</span>]))&#123;</span><br><span class="line">                c[k][<span class="number">0</span>]=b[j][<span class="number">0</span>];</span><br><span class="line">                c[k][<span class="number">1</span>]=b[j][<span class="number">1</span>];</span><br><span class="line">                c[k][<span class="number">2</span>]=b[j][<span class="number">2</span>];</span><br><span class="line">                j++;k++;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a[i][<span class="number">0</span>] == b[j][<span class="number">0</span>] &amp;&amp; (a[i][<span class="number">1</span>] == b[j][<span class="number">1</span>]))&#123;</span><br><span class="line">            c[k][<span class="number">0</span>]=a[i][<span class="number">0</span>]; </span><br><span class="line">            c[k][<span class="number">1</span>]=a[i][<span class="number">1</span>];</span><br><span class="line">            c[k][<span class="number">2</span>]=a[i][<span class="number">2</span>]+b[j][<span class="number">2</span>];</span><br><span class="line">            i++;j++;</span><br><span class="line">            <span class="keyword">if</span>(c[k][<span class="number">2</span>] != <span class="number">0</span>) k++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(j &lt;= b[<span class="number">0</span>][<span class="number">2</span>])</span><br><span class="line">    &#123;</span><br><span class="line">        c[k][<span class="number">0</span>]=b[j][<span class="number">0</span>];</span><br><span class="line">        c[k][<span class="number">1</span>]=b[j][<span class="number">1</span>];</span><br><span class="line">        c[k][<span class="number">2</span>]=b[j][<span class="number">2</span>];</span><br><span class="line">        j++;k++; </span><br><span class="line">    &#125;</span><br><span class="line"> 	<span class="keyword">while</span>(i &lt;= a[<span class="number">0</span>][<span class="number">2</span>])</span><br><span class="line">    &#123;</span><br><span class="line">        c[k][<span class="number">0</span>]=a[i][<span class="number">0</span>];</span><br><span class="line">        c[k][<span class="number">1</span>]=a[i][<span class="number">1</span>];</span><br><span class="line">        c[k][<span class="number">2</span>]=a[i][<span class="number">2</span>];</span><br><span class="line">        i++;k++; </span><br><span class="line">    &#125;</span><br><span class="line">    c[<span class="number">0</span>][<span class="number">0</span>]=a[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">    c[<span class="number">0</span>][<span class="number">1</span>]=a[<span class="number">0</span>][<span class="number">1</span>];</span><br><span class="line">    c[<span class="number">0</span>][<span class="number">2</span>]=k<span class="number">-1</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//将普通矩阵存储转换成 三元组 的 存储结构</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change_matrix</span><span class="params">(matrix *A,spmatrix B)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,k;</span><br><span class="line">    k = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>;i &lt; A-&gt;m; i++)</span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">0</span>;j &lt; A-&gt;n; j++)</span><br><span class="line">            <span class="keyword">if</span>(A-&gt;data[i][j] != <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                B[k][<span class="number">0</span>] = i;</span><br><span class="line">                B[k][<span class="number">1</span>] = j;</span><br><span class="line">                B[k][<span class="number">2</span>] = A-&gt;data[i][j];</span><br><span class="line">                k++;</span><br><span class="line">            &#125;</span><br><span class="line">    B[<span class="number">0</span>][<span class="number">0</span>] = A-&gt;m;</span><br><span class="line">    B[<span class="number">0</span>][<span class="number">1</span>] = A-&gt;n;</span><br><span class="line">    B[<span class="number">0</span>][<span class="number">2</span>] = k<span class="number">-1</span>;</span><br><span class="line">    i = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;三元组矩阵 展示：\n&quot;</span>);</span><br><span class="line">    <span class="keyword">while</span>(i &lt;= B[<span class="number">0</span>][<span class="number">2</span>])</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d%5d%5d\n&quot;</span>,B[i][<span class="number">0</span>],B[i][<span class="number">1</span>],B[i][<span class="number">2</span>]);</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建矩阵</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">create</span><span class="params">(<span class="keyword">int</span> r,<span class="keyword">int</span> w,matrix *s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,data;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入数据：\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;r;i++)</span><br><span class="line">        <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;w;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;data);</span><br><span class="line">            s-&gt;data[i][j] = data;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;矩阵展示：\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;r;i++)</span><br><span class="line">        &#123;</span><br><span class="line">        	<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;w;j++)</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">&quot;%5d&quot;</span>,s-&gt;data[i][j]);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    s-&gt;m = r;</span><br><span class="line">    s-&gt;n = w;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//主函数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line">    matrix p,q;</span><br><span class="line">    spmatrix a,b,c;</span><br><span class="line">    <span class="keyword">int</span> r,w,i;</span><br><span class="line">    i = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入矩阵的 行 与 列：&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;r,&amp;w);</span><br><span class="line">    create(r,w,&amp;p);</span><br><span class="line">    create(r,w,&amp;q);</span><br><span class="line">    change_matrix(&amp;p,a);</span><br><span class="line">    change_matrix(&amp;q,b);</span><br><span class="line">    i = <span class="number">0</span>;</span><br><span class="line">    add(a,b,c);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;进行加法运算后的 三元组矩阵 展示：\n&quot;</span>); </span><br><span class="line">    <span class="keyword">while</span>(i &lt;= c[<span class="number">0</span>][<span class="number">2</span>])&#123; </span><br><span class="line">         <span class="built_in">printf</span>(<span class="string">&quot;%d%5d%5d\n&quot;</span>,c[i][<span class="number">0</span>],c[i][<span class="number">1</span>],c[i][<span class="number">2</span>]);</span><br><span class="line">     	 i++;</span><br><span class="line"> 	&#125;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/10/22/9rquXIPgvZ8wTYm.png" alt="image-20211022203244329"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+
+<script src="/js/vdonate.js"></script>
+
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://i.loli.net/2021/07/09/UNXc5a6nbWxgzru.png',
+  alipayImage: 'https://i.loli.net/2021/07/09/Sf9nJd8hkOypTar.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong>xizhi-future</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2021/10/26/第四章、第五章习题（字符串、数组、矩阵）/" target="_blank" title="第四章、第五章习题（字符串、数组、矩阵）">https://xizhi-future.github.io/2021/10/26/第四章、第五章习题（字符串、数组、矩阵）/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/10/26/%E9%82%A3%E4%B8%80%E5%B9%B4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          那一年
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/15/%E5%83%8F%E7%9C%9F%E7%9A%84%E4%B8%80%E6%A0%B7/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">像真的一样</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%AF%95%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%EF%BC%8C%E5%AE%9E%E7%8E%B0%E5%9C%A8-%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F-%E4%B8%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84-strcompare-S1-S2"><span class="nav-number">1.</span> <span class="nav-text">1. 试编写一个函数，实现在 链式存储方式 下字符串的 strcompare(S1,S2)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%AF%95%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%EF%BC%8C%E5%AE%9E%E7%8E%B0%E5%9C%A8-%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F-%E4%B8%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84-replace-S-T1-T2-%E8%BF%90%E7%AE%97"><span class="nav-number">2.</span> <span class="nav-text">2. 试编写一个函数，实现在 顺序存储方式 下字符串的 replace(S,T1,T2) 运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%EF%BC%8C%E5%AE%9E%E7%8E%B0%E5%9C%A8%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F%E4%B8%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84-replace-S-T1-T2"><span class="nav-number">3.</span> <span class="nav-text">3. 编写一个函数，实现在链式存储方式下字符串的 replace(S,T1,T2)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%EF%BC%8C%E5%AE%9E%E7%8E%B0%E5%9C%A8-%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F-%E4%B8%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84-strcompare-S1-S2"><span class="nav-number">4.</span> <span class="nav-text">4. 编写一个函数，实现在 顺序存储方式 下字符串的 strcompare(S1,S2)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%B7%B2%E7%9F%A5%E4%B8%89%E7%BB%B4%E6%95%B0%E7%BB%84-A-3-2-4-%EF%BC%8C%E6%95%B0%E7%BB%84%E9%A6%96%E5%9C%B0%E5%9D%80%E4%B8%BA100%EF%BC%8C%E6%AF%8F%E4%B8%AA%E5%85%83%E7%B4%A0%E5%8D%A0%E7%94%A81%E4%B8%AA%E5%AD%98%E5%82%A8%E5%8D%95%E5%85%83%EF%BC%8C%E5%88%86%E5%88%AB%E8%AE%A1%E7%AE%97%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0-A-0-1-2-%E5%9C%A8-%E6%8C%89%E8%A1%8C%E4%BC%98%E5%85%88-%E5%92%8C-%E6%8C%89%E5%88%97%E4%BC%98%E5%85%88-%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F%E4%B8%8B%E7%9A%84%E5%9C%B0%E5%9D%80"><span class="nav-number">5.</span> <span class="nav-text">5. 已知三维数组 A[3][2][4]，数组首地址为100，每个元素占用1个存储单元，分别计算数组元素 A[0][1][2]在 按行优先 和 按列优先 存储方式下的地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%B7%B2%E7%9F%A5%E4%B8%A4%E4%B8%AA-%E7%A8%80%E7%96%8F%E7%9F%A9%E9%98%B5-A%E5%92%8CB%EF%BC%8C%E5%85%B6%E8%A1%8C%E6%95%B0%E5%92%8C%E5%88%97%E6%95%B0%E5%9D%87%E5%AF%B9%E5%BA%94%E7%9B%B8%E7%AD%89%EF%BC%8C%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%EF%BC%8C%E8%AE%A1%E7%AE%97A%E5%92%8CB%E4%B9%8B%E5%92%8C%EF%BC%8C%E5%81%87%E8%AE%BE%E7%A8%80%E7%96%8F%E7%9F%A9%E9%98%B5%E9%87%87%E7%94%A8-%E4%B8%89%E5%85%83%E7%BB%84-%E8%A1%A8%E7%A4%BA%E3%80%82"><span class="nav-number">6.</span> <span class="nav-text">6. 已知两个 稀疏矩阵 A和B，其行数和列数均对应相等，编写一个函数，计算A和B之和，假设稀疏矩阵采用 三元组 表示。</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2021 忆 执 昔 来 的 旅 途 All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/essayists" class="mobile-nav-link">Essayists</a>
+  
+    <a href="/playist" class="mobile-nav-link">Playist</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            忆 执 昔 来 的 旅 途
+          </div>
+          <div class="panel-body">
+            Copyright © 2021 xizhi-future All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>

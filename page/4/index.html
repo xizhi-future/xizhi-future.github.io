@@ -202,6 +202,119 @@
         
           <section id="main" style="float:none;">
   
+    <article id="post-NUCTF"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2021/06/24/NUCTF/">NUCTF</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/06/24/NUCTF/" class="article-date">
+	  <time datetime="2021-06-24T11:24:20.000Z" itemprop="datePublished">2021-06-24</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
+
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          概述：主要考点 — 序列化与反序列化字符逃逸
+
+
+NUCTF1 EasyUnser12345678910111213141516171819&lt;?php   include_once &#x27;flag.php&#x27;;highlight_file(__FILE__);// Security filtering function	   function filter($str)&#123;       return str_replace(&#x27;secure&#x27;, ...
+        </p>
+        <p class="article-more-link">
+          <a href="/2021/06/24/NUCTF/#more">Read More</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-文件上传漏洞"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2021/06/06/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/">文件上传漏洞</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/06/06/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" class="article-date">
+	  <time datetime="2021-06-06T14:42:17.000Z" itemprop="datePublished">2021-06-06</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/Web%E6%BC%8F%E6%B4%9E%E5%9F%BA%E7%A1%80%E7%AF%87/">Web漏洞基础篇</a>
+
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          一、文件上传漏洞
+1234成因：服务器配置不当导致任意文件上传Web应用对上传的文件没有进行足够的限制程序开发部署时，由于未考虑系统特性或验证而导致限制被绕过
+
+
+1.1 条件1231.Web服务器开启了文件上传功能，且上传api（接口）对外开放（Web用户可以访问）2.Web用户对目标目录具有可写权限，甚至具有执行权限3.上传的文件可执行，即Web容器可以解析我们上传的脚本
+1.2 WebShell
+计算机科学中，Shell俗称为“壳”，指的是“为使用者提供操作界面”的软件，即命令解释器...
+        </p>
+        <p class="article-more-link">
+          <a href="/2021/06/06/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/#more">Read More</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
     <article id="post-文件包含、读取、下载漏洞"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
