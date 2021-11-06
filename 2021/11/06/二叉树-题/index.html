@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>二叉树_题 | 忆 执 昔 来 的 旅 途</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="分别采用递归和非递归方式编写两个函数，求一颗给定二叉树中叶子结点的个数bintree.h 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576#include&lt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二叉树_题">
+<meta property="og:url" content="https://xizhi-future.github.io/2021/11/06/%E4%BA%8C%E5%8F%89%E6%A0%91-%E9%A2%98/index.html">
+<meta property="og:site_name" content="忆 执 昔 来 的 旅 途">
+<meta property="og:description" content="分别采用递归和非递归方式编写两个函数，求一颗给定二叉树中叶子结点的个数bintree.h 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576#include&lt;">
+<meta property="og:locale">
+<meta property="og:image" content="https://i.loli.net/2021/10/30/SCeVzquhiojcy5A.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/06/cMHT2U5hE6zfgjO.png">
+<meta property="article:published_time" content="2021-11-06T03:34:01.000Z">
+<meta property="article:modified_time" content="2021-11-06T03:35:03.101Z">
+<meta property="article:author" content="xizhi-future">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/10/30/SCeVzquhiojcy5A.png">
+  
+    <link rel="alternate" href="/atom.xml" title="忆 执 昔 来 的 旅 途" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="/js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/essayists">随笔</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/playist">音乐</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-二叉树-题" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      二叉树_题
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/11/06/%E4%BA%8C%E5%8F%89%E6%A0%91-%E9%A2%98/" class="article-date">
+	  <time datetime="2021-11-06T03:34:01.000Z" itemprop="datePublished">2021-11-06</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="分别采用递归和非递归方式编写两个函数，求一颗给定二叉树中叶子结点的个数"><a href="#分别采用递归和非递归方式编写两个函数，求一颗给定二叉树中叶子结点的个数" class="headerlink" title="分别采用递归和非递归方式编写两个函数，求一颗给定二叉树中叶子结点的个数"></a>分别采用递归和非递归方式编写两个函数，求一颗给定二叉树中叶子结点的个数</h3><p><strong><code>bintree.h</code></strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 1000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">char</span> *a; </span><br><span class="line"><span class="comment">/* 如果在定义点之前的函数想引用该全局变量，则应该在引用之前用关键字 extern 对该变量作“外部变量声明”，表示该变量是一个已经定义的外部变量 */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//链式存储，不带双亲</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">    <span class="keyword">char</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">lchild</span>,*<span class="title">rchild</span>;</span></span><br><span class="line">&#125;binnode;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> binnode *bintree;</span><br><span class="line"></span><br><span class="line"><span class="comment">//二叉树的 创建</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">create</span><span class="params">(bintree *t)</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> ch = *a++;</span><br><span class="line">    <span class="keyword">if</span>(ch == <span class="string">&#x27; &#x27;</span>)</span><br><span class="line">        *t = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        *t = (bintree)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(binnode));</span><br><span class="line">        (*t)-&gt;data = ch;</span><br><span class="line">        create(&amp;(*t)-&gt;lchild);</span><br><span class="line">        create(&amp;(*t)-&gt;rchild);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//前序 递归 遍历 二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">preorder</span><span class="params">(bintree t)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(t)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,t-&gt;data);</span><br><span class="line">        preorder(t-&gt;lchild);</span><br><span class="line">        preorder(t-&gt;rchild);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//顺序栈 定义</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    bintree data[N];</span><br><span class="line">    <span class="keyword">int</span> top;</span><br><span class="line">&#125;seqstack;</span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化 顺序栈</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(seqstack *s)</span></span>&#123;</span><br><span class="line">    s-&gt;top = <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断栈是否为空</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">empty</span><span class="params">(seqstack *s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(s-&gt;top &gt; <span class="number">-1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">//不为空</span></span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>; <span class="comment">//为空</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断栈是否 满</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">full</span><span class="params">(seqstack *s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(s-&gt;top == N<span class="number">-1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;  <span class="comment">//满</span></span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;  <span class="comment">//不满</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//进栈</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(seqstack *s,bintree x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!full(s))</span><br><span class="line">        s-&gt;data[++s-&gt;top] = x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//出栈</span></span><br><span class="line"><span class="function">bintree <span class="title">pop</span><span class="params">(seqstack *s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!empty(s))</span><br><span class="line">        <span class="keyword">return</span> s-&gt;data[s-&gt;top--];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>333.cpp</code></strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;bintree.h&quot;</span></span></span><br><span class="line"><span class="keyword">char</span> *a = <span class="string">&quot;ABD  EF  G  C  &quot;</span>;   <span class="comment">//前序序列</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//递归方法求 二叉树 叶子结点的个数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lefts_1</span><span class="params">(bintree t)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(t == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(!t-&gt;lchild &amp;&amp; !t-&gt;rchild)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    	 <span class="keyword">else</span></span><br><span class="line">             <span class="keyword">return</span> lefts_1(t-&gt;lchild) + lefts_1(t-&gt;rchild);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//非递归方法 求 二叉树 叶子结点的 个数  (需要使用到顺序栈)</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lefts_2</span><span class="params">(bintree t)</span></span>&#123;</span><br><span class="line">    seqstack s;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    init(&amp;s);</span><br><span class="line">    <span class="keyword">while</span>(t || !empty(&amp;s))&#123;</span><br><span class="line">        <span class="keyword">if</span>(t)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!t-&gt;lchild &amp;&amp; !t-&gt;rchild)</span><br><span class="line">                count++;</span><br><span class="line">            push(&amp;s,t);</span><br><span class="line">            t = t-&gt;lchild;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            t = pop(&amp;s);</span><br><span class="line">            t = t-&gt;rchild;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//测试</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    bintree t;</span><br><span class="line">    create(&amp;t);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;递归算法：二叉树叶子结点个数---%d\n&quot;</span>,lefts_1(t));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;非递归算法：二叉树叶子结点个数---%d\n&quot;</span>,lefts_2(t));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/10/30/SCeVzquhiojcy5A.png" alt="image-20211030165952310"></p>
+<p>以上面的二叉树为例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *a = <span class="string">&quot;ABD  EF  G  C  &quot;</span>;   <span class="comment">//前序序列</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/11/06/cMHT2U5hE6zfgjO.png" alt="image-20211106112844209"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+
+<script src="/js/vdonate.js"></script>
+
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://i.loli.net/2021/07/09/UNXc5a6nbWxgzru.png',
+  alipayImage: 'https://i.loli.net/2021/07/09/Sf9nJd8hkOypTar.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong>xizhi-future</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2021/11/06/二叉树-题/" target="_blank" title="二叉树_题">https://xizhi-future.github.io/2021/11/06/二叉树-题/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/10/30/%E6%A0%91%E5%9E%8B%E7%BB%93%E6%9E%84/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">树型结构</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E5%88%AB%E9%87%87%E7%94%A8%E9%80%92%E5%BD%92%E5%92%8C%E9%9D%9E%E9%80%92%E5%BD%92%E6%96%B9%E5%BC%8F%E7%BC%96%E5%86%99%E4%B8%A4%E4%B8%AA%E5%87%BD%E6%95%B0%EF%BC%8C%E6%B1%82%E4%B8%80%E9%A2%97%E7%BB%99%E5%AE%9A%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%8F%B6%E5%AD%90%E7%BB%93%E7%82%B9%E7%9A%84%E4%B8%AA%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">分别采用递归和非递归方式编写两个函数，求一颗给定二叉树中叶子结点的个数</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2021 忆 执 昔 来 的 旅 途 All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/essayists" class="mobile-nav-link">Essayists</a>
+  
+    <a href="/playist" class="mobile-nav-link">Playist</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            忆 执 昔 来 的 旅 途
+          </div>
+          <div class="panel-body">
+            Copyright © 2021 xizhi-future All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
