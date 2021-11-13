@@ -202,6 +202,60 @@
         
           <section id="main" style="float:none;">
   
+    <article id="post-CTF-Show-命令执行"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2021/10/01/CTF-Show-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">CTF-Show-命令执行</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/10/01/CTF-Show-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" class="article-date">
+	  <time datetime="2021-10-01T11:14:09.000Z" itemprop="datePublished">2021-10-01</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/CTF-Show/">CTF Show</a>
+
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          一、CTF Show — 命令执行1.1 Web 29 — 只过滤 flag — 通配符使用1命令执行，需要严格的过滤
+
+12345678910&lt;?php    error_reporting(0);	if(isset($_GET[&#x27;c&#x27;]))&#123;    $c = $_GET[&#x27;c&#x27;];    if(!preg_match(&quot;/flag/i&quot;, $c))&#123;        eval($c);    &#125...
+        </p>
+        <p class="article-more-link">
+          <a href="/2021/10/01/CTF-Show-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/#more">Read More</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
     <article id="post-CTF-Show-文件包含"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
@@ -729,63 +783,6 @@ require_once()
         </p>
         <p class="article-more-link">
           <a href="/2021/06/06/CTF%E4%B9%8BPHP/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-BUUCTF-WEB（三）"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2021/06/04/BUUCTF-WEB%EF%BC%88%E4%B8%89%EF%BC%89/">BUUCTF-WEB(三)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2021/06/04/BUUCTF-WEB%EF%BC%88%E4%B8%89%EF%BC%89/" class="article-date">
-	  <time datetime="2021-06-04T10:25:29.000Z" itemprop="datePublished">2021-06-04</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/BUUCTF/">BUUCTF</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          概述：本篇是 BUUCTF-WEB方向的第三篇，其中涵盖的范围较广，包括 SQL注入、序列化与反序列化、文件上传、数据库的特性、PHP弱类型、MD5碰撞以及相关漏洞、文件包含、PHP伪协议、SSRF。
-
-
-一、[极客大挑战 2019]BuyFlag1考点：PHP 弱类型、strcmp() 函数漏洞
-查看源码发现
-1234567891011&lt;!--	~~~post money and password~~~if (isset($_POST[&#x27;password&#x27;]))...
-        </p>
-        <p class="article-more-link">
-          <a href="/2021/06/04/BUUCTF-WEB%EF%BC%88%E4%B8%89%EF%BC%89/#more">Read More</a>
         </p>
       
     </div>
