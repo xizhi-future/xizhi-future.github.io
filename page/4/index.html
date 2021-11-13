@@ -202,6 +202,124 @@
         
           <section id="main" style="float:none;">
   
+    <article id="post-CTF-Show-文件包含"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2021/10/01/CTF-Show-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/">CTF-Show-文件包含</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/10/01/CTF-Show-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" class="article-date">
+	  <time datetime="2021-10-01T11:12:49.000Z" itemprop="datePublished">2021-10-01</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/CTF-Show/">CTF Show</a>
+
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          CTF Show 文件包含篇。
+
+
+一、CTF Show — 文件包含1.1 Web 78 — 最简单的文件包含 — 各种伪协议 绕过1234567&lt;?php   if(isset($_GET[&#x27;file&#x27;]))&#123;    $file = $_GET[&#x27;file&#x27;];    include($file);&#125;else&#123;    highlight_file(__FILE__);&#125;
+
+1234?file=php:...
+        </p>
+        <p class="article-more-link">
+          <a href="/2021/10/01/CTF-Show-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/#more">Read More</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-CTF-Show-爆破"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2021/10/01/CTF-Show-%E7%88%86%E7%A0%B4/">CTF-Show-爆破</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/10/01/CTF-Show-%E7%88%86%E7%A0%B4/" class="article-date">
+	  <time datetime="2021-10-01T11:10:35.000Z" itemprop="datePublished">2021-10-01</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/CTF-Show/">CTF Show</a>
+
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          CTF show 爆破篇。
+
+
+一、CTF show — 爆破1.1 Web 21 — Burp 爆破 — base64-encode1爆破什么的，都是基操
+
+抓包查看：输入的账号密码都被base64加密了，并且中间还有一个 : 分割
+Burp 抓包，下载题目给的字典，进行爆破：手动更改 admin: base64 加密之后的内容，只将密码部分设为变量，加载题目字典，设置 base64-encode 加密，去掉勾选 URL编码，开始攻击。
+
+
+1.2 Web 22 — 子域名爆破 — su...
+        </p>
+        <p class="article-more-link">
+          <a href="/2021/10/01/CTF-Show-%E7%88%86%E7%A0%B4/#more">Read More</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
     <article id="post-恶之花有感"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
@@ -668,125 +786,6 @@ require_once()
         </p>
         <p class="article-more-link">
           <a href="/2021/06/04/BUUCTF-WEB%EF%BC%88%E4%B8%89%EF%BC%89/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-BUUCTF-WEB（二）"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2021/06/04/BUUCTF-WEB%EF%BC%88%E4%BA%8C%EF%BC%89/">BUUCTF-WEB(二)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2021/06/04/BUUCTF-WEB%EF%BC%88%E4%BA%8C%EF%BC%89/" class="article-date">
-	  <time datetime="2021-06-04T10:22:55.000Z" itemprop="datePublished">2021-06-04</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/BUUCTF/">BUUCTF</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          概述：BUUCTF-WEB 十~二十道题目，难度较前十道略有提升，内容有：文件上传、HTTP 头部、SSTI、PHP字符串特性、序列化与反序列化、SQL注入、网站的备份文件。
-
-
-一、[极客大挑战 2019]Knife1考点：连 shell 工具：菜刀、蚁剑
-
-根据界面的提示，直接上菜刀或者是蚁剑，根目录下得到 flag
-
-二、[极客大挑战 2019]Http1考点：HTTP header：Referer、User-Agent、X-Forwarded-For
-抓包查看 发现 Secret....
-        </p>
-        <p class="article-more-link">
-          <a href="/2021/06/04/BUUCTF-WEB%EF%BC%88%E4%BA%8C%EF%BC%89/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-BUUCTF-WEB（一）"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2021/05/26/BUUCTF-WEB%EF%BC%88%E4%B8%80%EF%BC%89/">BUUCTF-Web(一)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2021/05/26/BUUCTF-WEB%EF%BC%88%E4%B8%80%EF%BC%89/" class="article-date">
-	  <time datetime="2021-05-26T11:18:25.000Z" itemprop="datePublished">2021-05-26</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/BUUCTF/">BUUCTF</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          概述：BUUCTF-WEB 前十道题目，比较基础，主要考察文件包含、SQL注入、命令执行、源码泄露。
-
-
-一、[HCTF 2018]WarmUp考点：文件包含、代码审计
-Ctrl + U 查看源码
-
-访问得到
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849 &lt;?php    highlight_file(__FILE__);    class emmm ...
-        </p>
-        <p class="article-more-link">
-          <a href="/2021/05/26/BUUCTF-WEB%EF%BC%88%E4%B8%80%EF%BC%89/#more">Read More</a>
         </p>
       
     </div>
