@@ -202,60 +202,6 @@
         
           <section id="main" style="float:none;">
   
-    <article id="post-顺序表、栈、队列"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2021/10/05/%E9%A1%BA%E5%BA%8F%E8%A1%A8%E3%80%81%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97/">顺序表、栈、队列</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2021/10/05/%E9%A1%BA%E5%BA%8F%E8%A1%A8%E3%80%81%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97/" class="article-date">
-	  <time datetime="2021-10-05T11:16:19.000Z" itemprop="datePublished">2021-10-05</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          [TOC]
-顺序表插入 删除 任意位置，特点：顺序存储
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172#include&lt;stdio.h&gt;#define MAXSIZE 100typedef int datatype;typedef struct&#123; ...
-        </p>
-        <p class="article-more-link">
-          <a href="/2021/10/05/%E9%A1%BA%E5%BA%8F%E8%A1%A8%E3%80%81%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
     <article id="post-世间美好与你环环相扣"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
@@ -794,6 +740,60 @@ CTF Show — 文件上传1.1 Web 151 — 前端验证
         </p>
         <p class="article-more-link">
           <a href="/2021/10/01/CTF-Show-PHP%E7%89%B9%E6%80%A7/#more">Read More</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-CTF-Show-命令执行"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2021/10/01/CTF-Show-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">CTF-Show-命令执行</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/10/01/CTF-Show-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" class="article-date">
+	  <time datetime="2021-10-01T11:14:09.000Z" itemprop="datePublished">2021-10-01</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/CTF-Show/">CTF Show</a>
+
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          一、CTF Show — 命令执行1.1 Web 29 — 只过滤 flag — 通配符使用1命令执行，需要严格的过滤
+
+12345678910&lt;?php    error_reporting(0);	if(isset($_GET[&#x27;c&#x27;]))&#123;    $c = $_GET[&#x27;c&#x27;];    if(!preg_match(&quot;/flag/i&quot;, $c))&#123;        eval($c);    &#125...
+        </p>
+        <p class="article-more-link">
+          <a href="/2021/10/01/CTF-Show-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/#more">Read More</a>
         </p>
       
     </div>
