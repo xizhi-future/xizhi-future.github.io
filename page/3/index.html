@@ -202,6 +202,125 @@
         
           <section id="main" style="float:none;">
   
+    <article id="post-单链表、双链表练题"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2021/10/05/%E5%8D%95%E9%93%BE%E8%A1%A8%E3%80%81%E5%8F%8C%E9%93%BE%E8%A1%A8%E7%BB%83%E9%A2%98/">单链表、双链表练题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/10/05/%E5%8D%95%E9%93%BE%E8%A1%A8%E3%80%81%E5%8F%8C%E9%93%BE%E8%A1%A8%E7%BB%83%E9%A2%98/" class="article-date">
+	  <time datetime="2021-10-05T11:51:44.000Z" itemprop="datePublished">2021-10-05</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          [TOC]
+第三章  链式存储1. 设计一个算法，求一个单链表中的结点个数。算法：
+12345678910//计数int count(node *head)&#123;    int s = 0;    node *p = head;    while(p)&#123;        p = p-&gt;next;        s++;    &#125;    return s;&#125;
+
+测试：
+123456789101112131415161718192021222324252...
+        </p>
+        <p class="article-more-link">
+          <a href="/2021/10/05/%E5%8D%95%E9%93%BE%E8%A1%A8%E3%80%81%E5%8F%8C%E9%93%BE%E8%A1%A8%E7%BB%83%E9%A2%98/#more">Read More</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-线性表的链式存储"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2021/10/05/%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8/">线性表的链式存储</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/10/05/%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8/" class="article-date">
+	  <time datetime="2021-10-05T11:49:33.000Z" itemprop="datePublished">2021-10-05</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          [TOC]
+线性表的链式存储线性表的存储方式：顺序存储 、链式存储
+单链表  带头结点的单链表  循环单链表  双链表  特殊的线性表–栈和队列 的 链式存储实现
+链式存储：指针 体现结点之间的逻辑关系  info   next
+
+
+单链表结点包含 两个域：info域    next 指针域
+必须含有一个首指针 指向单链表中的第一个结点  head
+
+单链表的创建前插法：
+12345678910111213141516//创建单链表 前插法node *creat_first(void)&#...
+        </p>
+        <p class="article-more-link">
+          <a href="/2021/10/05/%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8/#more">Read More</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
     <article id="post-顺序表、栈、队列"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
@@ -671,129 +790,6 @@ Misc 入门1.1 misc 1 — QQ截图 直接识别图片内容
         </p>
         <p class="article-more-link">
           <a href="/2021/10/01/CTF-Show-Misc%E5%85%A5%E9%97%A8/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-CTF-Show-文件上传"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2021/10/01/CTF-Show-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">CTF-Show-文件上传</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2021/10/01/CTF-Show-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" class="article-date">
-	  <time datetime="2021-10-01T11:16:29.000Z" itemprop="datePublished">2021-10-01</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/CTF-Show/">CTF Show</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          CTF Show 文件上传篇。
-
-
-CTF Show — 文件上传1.1 Web 151 — 前端验证
-手动删除前端验证，好像没什么作用，尝试之后发现，只能成功上传 .png 图片，其实查看源代码后有
-
-所以只能上传 .png ，我们上传 1.png 然后抓包手动修改
-
-蚁剑连接即可
-1.2 Web 1521后端不能单一校验
-
-同上
-1.3 Web 153 — .user.ini由于服务器是 nginx ，则可尝试上传 .user.ini
-
-再上传 111.png
-
-访问与 111.png...
-        </p>
-        <p class="article-more-link">
-          <a href="/2021/10/01/CTF-Show-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
-    <article id="post-CTF-Show-PHP特性"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2021/10/01/CTF-Show-PHP%E7%89%B9%E6%80%A7/">CTF-Show-PHP特性</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2021/10/01/CTF-Show-PHP%E7%89%B9%E6%80%A7/" class="article-date">
-	  <time datetime="2021-10-01T11:15:08.000Z" itemprop="datePublished">2021-10-01</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/CTF-Show/">CTF Show</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          CTF Show PHP 特性篇。
-
-
-一、CTF Show PHP特性1.1 Web 89 — intval 数组 [ ] 绕过12345678910111213&lt;?phpinclude(&quot;flag.php&quot;);highlight_file(__FILE__);if(isset($_GET[&#x27;num&#x27;]))&#123;    $num = $_GET[&#x27;num&#x27;];    if(preg_match(&quot;/[0-9...
-        </p>
-        <p class="article-more-link">
-          <a href="/2021/10/01/CTF-Show-PHP%E7%89%B9%E6%80%A7/#more">Read More</a>
         </p>
       
     </div>

