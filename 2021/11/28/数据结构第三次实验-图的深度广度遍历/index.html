@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>数据结构第三次实验-图的深度广度遍历 | 忆 执 昔 来 的 旅 途</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="加项内容：  最短路径 关键路径 拓扑排序   图邻接表定义头文件 （深度优先遍历、广度优先遍历算法）：graph.h 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构第三次实验-图的深度广度遍历">
+<meta property="og:url" content="https://xizhi-future.github.io/2021/11/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E9%AA%8C-%E5%9B%BE%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E9%81%8D%E5%8E%86/index.html">
+<meta property="og:site_name" content="忆 执 昔 来 的 旅 途">
+<meta property="og:description" content="加项内容：  最短路径 关键路径 拓扑排序   图邻接表定义头文件 （深度优先遍历、广度优先遍历算法）：graph.h 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737">
+<meta property="og:locale">
+<meta property="og:image" content="https://i.loli.net/2021/11/13/oEKADMSHmjBbnxc.png">
+<meta property="og:image" content="https://i.loli.net/2021/11/13/Nq2oZ3BcWYHt1TV.png">
+<meta property="article:published_time" content="2021-11-28T11:49:15.000Z">
+<meta property="article:modified_time" content="2021-11-28T11:50:52.572Z">
+<meta property="article:author" content="xizhi-future">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/11/13/oEKADMSHmjBbnxc.png">
+  
+    <link rel="alternate" href="/atom.xml" title="忆 执 昔 来 的 旅 途" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="/js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/essayists">随笔</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/playist">音乐</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-数据结构第三次实验-图的深度广度遍历" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      数据结构第三次实验-图的深度广度遍历
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/11/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E9%AA%8C-%E5%9B%BE%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E9%81%8D%E5%8E%86/" class="article-date">
+	  <time datetime="2021-11-28T11:49:15.000Z" itemprop="datePublished">2021-11-28</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://i.loli.net/2021/11/13/oEKADMSHmjBbnxc.png" alt="image-20211113152053894"></p>
+<blockquote>
+<p><strong>加项内容：</strong></p>
+<ol>
+<li><strong>最短路径</strong></li>
+<li><strong>关键路径</strong></li>
+<li><strong>拓扑排序</strong></li>
+</ol>
+</blockquote>
+<p><strong>图邻接表定义头文件 （<code>深度优先遍历、广度优先遍历算法</code>）：<code>graph.h</code></strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> M 20			<span class="comment">//预定义图的最大顶点数</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> visited[M];  <span class="comment">//作为访问的标记</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//邻接表创建 图结构定义 </span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> DataType;	<span class="comment">//顶点信息数据类型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span>	<span class="comment">//边表结点</span></span><br><span class="line">    <span class="keyword">int</span> adjvex;			<span class="comment">//邻接点</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">next</span>;</span>	<span class="comment">//指向下一个邻接点</span></span><br><span class="line">&#125;EdgeNode;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">vnode</span>&#123;</span>	<span class="comment">//头结点类型</span></span><br><span class="line">    DataType vertex;	<span class="comment">//顶点信息</span></span><br><span class="line">    EdgeNode *FirstEdge;<span class="comment">//邻接链表头指针</span></span><br><span class="line">&#125;VertexNode;			</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span>			<span class="comment">//邻接表 类型</span></span><br><span class="line">    VertexNode adjlist[M];<span class="comment">//存放头结点的顺序表</span></span><br><span class="line">    <span class="keyword">int</span> n,e;			  <span class="comment">//图的顶点数、边数</span></span><br><span class="line">&#125;LinkedGraph;</span><br><span class="line"></span><br><span class="line"><span class="comment">//邻接表 创建图</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">create</span><span class="params">(LinkedGraph *g,<span class="keyword">char</span> *filename,<span class="keyword">int</span> c)</span></span>&#123;  <span class="comment">//c=0 表示建立无向图</span></span><br><span class="line">    <span class="keyword">int</span> i,j,k;</span><br><span class="line">    EdgeNode *s;</span><br><span class="line">    FILE *fp;</span><br><span class="line">    fp = fopen(filename,<span class="string">&quot;r&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span>(fp)&#123;</span><br><span class="line">        <span class="built_in">fscanf</span>(fp,<span class="string">&quot;%d%d&quot;</span>,&amp;g-&gt;n,&amp;g-&gt;e);		<span class="comment">//读入顶点数与边数</span></span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span> ;i&lt;g-&gt;n;i++)&#123;</span><br><span class="line">            <span class="built_in">fscanf</span>(fp,<span class="string">&quot;%ls&quot;</span>,&amp;g-&gt;adjlist[i].vertex); <span class="comment">//读入顶点信息</span></span><br><span class="line">            g-&gt;adjlist[i].FirstEdge = <span class="literal">NULL</span>;    <span class="comment">//边表置为空表</span></span><br><span class="line">        &#125;</span><br><span class="line">		<span class="keyword">for</span>(k=<span class="number">0</span>; k &lt; g-&gt;n; k++)&#123;</span><br><span class="line">			<span class="built_in">fscanf</span>(fp,<span class="string">&quot;%d%d&quot;</span>,&amp;i,&amp;j);		<span class="comment">//输入无序对</span></span><br><span class="line">			s = (EdgeNode *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(EdgeNode));</span><br><span class="line">			s-&gt;adjvex = j;</span><br><span class="line">			s-&gt;next = g-&gt;adjlist[i].FirstEdge;</span><br><span class="line">			g-&gt;adjlist[i].FirstEdge = s;       <span class="comment">//相当于 前插</span></span><br><span class="line">			<span class="keyword">if</span>(c == <span class="number">0</span>)&#123;			<span class="comment">//无向图</span></span><br><span class="line">				s = (EdgeNode *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(EdgeNode));</span><br><span class="line">				s-&gt;adjvex = i;</span><br><span class="line">				s-&gt;next = g-&gt;adjlist[j].FirstEdge;</span><br><span class="line">				g-&gt;adjlist[j].FirstEdge = s;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		fclose(fp);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>		<span class="comment">//文件打开失败</span></span><br><span class="line">		g-&gt;n = <span class="number">0</span>; </span><br><span class="line"></span><br><span class="line">	<span class="comment">//测试</span></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	printf(&quot;%d,%d&quot;,g-&gt;n,g-&gt;e);</span></span><br><span class="line"><span class="comment">	printf(&quot;\n&quot;);</span></span><br><span class="line"><span class="comment">	for(i=0;i&lt;g-&gt;n;i++)&#123;</span></span><br><span class="line"><span class="comment">		printf(&quot;%c&quot;,g-&gt;adjlist[i].vertex);</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//深度优先遍历 算法</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(LinkedGraph g,<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">    EdgeNode *p;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;访问顶点：%c\n&quot;</span>,g.adjlist[i].vertex); <span class="comment">//访问顶点 i</span></span><br><span class="line">    visited[i] = <span class="number">1</span>;		<span class="comment">//表示已经访问过</span></span><br><span class="line">    p = g.adjlist[i].FirstEdge;		<span class="comment">//从 p 的邻接点开始进行 深度优先遍历</span></span><br><span class="line">    <span class="keyword">while</span>(p)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!visited[p-&gt;adjvex])</span><br><span class="line">            dfs(g,p-&gt;adjvex);</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DfsTraverse</span><span class="params">(LinkedGraph g)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>;i &lt;g.n; i++)</span><br><span class="line">        visited[i] = <span class="number">0</span>;   <span class="comment">//初始化都为 0 ，代表都未被访问过</span></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;g.n; i++)</span><br><span class="line">        <span class="keyword">if</span>(!visited[i])		<span class="comment">//如果 i 未被访问过</span></span><br><span class="line">            dfs(g,i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//广度优先遍历 算法</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bfs</span><span class="params">(LinkedGraph g,<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> j;</span><br><span class="line">    EdgeNode *p;</span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">queue</span>[M],front,rear;  <span class="comment">//FIFO 队列</span></span><br><span class="line">    front = rear = <span class="number">0</span>;		 <span class="comment">//初始化空队列</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,g.adjlist[i].vertex);</span><br><span class="line">    visited[i] = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">queue</span>[rear++] = i;		<span class="comment">//被访问结点进入队列</span></span><br><span class="line">    <span class="keyword">while</span>(rear &gt; front)&#123;</span><br><span class="line">        j = <span class="built_in">queue</span>[front++]; <span class="comment">// 出队</span></span><br><span class="line">        p = g.adjlist[j].FirstEdge;</span><br><span class="line">        <span class="keyword">while</span>(p)&#123;</span><br><span class="line">            <span class="keyword">if</span>(visited[p-&gt;adjvex] == <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,g.adjlist[p-&gt;adjvex].vertex);</span><br><span class="line">                <span class="built_in">queue</span>[rear++] = p-&gt;adjvex;</span><br><span class="line">                visited[p-&gt;adjvex] = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            p = p-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//返回连通分量的个数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BfsTraverse</span><span class="params">(LinkedGraph g)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;g.n;i++)</span><br><span class="line">        visited[i] = <span class="number">0</span>;  <span class="comment">//初始化标志数组，都未被访问过</span></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span> ;i&lt;g.n ;i++)</span><br><span class="line">        <span class="keyword">if</span>(!visited[i])&#123;	<span class="comment">//vi未被访问过</span></span><br><span class="line">            <span class="comment">//printf(&quot;\n&quot;);</span></span><br><span class="line">            count++;		<span class="comment">//计数器：连通分量 个数加1 </span></span><br><span class="line">            bfs(g,i);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>test.cpp</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;bintree.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Menu</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;---------------------菜单界面--------------------\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;                                                 \n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot; \t1.深度优先遍历          2.广度优先遍历       \n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;                                                 \n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;---------------------0.退出----------------------\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> select;</span><br><span class="line">    LinkedGraph g;</span><br><span class="line">    <span class="keyword">int</span> count,i;</span><br><span class="line">	create(&amp;g,<span class="string">&quot;g7.txt&quot;</span>,<span class="number">0</span>);  <span class="comment">// 0 代表无向图</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">		Menu();</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;请输入菜单选项：&quot;</span>);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;select);</span><br><span class="line">		<span class="keyword">switch</span>(select)&#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">1</span>:  <span class="comment">//深度优先遍历</span></span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">&quot;图的深度优先遍历序列为：\n&quot;</span>);</span><br><span class="line">				DfsTraverse(g);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">2</span>:		<span class="comment">//广度优先遍历</span></span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">&quot;图的广度优先遍历序列为：\n&quot;</span>);</span><br><span class="line">				count = BfsTraverse(g);</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">&quot;该图共有%d个连通分量\n&quot;</span>,count);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">				<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">default</span>:</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">&quot;您输入的选项有误，请重新输入：\n&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">		system(<span class="string">&quot;cls&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/11/13/Nq2oZ3BcWYHt1TV.png" alt="image-20211113155801024"></p>
+<p><strong>测试：<code>test.cpp</code></strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;graph.h&quot;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">enum</span>&#123;</span>FALSE,TRUE&#125; boolean;	<span class="comment">//false 0   true 1</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> dist[M];		<span class="comment">//距离向量类型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> path[M];		<span class="comment">//路径类型</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Dijkastra 算法求 单源最短路径</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dijkastra</span><span class="params">(Mgraph g,<span class="keyword">int</span> v0,path p,dist d)</span></span>&#123;</span><br><span class="line">    boolean <span class="keyword">final</span>[M]; <span class="comment">//标志 当前元素是否已经求出 最短路径</span></span><br><span class="line">    <span class="keyword">int</span> i,k,j,v,min,x;</span><br><span class="line">    <span class="comment">//初始化集合 S 与距离向量 d</span></span><br><span class="line">    <span class="keyword">for</span>(v=<span class="number">0</span>; v&lt;g.n; v++)&#123;</span><br><span class="line">        <span class="keyword">final</span>[v] = FALSE;</span><br><span class="line">        d[v] = g.edges[v0][v];</span><br><span class="line">        <span class="keyword">if</span>(d[v]&lt;FINITY &amp;&amp; d[v]=<span class="number">-1</span>)</span><br><span class="line">            p[v] = v0;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            p[v] = <span class="number">-1</span>;  <span class="comment">//v 无前驱</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">final</span>[v0] = TRUE;</span><br><span class="line">    d[v0] = <span class="number">0</span>;			<span class="comment">//初始时 s 只有 v0 一个结点</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//依次找出 n-1 个结点加入 S 中</span></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>; i&lt;g.n; i++)&#123;</span><br><span class="line">        min = FINITY;</span><br><span class="line">        <span class="keyword">for</span>(k=<span class="number">0</span>; k&lt;g.n; ++k)  <span class="comment">//找最小边入结点</span></span><br><span class="line">            <span class="keyword">if</span>(!<span class="keyword">final</span>[k] &amp;&amp; d[k] &lt; min)&#123;</span><br><span class="line">                v = k;</span><br><span class="line">                min = d[k];</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n%c----%d\n&quot;</span>,g.vexs[v],min);</span><br><span class="line">        <span class="keyword">if</span>(min == FINITY)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">final</span>[v] = TRUE;  <span class="comment">//v 加入 S</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//修改 S 与 V-S 中各节点的距离</span></span><br><span class="line">        <span class="keyword">for</span>(k=<span class="number">0</span>; k&lt;g.n; ++k)</span><br><span class="line">            <span class="keyword">if</span>(!<span class="keyword">final</span>[k] &amp;&amp; (min+g.edges[v][k] &lt; d[k]) )&#123;</span><br><span class="line">                d[k] = min + edges[v][k];</span><br><span class="line">                p[k] = v;</span><br><span class="line">            &#125; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出 有向图 最短路径</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pritn_gpd</span><span class="params">(Mgraph g,path p,dist d)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> st[M],i,pre,top=<span class="number">-1</span>;			<span class="comment">//定义栈 st 初始化空栈</span></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;g.n; i++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n距离：%7d,路径：&quot;</span>,d[i]);</span><br><span class="line">        st[++top] = i;</span><br><span class="line">        pre = p[i];</span><br><span class="line">        <span class="keyword">while</span>(pre != <span class="number">-1</span>)&#123;		<span class="comment">//从第 i 个顶点开始向前搜索最短路径上的顶点</span></span><br><span class="line">            st[++top] = pre;</span><br><span class="line">            pre = p[pre];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(top &gt;<span class="number">0</span>)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%2d&quot;</span>,st[top--]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+
+<script src="/js/vdonate.js"></script>
+
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://i.loli.net/2021/07/09/UNXc5a6nbWxgzru.png',
+  alipayImage: 'https://i.loli.net/2021/07/09/Sf9nJd8hkOypTar.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong>xizhi-future</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2021/11/28/数据结构第三次实验-图的深度广度遍历/" target="_blank" title="数据结构第三次实验-图的深度广度遍历">https://xizhi-future.github.io/2021/11/28/数据结构第三次实验-图的深度广度遍历/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/11/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E9%AA%8C-2-%E5%9B%BE%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%B9%BF%E5%BA%A6%E9%81%8D%E5%8E%86%E3%80%81%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F%E3%80%81%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E3%80%81%E5%85%B3%E9%94%AE%E8%B7%AF%E5%BE%84/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">数据结构第三次实验_2-图的深度广度遍历、拓扑排序、最短路径、关键路径</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav">None</ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2021 忆 执 昔 来 的 旅 途 All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/essayists" class="mobile-nav-link">Essayists</a>
+  
+    <a href="/playist" class="mobile-nav-link">Playist</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            忆 执 昔 来 的 旅 途
+          </div>
+          <div class="panel-body">
+            Copyright © 2021 xizhi-future All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
