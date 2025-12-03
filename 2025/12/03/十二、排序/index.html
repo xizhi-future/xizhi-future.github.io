@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>十二、排序 | 忆 执 昔 来 的 旅 途</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="数据结构力扣" />
+  
+  
+  
+  
+  <meta name="description" content="十二、排序912 排序数组给你一个整数数组 nums，请你将该数组【升序排列】。 123456789101112131415161718192021222324252627282930313233&#x2F;*    快排  随机取 参考元素*&#x2F;class Solution &amp;#123;public:    int partition(vector&lt;int&gt;&amp; nums, int l,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="十二、排序">
+<meta property="og:url" content="https://xizhi-future.github.io/2025/12/03/%E5%8D%81%E4%BA%8C%E3%80%81%E6%8E%92%E5%BA%8F/index.html">
+<meta property="og:site_name" content="忆 执 昔 来 的 旅 途">
+<meta property="og:description" content="十二、排序912 排序数组给你一个整数数组 nums，请你将该数组【升序排列】。 123456789101112131415161718192021222324252627282930313233&#x2F;*    快排  随机取 参考元素*&#x2F;class Solution &amp;#123;public:    int partition(vector&lt;int&gt;&amp; nums, int l,">
+<meta property="og:locale">
+<meta property="article:published_time" content="2025-12-03T06:17:36.000Z">
+<meta property="article:modified_time" content="2025-12-03T06:17:49.524Z">
+<meta property="article:author" content="xizhi-future">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="力扣">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="忆 执 昔 来 的 旅 途" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="/js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/essayists">随笔</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/playist">音乐</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-十二、排序" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      十二、排序
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2025/12/03/%E5%8D%81%E4%BA%8C%E3%80%81%E6%8E%92%E5%BA%8F/" class="article-date">
+	  <time datetime="2025-12-03T06:17:36.000Z" itemprop="datePublished">2025-12-03</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98/">力扣刷题</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="十二、排序"><a href="#十二、排序" class="headerlink" title="十二、排序"></a>十二、排序</h2><h3 id="912-排序数组"><a href="#912-排序数组" class="headerlink" title="912 排序数组"></a>912 排序数组</h3><p>给你一个整数数组 nums，请你将该数组【升序排列】。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    快排  随机取 参考元素</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">partition</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> pivot = nums[l];<span class="comment">//取nums[l]作为参考元素</span></span><br><span class="line">        <span class="keyword">int</span> i=l, j=r;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;j)&#123;</span><br><span class="line">            <span class="keyword">while</span>(i&lt;j &amp;&amp; nums[j]&gt;=pivot) j--;</span><br><span class="line">            <span class="keyword">while</span>(i&lt;j &amp;&amp; nums[i]&lt;=pivot) i++;</span><br><span class="line">            <span class="built_in">swap</span>(nums[i],nums[j]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">swap</span>(nums[i],nums[l]);</span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">randomized_partition</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="built_in">rand</span>() % (r-l+<span class="number">1</span>) + l; <span class="comment">// 随机选一个作为我们的主元</span></span><br><span class="line">        <span class="built_in">swap</span>(nums[l], nums[i]);<span class="comment">//放到 nums[l]位置</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">partition</span>(nums, l, r);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">quick_sort</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(l&lt;r)&#123;</span><br><span class="line">            <span class="keyword">int</span> pos = <span class="built_in">randomized_partition</span>(nums,l,r);<span class="comment">//划分</span></span><br><span class="line">            <span class="built_in">quick_sort</span>(nums,l,pos<span class="number">-1</span>);</span><br><span class="line">            <span class="built_in">quick_sort</span>(nums,pos+<span class="number">1</span>,r);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">sortArray</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">quick_sort</span>(nums,<span class="number">0</span>,nums.<span class="built_in">size</span>()<span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">return</span> nums;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    堆排序</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">maxHeapify</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> i, <span class="keyword">int</span> len)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (; (i &lt;&lt; <span class="number">1</span>) + <span class="number">1</span> &lt;= len;) &#123;</span><br><span class="line">            <span class="keyword">int</span> lson = (i &lt;&lt; <span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> rson = (i &lt;&lt; <span class="number">1</span>) + <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">int</span> large;</span><br><span class="line">            <span class="keyword">if</span> (lson &lt;= len &amp;&amp; nums[lson] &gt; nums[i]) &#123;</span><br><span class="line">                large = lson;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                large = i;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (rson &lt;= len &amp;&amp; nums[rson] &gt; nums[large]) &#123;</span><br><span class="line">                large = rson;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (large != i) &#123;</span><br><span class="line">                <span class="built_in">swap</span>(nums[i], nums[large]);</span><br><span class="line">                i = large;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">buildMaxHeap</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> len)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = len / <span class="number">2</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">            <span class="built_in">maxHeapify</span>(nums, i, len);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">heapSort</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = (<span class="keyword">int</span>)nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">buildMaxHeap</span>(nums, len);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = len; i &gt;= <span class="number">1</span>; --i) &#123;</span><br><span class="line">            <span class="built_in">swap</span>(nums[i], nums[<span class="number">0</span>]);</span><br><span class="line">            len -= <span class="number">1</span>;</span><br><span class="line">            <span class="built_in">maxHeapify</span>(nums, <span class="number">0</span>, len);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">sortArray</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">heapSort</span>(nums);</span><br><span class="line">        <span class="keyword">return</span> nums;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    归并排序</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    vector&lt;<span class="keyword">int</span>&gt; tmp;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(l&gt;=r) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">int</span> mid = (l+r)/<span class="number">2</span>;</span><br><span class="line">        <span class="built_in">merge</span>(nums,l,mid);</span><br><span class="line">        <span class="built_in">merge</span>(nums,mid+<span class="number">1</span>,r);</span><br><span class="line">        <span class="keyword">int</span> i = l, j = mid+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;=mid &amp;&amp; j&lt;=r)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]&lt;=nums[j])</span><br><span class="line">                tmp[cnt++] = nums[i++];</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                tmp[cnt++] = nums[j++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (i &lt;= mid) &#123;</span><br><span class="line">            tmp[cnt++] = nums[i++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (j &lt;= r) &#123;</span><br><span class="line">            tmp[cnt++] = nums[j++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;r-l+<span class="number">1</span>;i++)</span><br><span class="line">            nums[i+l] = tmp[i];</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">sortArray</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        tmp.<span class="built_in">resize</span>(nums.<span class="built_in">size</span>(),<span class="number">0</span>);</span><br><span class="line">        <span class="built_in">merge</span>(nums,<span class="number">0</span>,nums.<span class="built_in">size</span>()<span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">return</span> nums;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*  冒泡排序 */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">sortArray</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n<span class="number">-1</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=n<span class="number">-1</span>;j&gt;i;j--)&#123;</span><br><span class="line">                <span class="keyword">if</span>(nums[j<span class="number">-1</span>]&gt;nums[j])&#123;</span><br><span class="line">                    <span class="built_in">swap</span>(nums[j<span class="number">-1</span>],nums[j]);</span><br><span class="line">                    flag = <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(flag==<span class="literal">false</span>)</span><br><span class="line">                <span class="keyword">return</span> nums;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 插入排序 */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">sortArray</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> tmp = nums[i];<span class="comment">//复制 哨兵放在tmp</span></span><br><span class="line">            <span class="keyword">int</span> j = i;</span><br><span class="line">            <span class="keyword">while</span>(j&gt;<span class="number">0</span> &amp;&amp; nums[j<span class="number">-1</span>]&gt;tmp)&#123;</span><br><span class="line">                nums[j] = nums[j<span class="number">-1</span>];<span class="comment">//后移</span></span><br><span class="line">                j--;</span><br><span class="line">            &#125;</span><br><span class="line">            nums[j] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*  折半插入 */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">sortArray</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> l,r,mid;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> tmp = nums[i];<span class="comment">//复制 哨兵放在tmp</span></span><br><span class="line">            l = <span class="number">0</span>; r = i<span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">while</span>(l&lt;=r)&#123;</span><br><span class="line">                mid = (l+r)/<span class="number">2</span>;</span><br><span class="line">                <span class="keyword">if</span>(nums[mid]&gt;tmp) r = mid<span class="number">-1</span>;</span><br><span class="line">                <span class="keyword">else</span> l = mid+<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="comment">//l&gt;r时 停止</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i<span class="number">-1</span>;j&gt;=l;j--)<span class="comment">//把[l,i-1]后移</span></span><br><span class="line">                nums[j+<span class="number">1</span>] = nums[j];</span><br><span class="line">            nums[l] = tmp;<span class="comment">//最终插入位置是l</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="704-二分查找"><a href="#704-二分查找" class="headerlink" title="704 二分查找"></a>704 二分查找</h3><p>给定一个 n 个元素有序的【升序】整型数组 nums 和一个目标值 target ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*  法一：[left, right]</span></span><br><span class="line"><span class="comment">    定义 target 是在一个在[左闭右闭]的区间里，也就是[left, right]</span></span><br><span class="line"><span class="comment">    + while (left &lt;= right) 要使用 &lt;= ，因为left == right是有意义的，所以使用 &lt;=</span></span><br><span class="line"><span class="comment">    + if (nums[middle] &gt; target) right 要赋值为 middle - 1，因为当前这个nums[middle]一定不是target，那么接下来要查找的左区间结束下标位置就是 middle - 1</span></span><br><span class="line"><span class="comment">    + right = nums.size()-1;</span></span><br><span class="line"><span class="comment">    + int mid = left+(right-left)/2;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">search</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = nums.<span class="built_in">size</span>()<span class="number">-1</span>;<span class="comment">//[left, right]</span></span><br><span class="line">        <span class="comment">//int res = -1;   //注意 超出时间限制</span></span><br><span class="line">        <span class="keyword">while</span>(left&lt;=right)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = left+(right-left)/<span class="number">2</span>;<span class="comment">//防止溢出</span></span><br><span class="line">            <span class="keyword">if</span>(nums[mid] &gt; target)</span><br><span class="line">                right = mid<span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &lt; target)</span><br><span class="line">                left = mid+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> </span><br><span class="line">                <span class="keyword">return</span> mid;<span class="comment">//res = mid;</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;  <span class="comment">//return res;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*  法二：[left, right) </span></span><br><span class="line"><span class="comment">    定义 target 是在一个在左闭右开的区间里，也就是[left, right) </span></span><br><span class="line"><span class="comment">    + while (left &lt; right)，这里使用 &lt; ,因为left == right在区间[left, right)是没有意义的</span></span><br><span class="line"><span class="comment">    + if (nums[middle] &gt; target) right 更新为 middle，因为当前nums[middle]不等于target，去左区间继续寻找，而寻找区间是左闭右开区间，所以right更新为middle，即：下一个查询区间不会去比较nums[middle]</span></span><br><span class="line"><span class="comment">    + right = nums.size();</span></span><br><span class="line"><span class="comment">    + int middle = left+((right-left) &gt;&gt; 1);</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">search</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = nums.<span class="built_in">size</span>(); <span class="comment">//[left, right)</span></span><br><span class="line">        <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">            <span class="keyword">int</span> middle = left+((right-left) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span> (nums[middle] &gt; target) &#123;</span><br><span class="line">                right = middle; <span class="comment">//区别</span></span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[middle] &lt; target) &#123;</span><br><span class="line">                left = middle + <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123; </span><br><span class="line">                <span class="keyword">return</span> middle;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="34-在排序数组中查找元素的第一个和最后一个位置——二分法"><a href="#34-在排序数组中查找元素的第一个和最后一个位置——二分法" class="headerlink" title="34 在排序数组中查找元素的第一个和最后一个位置——二分法"></a>34 在排序数组中查找元素的第一个和最后一个位置——二分法</h3><p>给你一个按照【非递减顺序排列】的整数数组 nums，和一个目标值 target。请你找出给定目标值在数组中的开始位置和结束位置。<br>如果数组中不存在目标值 target，返回 [-1, -1]。<br>你必须设计并实现时间复杂度为 O(log n) 的算法解决此问题。</p>
+<p><strong>分析：</strong><br>大部分能想到的解法，比如：遍历一次，分别记录第一次和最好一次；双指针等等。都是 <strong>O(n)&gt;O(logn)</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//双指针</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">searchRange</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//升序排序，相同元素紧邻</span></span><br><span class="line">        <span class="keyword">int</span> l=<span class="number">0</span>,r=nums.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">int</span> first = <span class="number">-1</span>,last = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(l&lt;r)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[l]==target)&#123;</span><br><span class="line">                first = l;</span><br><span class="line">                l++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(nums[r]==target)&#123;</span><br><span class="line">                last = r;</span><br><span class="line">                r--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> &#123;first,last&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>一看到时间复杂度是O(logn)，首先想到【二分查找】</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">searchRange</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//升序排序，相同元素紧邻</span></span><br><span class="line">        <span class="keyword">int</span> l=<span class="number">0</span>,r=nums.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">int</span> first = <span class="number">-1</span>,last = <span class="number">-1</span>;</span><br><span class="line">        <span class="comment">//找左边界 first</span></span><br><span class="line">        <span class="keyword">while</span>(l&lt;=r)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = l+(r-l)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid]==target)&#123;</span><br><span class="line">                first = mid;<span class="comment">//确定左边界</span></span><br><span class="line">                r=mid<span class="number">-1</span>;<span class="comment">//重点</span></span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[mid]&lt;target)</span><br><span class="line">                l=mid+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                r=mid<span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//找右边界 last</span></span><br><span class="line">        l=<span class="number">0</span>,r=nums.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(l&lt;=r)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = l+(r-l)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid]==target)&#123;</span><br><span class="line">                last = mid;<span class="comment">//确定右边界</span></span><br><span class="line">                l=mid+<span class="number">1</span>;<span class="comment">//重点</span></span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[mid]&lt;target)</span><br><span class="line">                l=mid+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                r=mid<span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> &#123;first,last&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="367-有效的完全平方数——二分法"><a href="#367-有效的完全平方数——二分法" class="headerlink" title="367 有效的完全平方数——二分法"></a>367 有效的完全平方数——二分法</h3><p>给你一个正整数 num 。如果 num 是一个完全平方数，则返回 true ，否则返回 false 。<br>【<strong>完全平方数</strong>】：是一个可以写成某个整数的平方的整数。换句话说，它可以写成某个整数和自身的乘积。<br>不能使用任何内置的库函数，如  sqrt 。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPerfectSquare</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> l=<span class="number">0</span>,r=num;<span class="comment">//r=num;</span></span><br><span class="line">        <span class="keyword">while</span>(l&lt;=r)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid=l+(r-l)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>((<span class="keyword">long</span> <span class="keyword">long</span>) mid*mid==num)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>((<span class="keyword">long</span> <span class="keyword">long</span>) mid*mid&lt;num)</span><br><span class="line">                l=mid+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> </span><br><span class="line">                r=mid<span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="35-搜索插入位置——二分法【有序】"><a href="#35-搜索插入位置——二分法【有序】" class="headerlink" title="35 搜索插入位置——二分法【有序】"></a>35 搜索插入位置——二分法【有序】</h3><p>给定一个<strong>排序数组</strong>和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。<br>请必须使用时间复杂度为 O(log n) 的算法。<br><strong>有序——二分法</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    二分法——有序数组</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">searchInsert</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>,right = nums.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;=right)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = (left+right)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] &lt; target)</span><br><span class="line">                left = mid+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &gt; target)</span><br><span class="line">                right = mid<span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="33-搜索旋转排序数组——有序-二分法O-logn"><a href="#33-搜索旋转排序数组——有序-二分法O-logn" class="headerlink" title="33 搜索旋转排序数组——有序-二分法O(logn)"></a>33 搜索旋转排序数组——有序-二分法O(logn)</h3><p>整数数组 nums 按升序排列，数组中的值 互不相同 。<br>例如，[0,1,2,4,5,6,7] 在下标 3 处经旋转后可能变为 [4,5,6,7,0,1,2] 。<br>给你 旋转后 的数组 nums 和一个整数 target ，如果 nums 中存在这个目标值 target ，则返回它的下标，否则返回 -1 。<br>你必须<strong>设计一个时间复杂度为 O(log n) 的算法解决此问题</strong>。<br><strong>有序想到 二分！！！</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">search</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span>(!n) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">if</span>(n==<span class="number">1</span>)   <span class="keyword">return</span> nums[<span class="number">0</span>]==target?<span class="number">0</span>:<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = n<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(l&lt;=r)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = (l+r)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid]==target)</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            <span class="keyword">if</span>(nums[<span class="number">0</span>]&lt;=nums[mid])&#123;<span class="comment">//左部分 有序</span></span><br><span class="line">                <span class="keyword">if</span>(nums[<span class="number">0</span>]&lt;=target &amp;&amp; target&lt;nums[mid])</span><br><span class="line">                    r = mid<span class="number">-1</span>;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    l = mid+<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(nums[mid]&lt;target &amp;&amp; target&lt;=nums[n<span class="number">-1</span>])</span><br><span class="line">                    l = mid+<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span>    </span><br><span class="line">                    r = mid<span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="153-寻找旋转排序数组中的最小值-有序-二分O-logn"><a href="#153-寻找旋转排序数组中的最小值-有序-二分O-logn" class="headerlink" title="153 寻找旋转排序数组中的最小值-有序-二分O(logn)"></a>153 寻找旋转排序数组中的最小值-有序-二分O(logn)</h3><p>给你一个元素值 互不相同 的数组 nums ，它原来是一个升序排列的数组，并进行了多次旋转。请你找出并返回数组中的 最小元素 。<br>eg: 原数组 nums = [0,1,2,4,5,6,7] 在变化后可能得到：</p>
+<pre><code>若旋转 4 次，则可以得到 [4,5,6,7,0,1,2]
+若旋转 7 次，则可以得到 [0,1,2,4,5,6,7]
+</code></pre>
+<p>你必须<strong>设计一个时间复杂度为 O(log n) 的算法解决此问题</strong>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//官方！</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findMin</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = n<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">if</span>(n==<span class="number">1</span>) <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">if</span>(n==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(l&lt;r)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = l+(r-l)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid]&lt;nums[r])&#123;</span><br><span class="line">                r = mid;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                l = mid+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums[l];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="215-数组中的第K个最大元素——快排"><a href="#215-数组中的第K个最大元素——快排" class="headerlink" title="215 数组中的第K个最大元素——快排"></a>215 数组中的第K个最大元素——快排</h3><p><strong>数组：求 第k大 元素[n-k]</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//升序序列：第k个最大的元素，倒着第k个元素，[n-k]</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums,<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = l, j = r;</span><br><span class="line">        <span class="keyword">if</span>(l&gt;=r)<span class="comment">//子数组长度是1，终止递归</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="comment">//哨兵是 nums[l]</span></span><br><span class="line">        <span class="keyword">while</span>(i&lt;j)&#123;</span><br><span class="line">            <span class="keyword">while</span>(i&lt;j &amp;&amp; nums[j]&gt;=nums[l]) j--;</span><br><span class="line">            <span class="keyword">while</span>(i&lt;j &amp;&amp; nums[i]&lt;=nums[l]) i++;</span><br><span class="line">            <span class="built_in">swap</span>(nums[i],nums[j]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">swap</span>(nums[i],nums[l]);<span class="comment">//或者swap(nums[j],nums[l])，为了把nums[l]放到合适位置即 i或j</span></span><br><span class="line">        <span class="comment">//递归左右划分</span></span><br><span class="line">        <span class="built_in">quickSort</span>(nums,l,i<span class="number">-1</span>);</span><br><span class="line">        <span class="built_in">quickSort</span>(nums,i+<span class="number">1</span>,r);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">quickSort</span>(nums,<span class="number">0</span>,nums.<span class="built_in">size</span>()<span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">return</span> nums[nums.<span class="built_in">size</span>()-k];<span class="comment">//倒着第k个元素</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="148-排序链表——链表归并排序-升序"><a href="#148-排序链表——链表归并排序-升序" class="headerlink" title="148 排序链表——链表归并排序-升序"></a>148 排序链表——链表归并排序-升序</h3><p>【<strong>时间复杂度是 O(nlog⁡n) 的排序算法</strong>】</p>
+<ul>
+<li>归并排序、堆排序、快速排序</li>
+<li>（快速排序的最差时间复杂度是 O(n^2)</li>
+<li>最适合<code>链表</code>的排序算法是 <strong>归并排序</strong>。</li>
+</ul>
+<p><strong>对链表自顶向下归并排序的过程如下：</strong></p>
+<pre><code>找到链表的中点，以中点为分界，将链表拆分成两个子链表。【快慢指针】
+对两个子链表分别排序
+将两个排序后的子链表合并
+</code></pre>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//归并排序 sort() merge()</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">sortList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sort</span>(head,<span class="literal">nullptr</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">ListNode* <span class="title">sort</span><span class="params">(ListNode* head, ListNode* tail)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head==<span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        <span class="keyword">if</span>(head-&gt;next==tail)&#123;</span><br><span class="line">            head-&gt;next = <span class="literal">nullptr</span>;<span class="comment">//只有head一个结点</span></span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//快慢指针 寻找中间位置</span></span><br><span class="line">        ListNode* slow = head, *fast = head;</span><br><span class="line">        <span class="keyword">while</span>(fast!=tail)&#123;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">            fast = fast-&gt;next;</span><br><span class="line">            <span class="keyword">if</span>(fast!=tail)</span><br><span class="line">                fast = fast-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode *mid = slow;<span class="comment">//中间结点</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">merge</span>(<span class="built_in">sort</span>(head,mid),<span class="built_in">sort</span>(mid,tail));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">ListNode* <span class="title">merge</span><span class="params">(ListNode *head1, ListNode* head2)</span></span>&#123;</span><br><span class="line">        ListNode *dummyHead = <span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">0</span>);</span><br><span class="line">        ListNode *temp = dummyHead, *t1 = head1, *t2 = head2;</span><br><span class="line">        <span class="keyword">while</span>(t1!=<span class="literal">nullptr</span> &amp;&amp; t2!=<span class="literal">nullptr</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(t1-&gt;val&lt;=t2-&gt;val)&#123;</span><br><span class="line">                temp-&gt;next = t1;</span><br><span class="line">                t1 = t1-&gt;next;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                temp-&gt;next = t2;</span><br><span class="line">                t2 = t2-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            temp = temp-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//排完之后，若t1和t2两链表不等长，则必有一个剩余，之间连在temp之后即可</span></span><br><span class="line">        <span class="keyword">if</span>(t1!=<span class="literal">nullptr</span>)</span><br><span class="line">            temp-&gt;next = t1;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(t2!=<span class="literal">nullptr</span>)</span><br><span class="line">            temp-&gt;next = t2;</span><br><span class="line">        <span class="keyword">return</span> dummyHead-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>###</strong> <strong>147 对链表进行插入排序</strong></p>
+<p>给定单个链表的头 head ，使用 <code>插入排序</code> 对链表进行排序，并返回 排序后链表的头。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">insertionSortList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//递增排序</span></span><br><span class="line">        <span class="keyword">if</span>(head==<span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        <span class="comment">//引入哑节点是为了便于在 head 节点之前插入节点</span></span><br><span class="line">        ListNode *dummyHead = <span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">0</span>);</span><br><span class="line">        dummyHead-&gt;next = head;</span><br><span class="line">		<span class="comment">/*下面这两句中*/</span></span><br><span class="line">        ListNode *lastSorted = head;<span class="comment">//有序列表中最好一个结点</span></span><br><span class="line">        ListNode *p=head-&gt;next;<span class="comment">//待插入结点  //这里忘记了 头结点没有 数值</span></span><br><span class="line">        <span class="keyword">while</span>(p)&#123;</span><br><span class="line">            <span class="comment">//Sorted-&gt;是第一个数，第一个数当然不能是dummyHead</span></span><br><span class="line">            <span class="keyword">if</span>(p-&gt;val&lt;lastSorted-&gt;val)&#123;<span class="comment">//待插结点 小于 前面，从头开始寻找插入位置</span></span><br><span class="line">                ListNode *pre = dummyHead;<span class="comment">//注意这里配合下面的 pre-&gt;next-&gt;val使用</span></span><br><span class="line">                <span class="keyword">while</span>(pre-&gt;next-&gt;val &lt;= p-&gt;val)</span><br><span class="line">                    pre = pre-&gt;next;<span class="comment">//找到前驱</span></span><br><span class="line">                lastSorted-&gt;next= p-&gt;next;</span><br><span class="line">                p-&gt;next=pre-&gt;next;</span><br><span class="line">                pre-&gt;next=p;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                lastSorted = lastSorted-&gt;next;<span class="comment">//待插结点 大于= 前面，不插入，直接将last后移 </span></span><br><span class="line">            &#125;</span><br><span class="line">            p=lastSorted-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummyHead-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+
+<script src="/js/vdonate.js"></script>
+
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://i.loli.net/2021/07/09/UNXc5a6nbWxgzru.png',
+  alipayImage: 'https://i.loli.net/2021/07/09/Sf9nJd8hkOypTar.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong>xizhi-future</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2025/12/03/十二、排序/" target="_blank" title="十二、排序">https://xizhi-future.github.io/2025/12/03/十二、排序/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3/" rel="tag">力扣</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2025/12/03/%E5%8D%81%E4%B8%80%E3%80%81%E8%B4%AA%E5%BF%83/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">十一、贪心</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E6%8E%92%E5%BA%8F"><span class="nav-number">1.</span> <span class="nav-text">十二、排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#912-%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84"><span class="nav-number">1.1.</span> <span class="nav-text">912 排序数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#704-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="nav-number">1.2.</span> <span class="nav-text">704 二分查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#34-%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE%E2%80%94%E2%80%94%E4%BA%8C%E5%88%86%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">34 在排序数组中查找元素的第一个和最后一个位置——二分法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#367-%E6%9C%89%E6%95%88%E7%9A%84%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0%E2%80%94%E2%80%94%E4%BA%8C%E5%88%86%E6%B3%95"><span class="nav-number">1.4.</span> <span class="nav-text">367 有效的完全平方数——二分法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#35-%E6%90%9C%E7%B4%A2%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE%E2%80%94%E2%80%94%E4%BA%8C%E5%88%86%E6%B3%95%E3%80%90%E6%9C%89%E5%BA%8F%E3%80%91"><span class="nav-number">1.5.</span> <span class="nav-text">35 搜索插入位置——二分法【有序】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#33-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E2%80%94%E2%80%94%E6%9C%89%E5%BA%8F-%E4%BA%8C%E5%88%86%E6%B3%95O-logn"><span class="nav-number">1.6.</span> <span class="nav-text">33 搜索旋转排序数组——有序-二分法O(logn)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#153-%E5%AF%BB%E6%89%BE%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC-%E6%9C%89%E5%BA%8F-%E4%BA%8C%E5%88%86O-logn"><span class="nav-number">1.7.</span> <span class="nav-text">153 寻找旋转排序数组中的最小值-有序-二分O(logn)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#215-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%AC%ACK%E4%B8%AA%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0%E2%80%94%E2%80%94%E5%BF%AB%E6%8E%92"><span class="nav-number">1.8.</span> <span class="nav-text">215 数组中的第K个最大元素——快排</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#148-%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8%E2%80%94%E2%80%94%E9%93%BE%E8%A1%A8%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F-%E5%8D%87%E5%BA%8F"><span class="nav-number">1.9.</span> <span class="nav-text">148 排序链表——链表归并排序-升序</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2025 忆 执 昔 来 的 旅 途 All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/essayists" class="mobile-nav-link">Essayists</a>
+  
+    <a href="/playist" class="mobile-nav-link">Playist</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            忆 执 昔 来 的 旅 途
+          </div>
+          <div class="panel-body">
+            Copyright © 2025 xizhi-future All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>

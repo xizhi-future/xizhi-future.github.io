@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>三、栈和队列 | 忆 执 昔 来 的 旅 途</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="数据结构力扣" />
+  
+  
+  
+  
+  <meta name="description" content="三、栈和队列1234567数字转字符串：to_string()字符串转数字：stoi()、stol()、stof()、stod()等等大顶堆（降序）    priority_queue&lt;int&gt; big_heap;       priority_queue&lt;int,vector&lt;int&gt;,less&lt;int&gt;&gt; big_heap2;   小顶堆（升序）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="三、栈和队列">
+<meta property="og:url" content="https://xizhi-future.github.io/2025/12/03/%E4%B8%89%E3%80%81%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/index.html">
+<meta property="og:site_name" content="忆 执 昔 来 的 旅 途">
+<meta property="og:description" content="三、栈和队列1234567数字转字符串：to_string()字符串转数字：stoi()、stol()、stof()、stod()等等大顶堆（降序）    priority_queue&lt;int&gt; big_heap;       priority_queue&lt;int,vector&lt;int&gt;,less&lt;int&gt;&gt; big_heap2;   小顶堆（升序）">
+<meta property="og:locale">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/378f7a45e94d421593d273882dea54a2.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/6c455fcdc8b24812ab49bff1d6e3d23a.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d141be2108164ed4a2971409ad35bda0.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/0f62d3276e7a4aa38e8080d1bf246b29.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/bf0277dca0924427aaede3eb9705080c.png">
+<meta property="article:published_time" content="2025-12-03T06:11:10.000Z">
+<meta property="article:modified_time" content="2025-12-03T06:11:29.218Z">
+<meta property="article:author" content="xizhi-future">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="力扣">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/378f7a45e94d421593d273882dea54a2.png">
+  
+    <link rel="alternate" href="/atom.xml" title="忆 执 昔 来 的 旅 途" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="/js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/essayists">随笔</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/playist">音乐</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-三、栈和队列" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      三、栈和队列
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2025/12/03/%E4%B8%89%E3%80%81%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/" class="article-date">
+	  <time datetime="2025-12-03T06:11:10.000Z" itemprop="datePublished">2025-12-03</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98/">力扣刷题</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="三、栈和队列"><a href="#三、栈和队列" class="headerlink" title="三、栈和队列"></a>三、栈和队列</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">数字转字符串：<span class="built_in">to_string</span>()</span><br><span class="line">字符串转数字：<span class="built_in">stoi</span>()、<span class="built_in">stol</span>()、<span class="built_in">stof</span>()、<span class="built_in">stod</span>()等等</span><br><span class="line">大顶堆（降序）</span><br><span class="line">    priority_queue&lt;<span class="keyword">int</span>&gt; big_heap;   </span><br><span class="line">    priority_queue&lt;<span class="keyword">int</span>,vector&lt;<span class="keyword">int</span>&gt;,less&lt;<span class="keyword">int</span>&gt;&gt; big_heap2;   </span><br><span class="line">小顶堆（升序）</span><br><span class="line">    priority_queue&lt;<span class="keyword">int</span>,vector&lt;<span class="keyword">int</span>&gt;,greater&lt;<span class="keyword">int</span>&gt;&gt; small_heap;   </span><br></pre></td></tr></table></figure>
+<h3 id="232-用栈实现队列"><a href="#232-用栈实现队列" class="headerlink" title="232 用栈实现队列"></a>232 用栈实现队列</h3><p>仅使用两个栈实现先入先出队列。队列应当支持一般队列支持的所有操作（push、pop、peek、empty）：</p>
+<p>实现 MyQueue 类：</p>
+<pre><code>void push(int x) 将元素 x 推到队列的末尾
+int pop() 从队列的开头移除并返回元素
+int peek() 返回队列开头的元素
+boolean empty() 如果队列为空，返回 true ；否则，返回 false
+</code></pre>
+<p>只能使用标准的栈操作 —— 也就是只有 push to top, peek/pop from top, size, 和 is empty 操作是合法的。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    在push数据的时候，只要数据放进输入栈就好，但在pop的时候，操作就复杂一些，输出栈如果为空，就把进栈数据全部导入进来（注意是全部导入），再从出栈弹出数据，如果输出栈不为空，则直接从出栈弹出数据就可以了。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    最后如何判断队列为空呢？如果进栈和出栈都为空的话，说明模拟的队列为空了</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyQueue</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    stack&lt;<span class="keyword">int</span>&gt; inStack,outStack;<span class="comment">//两个栈，输入栈 和 输出栈</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">in2out</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(!inStack.<span class="built_in">empty</span>())&#123;</span><br><span class="line">            outStack.<span class="built_in">push</span>(inStack.<span class="built_in">top</span>());<span class="comment">//inStack不为空的话，传给outStack</span></span><br><span class="line">            <span class="comment">//输入栈不为空的话，全输出至 输出栈，此时如果输出栈输出，则是按照队列的顺序输出</span></span><br><span class="line">            inStack.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">    <span class="built_in">MyQueue</span>() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        inStack.<span class="built_in">push</span>(x);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(outStack.<span class="built_in">empty</span>())&#123;</span><br><span class="line">            <span class="built_in">in2out</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> x = outStack.<span class="built_in">top</span>();</span><br><span class="line">        outStack.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">peek</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(outStack.<span class="built_in">empty</span>())&#123;</span><br><span class="line">            <span class="built_in">in2out</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> outStack.<span class="built_in">top</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> inStack.<span class="built_in">empty</span>() &amp;&amp; outStack.<span class="built_in">empty</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span>* stk;</span><br><span class="line">    <span class="keyword">int</span> stkSize;</span><br><span class="line">    <span class="keyword">int</span> stkCapacity;</span><br><span class="line">&#125; Stack;</span><br><span class="line"></span><br><span class="line"><span class="function">Stack* <span class="title">stackCreate</span><span class="params">(<span class="keyword">int</span> cpacity)</span> </span>&#123;</span><br><span class="line">    Stack* ret = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Stack));</span><br><span class="line">    ret-&gt;stk = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>) * cpacity);</span><br><span class="line">    ret-&gt;stkSize = <span class="number">0</span>;</span><br><span class="line">    ret-&gt;stkCapacity = cpacity;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">stackPush</span><span class="params">(Stack* obj, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    obj-&gt;stk[obj-&gt;stkSize++] = x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">stackPop</span><span class="params">(Stack* obj)</span> </span>&#123;</span><br><span class="line">    obj-&gt;stkSize--;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">stackTop</span><span class="params">(Stack* obj)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> obj-&gt;stk[obj-&gt;stkSize - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">stackEmpty</span><span class="params">(Stack* obj)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> obj-&gt;stkSize == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">stackFree</span><span class="params">(Stack* obj)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">free</span>(obj-&gt;stk);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    Stack* inStack;</span><br><span class="line">    Stack* outStack;</span><br><span class="line">&#125; MyQueue;</span><br><span class="line"></span><br><span class="line"><span class="function">MyQueue* <span class="title">myQueueCreate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    MyQueue* ret = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(MyQueue));</span><br><span class="line">    ret-&gt;inStack = stackCreate(<span class="number">100</span>);</span><br><span class="line">    ret-&gt;outStack = stackCreate(<span class="number">100</span>);</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">in2out</span><span class="params">(MyQueue* obj)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (!stackEmpty(obj-&gt;inStack)) &#123;</span><br><span class="line">        stackPush(obj-&gt;outStack, stackTop(obj-&gt;inStack));</span><br><span class="line">        stackPop(obj-&gt;inStack);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myQueuePush</span><span class="params">(MyQueue* obj, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    stackPush(obj-&gt;inStack, x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">myQueuePop</span><span class="params">(MyQueue* obj)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (stackEmpty(obj-&gt;outStack)) &#123;</span><br><span class="line">        in2out(obj);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> x = stackTop(obj-&gt;outStack);</span><br><span class="line">    stackPop(obj-&gt;outStack);</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">myQueuePeek</span><span class="params">(MyQueue* obj)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (stackEmpty(obj-&gt;outStack)) &#123;</span><br><span class="line">        in2out(obj);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> stackTop(obj-&gt;outStack);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">myQueueEmpty</span><span class="params">(MyQueue* obj)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> stackEmpty(obj-&gt;inStack) &amp;&amp; stackEmpty(obj-&gt;outStack);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myQueueFree</span><span class="params">(MyQueue* obj)</span> </span>&#123;</span><br><span class="line">    stackFree(obj-&gt;inStack);</span><br><span class="line">    stackFree(obj-&gt;outStack);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="225-用队列实现栈"><a href="#225-用队列实现栈" class="headerlink" title="225 用队列实现栈"></a>225 用队列实现栈</h3><p>仅使用两个队列实现一个后入先出（LIFO）的栈，并支持普通栈的全部四种操作（push、top、pop 和 empty）。</p>
+<p>实现 MyStack 类：</p>
+<pre><code>void push(int x) 将元素 x 压入栈顶。
+int pop() 移除并返回栈顶元素。
+int top() 返回栈顶元素。
+boolean empty() 如果栈是空的，返回 true ；否则，返回 false 。
+</code></pre>
+<ul>
+<li>你只能使用队列的基本操作 —— 也就是 push to back、peek/pop from front、size 和 is empty 这些操作。</li>
+</ul>
+<p><strong>法一：两个队列，其中一个用于 作备份使用</strong></p>
+<p><strong>分析：</strong></p>
+<ul>
+<li>队列是先进先出的规则，把一个队列中的数据导入另一个队列中，数据的顺序并没有变，并没有变成先进后出的顺序。</li>
+<li>但是依然还是要用两个队列来模拟栈，只不过没有输入和输出的关系，而是<strong>另一个队列完全用来备份的</strong>！</li>
+<li>用两个队列que1和que2实现队列的功能，que2其实完全就是一个备份的作用，把que1<strong>最后面的元素</strong>(准备输出)以外的元素都备份到que2，然后弹出最后面的元素，再把其他元素从que2导回que1。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  【两个队列】</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyStack</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    queue&lt;<span class="keyword">int</span>&gt; que1;</span><br><span class="line">    queue&lt;<span class="keyword">int</span>&gt; que2;<span class="comment">//备份</span></span><br><span class="line">    <span class="built_in">MyStack</span>()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        que1.<span class="built_in">push</span>(x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = que1.<span class="built_in">size</span>()<span class="number">-1</span>;<span class="comment">//留下一个元素在que1中，需要输出的元素</span></span><br><span class="line">        <span class="keyword">while</span>(len)&#123;<span class="comment">//备份至que2 </span></span><br><span class="line">            que2.<span class="built_in">push</span>(que1.<span class="built_in">front</span>());</span><br><span class="line">            que1.<span class="built_in">pop</span>();</span><br><span class="line">            len--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> res = que1.<span class="built_in">front</span>();</span><br><span class="line">        que1.<span class="built_in">pop</span>();</span><br><span class="line">        que1 = que2;<span class="comment">//还原</span></span><br><span class="line">        <span class="keyword">while</span>(!que2.<span class="built_in">empty</span>())</span><br><span class="line">            que2.<span class="built_in">pop</span>();<span class="comment">//清空本轮 备份队列 que2</span></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">top</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> que1.<span class="built_in">back</span>();<span class="comment">//栈 的top就是 队列 的 最后一个元素 back</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> que1.<span class="built_in">empty</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    【一个队列】：一个队列在模拟栈弹出元素的时候只要将队列头部的元素（除了最后一个元素外）重新添加到队列尾部，此时再去弹出元素就是栈的顺序了</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyStack</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    queue&lt;<span class="keyword">int</span>&gt; que;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">MyStack</span>()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        que.<span class="built_in">push</span>(x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = que.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(len)&#123;</span><br><span class="line">            que.<span class="built_in">push</span>(que.<span class="built_in">front</span>());</span><br><span class="line">            que.<span class="built_in">pop</span>();</span><br><span class="line">            len--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> res = que.<span class="built_in">front</span>();</span><br><span class="line">        que.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">top</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> que.<span class="built_in">back</span>();<span class="comment">//栈 的top就是 队列 的 最后一个元素 back</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> que.<span class="built_in">empty</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="155-最小栈"><a href="#155-最小栈" class="headerlink" title="155 最小栈"></a>155 最小栈</h3>设计一个支持 push ，pop ，top 操作<br>【在常数时间内检索到最小元素的栈】</li>
+</ul>
+<p>实现 MinStack 类:</p>
+<pre><code>MinStack() 初始化堆栈对象。
+void push(int val) 将元素val推入堆栈。
+void pop() 删除堆栈顶部的元素。
+int top() 获取堆栈顶部的元素。
+int getMin() 获取堆栈中的最小元素。
+</code></pre>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    辅助栈</span></span><br><span class="line"><span class="comment">按照上面的思路，我们只需要设计一个数据结构，使得每个元素 a 与其相应的最小值 m 时刻保持一一对应。因此我们可以使用一个辅助栈，与元素栈同步插入与删除，用于【存储与每个元素对应的最小值】。</span></span><br><span class="line"><span class="comment">    当一个元素要入栈时，我们取当前辅助栈的栈顶存储的最小值，与当前元素比较得出最小值，将这个最小值插入辅助栈中；</span></span><br><span class="line"><span class="comment">    当一个元素要出栈时，我们把辅助栈的栈顶元素也一并弹出；</span></span><br><span class="line"><span class="comment">    【任意一个时刻，栈内元素的最小值就存储在辅助栈的栈顶元素中】</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinStack</span> &#123;</span></span><br><span class="line">    stack&lt;<span class="keyword">int</span>&gt; x_stack;</span><br><span class="line">    stack&lt;<span class="keyword">int</span>&gt; min_stack;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">MinStack</span>() &#123;</span><br><span class="line">        min_stack.<span class="built_in">push</span>(INT_MAX);<span class="comment">//初始为最大值</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        x_stack.<span class="built_in">push</span>(val);</span><br><span class="line">        min_stack.<span class="built_in">push</span>(<span class="built_in">min</span>(min_stack.<span class="built_in">top</span>(),val));<span class="comment">//重点，将当前栈中最小的元素存于min_stack栈中</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        x_stack.<span class="built_in">pop</span>();</span><br><span class="line">        min_stack.<span class="built_in">pop</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x_stack.<span class="built_in">top</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getMin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> min_stack.<span class="built_in">top</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="20-有效的括号"><a href="#20-有效的括号" class="headerlink" title="20 有效的括号"></a>20 有效的括号</h3><p>给定一个只包括 ‘(‘，’)’，’{‘，’}’，’[‘，’]’ 的字符串 s ，判断字符串是否有效。</p>
+<p>有效字符串需满足：</p>
+<pre><code>左括号必须用相同类型的右括号闭合。
+左括号必须以正确的顺序闭合。
+每个右括号都有一个对应的相同类型的左括号。
+</code></pre>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//unordered_map&lt;char,char&gt; pairs=&#123;&#125;;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isValid</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span>(n%<span class="number">2</span>==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;<span class="comment">//如果长度是奇数，则一定不闭合</span></span><br><span class="line">        &#125;</span><br><span class="line">        unordered_map&lt;<span class="keyword">char</span>,<span class="keyword">char</span>&gt; pairs=&#123;</span><br><span class="line">            &#123;<span class="string">&#x27;)&#x27;</span>,<span class="string">&#x27;(&#x27;</span>&#125;,<span class="comment">//key value</span></span><br><span class="line">            &#123;<span class="string">&#x27;]&#x27;</span>,<span class="string">&#x27;[&#x27;</span>&#125;,</span><br><span class="line">            &#123;<span class="string">&#x27;&#125;&#x27;</span>,<span class="string">&#x27;&#123;&#x27;</span>&#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        stack&lt;<span class="keyword">int</span>&gt; stk;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">char</span> ch:s)&#123;</span><br><span class="line">            <span class="keyword">if</span>(pairs.<span class="built_in">count</span>(ch))&#123;<span class="comment">//如果栈顶是右括号，则查找匹配</span></span><br><span class="line">                <span class="keyword">if</span>(stk.<span class="built_in">empty</span>() || stk.<span class="built_in">top</span>() != pairs[ch])<span class="comment">//不匹配</span></span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                stk.<span class="built_in">pop</span>();<span class="comment">//匹配，弹出</span></span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;<span class="comment">//如果 栈顶左括号，直接入栈</span></span><br><span class="line">                stk.<span class="built_in">push</span>(ch);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> stk.<span class="built_in">empty</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="1047-删除字符串中的所有相邻重复项"><a href="#1047-删除字符串中的所有相邻重复项" class="headerlink" title="1047 删除字符串中的所有相邻重复项"></a>1047 删除字符串中的所有相邻重复项</h3><p>给出由小写字母组成的字符串 S，重复项删除操作会选择两个相邻且相同的字母，并删除它们。<br>在 S 上<strong>反复执行</strong>重复项删除操作，直到无法继续删除。<br><strong>注意：消除之后又有新的元素可能挨在一起</strong><br>在完成所有重复项删除操作后返回最终的字符串。答案保证唯一。</p>
+<p>示例：<br>输入：”abbaca”<br>输出：”ca”</p>
+<p><strong>分析：</strong><br>本题要删除相邻相同元素，相对于<code>20. 有效的括号</code>来说其实也是匹配问题，之前是匹配左右括号，本题是<strong>匹配相邻元素</strong>，最后都是做消除的操作。<br>栈的目的，就是存放遍历过的元素，当遍历当前的这个元素的时候，去栈里看一下我们是不是遍历过相同数值的相邻元素。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    栈：push()  pop()</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">removeDuplicates</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        stack&lt;<span class="keyword">char</span>&gt; stk;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">char</span> c:s)&#123;</span><br><span class="line">            <span class="keyword">if</span>(stk.<span class="built_in">empty</span>() || stk.<span class="built_in">top</span>()!=c)</span><br><span class="line">                stk.<span class="built_in">push</span>(c);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                stk.<span class="built_in">pop</span>();<span class="comment">//当前遍历元素 等于 栈顶部元素，则需要消除</span></span><br><span class="line">        &#125;</span><br><span class="line">        string res = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">while</span>(!stk.<span class="built_in">empty</span>())&#123;</span><br><span class="line">            res += stk.<span class="built_in">top</span>();</span><br><span class="line">            stk.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">reverse</span>(res.<span class="built_in">begin</span>(),res.<span class="built_in">end</span>());<span class="comment">//逆序一下</span></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    直接使用字符串的 push_back() 和 pop_back()</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">removeDuplicates</span><span class="params">(string S)</span> </span>&#123;</span><br><span class="line">        string result;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">char</span> s : S) &#123;</span><br><span class="line">            <span class="keyword">if</span>(result.<span class="built_in">empty</span>() || result.<span class="built_in">back</span>()!=s) &#123;</span><br><span class="line">                result.<span class="built_in">push_back</span>(s);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                result.<span class="built_in">pop_back</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="150-逆波兰表达式求值"><a href="#150-逆波兰表达式求值" class="headerlink" title="150 逆波兰表达式求值"></a>150 逆波兰表达式求值</h3><p>给你一个字符串数组 tokens ，表示一个根据 逆波兰表示法 表示的算术表达式。<br>计算该表达式。返回一个表示表达式值的整数。<br><strong>【后缀表达式】对计算机来说是非常友好的</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    只用一个栈：存操作数</span></span><br><span class="line"><span class="comment">    只用按照正常的顺序遍历，当遇到符号时就 弹出数字栈的两个元素进行操作即可</span></span><br><span class="line"><span class="comment">    tokens = [&quot;2&quot;,&quot;1&quot;,&quot;+&quot;,&quot;3&quot;,&quot;*&quot;]</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">evalRPN</span><span class="params">(vector&lt;string&gt;&amp; tokens)</span> </span>&#123;</span><br><span class="line">        stack&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; stk_nums;<span class="comment">//注意：long long</span></span><br><span class="line">        <span class="comment">//数字转字符串：to_string()</span></span><br><span class="line">        <span class="comment">//字符串转数字：stoi()、stol()、stof()、stod()等等</span></span><br><span class="line">        <span class="keyword">for</span>(string c:tokens)&#123;</span><br><span class="line">            <span class="keyword">if</span>(c==<span class="string">&quot;+&quot;</span> || c==<span class="string">&quot;-&quot;</span> || c==<span class="string">&quot;*&quot;</span> || c==<span class="string">&quot;/&quot;</span>)&#123;</span><br><span class="line">                <span class="keyword">long</span> <span class="keyword">long</span> a = stk_nums.<span class="built_in">top</span>();</span><br><span class="line">                stk_nums.<span class="built_in">pop</span>();</span><br><span class="line">                <span class="keyword">long</span> <span class="keyword">long</span> b = stk_nums.<span class="built_in">top</span>();</span><br><span class="line">                stk_nums.<span class="built_in">pop</span>();</span><br><span class="line">                <span class="keyword">long</span> <span class="keyword">long</span> res;</span><br><span class="line">                <span class="built_in"><span class="keyword">switch</span></span>(c[<span class="number">0</span>])&#123;</span><br><span class="line">                    <span class="keyword">case</span> <span class="string">&#x27;*&#x27;</span>:</span><br><span class="line">                        res = b * a;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">case</span> <span class="string">&#x27;/&#x27;</span>:</span><br><span class="line">                        res = b / a;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">case</span> <span class="string">&#x27;+&#x27;</span>:</span><br><span class="line">                        res = b + a;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">case</span> <span class="string">&#x27;-&#x27;</span>:</span><br><span class="line">                        res = b - a;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">default</span>:</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                stk_nums.<span class="built_in">push</span>(res);<span class="comment">//结果入栈</span></span><br><span class="line">            &#125;<span class="keyword">else</span></span><br><span class="line">                stk_nums.<span class="built_in">push</span>(<span class="built_in">stoll</span>(c));<span class="comment">//入数字</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> stk_nums.<span class="built_in">top</span>();<span class="comment">//最终结果在栈顶</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="239-滑动窗口最大值——（deque双端队列【自定义-单调队列】-priority-queue大顶堆）"><a href="#239-滑动窗口最大值——（deque双端队列【自定义-单调队列】-priority-queue大顶堆）" class="headerlink" title="239 滑动窗口最大值——（deque双端队列【自定义 单调队列】/priority_queue大顶堆）"></a>239 滑动窗口最大值——（deque双端队列【自定义 单调队列】/priority_queue大顶堆）</h3><p>给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。<br>滑动窗口每次只向右移动一位，返回【滑动窗口中的最大值】。<br><img src="https://img-blog.csdnimg.cn/378f7a45e94d421593d273882dea54a2.png"><br><strong>法一：priority_queue&lt;pair&lt;int,int&gt;&gt; q;</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">maxSlidingWindow</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        priority_queue&lt;pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;&gt; q;<span class="comment">//值，下标</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;k;i++)<span class="comment">//前 k 个元素放入优先队列</span></span><br><span class="line">            q.<span class="built_in">emplace</span>(nums[i],i);<span class="comment">//入大根堆</span></span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; res = &#123;q.<span class="built_in">top</span>().first&#125;;<span class="comment">//前三个元素的最大值已存入</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=k;i&lt;n;i++)&#123;</span><br><span class="line">            q.<span class="built_in">emplace</span>(nums[i],i);</span><br><span class="line">            <span class="keyword">while</span>(q.<span class="built_in">top</span>().second &lt;= i-k)</span><br><span class="line">                q.<span class="built_in">pop</span>();</span><br><span class="line">            res.<span class="built_in">push_back</span>(q.<span class="built_in">top</span>().first);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>法二：使用deque实现 自定义的单调队列</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">MyQueue</span> &#123;</span> <span class="comment">//单调队列（从大到小）</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        deque&lt;<span class="keyword">int</span>&gt; que; <span class="comment">// 使用deque来实现单调队列</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">pop</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (!que.<span class="built_in">empty</span>() &amp;&amp; value == que.<span class="built_in">front</span>()) &#123;<span class="comment">//出口值 即 最大值</span></span><br><span class="line">                que.<span class="built_in">pop_front</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// push：存 最大值</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">while</span> (!que.<span class="built_in">empty</span>() &amp;&amp; value&gt;que.<span class="built_in">back</span>())&#123;</span><br><span class="line">                que.<span class="built_in">pop_back</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            que.<span class="built_in">push_back</span>(value);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 查询当前队列里的最大值</span></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">front</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> que.<span class="built_in">front</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">maxSlidingWindow</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        MyQueue que;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; result;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;k; i++) &#123; <span class="comment">// 先将前k的元素放进队列</span></span><br><span class="line">            que.<span class="built_in">push</span>(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//最大值在 front处</span></span><br><span class="line">        result.<span class="built_in">push_back</span>(que.<span class="built_in">front</span>()); <span class="comment">// result记录前k的元素的最大值</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=k; i&lt;nums.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            que.<span class="built_in">pop</span>(nums[i-k]); <span class="comment">// 滑动窗口移除最前面元素</span></span><br><span class="line">            que.<span class="built_in">push</span>(nums[i]); <span class="comment">// 滑动窗口前加入最后面的元素</span></span><br><span class="line">            result.<span class="built_in">push_back</span>(que.<span class="built_in">front</span>()); <span class="comment">// 记录对应的最大值</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="347-前-K-个高频元素——小顶堆-大顶堆（用到了-priority-queue【定义-小顶堆】）"><a href="#347-前-K-个高频元素——小顶堆-大顶堆（用到了-priority-queue【定义-小顶堆】）" class="headerlink" title="347 前 K 个高频元素——小顶堆/大顶堆（用到了 priority_queue【定义-小顶堆】）"></a>347 前 K 个高频元素——小顶堆/大顶堆（用到了 priority_queue【定义-小顶堆】）</h3><p>给你一个整数数组 nums 和一个整数 k ，请你返回其中 <strong>出现频率</strong> <strong>前k高的元素</strong>。你可以按 任意顺序 返回答案。<br>示例 1:<br>输入: nums = [1,1,1,2,2,3], k = 2<br>输出: [1,2]</p>
+<p><strong>只用维护 k 个元素的集合（按照频率排序）——&gt; 大顶堆、小顶堆</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*  </span></span><br><span class="line"><span class="comment">    type：数据类型；</span></span><br><span class="line"><span class="comment">    container：实现优先队列的底层容器；</span></span><br><span class="line"><span class="comment">    function：元素之间的比较方式；</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 新规则：小顶堆 return lhs.second &gt; rhs.second;</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">mycomparison</span> &#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">const</span> pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&amp; lhs, <span class="keyword">const</span> pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&amp; rhs)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> lhs.second &gt; rhs.second;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">topKFrequent</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 要统计元素出现频率</span></span><br><span class="line">        unordered_map&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; map;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            map[nums[i]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 对频率排序</span></span><br><span class="line">        <span class="comment">// 定义一个小顶堆，大小为k</span></span><br><span class="line">        priority_queue&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;, vector&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;, mycomparison&gt; pri_que;</span><br><span class="line">        <span class="comment">// 用固定大小为k的小顶堆，扫面所有频率的数值</span></span><br><span class="line">        <span class="keyword">for</span> (unordered_map&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;::iterator it = map.<span class="built_in">begin</span>(); it != map.<span class="built_in">end</span>(); it++) &#123;</span><br><span class="line">            pri_que.<span class="built_in">push</span>(*it);</span><br><span class="line">            <span class="keyword">if</span> (pri_que.<span class="built_in">size</span>() &gt; k) &#123; <span class="comment">// 如果堆的大小大于了K，则队列弹出，保证堆的大小一直为k</span></span><br><span class="line">                pri_que.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 找出前K个高频元素，因为小顶堆先弹出的是最小的，所以倒序来输出到数组</span></span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">result</span><span class="params">(k)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=k<span class="number">-1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</span><br><span class="line">            result[i] = pri_que.<span class="built_in">top</span>().first;</span><br><span class="line">            pri_que.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="496-下一个更大元素-I——线性数组"><a href="#496-下一个更大元素-I——线性数组" class="headerlink" title="496 下一个更大元素 I——线性数组"></a>496 下一个更大元素 I——线性数组</h3><p>nums1 中数字 x 的 下一个更大元素 是指 x 在 nums2 中【对应位置右侧】的【第一个】【比 x 大的元素】。</p>
+<p>给你两个 没有重复元素 的数组 nums1 和 nums2 ，下标从 0 开始计数，其中nums1 是 nums2 的子集。</p>
+<p>对于每个 0 &lt;= i &lt; nums1.length ，找出满足 nums1[i] == nums2[j] 的下标 j ，并且在 nums2 确定 nums2[j] 的 下一个更大元素 。如果不存在下一个更大元素，那么本次查询的答案是 -1 。</p>
+<p>返回一个长度为 nums1.length 的数组 ans 作为答案，满足 ans[i] 是如上所述的 下一个更大元素 。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    暴力 O(mn)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">nextGreaterElement</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums1, vector&lt;<span class="keyword">int</span>&gt;&amp; nums2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> m = nums1.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> n = nums2.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">res</span><span class="params">(m)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> j=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span>(j&lt;n &amp;&amp; nums2[j] != nums1[i])&#123;</span><br><span class="line">                j++;<span class="comment">//寻找 nums2中 值和nums1[i]相等的 下标</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> k=j+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span>(k&lt;n &amp;&amp; nums2[k] &lt; nums1[i])&#123;</span><br><span class="line">                k++;</span><br><span class="line">            &#125;</span><br><span class="line">            res[i] = k&lt;n? nums2[k]:<span class="number">-1</span>;<span class="comment">//k!=n</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    单调栈+哈希表O(m+n) </span></span><br><span class="line"><span class="comment">    unordered_map&lt;int,int&gt; hashmap;</span></span><br><span class="line"><span class="comment">    返回：值，值</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">nextGreaterElement</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums1, vector&lt;<span class="keyword">int</span>&gt;&amp; nums2)</span> </span>&#123;</span><br><span class="line">        unordered_map&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; hashmap;</span><br><span class="line">        stack&lt;<span class="keyword">int</span>&gt; stk;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=nums2.<span class="built_in">size</span>()<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;<span class="comment">//倒叙遍历nums2</span></span><br><span class="line">            <span class="keyword">int</span> num = nums2[i];</span><br><span class="line">            <span class="keyword">while</span>(!stk.<span class="built_in">empty</span>() &amp;&amp; num&gt;=stk.<span class="built_in">top</span>())&#123;<span class="comment">//当前元素大于 栈顶元素</span></span><br><span class="line">                stk.<span class="built_in">pop</span>();<span class="comment">//弹出 栈中比当前元素小的 元素</span></span><br><span class="line">            &#125;</span><br><span class="line">            hashmap[num] = stk.<span class="built_in">empty</span>()?<span class="number">-1</span>:stk.<span class="built_in">top</span>();<span class="comment">//将每个元素对应的 最大元素存于哈希表中</span></span><br><span class="line">            stk.<span class="built_in">push</span>(num);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">res</span><span class="params">(nums1.size())</span></span>;<span class="comment">//结果存放</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums1.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">            res[i] = hashmap[nums1[i]];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="503-下一个更大元素-II——循环数组"><a href="#503-下一个更大元素-II——循环数组" class="headerlink" title="503 下一个更大元素 II——循环数组"></a>503 下一个更大元素 II——循环数组</h3><p><strong>循环搜寻</strong><br>给定一个循环数组 nums（nums[nums.length-1] 的下一个元素是 nums[0] ），返回 nums 中每个元素的 下一个更大元素 。<br>数字 x 的 下一个更大的元素 是按数组遍历顺序，这个数字之后的第一个比它更大的数，这意味着你应该循环地搜索它的下一个更大的数。如果不存在，则输出 -1 。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    单调栈 + 循环数组O(n)</span></span><br><span class="line"><span class="comment">    返回：值，下标</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">nextGreaterElements</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n=nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">ret</span><span class="params">(n,<span class="number">-1</span>)</span></span>;</span><br><span class="line">        stack&lt;<span class="keyword">int</span>&gt; stk;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n*<span class="number">2</span><span class="number">-1</span>;i++)&#123;<span class="comment">//遍历两遍</span></span><br><span class="line">            <span class="keyword">while</span>(!stk.<span class="built_in">empty</span>() &amp;&amp; nums[stk.<span class="built_in">top</span>()]&lt;nums[i%n])&#123;</span><br><span class="line">                ret[stk.<span class="built_in">top</span>()] = nums[i%n];</span><br><span class="line">                stk.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            stk.<span class="built_in">push</span>(i%n);<span class="comment">//栈中存放的是 下标</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="480-滑动窗口中位数"><a href="#480-滑动窗口中位数" class="headerlink" title="480 滑动窗口中位数"></a>480 滑动窗口中位数</h3><p>【<strong>中位数</strong>】：是【有序序列】【最中间】的那个数。<br>如果序列的长度是偶数，则没有最中间的数；此时中位数是最中间的两个数的平均数。</p>
+<pre><code>[2,3,4]，中位数是 3
+[2,3]，中位数是 (2 + 3) / 2 = 2.5
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/6c455fcdc8b24812ab49bff1d6e3d23a.png"><br><strong>动态维护数组的中位数</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    priority_queue&lt;<span class="keyword">int</span>&gt; small;</span><br><span class="line">    priority_queue&lt;<span class="keyword">int</span>, vector&lt;<span class="keyword">int</span>&gt;, greater&lt;<span class="keyword">int</span>&gt; &gt; big;</span><br><span class="line">    unordered_map&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; mp;</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span>&amp; k)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(k%<span class="number">2</span>) <span class="keyword">return</span> small.<span class="built_in">top</span>();</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in"><span class="keyword">return</span></span> ((<span class="keyword">long</span> <span class="keyword">long</span>)small.<span class="built_in">top</span>()+big.<span class="built_in">top</span>())*<span class="number">0.5</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">double</span>&gt; <span class="title">medianSlidingWindow</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++)&#123;small.<span class="built_in">push</span>(nums[i]);&#125;;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k / <span class="number">2</span>; i++)&#123;big.<span class="built_in">push</span>(small.<span class="built_in">top</span>()); small.<span class="built_in">pop</span>();&#125;</span><br><span class="line">        vector&lt;<span class="keyword">double</span>&gt; ans&#123;<span class="built_in">get</span>(k)&#125;;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = k; i &lt; nums.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> balance = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">int</span> l = nums[i-k];</span><br><span class="line">            mp[l]++;</span><br><span class="line">            <span class="keyword">if</span>(!small.<span class="built_in">empty</span>() &amp;&amp; l&lt;=small.<span class="built_in">top</span>())&#123;balance--;&#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;balance++;&#125;</span><br><span class="line">            <span class="keyword">if</span>(!small.<span class="built_in">empty</span>() &amp;&amp; nums[i] &lt;= small.<span class="built_in">top</span>())&#123;</span><br><span class="line">                small.<span class="built_in">push</span>(nums[i]);</span><br><span class="line">                balance++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                big.<span class="built_in">push</span>(nums[i]);</span><br><span class="line">                balance--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(balance&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                big.<span class="built_in">push</span>(small.<span class="built_in">top</span>());</span><br><span class="line">                small.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(balance&lt;<span class="number">0</span>)&#123;</span><br><span class="line">                small.<span class="built_in">push</span>(big.<span class="built_in">top</span>());</span><br><span class="line">                big.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span>(!small.<span class="built_in">empty</span>() &amp;&amp; mp[small.<span class="built_in">top</span>()]&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                mp[small.<span class="built_in">top</span>()]--;</span><br><span class="line">                small.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span>(!big.<span class="built_in">empty</span>() &amp;&amp; mp[big.<span class="built_in">top</span>()]&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                mp[big.<span class="built_in">top</span>()]--;</span><br><span class="line">                big.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            ans.<span class="built_in">push_back</span>(<span class="built_in">get</span>(k));</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="739-每日温度"><a href="#739-每日温度" class="headerlink" title="739 每日温度"></a>739 每日温度</h3><p>给定一个整数数组 temperatures ，表示每天的温度，返回一个数组 answer ，其中 answer[i] 是指对于第 i 天，下一个更高温度出现在<strong>几天后</strong>【返回距离】。如果气温在这之后都不会升高，请在该位置用 0 来代替。<br>示例 1:<br>输入: temperatures = [73,74,75,71,69,72,76,73]<br>输出: [1,1,4,2,1,1,0,0]</p>
+<p><strong>【单调栈】：</strong><br><strong>找到某元素左边 和 右边 第一个比它 大或小的元素。</strong></p>
+<ul>
+<li>求右边|左边 最近 【最大】的元素：递增栈</li>
+<li>求右边|左边 最近 【最小】的元素：递减栈<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    单调栈：存下标、递增    小------&gt;大</span></span><br><span class="line"><span class="comment">    记录之前遍历过的元素，与当前元素作个对比</span></span><br><span class="line"><span class="comment">    当遍历到当前元素时t[i]</span></span><br><span class="line"><span class="comment">    if(t[i]&gt;stk.top())//对于下标是stk.top()的元素来说，已经找到了元素t[i]比它大了，则进行装入结果集</span></span><br><span class="line"><span class="comment">    &#123;   res[stk.top()]=i-stk.top();</span></span><br><span class="line"><span class="comment">        stk.pop();&#125;//应该弹出，因为该栈顶元素已经有了结果了，为了保证单调栈是递增的！</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">dailyTemperatures</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = t.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span>(n==<span class="number">1</span>) <span class="keyword">return</span> &#123;<span class="number">0</span>&#125;;</span><br><span class="line">        stack&lt;<span class="keyword">int</span>&gt; stk;<span class="comment">//单调递增栈：记录下标</span></span><br><span class="line">        stk.<span class="built_in">push</span>(<span class="number">0</span>);<span class="comment">//装入下标0</span></span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">res</span><span class="params">(n,<span class="number">0</span>)</span></span>;<span class="comment">//这里直接初始化0，后面不用再写</span></span><br><span class="line">        <span class="keyword">while</span>(i&lt;n)&#123;</span><br><span class="line">            <span class="keyword">while</span>(!stk.<span class="built_in">empty</span>() &amp;&amp; t[i]&gt;t[stk.<span class="built_in">top</span>()])&#123;<span class="comment">//注意判断顺序！ 并且 是while</span></span><br><span class="line">                res[stk.<span class="built_in">top</span>()] = i-stk.<span class="built_in">top</span>();<span class="comment">//距离集</span></span><br><span class="line">                stk.<span class="built_in">pop</span>();<span class="comment">//弹出</span></span><br><span class="line">            &#125;</span><br><span class="line">            stk.<span class="built_in">push</span>(i);<span class="comment">//装入</span></span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        while(!stk.empty())&#123;//最后还在栈中的 下标元素 说明找不到下一个比它大的元素</span></span><br><span class="line"><span class="comment">            res[stk.top()] = 0;</span></span><br><span class="line"><span class="comment">            stk.pop();//弹出</span></span><br><span class="line"><span class="comment">        &#125;*/</span></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="42-接雨水"><a href="#42-接雨水" class="headerlink" title="42 接雨水"></a>42 接雨水</h3>给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。<br><img src="https://img-blog.csdnimg.cn/d141be2108164ed4a2971409ad35bda0.png"></li>
+</ul>
+<p><strong>分析：</strong><br>每个柱子能盛水的深度，取决于【**min(左边最高，右边最高)**】<br><img src="https://img-blog.csdnimg.cn/0f62d3276e7a4aa38e8080d1bf246b29.png"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    动态规划 O(n) O(n)</span></span><br><span class="line"><span class="comment">    预处理 leftMax(n)和rightMax(n)</span></span><br><span class="line"><span class="comment">    ans += min(leftMax[i],rightMax[i])-height[i];</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">trap</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; height)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = height.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span>(n==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">leftMax</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="comment">//从左向右遍历</span></span><br><span class="line">        leftMax[<span class="number">0</span>] = height[<span class="number">0</span>];<span class="comment">//从头[0]开始</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">            leftMax[i] = <span class="built_in">max</span>(leftMax[i<span class="number">-1</span>],height[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">rightMax</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="comment">//从右向左遍历</span></span><br><span class="line">        rightMax[n<span class="number">-1</span>] = height[n<span class="number">-1</span>];<span class="comment">//从[n-1]尾开始</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=n<span class="number">-2</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            rightMax[i] = <span class="built_in">max</span>(rightMax[i+<span class="number">1</span>],height[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;<span class="comment">//记录结果</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            ans += <span class="built_in">min</span>(leftMax[i],rightMax[i])-height[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    双指针  O(n) O(1)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">trap</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; height)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = height.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">int</span> lMax = <span class="number">0</span>, rMax = <span class="number">0</span>;<span class="comment">//赋初值</span></span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(l&lt;r)&#123;</span><br><span class="line">            lMax = <span class="built_in">max</span>(height[l],lMax);</span><br><span class="line">            rMax = <span class="built_in">max</span>(height[r],rMax);</span><br><span class="line">            <span class="keyword">if</span>(height[l]&gt;=height[r])&#123;</span><br><span class="line">                ans += rMax-height[r];</span><br><span class="line">                r--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                ans += lMax-height[l];</span><br><span class="line">                l++;</span><br><span class="line">            &#125;   </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//单调栈</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">trap</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; h)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = h.<span class="built_in">size</span>();</span><br><span class="line">        stack&lt;<span class="keyword">int</span>&gt; stk;</span><br><span class="line">        <span class="keyword">if</span>(n&gt;=<span class="number">0</span>) stk.<span class="built_in">push</span>(<span class="number">0</span>);<span class="comment">//单调递增栈，存下标</span></span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;<span class="comment">//记录结果和</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="keyword">while</span>(!stk.<span class="built_in">empty</span>() &amp;&amp; h[i]&gt;h[stk.<span class="built_in">top</span>()])&#123;</span><br><span class="line">                <span class="keyword">int</span> mid = stk.<span class="built_in">top</span>();<span class="comment">//中间位置下标</span></span><br><span class="line">                stk.<span class="built_in">pop</span>();</span><br><span class="line">                <span class="keyword">if</span>(!stk.<span class="built_in">empty</span>())&#123;</span><br><span class="line">                    <span class="keyword">int</span> height = <span class="built_in">min</span>(h[stk.<span class="built_in">top</span>()],h[i]) - h[mid];<span class="comment">//重点</span></span><br><span class="line">                    <span class="keyword">int</span> w = i-stk.<span class="built_in">top</span>()<span class="number">-1</span>;<span class="comment">//注意！w不是1</span></span><br><span class="line">                    sum += height*w;</span><br><span class="line">                &#125;    </span><br><span class="line">            &#125;</span><br><span class="line">            stk.<span class="built_in">push</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="84-柱状图中最大的矩形"><a href="#84-柱状图中最大的矩形" class="headerlink" title="84 柱状图中最大的矩形"></a>84 柱状图中最大的矩形</h3><p>给定 n 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。<br>求在该柱状图中，能够勾勒出来的矩形的最大面积。<br><img src="https://img-blog.csdnimg.cn/bf0277dca0924427aaede3eb9705080c.png"><br><strong>思路：</strong><br>以每个柱子为基准，寻找其左右两边比其高度【还要小】的柱子，如果存在，则只能以较小的那个高度计算。<br>eg: 对于高度为6的柱子来说，其左边存在比6小的柱子5，右边存在比6小的柱子2，那么以6为基准，两边所能扩展的面积是5*2=10.<br><strong>本题：【单调递减栈】求左边和右边第一个比其小的元素</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不是特别理解！！！</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">largestRectangleArea</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; h)</span> </span>&#123;</span><br><span class="line">        stack&lt;<span class="keyword">int</span>&gt; stk;</span><br><span class="line">        h.<span class="built_in">insert</span>(h.<span class="built_in">begin</span>(), <span class="number">0</span>); <span class="comment">//数组头部加入元素0</span></span><br><span class="line">        h.<span class="built_in">push_back</span>(<span class="number">0</span>);         <span class="comment">//数组尾部加入元素0</span></span><br><span class="line">        <span class="keyword">int</span> n = h.<span class="built_in">size</span>();<span class="comment">//新的n</span></span><br><span class="line">        <span class="keyword">if</span>(n&gt;=<span class="number">0</span>) stk.<span class="built_in">push</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;<span class="comment">//记录结果</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;<span class="comment">//从1开始</span></span><br><span class="line">            <span class="keyword">while</span>(!stk.<span class="built_in">empty</span>() &amp;&amp; h[i]&lt;h[stk.<span class="built_in">top</span>()])&#123;<span class="comment">//单调递减栈</span></span><br><span class="line">                <span class="keyword">int</span> mid = stk.<span class="built_in">top</span>();</span><br><span class="line">                stk.<span class="built_in">pop</span>();</span><br><span class="line">                <span class="keyword">if</span>(!stk.<span class="built_in">empty</span>())&#123;</span><br><span class="line">                    <span class="keyword">int</span> height = h[mid];</span><br><span class="line">                    <span class="keyword">int</span> w = i-stk.<span class="built_in">top</span>()<span class="number">-1</span>;</span><br><span class="line">                  <span class="comment">//  cout &lt;&lt; &quot;height:&quot;&lt;&lt;height&lt;&lt;&quot; w:&quot;&lt;&lt;w&lt;&lt;&quot; res:&quot;&lt;&lt;height*w&lt;&lt;endl;</span></span><br><span class="line">                    res = <span class="built_in">max</span>(res,height*w);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            stk.<span class="built_in">push</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+
+<script src="/js/vdonate.js"></script>
+
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://i.loli.net/2021/07/09/UNXc5a6nbWxgzru.png',
+  alipayImage: 'https://i.loli.net/2021/07/09/Sf9nJd8hkOypTar.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong>xizhi-future</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2025/12/03/三、栈和队列/" target="_blank" title="三、栈和队列">https://xizhi-future.github.io/2025/12/03/三、栈和队列/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3/" rel="tag">力扣</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2025/12/03/%E5%9B%9B%E3%80%81%E5%93%88%E5%B8%8C%E8%A1%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          四、哈希表
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2025/12/03/%E4%BA%8C%E3%80%81%E5%8F%8C%E6%8C%87%E9%92%88/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">二、双指针</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">三、栈和队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#232-%E7%94%A8%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97"><span class="nav-number">1.1.</span> <span class="nav-text">232 用栈实现队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#225-%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88"><span class="nav-number">1.2.</span> <span class="nav-text">225 用队列实现栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#155-%E6%9C%80%E5%B0%8F%E6%A0%88"><span class="nav-number">1.3.</span> <span class="nav-text">155 最小栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20-%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7"><span class="nav-number">1.4.</span> <span class="nav-text">20 有效的括号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1047-%E5%88%A0%E9%99%A4%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%9B%B8%E9%82%BB%E9%87%8D%E5%A4%8D%E9%A1%B9"><span class="nav-number">1.5.</span> <span class="nav-text">1047 删除字符串中的所有相邻重复项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#150-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC"><span class="nav-number">1.6.</span> <span class="nav-text">150 逆波兰表达式求值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#239-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC%E2%80%94%E2%80%94%EF%BC%88deque%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97%E3%80%90%E8%87%AA%E5%AE%9A%E4%B9%89-%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97%E3%80%91-priority-queue%E5%A4%A7%E9%A1%B6%E5%A0%86%EF%BC%89"><span class="nav-number">1.7.</span> <span class="nav-text">239 滑动窗口最大值——（deque双端队列【自定义 单调队列】&#x2F;priority_queue大顶堆）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#347-%E5%89%8D-K-%E4%B8%AA%E9%AB%98%E9%A2%91%E5%85%83%E7%B4%A0%E2%80%94%E2%80%94%E5%B0%8F%E9%A1%B6%E5%A0%86-%E5%A4%A7%E9%A1%B6%E5%A0%86%EF%BC%88%E7%94%A8%E5%88%B0%E4%BA%86-priority-queue%E3%80%90%E5%AE%9A%E4%B9%89-%E5%B0%8F%E9%A1%B6%E5%A0%86%E3%80%91%EF%BC%89"><span class="nav-number">1.8.</span> <span class="nav-text">347 前 K 个高频元素——小顶堆&#x2F;大顶堆（用到了 priority_queue【定义-小顶堆】）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#496-%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%9B%B4%E5%A4%A7%E5%85%83%E7%B4%A0-I%E2%80%94%E2%80%94%E7%BA%BF%E6%80%A7%E6%95%B0%E7%BB%84"><span class="nav-number">1.9.</span> <span class="nav-text">496 下一个更大元素 I——线性数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#503-%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%9B%B4%E5%A4%A7%E5%85%83%E7%B4%A0-II%E2%80%94%E2%80%94%E5%BE%AA%E7%8E%AF%E6%95%B0%E7%BB%84"><span class="nav-number">1.10.</span> <span class="nav-text">503 下一个更大元素 II——循环数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#480-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E4%B8%AD%E4%BD%8D%E6%95%B0"><span class="nav-number">1.11.</span> <span class="nav-text">480 滑动窗口中位数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#739-%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6"><span class="nav-number">1.12.</span> <span class="nav-text">739 每日温度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#42-%E6%8E%A5%E9%9B%A8%E6%B0%B4"><span class="nav-number">1.13.</span> <span class="nav-text">42 接雨水</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#84-%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%B8%AD%E6%9C%80%E5%A4%A7%E7%9A%84%E7%9F%A9%E5%BD%A2"><span class="nav-number">1.14.</span> <span class="nav-text">84 柱状图中最大的矩形</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2025 忆 执 昔 来 的 旅 途 All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/essayists" class="mobile-nav-link">Essayists</a>
+  
+    <a href="/playist" class="mobile-nav-link">Playist</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            忆 执 昔 来 的 旅 途
+          </div>
+          <div class="panel-body">
+            Copyright © 2025 xizhi-future All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>

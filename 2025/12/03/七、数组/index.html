@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>七、数组 | 忆 执 昔 来 的 旅 途</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="数据结构力扣" />
+  
+  
+  
+  
+  <meta name="description" content="七、数组27 移除元素给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并 原地 修改输入数组。元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。误区： 12345678for (int i &#x3D; 0; i &lt; array.size(); i++) &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="七、数组">
+<meta property="og:url" content="https://xizhi-future.github.io/2025/12/03/%E4%B8%83%E3%80%81%E6%95%B0%E7%BB%84/index.html">
+<meta property="og:site_name" content="忆 执 昔 来 的 旅 途">
+<meta property="og:description" content="七、数组27 移除元素给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并 原地 修改输入数组。元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。误区： 12345678for (int i &#x3D; 0; i &lt; array.size(); i++) &amp;#123;">
+<meta property="og:locale">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/01378ba8c5164db29609ef560d28871c.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/39a23aa26e8b4a62aa0e90ba687c78c9.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/3573df4312cd417090c1e3f69b14aa42.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d981e11c87b84db6a23e4d8d6f5ab5a8.png">
+<meta property="article:published_time" content="2025-12-03T06:14:15.000Z">
+<meta property="article:modified_time" content="2025-12-03T06:17:58.754Z">
+<meta property="article:author" content="xizhi-future">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="力扣">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/01378ba8c5164db29609ef560d28871c.png">
+  
+    <link rel="alternate" href="/atom.xml" title="忆 执 昔 来 的 旅 途" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="/js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="/css/dialog.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/essayists">随笔</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/playist">音乐</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-七、数组" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      七、数组
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2025/12/03/%E4%B8%83%E3%80%81%E6%95%B0%E7%BB%84/" class="article-date">
+	  <time datetime="2025-12-03T06:14:15.000Z" itemprop="datePublished">2025-12-03</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98/">力扣刷题</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="七、数组"><a href="#七、数组" class="headerlink" title="七、数组"></a>七、数组</h2><h3 id="27-移除元素"><a href="#27-移除元素" class="headerlink" title="27 移除元素"></a>27 移除元素</h3><p>给你一个数组 nums 和一个值 val，你需要 <strong>原地 移除</strong>所有数值等于 val 的元素，并返回移除后数组的新长度。<br>不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并 原地 修改输入数组。<br>元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。<br><strong>误区：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (array[i] == target) &#123;</span><br><span class="line">        array.<span class="built_in">erase</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">这个代码看上去好像是<span class="built_in">O</span>(n)的时间复杂度，其实是<span class="built_in">O</span>(n^<span class="number">2</span>)的时间复杂度，因为erase操作也是<span class="built_in">O</span>(n)的操作。</span><br><span class="line"></span><br><span class="line">所以此时使用双指针法才展现出效率的优势：通过两个指针在一个<span class="keyword">for</span>循环下完成两个<span class="keyword">for</span>循环的工作</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//双指针</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">removeElement</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num:nums)&#123;</span><br><span class="line">            <span class="keyword">if</span>(num != val)<span class="comment">//满足条件才拷贝</span></span><br><span class="line">                nums[j++] = num;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    双指针：其中一个指针用于遍历i，另一个相当于是“一个新的数组下标”j，其实还是原本的数组</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">//至多遍历序列 两次</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">removeElement</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> j=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] != val)</span><br><span class="line">                nums[j++] = nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>【<strong>双指针优化</strong>】：<br>    如果要移除的元素恰好在数组的开头。<br>    例如序列 [1,2,3,4,5]，当 val 为 1 时，我们需要把每一个元素都左移一位。注意到题目中说：「元素的顺序可以改变」。实际上我们可以直接将最后一个元素 5 移动到序列开头，取代元素 1，得到序列 [5,2,3,4]，同样满足题目要求。这个优化在序列中 val 元素的数量较少时非常有效。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    双指针优化</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">//至多遍历序列 一次</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">removeElement</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>,right = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">while</span>(left&lt;right)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[left]==val)&#123;</span><br><span class="line">                nums[left] = nums[right<span class="number">-1</span>];</span><br><span class="line">                right--;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    暴力  O(n^2)  O(1)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">removeElement</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] == val) &#123; <span class="comment">// 发现需要移除的元素，就将数组集体向前移动一位</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; size; j++) &#123;</span><br><span class="line">                    nums[j - <span class="number">1</span>] = nums[j];</span><br><span class="line">                &#125;</span><br><span class="line">                i--; <span class="comment">// 因为下标i以后的数值都向前移动了一位，所以i也向前移动一位</span></span><br><span class="line">                size--; <span class="comment">// 此时数组的大小-1</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> size;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="26-删除有序数组中的重复项——留一个，返长度"><a href="#26-删除有序数组中的重复项——留一个，返长度" class="headerlink" title="26 删除有序数组中的重复项——留一个，返长度"></a>26 删除有序数组中的重复项——留一个，返长度</h3><p>给你一个 <strong>升序排列</strong> 的数组 nums ，请你 <strong>原地 删除</strong> 重复出现的元素，使每个元素 只出现一次 。<br>【返回删除后数组的新长度】。<br>元素的 相对顺序 应该保持 一致 。</p>
+<p><strong>分析：</strong><br>定义两个指针 fast 和 slow 分别为快指针和慢指针，快指针表示遍历数组到达的下标位置，慢指针表示下一个不同元素要填入的下标位置，初始时两个指针都指向下标 1。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    快慢指针</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n=nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span>(n==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> fast=<span class="number">1</span>,slow=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(fast&lt;n)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[fast]!=nums[fast<span class="number">-1</span>])&#123;</span><br><span class="line">                nums[slow]=nums[fast];<span class="comment">//更新数组</span></span><br><span class="line">                slow++;</span><br><span class="line">            &#125;</span><br><span class="line">            fast++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> slow;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="283-移动零——移到末尾"><a href="#283-移动零——移到末尾" class="headerlink" title="283 移动零——移到末尾"></a>283 移动零——移到末尾</h3><p>给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。【<strong>原地操作</strong>】</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">moveZeroes</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n=nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>;<span class="comment">//i遍历 j更新数组</span></span><br><span class="line">        <span class="keyword">while</span>(i&lt;n)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]!=<span class="number">0</span>)&#123;</span><br><span class="line">                nums[j++]=nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//后面补0即可</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> p=j;p&lt;n;p++)&#123;</span><br><span class="line">            nums[p]=<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//left指向0  right指向非0  然后交换，总是把0换到右边</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">moveZeroes</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//left左边均是 非零数</span></span><br><span class="line">        <span class="keyword">int</span> n = nums.<span class="built_in">size</span>(), left = <span class="number">0</span>, right = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (right &lt; n) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[right]) &#123;</span><br><span class="line">                <span class="built_in">swap</span>(nums[left], nums[right]);</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line">            right++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="905-按奇偶排序数组——偶前奇后"><a href="#905-按奇偶排序数组——偶前奇后" class="headerlink" title="905 按奇偶排序数组——偶前奇后"></a>905 按奇偶排序数组——偶前奇后</h3><p>给你一个整数数组 nums，将 nums 中的的所有偶数元素移动到数组的前面，后跟所有奇数元素。<br>返回满足此条件的 任一数组 作为答案.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">sortArrayByParity</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = n<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;right)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[left]%<span class="number">2</span>==<span class="number">1</span> &amp;&amp; nums[right]%<span class="number">2</span>==<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">swap</span>(nums[left],nums[right]);</span><br><span class="line">                left++;</span><br><span class="line">                right--;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[left]%<span class="number">2</span>==<span class="number">0</span>)</span><br><span class="line">                left++;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(nums[right]%<span class="number">2</span>==<span class="number">1</span>)</span><br><span class="line">                right--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="922-按奇偶排序数组-II——奇数放在奇数位，偶数放在偶数位"><a href="#922-按奇偶排序数组-II——奇数放在奇数位，偶数放在偶数位" class="headerlink" title="922 按奇偶排序数组 II——奇数放在奇数位，偶数放在偶数位"></a>922 按奇偶排序数组 II——奇数放在奇数位，偶数放在偶数位</h3><p>给定一个非负整数数组 nums，nums 中一半整数是 奇数 ，一半整数是 偶数 。<br>对数组进行排序，以便当 nums[i] 为奇数时，i 也是 奇数 ；当 nums[i] 为偶数时， i 也是 偶数 。<br>你可以返回 任何满足上述条件的数组作为答案 。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//双指针 i偶数位   j奇数位</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">sortArrayByParityII</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> i=<span class="number">0</span>, j=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;n &amp;&amp; j&lt;n)&#123;</span><br><span class="line">            <span class="keyword">while</span>(i&lt;n &amp;&amp; nums[i]%<span class="number">2</span>==<span class="number">0</span>)<span class="comment">//循环寻找 偶数位上 是奇数</span></span><br><span class="line">                i+=<span class="number">2</span>;<span class="comment">//是偶数正常，则跳过</span></span><br><span class="line">            <span class="keyword">while</span>(j&lt;n &amp;&amp; nums[j]%<span class="number">2</span>==<span class="number">1</span>)<span class="comment">//循环寻找 奇数位上 是偶数</span></span><br><span class="line">                j+=<span class="number">2</span>;<span class="comment">//是奇数正常，则跳过</span></span><br><span class="line">            <span class="keyword">if</span>(i&lt;n &amp;&amp; j&lt;n)</span><br><span class="line">                <span class="built_in">swap</span>(nums[i],nums[j]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="844-比较含退格的字符串"><a href="#844-比较含退格的字符串" class="headerlink" title="844 比较含退格的字符串"></a>844 比较含退格的字符串</h3><p>输入：s = “ab#c”, t = “ad#c”<br>输出：true<br>解释：s 和 t 都会变成 “ac”。</p>
+<p><strong>几个知识点：</strong></p>
+<ul>
+<li>s.substr(0,s1)==t.substr(0,t1);子串截取</li>
+<li>字符串里也有 push_back()在字符串 <code>末尾</code> 插入字符</li>
+<li>pop_back() 删除字符串 <code>末尾</code> 的字符<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//str.substr(0,j);截取</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">after_back</span><span class="params">(string str)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n=str.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> j=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(str[i]!=<span class="string">&#x27;#&#x27;</span>)&#123;</span><br><span class="line">                str[j++]=str[i];</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(j&gt;<span class="number">0</span>)&#123;<span class="comment">//问题出现在这里，要考虑到开头是#的情况，</span></span><br><span class="line">                    j--;<span class="comment">//遇到#,j向后退一下</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//string res;</span></span><br><span class="line">        <span class="keyword">return</span> str.<span class="built_in">substr</span>(<span class="number">0</span>,j);<span class="comment">//返回字符串</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">backspaceCompare</span><span class="params">(string s, string t)</span> </span>&#123;</span><br><span class="line">        string s1 = <span class="built_in">after_back</span>(s);</span><br><span class="line">        string t1 = <span class="built_in">after_back</span>(t);</span><br><span class="line">        <span class="keyword">return</span> s1==t1;</span><br><span class="line">    <span class="comment">//或者返回长度，然后return s.substr(0,s1)==t.substr(0,t1);</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    官解</span></span><br><span class="line"><span class="comment">    push_back()     pop_back()</span></span><br><span class="line"><span class="comment">    字符串中的函数，可以理解为栈</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">after_back</span><span class="params">(string str)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n=str.<span class="built_in">size</span>();</span><br><span class="line">        string res;<span class="comment">//新定义了一个 string</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(str[i]!=<span class="string">&#x27;#&#x27;</span>)&#123;</span><br><span class="line">                res.<span class="built_in">push_back</span>(str[i]);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(!res.<span class="built_in">empty</span>())&#123;</span><br><span class="line">                <span class="comment">//删除字符串的最后一个字符</span></span><br><span class="line">                res.<span class="built_in">pop_back</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">backspaceCompare</span><span class="params">(string s, string t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">after_back</span>(s)==<span class="built_in">after_back</span>(t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="977-有序数组的平方"><a href="#977-有序数组的平方" class="headerlink" title="977 有序数组的平方"></a>977 有序数组的平方</h3>给你一个按【非递减顺序】排序的整数数组 nums，返回 每个数字的平方 组成的新数组，要求也按 非递减顺序 排序。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    nums[j++]=nums[i]*nums[i];</span></span><br><span class="line"><span class="comment">    或者ans.push_back(num * num);</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">sortedSquares</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n=nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> j=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="comment">//在原数组上改动</span></span><br><span class="line">            nums[j++]=nums[i]*nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(),nums.<span class="built_in">end</span>());<span class="comment">//排序</span></span><br><span class="line">        <span class="keyword">return</span> nums;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    双指针</span></span><br><span class="line"><span class="comment">    重点在于 数组本身有序，则平方之后的最大值只可能是在 最左边 或者是 最右边</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">sortedSquares</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> k = A.<span class="built_in">size</span>()<span class="number">-1</span>;<span class="comment">//倒序 插入</span></span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">result</span><span class="params">(A.size(), <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>, j=A.<span class="built_in">size</span>()<span class="number">-1</span>; i &lt;= j;) &#123; <span class="comment">//注意这里要i &lt;= j，因为最后要处理两个元素</span></span><br><span class="line">            <span class="keyword">if</span> (A[i]*A[i] &lt; A[j]*A[j])  &#123;</span><br><span class="line">                result[k--] = A[j]*A[j];</span><br><span class="line">                j--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                result[k--] = A[i]*A[i];</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="31-下一个排列"><a href="#31-下一个排列" class="headerlink" title="31 下一个排列"></a>31 下一个排列</h3>【下一个排列】的定义是：给定数字序列的字典序中下一个更大的排列。如果不存在下一个更大的排列，则将数字重新排列成最小的排列（即升序排列）。<br><img src="https://img-blog.csdnimg.cn/01378ba8c5164db29609ef560d28871c.png"></li>
+</ul>
+<p><strong>思路：</strong><br><img src="https://img-blog.csdnimg.cn/39a23aa26e8b4a62aa0e90ba687c78c9.png"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    O(N)至多只需要扫描两次序列，以及进行一次反转操作</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">nextPermutation</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i=nums.<span class="built_in">size</span>()<span class="number">-2</span>;</span><br><span class="line">        <span class="comment">//从后向前找，第一个 下一个数&gt;前一个数 的情况</span></span><br><span class="line">        <span class="comment">//i指向 前面的 小数</span></span><br><span class="line">        <span class="keyword">while</span>(i&gt;=<span class="number">0</span> &amp;&amp; nums[i] &gt;= nums[i+<span class="number">1</span>])&#123;</span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(i&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">int</span> j = nums.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">            <span class="comment">//从后向前找（尽可能靠右），尽可能小的 大数</span></span><br><span class="line">            <span class="comment">//j指向后面的大数</span></span><br><span class="line">            <span class="keyword">while</span>(j&gt;=<span class="number">0</span> &amp;&amp; nums[i] &gt;= nums[j])&#123;</span><br><span class="line">                j--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//交换 前面的小数 与 后面的大数</span></span><br><span class="line">            <span class="built_in">swap</span>(nums[i],nums[j]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将i位置开始 后面 序列进行升序排列</span></span><br><span class="line">        <span class="built_in">reverse</span>(nums.<span class="built_in">begin</span>()+i+<span class="number">1</span>,nums.<span class="built_in">end</span>());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="58-最后一个单词的长度"><a href="#58-最后一个单词的长度" class="headerlink" title="58 最后一个单词的长度"></a>58 最后一个单词的长度</h3><p>给你一个字符串 s，由若干单词组成，单词前后用一些空格字符隔开。返回字符串中 最后一个 单词的长度。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    输入：s = &quot;Hello World&quot;</span></span><br><span class="line"><span class="comment">    输出：5 </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lengthOfLastWord</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = s.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> i=len<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(i&gt;=<span class="number">0</span> &amp;&amp; s[i]==<span class="string">&#x27; &#x27;</span>)&#123;</span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i] == <span class="string">&#x27; &#x27;</span>)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            res++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="54-螺旋矩阵——模拟边界-顺时针打印"><a href="#54-螺旋矩阵——模拟边界-顺时针打印" class="headerlink" title="54 螺旋矩阵——模拟边界-顺时针打印"></a>54 螺旋矩阵——模拟边界-顺时针打印</h3><p><img src="https://img-blog.csdnimg.cn/3573df4312cd417090c1e3f69b14aa42.png"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">spiralOrder</span><span class="params">(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; matrix)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        <span class="keyword">if</span>(matrix.<span class="built_in">empty</span>())&#123;</span><br><span class="line">            <span class="keyword">return</span> ans;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> up = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> down = matrix.<span class="built_in">size</span>()<span class="number">-1</span>;<span class="comment">//行：二维数组包含的一维数组个数</span></span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = matrix[<span class="number">0</span>].<span class="built_in">size</span>()<span class="number">-1</span>;<span class="comment">//列：每个一维数组包含元素个数</span></span><br><span class="line">        <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=left;i&lt;=right;i++)</span><br><span class="line">                ans.<span class="built_in">push_back</span>(matrix[up][i]);<span class="comment">//从左向右移动，行不变</span></span><br><span class="line">            <span class="keyword">if</span>(++up&gt;down)</span><br><span class="line">                <span class="keyword">break</span>;<span class="comment">//重新定义上边界，即 下一行</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=up;i&lt;=down;i++)</span><br><span class="line">                ans.<span class="built_in">push_back</span>(matrix[i][right]);<span class="comment">//从上向下移动，列不变</span></span><br><span class="line">            <span class="keyword">if</span>(--right&lt;left)</span><br><span class="line">                <span class="keyword">break</span>;<span class="comment">//重新定义右边界，即 向左一列</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=right;i&gt;=left;i--)</span><br><span class="line">                ans.<span class="built_in">push_back</span>(matrix[down][i]);<span class="comment">//从右向左移动，行不变</span></span><br><span class="line">            <span class="keyword">if</span>(--down&lt;up)</span><br><span class="line">                <span class="keyword">break</span>;<span class="comment">//重新定义下边界，即 向上一行</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=down;i&gt;=up;i--)</span><br><span class="line">                ans.<span class="built_in">push_back</span>(matrix[i][left]);<span class="comment">//从下向上移动，列不变</span></span><br><span class="line">            <span class="keyword">if</span>(++left&gt;right)</span><br><span class="line">                <span class="keyword">break</span>;<span class="comment">//重新定义左边界，即 向右一列</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="59-螺旋矩阵-II——生成n-2矩阵"><a href="#59-螺旋矩阵-II——生成n-2矩阵" class="headerlink" title="59 螺旋矩阵 II——生成n^2矩阵"></a>59 螺旋矩阵 II——生成n^2矩阵</h3><p><img src="https://img-blog.csdnimg.cn/d981e11c87b84db6a23e4d8d6f5ab5a8.png"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//n行，每行是一个 vector&lt;int&gt;(n)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">generateMatrix</span>(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="keyword">int</span> up=<span class="number">0</span>,left=<span class="number">0</span>,down=n<span class="number">-1</span>,right=n<span class="number">-1</span>;</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">ans</span>(n,vector&lt;<span class="keyword">int</span>&gt;(n));</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">1</span>,nums = n*n;</span><br><span class="line">        <span class="keyword">while</span>(count&lt;=nums)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=left;i&lt;=right;i++)</span><br><span class="line">                ans[up][i] = count++;</span><br><span class="line">            up++;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=up;i&lt;=down;i++)</span><br><span class="line">                ans[i][right] = count++;</span><br><span class="line">            right--;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=right;i&gt;=left;i--)</span><br><span class="line">                ans[down][i] = count++;</span><br><span class="line">            down--;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=down;i&gt;=up;i--)</span><br><span class="line">                ans[i][left] = count++;</span><br><span class="line">            left++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="2475-数组中不等三元组的数目"><a href="#2475-数组中不等三元组的数目" class="headerlink" title="2475 数组中不等三元组的数目"></a>2475 数组中不等三元组的数目</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    暴力枚举</span></span><br><span class="line"><span class="comment">    O(n^3)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">unequalTriplets</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;len;j++)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k=j+<span class="number">1</span>;k&lt;len;k++)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(nums[i]!=nums[j] &amp;&amp; nums[j]!=nums[k] &amp;&amp; nums[i]!=nums[k])</span><br><span class="line">                    res++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*  res += i*(j-i)*(len-j);</span></span><br><span class="line"><span class="comment">    排序后 相同元素一定相邻</span></span><br><span class="line"><span class="comment">    由题意可知，数组元素的相对顺序不影响结果，因此我们可以将数组 nums 从小到大进行排序。</span></span><br><span class="line"><span class="comment">    当我们以某一堆相同的数 [i,j) 作为三元组的中间元素时，这堆相同的元素的左边元素数目为 i，右边元素数目为 n−j，那么符合条件的三元组数目为：i×(j−i)×(n−j)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">unequalTriplets</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(),nums.<span class="built_in">end</span>());<span class="comment">//先排序</span></span><br><span class="line">        <span class="keyword">int</span> res=<span class="number">0</span>,len=nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>;i&lt;len;i=j)&#123;</span><br><span class="line">            <span class="keyword">while</span>(j&lt;len &amp;&amp; nums[j] == nums[i])</span><br><span class="line">                j++;</span><br><span class="line">            res += i*(j-i)*(len-j);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    哈希表</span></span><br><span class="line"><span class="comment">    t = 左边可以选的数量 </span></span><br><span class="line"><span class="comment">    v = 当前数数量 </span></span><br><span class="line"><span class="comment">    (n−t−v) = 右边可选数数量 </span></span><br><span class="line"><span class="comment">    直接相乘</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">unequalTriplets</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        unordered_map&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; count;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> x:nums)&#123;</span><br><span class="line">            count[x]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>,n=nums.<span class="built_in">size</span>(),t=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> [_,v]:count)&#123;</span><br><span class="line">            res += t*v*(n-t-v);</span><br><span class="line">            t += v;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="349-两个数组的交集"><a href="#349-两个数组的交集" class="headerlink" title="349 两个数组的交集"></a>349 两个数组的交集</h3><p>给定两个数组 nums1 和 nums2 ，返回 它们的 <strong><em>*<strong><strong>交集</strong></strong></em>*</strong> 。输出结果中的每个元素一定是 唯一 的。我们可以 不考虑输出结果的顺序。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	哈希表：两个集合，遍历小的那个</span></span><br><span class="line"><span class="comment">    时间：O(m+n)</span></span><br><span class="line"><span class="comment">    空间：O(m+n)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">intersection</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums1, vector&lt;<span class="keyword">int</span>&gt;&amp; nums2)</span> </span>&#123;</span><br><span class="line">        unordered_set&lt;<span class="keyword">int</span>&gt; set1,set2;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; num:nums1)&#123;</span><br><span class="line">            set1.<span class="built_in">insert</span>(num);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; num:nums2)&#123;</span><br><span class="line">            set2.<span class="built_in">insert</span>(num);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">getIntersection</span>(set1,set2);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">getIntersection</span><span class="params">(unordered_set&lt;<span class="keyword">int</span>&gt;&amp; set1,unordered_set&lt;<span class="keyword">int</span>&gt;&amp; set2)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(set1.<span class="built_in">size</span>() &gt; set2.<span class="built_in">size</span>())</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">getIntersection</span>(set2,set1);</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; intersection;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; num:set1)&#123;<span class="comment">//该处的 set 必须是元素少的那个，减少时间复杂度</span></span><br><span class="line">            <span class="keyword">if</span>(set2.<span class="built_in">count</span>(num))<span class="comment">//如果set1 和 set2 中都有某个共同元素，则加进 intersection 中</span></span><br><span class="line">                intersection.<span class="built_in">push_back</span>(num);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> intersection;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="350-两个数组的交集-II"><a href="#350-两个数组的交集-II" class="headerlink" title="350 两个数组的交集 II"></a>350 两个数组的交集 II</h3><p>给你两个整数数组 nums1 和 nums2 ，请你以数组形式返回两数组的交集。返回结果中每个元素出现的次数，应与元素在两个数组中都出现的次数一致（如果出现次数不一致，则考虑取较小值）。可以不考虑输出结果的顺序。</p>
+<p><strong>分析：</strong><br>由于同一个数字在两个数组中都可能出现多次，因此需要用哈希表存储每个数字出现的次数。对于一个数字，其在交集中出现的次数等于该数字在两个数组中出现次数的 <strong>最小值</strong>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    哈希表</span></span><br><span class="line"><span class="comment">    时间复杂度：O(m+n)</span></span><br><span class="line"><span class="comment">    时间复杂度：O(min(m+n))</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">intersect</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums1, vector&lt;<span class="keyword">int</span>&gt;&amp; nums2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums1.<span class="built_in">size</span>() &gt; nums2.<span class="built_in">size</span>())&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">intersect</span>(nums2,nums1);</span><br><span class="line">        &#125;</span><br><span class="line">        unordered_map&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; m;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num:nums1)&#123;<span class="comment">//nums1 是两个集合中元素较少的那个</span></span><br><span class="line">            m[num]++;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; intersection;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num:nums2)&#123;</span><br><span class="line">            <span class="keyword">if</span>(m.<span class="built_in">count</span>(num))&#123;</span><br><span class="line">                <span class="comment">//如果在哈希表中存在这个数字，则将该数字添加到答案，并减少哈希表中该数字出现的次数</span></span><br><span class="line">                intersection.<span class="built_in">push_back</span>(num);</span><br><span class="line">                m[num]--;</span><br><span class="line">                <span class="keyword">if</span>(m[num]==<span class="number">0</span>)</span><br><span class="line">                    m.<span class="built_in">erase</span>(num);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> intersection;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+
+<script src="/js/vdonate.js"></script>
+
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://i.loli.net/2021/07/09/UNXc5a6nbWxgzru.png',
+  alipayImage: 'https://i.loli.net/2021/07/09/Sf9nJd8hkOypTar.png'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong>xizhi-future</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2025/12/03/七、数组/" target="_blank" title="七、数组">https://xizhi-future.github.io/2025/12/03/七、数组/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8A%9B%E6%89%A3/" rel="tag">力扣</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2025/12/03/%E5%85%AB%E3%80%81%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          八、滑动窗口
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2025/12/03/%E5%85%AD%E3%80%81%E6%A0%91/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">六、树</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E6%95%B0%E7%BB%84"><span class="nav-number">1.</span> <span class="nav-text">七、数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#27-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0"><span class="nav-number">1.1.</span> <span class="nav-text">27 移除元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26-%E5%88%A0%E9%99%A4%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9%E2%80%94%E2%80%94%E7%95%99%E4%B8%80%E4%B8%AA%EF%BC%8C%E8%BF%94%E9%95%BF%E5%BA%A6"><span class="nav-number">1.2.</span> <span class="nav-text">26 删除有序数组中的重复项——留一个，返长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#283-%E7%A7%BB%E5%8A%A8%E9%9B%B6%E2%80%94%E2%80%94%E7%A7%BB%E5%88%B0%E6%9C%AB%E5%B0%BE"><span class="nav-number">1.3.</span> <span class="nav-text">283 移动零——移到末尾</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#905-%E6%8C%89%E5%A5%87%E5%81%B6%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E2%80%94%E2%80%94%E5%81%B6%E5%89%8D%E5%A5%87%E5%90%8E"><span class="nav-number">1.4.</span> <span class="nav-text">905 按奇偶排序数组——偶前奇后</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#922-%E6%8C%89%E5%A5%87%E5%81%B6%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84-II%E2%80%94%E2%80%94%E5%A5%87%E6%95%B0%E6%94%BE%E5%9C%A8%E5%A5%87%E6%95%B0%E4%BD%8D%EF%BC%8C%E5%81%B6%E6%95%B0%E6%94%BE%E5%9C%A8%E5%81%B6%E6%95%B0%E4%BD%8D"><span class="nav-number">1.5.</span> <span class="nav-text">922 按奇偶排序数组 II——奇数放在奇数位，偶数放在偶数位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#844-%E6%AF%94%E8%BE%83%E5%90%AB%E9%80%80%E6%A0%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.6.</span> <span class="nav-text">844 比较含退格的字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#977-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9"><span class="nav-number">1.7.</span> <span class="nav-text">977 有序数组的平方</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#31-%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%8E%92%E5%88%97"><span class="nav-number">1.8.</span> <span class="nav-text">31 下一个排列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#58-%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E5%8D%95%E8%AF%8D%E7%9A%84%E9%95%BF%E5%BA%A6"><span class="nav-number">1.9.</span> <span class="nav-text">58 最后一个单词的长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#54-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E8%BE%B9%E7%95%8C-%E9%A1%BA%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0"><span class="nav-number">1.10.</span> <span class="nav-text">54 螺旋矩阵——模拟边界-顺时针打印</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#59-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5-II%E2%80%94%E2%80%94%E7%94%9F%E6%88%90n-2%E7%9F%A9%E9%98%B5"><span class="nav-number">1.11.</span> <span class="nav-text">59 螺旋矩阵 II——生成n^2矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2475-%E6%95%B0%E7%BB%84%E4%B8%AD%E4%B8%8D%E7%AD%89%E4%B8%89%E5%85%83%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE"><span class="nav-number">1.12.</span> <span class="nav-text">2475 数组中不等三元组的数目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#349-%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86"><span class="nav-number">1.13.</span> <span class="nav-text">349 两个数组的交集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#350-%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86-II"><span class="nav-number">1.14.</span> <span class="nav-text">350 两个数组的交集 II</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2025 忆 执 昔 来 的 旅 途 All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/essayists" class="mobile-nav-link">Essayists</a>
+  
+    <a href="/playist" class="mobile-nav-link">Playist</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+
+  
+<script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            忆 执 昔 来 的 旅 途
+          </div>
+          <div class="panel-body">
+            Copyright © 2025 xizhi-future All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
