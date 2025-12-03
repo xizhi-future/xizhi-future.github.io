@@ -563,74 +563,6 @@ Misc 入门1.1 misc 1 — QQ截图 直接识别图片内容
 
 
   
-    <article id="post-CTF-Show-文件上传"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2021/10/01/CTF-Show-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">CTF-Show-文件上传</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2021/10/01/CTF-Show-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" class="article-date">
-	  <time datetime="2021-10-01T11:16:29.000Z" itemprop="datePublished">2021-10-01</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/CTF-Show/">CTF Show</a>
-
-      
-      
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          CTF Show 文件上传篇。
-
-
-CTF Show — 文件上传1.1 Web 151 — 前端验证
-手动删除前端验证，好像没什么作用，尝试之后发现，只能成功上传 .png 图片，其实查看源代码后有
-
-所以只能上传 .png ，我们上传 1.png 然后抓包手动修改
-
-蚁剑连接即可
-1.2 Web 1521后端不能单一校验
-
-同上
-1.3 Web 153 — .user.ini由于服务器是 nginx ，则可尝试上传 .user.ini
-
-再上传 111.png
-
-访问与 111.png...
-        </p>
-        <p class="article-more-link">
-          <a href="/2021/10/01/CTF-Show-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/#more">Read More</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-
-  
     <article id="post-CTF-Show-PHP特性"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
@@ -686,7 +618,7 @@ CTF Show — 文件上传1.1 Web 151 — 前端验证
 
 
   
-    <article id="post-CTF-Show-命令执行"  class="article article-type-post" itemscope itemprop="blogPost" >
+    <article id="post-CTF-Show-爆破"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -694,7 +626,7 @@ CTF Show — 文件上传1.1 Web 151 — 前端验证
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2021/10/01/CTF-Show-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">CTF-Show-命令执行</a>
+      <a class="article-title" href="/2021/10/01/CTF-Show-%E7%88%86%E7%A0%B4/">CTF-Show-爆破</a>
     </h1>
   
 
@@ -702,8 +634,8 @@ CTF Show — 文件上传1.1 Web 151 — 前端验证
     
     <div class="article-meta">
       
-	<a href="/2021/10/01/CTF-Show-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" class="article-date">
-	  <time datetime="2021-10-01T11:14:09.000Z" itemprop="datePublished">2021-10-01</time>
+	<a href="/2021/10/01/CTF-Show-%E7%88%86%E7%A0%B4/" class="article-date">
+	  <time datetime="2021-10-01T11:10:35.000Z" itemprop="datePublished">2021-10-01</time>
 	</a>
 
       
@@ -716,12 +648,19 @@ CTF Show — 文件上传1.1 Web 151 — 前端验证
     <div class="article-entry" itemprop="articleBody">
       
         <p class="article-excerpt-content">
-          一、CTF Show — 命令执行1.1 Web 29 — 只过滤 flag — 通配符使用1命令执行，需要严格的过滤
+          CTF show 爆破篇。
 
-12345678910&lt;?php    error_reporting(0);	if(isset($_GET[&#x27;c&#x27;]))&#123;    $c = $_GET[&#x27;c&#x27;];    if(!preg_match(&quot;/flag/i&quot;, $c))&#123;        eval($c);    &#125...
+
+一、CTF show — 爆破1.1 Web 21 — Burp 爆破 — base64-encode1爆破什么的，都是基操
+
+抓包查看：输入的账号密码都被base64加密了，并且中间还有一个 : 分割
+Burp 抓包，下载题目给的字典，进行爆破：手动更改 admin: base64 加密之后的内容，只将密码部分设为变量，加载题目字典，设置 base64-encode 加密，去掉勾选 URL编码，开始攻击。
+
+
+1.2 Web 22 — 子域名爆破 — su...
         </p>
         <p class="article-more-link">
-          <a href="/2021/10/01/CTF-Show-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/#more">Read More</a>
+          <a href="/2021/10/01/CTF-Show-%E7%88%86%E7%A0%B4/#more">Read More</a>
         </p>
       
     </div>
@@ -740,7 +679,7 @@ CTF Show — 文件上传1.1 Web 151 — 前端验证
 
 
   
-    <article id="post-CTF-Show-文件包含"  class="article article-type-post" itemscope itemprop="blogPost" >
+    <article id="post-恶之花有感"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -748,7 +687,7 @@ CTF Show — 文件上传1.1 Web 151 — 前端验证
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2021/10/01/CTF-Show-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/">CTF-Show-文件包含</a>
+      <a class="article-title" href="/2021/10/01/%E6%81%B6%E4%B9%8B%E8%8A%B1%E6%9C%89%E6%84%9F/">恶之花有感</a>
     </h1>
   
 
@@ -756,8 +695,60 @@ CTF Show — 文件上传1.1 Web 151 — 前端验证
     
     <div class="article-meta">
       
-	<a href="/2021/10/01/CTF-Show-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" class="article-date">
-	  <time datetime="2021-10-01T11:12:49.000Z" itemprop="datePublished">2021-10-01</time>
+	<a href="/2021/10/01/%E6%81%B6%E4%B9%8B%E8%8A%B1%E6%9C%89%E6%84%9F/" class="article-date">
+	  <time datetime="2021-10-01T10:17:46.000Z" itemprop="datePublished">2021-10-01</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/%E5%BD%B1%E8%A7%86%E6%9C%89%E6%84%9F/">影视有感</a>
+
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          如果你的至亲犯了罪，杀了人，在你童年一无所知的时候，对你造成了难以想象的伤害，你该如何活下去？你能相信一个人这一辈子只为一个人而活着吗？每天就仅仅是做着相同的事情，他是一个合格的丈夫，合格的父亲，可他的过去是自己可以选择的吗？如果曝光，世人会怎末说，连环杀人犯的儿子，和自己的父亲一起计划杀人，在杀了对自己有养育之恩的人之后逃跑，18年里仍未捕获，随后假冒别人的身份，居然与一位刑警结婚、生子，过着普通人般平凡的生活。耳朵听到的，电视新闻上看到的，一定是真正的吗？谁会知道，他也是在年幼时偶然间...
+        </p>
+        <p class="article-more-link">
+          <a href="/2021/10/01/%E6%81%B6%E4%B9%8B%E8%8A%B1%E6%9C%89%E6%84%9F/#more">Read More</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-CTF-Show-信息搜集"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2021/10/01/CTF-Show-%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/">CTF Show---信息搜集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2021/10/01/CTF-Show-%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/" class="article-date">
+	  <time datetime="2021-10-01T09:20:33.000Z" itemprop="datePublished">2021-10-01</time>
 	</a>
 
       
@@ -770,15 +761,28 @@ CTF Show — 文件上传1.1 Web 151 — 前端验证
     <div class="article-entry" itemprop="articleBody">
       
         <p class="article-excerpt-content">
-          CTF Show 文件包含篇。
+          CTF Show 中 web入门，信息搜集篇。
 
 
-一、CTF Show — 文件包含1.1 Web 78 — 最简单的文件包含 — 各种伪协议 绕过1234567&lt;?php   if(isset($_GET[&#x27;file&#x27;]))&#123;    $file = $_GET[&#x27;file&#x27;];    include($file);&#125;else&#123;    highlight_file(__FILE__);&#125;
+一、CTF Show — 信息搜集1.1 Web1 — 查看源代码直接查看源代码
 
-1234?file=php:...
+1.2 Web 2 — 查看源代码1js前台拦截 === 无效操作
+
+查看源代码的几种方式
+
+右键查看源代码
+F12 打开开发者工具
+Ctrl + U 查看源代码
+Burp 抓包查看
+
+1.3 Web 3 — 抓包1没思路的时候抓个包看看，可能会有意外收获
+
+抓包 尝试
+
+1.4 Web 4 — robots.txt 泄露1总有人把后台地址写入robots...
         </p>
         <p class="article-more-link">
-          <a href="/2021/10/01/CTF-Show-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/#more">Read More</a>
+          <a href="/2021/10/01/CTF-Show-%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/#more">Read More</a>
         </p>
       
     </div>
@@ -801,7 +805,7 @@ CTF Show — 文件上传1.1 Web 151 — 前端验证
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
   </nav>
 
 </section>
@@ -816,7 +820,7 @@ CTF Show — 文件上传1.1 Web 151 — 前端验证
   <div class="container">
       	<div class="row">
 	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
-	      <p id="copyRightEn">Copyright &copy; 2013 - 2021 忆 执 昔 来 的 旅 途 All Rights Reserved.</p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2025 忆 执 昔 来 的 旅 途 All Rights Reserved.</p>
 	      
 	      
     		<p class="busuanzi_uv">
@@ -982,7 +986,7 @@ CTF Show — 文件上传1.1 Web 151 — 前端验证
             忆 执 昔 来 的 旅 途
           </div>
           <div class="panel-body">
-            Copyright © 2021 xizhi-future All Rights Reserved.
+            Copyright © 2025 xizhi-future All Rights Reserved.
           </div>
         </div>
       </div>
